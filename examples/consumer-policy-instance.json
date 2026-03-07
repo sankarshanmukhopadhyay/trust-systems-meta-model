@@ -1,0 +1,124 @@
+{
+  "entities": [
+    {
+      "id": "entity.marketplace",
+      "type": "application",
+      "name": "Example Marketplace",
+      "roles": [
+        {
+          "id": "role.consumer",
+          "type": "consumer",
+          "authorities": [
+            {
+              "id": "auth.interpret-signals",
+              "scope": "interpret and present trust signals under local policy",
+              "source": "local operator policy",
+              "conditions": [
+                "signals must pass integrity verification",
+                "high-risk actions require stronger finality evidence"
+              ],
+              "revocationStatus": "active"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "artifact.erc8004-metadata",
+      "type": "fetched-metadata",
+      "claims": [
+        {
+          "id": "claim.reputation-signal",
+          "statement": "token carries a high reputation score"
+        },
+        {
+          "id": "claim.finality-status",
+          "statement": "transfer is final"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy.signal-handling",
+      "name": "Consumer signal handling policy",
+      "decisionMode": "mixed",
+      "rules": [
+        "downgrade trust cues when finality evidence is weak",
+        "show warnings instead of strong badges when risk is unresolved"
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "id": "control.safe-fetch",
+      "type": "sandboxed-fetch",
+      "mitigatesThreatRefs": [
+        "threat.unsafe-fetch"
+      ]
+    },
+    {
+      "id": "control.integrity-check",
+      "type": "hash-verification",
+      "mitigatesThreatRefs": [
+        "threat.badge-theater"
+      ]
+    }
+  ],
+  "threats": [
+    {
+      "id": "threat.unsafe-fetch",
+      "type": "unsafe-fetch",
+      "description": "malicious or unbounded metadata retrieval causes unsafe behavior"
+    },
+    {
+      "id": "threat.badge-theater",
+      "type": "misleading-signal-presentation",
+      "description": "a weakly validated signal is shown as though it were strongly trustworthy"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence.validation-log",
+      "type": "validation-log",
+      "supportsRefs": [
+        "control.safe-fetch",
+        "control.integrity-check"
+      ]
+    }
+  ],
+  "verifications": [
+    {
+      "id": "verification.consumer-check",
+      "method": "integrity-and-policy-evaluation",
+      "result": "warn",
+      "inputRefs": [
+        "artifact.erc8004-metadata",
+        "evidence.validation-log"
+      ]
+    }
+  ],
+  "trustDecisions": [
+    {
+      "id": "decision.downgrade-signal",
+      "outcome": "downgrade",
+      "policyRef": "policy.signal-handling",
+      "verificationRefs": [
+        "verification.consumer-check"
+      ],
+      "effectRefs": [
+        "effect.show-warning"
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "id": "effect.show-warning",
+      "class": "interaction",
+      "action": "show contextual warning and suppress strong trust badge",
+      "status": "degraded"
+    }
+  ]
+}

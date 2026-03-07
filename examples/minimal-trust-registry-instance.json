@@ -1,0 +1,131 @@
+{
+  "entities": [
+    {
+      "id": "entity.registry-operator",
+      "type": "organization",
+      "name": "Example Trust Registry Operator",
+      "roles": [
+        {
+          "id": "role.operator",
+          "type": "operator",
+          "authorities": [
+            {
+              "id": "auth.publish-registry-metadata",
+              "scope": "publish trust registry metadata and query responses",
+              "source": "governance framework",
+              "conditions": [
+                "responses must satisfy freshness policy",
+                "signed response required for higher-assurance use"
+              ],
+              "revocationStatus": "active"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "artifact.registry-metadata",
+      "type": "metadata-document",
+      "claims": [
+        {
+          "id": "claim.signed-response-supported",
+          "statement": "registry supports signed response envelopes"
+        },
+        {
+          "id": "claim.freshness-window",
+          "statement": "metadata freshness window is 24 hours"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy.registry-reliance",
+      "name": "Registry reliance policy",
+      "decisionMode": "mixed",
+      "rules": [
+        "accept informational use when metadata freshness verification passes",
+        "require signed response for high-assurance automated gating"
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "id": "control.response-signing",
+      "type": "signed-response-envelope",
+      "mitigatesThreatRefs": [
+        "threat.spoofed-response"
+      ]
+    }
+  ],
+  "threats": [
+    {
+      "id": "threat.spoofed-response",
+      "type": "spoofed-metadata",
+      "description": "an attacker serves altered registry metadata or a fake response"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence.conformance-report",
+      "type": "test-output",
+      "supportsRefs": [
+        "claim.signed-response-supported",
+        "control.response-signing"
+      ]
+    }
+  ],
+  "verifications": [
+    {
+      "id": "verification.metadata-check",
+      "method": "schema-plus-signature-validation",
+      "result": "pass",
+      "inputRefs": [
+        "artifact.registry-metadata",
+        "evidence.conformance-report"
+      ]
+    }
+  ],
+  "levelFrameworks": [
+    {
+      "id": "levels.assurance",
+      "name": "Assurance levels",
+      "levels": [
+        "AL1",
+        "AL2",
+        "AL3",
+        "AL4"
+      ]
+    }
+  ],
+  "trustDecisions": [
+    {
+      "id": "decision.accept-bounded",
+      "outcome": "accept-with-warning",
+      "policyRef": "policy.registry-reliance",
+      "verificationRefs": [
+        "verification.metadata-check"
+      ],
+      "effectRefs": [
+        "effect.show-result"
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "id": "effect.show-result",
+      "class": "informational",
+      "action": "display registry result but do not auto-approve onboarding",
+      "status": "degraded"
+    }
+  ],
+  "lifecycleEvents": [
+    {
+      "id": "event.metadata-update",
+      "type": "metadata-update",
+      "targetRef": "artifact.registry-metadata"
+    }
+  ]
+}

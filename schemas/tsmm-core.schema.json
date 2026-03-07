@@ -1,0 +1,461 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-core.schema.json",
+  "title": "TSMM Core Instance",
+  "description": "Minimal machine-readable representation of a TSMM instance. Intentionally small and illustrative.",
+  "type": "object",
+  "required": [
+    "entities",
+    "policies",
+    "trustDecisions",
+    "effects"
+  ],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity"
+      },
+      "minItems": 1
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "policies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/policy"
+      },
+      "minItems": 1
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/control"
+      }
+    },
+    "threats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/threat"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "verifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/verification"
+      }
+    },
+    "levelFrameworks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/levelFramework"
+      }
+    },
+    "trustDecisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/trustDecision"
+      },
+      "minItems": 1
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/effect"
+      },
+      "minItems": 1
+    },
+    "lifecycleEvents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lifecycleEvent"
+      }
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "entity": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "roles"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/role"
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "role": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "authorities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/authority"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "id",
+        "scope"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "revocationStatus": {
+          "type": "string",
+          "enum": [
+            "active",
+            "revoked",
+            "suspended",
+            "expired"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "claim": {
+      "type": "object",
+      "required": [
+        "id",
+        "statement"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "subjectRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "decisionMode"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
+        "decisionMode": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "deny",
+            "warn",
+            "review",
+            "mixed"
+          ]
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "control": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "mitigatesThreatRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "threat": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "supportsRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "id",
+        "method",
+        "result"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "method": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail",
+            "warn",
+            "review"
+          ]
+        },
+        "inputRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "levelFramework": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "trustDecision": {
+      "type": "object",
+      "required": [
+        "id",
+        "outcome",
+        "policyRef"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "accept",
+            "accept-with-warning",
+            "deny",
+            "defer",
+            "quarantine",
+            "downgrade",
+            "review"
+          ]
+        },
+        "policyRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "verificationRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        },
+        "effectRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "effect": {
+      "type": "object",
+      "required": [
+        "id",
+        "class",
+        "action"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "class": {
+          "type": "string",
+          "enum": [
+            "informational",
+            "interaction",
+            "transactional",
+            "rights-affecting"
+          ]
+        },
+        "action": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "allowed",
+            "blocked",
+            "degraded",
+            "routed"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "lifecycleEvent": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "targetRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

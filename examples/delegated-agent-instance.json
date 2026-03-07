@@ -1,0 +1,88 @@
+{
+  "entities": [
+    {
+      "id": "entity.agent",
+      "type": "software-agent",
+      "name": "Delegated Procurement Agent",
+      "roles": [
+        {
+          "id": "role.delegate",
+          "type": "delegate",
+          "authorities": [
+            {
+              "id": "auth.retrieve-quotes",
+              "scope": "retrieve quotes and assemble recommendations only",
+              "source": "delegation artifact signed by principal",
+              "conditions": [
+                "no state mutation allowed",
+                "all actions must be logged for review"
+              ],
+              "revocationStatus": "active"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "artifact.delegation",
+      "type": "delegation-artifact",
+      "claims": [
+        {
+          "id": "claim.agent-scope",
+          "statement": "agent may retrieve quotes but may not submit purchase orders"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy.delegated-action",
+      "name": "Delegated action policy",
+      "decisionMode": "mixed",
+      "rules": [
+        "deny actions that exceed delegated authority scope",
+        "route ambiguous cases to human review"
+      ]
+    }
+  ],
+  "verifications": [
+    {
+      "id": "verification.scope-check",
+      "method": "delegation-scope-evaluation",
+      "result": "fail",
+      "inputRefs": [
+        "artifact.delegation"
+      ]
+    }
+  ],
+  "trustDecisions": [
+    {
+      "id": "decision.block-state-change",
+      "outcome": "deny",
+      "policyRef": "policy.delegated-action",
+      "verificationRefs": [
+        "verification.scope-check"
+      ],
+      "effectRefs": [
+        "effect.block-purchase-order"
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "id": "effect.block-purchase-order",
+      "class": "transactional",
+      "action": "block attempted purchase-order submission",
+      "status": "blocked"
+    }
+  ],
+  "lifecycleEvents": [
+    {
+      "id": "event.delegation-revocation",
+      "type": "revocation",
+      "targetRef": "auth.retrieve-quotes"
+    }
+  ]
+}
