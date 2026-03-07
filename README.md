@@ -19,9 +19,9 @@ tier: 0
 
 ## Overview
 
-Trust Systems Meta Model (TSMM) is a portable abstract reference model for designing, comparing, and implementing trust systems.
+Most trust systems are described through their visible parts: credentials, registries, wallets, agents, assurance schemes, governance frameworks, and verification flows. TSMM starts one layer deeper. It asks whether the underlying structure of a trust system can be described clearly enough to compare systems, study them, and improve them without beginning from a single protocol or implementation.
 
-It provides a shared vocabulary for how trust-relevant systems connect:
+Trust Systems Meta Model (TSMM) is a portable abstract reference model for designing, comparing, and implementing trust systems. It provides a shared vocabulary for how trust-relevant systems connect:
 
 - entities and roles
 - authority and constraints
@@ -32,9 +32,9 @@ It provides a shared vocabulary for how trust-relevant systems connect:
 - trust decisions and downstream effects
 - lifecycle events and state changes
 
-TSMM is intentionally **effect-centered**. It does not treat identity as the final unit of governance. Instead, it treats trust systems as mechanisms for deciding whether a bounded authority, under policy and evidence, should be allowed to produce a defined effect.
+TSMM is intentionally **effect-centered**. The key question is not only who an actor is, but whether a bounded authority, under policy and evidence, should be allowed to produce a defined effect. That makes the model useful for examining where trust is asserted, where it is verified, what substantiates it, how policy shapes decisions, and what consequences follow from acceptance, denial, downgrade, warning, or review.
 
-That framing makes TSMM usable across trust registries, verifiable credential ecosystems, delegated-agent systems, trust signal consumers, conformance suites, and assurance frameworks.
+That framing makes TSMM usable across trust registries, verifiable credential ecosystems, delegated-agent systems, trust signal consumers, conformance suites, assurance frameworks, and modular domain extensions. In practice, TSMM is not meant to be a product or a protocol. It is a way to make trust systems more legible so they can be studied with more clarity and built with more rigor.
 
 ## Documentation site
 
