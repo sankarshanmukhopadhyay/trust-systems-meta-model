@@ -24,7 +24,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 
 - **Core abstractions:** entities, roles, authority, artifacts, claims, policy, controls, evidence, assessment, verification, trust decisions, and effects
 - **Profiles and patterns:** reusable guidance for shaping implementations without collapsing into one domain-specific standard
-- **Extensions:** modular specialization for Agentic AI and Verifiable Trust Communities
+- **Extensions:** modular specialization for Agentic AI, Verifiable Trust Communities, and assurance architectures
 - **Operational hygiene:** documentation governance, freshness audit, Pages deployment, and schema/example validation workflow
 
 ## Explore by path
@@ -33,6 +33,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Reference patterns](docs/patterns/trust-registry-pattern.md)
 - [Extensions](docs/extensions/index.md)
 - [Crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md)
+- [Assurance extension](docs/extensions/assurance-extension.md)
 - [Glossary](docs/glossary.md)
 
 ## Why this matters

@@ -17,7 +17,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - an **effect-centered evaluation model** for runtime legitimacy
 - **conformance profiles** that help structure implementation maturity
 - reusable **reference patterns** for recurring trust-system designs
-- modular **extensions** for application domains such as Agentic AI and Verifiable Trust Communities
+- modular **extensions** for application domains such as Agentic AI, Verifiable Trust Communities, and assurance-oriented architectures
 - practical **crosswalks** to related repositories and implementations
 
 ## Read this first
@@ -48,12 +48,14 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Extensions overview](extensions/index.md)
 - [Agentic AI Extension](extensions/agentic-ai-extension.md)
 - [Verifiable Trust Communities Extension](extensions/verifiable-trust-communities-extension.md)
+- [Assurance Extension](extensions/assurance-extension.md)
 
 ## Crosswalks
 
 - [TRQP-TSPP Crosswalk](crosswalks/trqp-tspp-crosswalk.md)
 - [ERC-8004-CSP Crosswalk](crosswalks/erc-8004-csp-crosswalk.md)
 - [DCAS Crosswalk](crosswalks/dcas-crosswalk.md)
+- [TRAA Crosswalk](crosswalks/trust-reference-assurance-architecture-crosswalk.md)
 
 ## Operational docs
 

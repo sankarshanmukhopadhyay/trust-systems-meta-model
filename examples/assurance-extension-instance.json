@@ -1,0 +1,102 @@
+{
+  "assuranceActivities": [
+    {
+      "id": "aa.registry-review",
+      "type": "profile-assessment",
+      "methodRef": "am.dcas-review",
+      "taskRefs": [
+        "tt.registry-validation",
+        "tt.delegation-evaluation"
+      ],
+      "profileRef": "profile.assured"
+    }
+  ],
+  "trustTasks": [
+    {
+      "id": "tt.registry-validation",
+      "category": "registry-validation",
+      "target": "trust-registry-state",
+      "controlObjectiveRefs": [
+        "co.registry-integrity"
+      ]
+    },
+    {
+      "id": "tt.delegation-evaluation",
+      "category": "delegation-evaluation",
+      "target": "delegation-chain",
+      "controlObjectiveRefs": [
+        "co.delegation-governance"
+      ]
+    }
+  ],
+  "controlFamilies": [
+    {
+      "id": "cf.registry",
+      "name": "Registry Integrity",
+      "controlObjectiveRefs": [
+        "co.registry-integrity"
+      ]
+    },
+    {
+      "id": "cf.delegation",
+      "name": "Delegation Governance",
+      "controlObjectiveRefs": [
+        "co.delegation-governance"
+      ]
+    }
+  ],
+  "controlObjectives": [
+    {
+      "id": "co.registry-integrity",
+      "statement": "The trust registry state SHALL be validated for consistency and authorized update provenance.",
+      "threatRef": "threat.registry-tampering"
+    },
+    {
+      "id": "co.delegation-governance",
+      "statement": "Authority delegation chains SHALL be verifiable, bounded, and reviewable.",
+      "threatRef": "threat.mandate-escalation"
+    }
+  ],
+  "evidenceArtifacts": [
+    {
+      "id": "ea.validation-record-001",
+      "artifactType": "validation-record",
+      "generatedByRef": "aa.registry-review",
+      "timestamp": "2026-03-07T10:30:00Z",
+      "result": "pass"
+    }
+  ],
+  "evidenceBundles": [
+    {
+      "id": "eb.registry-assurance-bundle",
+      "artifactRefs": [
+        "ea.validation-record-001"
+      ],
+      "validator": "independent-auditor"
+    }
+  ],
+  "validationRecords": [
+    {
+      "id": "vr.registry-task-001",
+      "taskRef": "tt.registry-validation",
+      "result": "pass",
+      "artifactRef": "ea.validation-record-001"
+    }
+  ],
+  "assuranceMethods": [
+    {
+      "id": "am.dcas-review",
+      "name": "Structured Evidence Review",
+      "description": "Profile-based review of control objectives, trust tasks, and evidence bundles."
+    }
+  ],
+  "assuranceDecisions": [
+    {
+      "id": "ad.registry-assured",
+      "subject": "trust-registry.example",
+      "status": "qualified-pass",
+      "bundleRef": "eb.registry-assurance-bundle",
+      "methodRef": "am.dcas-review"
+    }
+  ]
+}

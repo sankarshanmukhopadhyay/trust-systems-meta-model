@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-assurance-extension.schema.json",
+  "title": "TSMM Assurance Extension Instance v0.5.0",
+  "description": "Extension schema for representing assurance-oriented trust workflows layered on top of the TSMM core.",
+  "type": "object",
+  "required": [
+    "assuranceActivities",
+    "trustTasks",
+    "controlFamilies",
+    "assuranceMethods",
+    "assuranceDecisions"
+  ],
+  "properties": {
+    "assuranceActivities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assuranceActivity"
+      },
+      "minItems": 1
+    },
+    "trustTasks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/trustTask"
+      },
+      "minItems": 1
+    },
+    "controlFamilies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/controlFamily"
+      },
+      "minItems": 1
+    },
+    "controlObjectives": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/controlObjective"
+      }
+    },
+    "evidenceArtifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidenceArtifact"
+      }
+    },
+    "evidenceBundles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidenceBundle"
+      }
+    },
+    "validationRecords": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/validationRecord"
+      }
+    },
+    "assuranceMethods": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assuranceMethod"
+      },
+      "minItems": 1
+    },
+    "assuranceDecisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assuranceDecision"
+      },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "assuranceActivity": {
+      "type": "object",
+      "required": ["id", "type", "methodRef"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "type": {"type": "string"},
+        "methodRef": {"$ref": "#/$defs/idString"},
+        "taskRefs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/idString"}
+        },
+        "profileRef": {"$ref": "#/$defs/idString"}
+      },
+      "additionalProperties": false
+    },
+    "trustTask": {
+      "type": "object",
+      "required": ["id", "category", "target"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "category": {"type": "string"},
+        "target": {"type": "string"},
+        "controlObjectiveRefs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/idString"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "controlFamily": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "name": {"type": "string"},
+        "controlObjectiveRefs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/idString"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "controlObjective": {
+      "type": "object",
+      "required": ["id", "statement"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "statement": {"type": "string"},
+        "threatRef": {"$ref": "#/$defs/idString"}
+      },
+      "additionalProperties": false
+    },
+    "evidenceArtifact": {
+      "type": "object",
+      "required": ["id", "artifactType"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "artifactType": {"type": "string"},
+        "generatedByRef": {"$ref": "#/$defs/idString"},
+        "timestamp": {"type": "string"},
+        "result": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "evidenceBundle": {
+      "type": "object",
+      "required": ["id", "artifactRefs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "artifactRefs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/idString"},
+          "minItems": 1
+        },
+        "validator": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "validationRecord": {
+      "type": "object",
+      "required": ["id", "taskRef", "result"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "taskRef": {"$ref": "#/$defs/idString"},
+        "result": {"type": "string"},
+        "artifactRef": {"$ref": "#/$defs/idString"}
+      },
+      "additionalProperties": false
+    },
+    "assuranceMethod": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "name": {"type": "string"},
+        "description": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "assuranceDecision": {
+      "type": "object",
+      "required": ["id", "subject", "status"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "subject": {"type": "string"},
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "qualified-pass", "conditional-pass", "expired", "suspended", "remediation-required"]
+        },
+        "bundleRef": {"$ref": "#/$defs/idString"},
+        "methodRef": {"$ref": "#/$defs/idString"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

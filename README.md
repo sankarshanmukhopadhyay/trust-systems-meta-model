@@ -86,10 +86,12 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
   - `docs/extensions/index.md`
   - `docs/extensions/agentic-ai-extension.md`
   - `docs/extensions/verifiable-trust-communities-extension.md`
+  - `docs/extensions/assurance-extension.md`
 - Crosswalks:
   - `docs/crosswalks/trqp-tspp-crosswalk.md`
   - `docs/crosswalks/erc-8004-csp-crosswalk.md`
   - `docs/crosswalks/dcas-crosswalk.md`
+  - `docs/crosswalks/trust-reference-assurance-architecture-crosswalk.md`
 - Documentation governance and freshness: `docs/documentation-governance.md`
 
 ## Design principles
@@ -123,7 +125,7 @@ It adds:
 - a reusable threat and failure taxonomy for trust systems
 - reference architecture patterns for trust registries, delegated agents, credential verification, and assurance evidence
 - GitHub Pages deployment through GitHub Actions
-- extension architecture for Agentic AI and Verifiable Trust Communities
+- extension architecture for Agentic AI, Verifiable Trust Communities, and assurance-oriented trust workflows
 - extension schemas and worked examples
 - refreshed navigation for docs and release packaging
 
@@ -157,7 +159,8 @@ trust-systems-meta-model/
 │   ├── extensions/
 │   │   ├── index.md
 │   │   ├── agentic-ai-extension.md
-│   │   └── verifiable-trust-communities-extension.md
+│   │   ├── verifiable-trust-communities-extension.md
+│   │   └── assurance-extension.md
 │   ├── conformance/
 │   │   ├── tsmm-profile-minimal.md
 │   │   ├── tsmm-profile-operational.md
@@ -174,19 +177,23 @@ trust-systems-meta-model/
 │   └── crosswalks/
 │       ├── trqp-tspp-crosswalk.md
 │       ├── erc-8004-csp-crosswalk.md
-│       └── dcas-crosswalk.md
+│       ├── dcas-crosswalk.md
+│       └── trust-reference-assurance-architecture-crosswalk.md
 ├── schemas/
 │   ├── tsmm-core.schema.json
 │   ├── tsmm-agentic-extension.schema.json
-│   └── tsmm-vtc-extension.schema.json
+│   ├── tsmm-vtc-extension.schema.json
+│   └── tsmm-assurance-extension.schema.json
 ├── examples/
 │   ├── minimal-trust-registry-instance.json
 │   ├── consumer-policy-instance.json
 │   ├── delegated-agent-instance.json
 │   ├── agentic-ai-extension-instance.json
-│   └── verifiable-trust-community-instance.json
+│   ├── verifiable-trust-community-instance.json
+│   └── assurance-extension-instance.json
 ├── scripts/
-│   └── validate_examples.py
+│   ├── validate_examples.py
+│   └── check_docs.py
 └── releases/
     ├── v0.3.0.md
     ├── v0.4.0.md

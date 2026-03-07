@@ -19,6 +19,7 @@ This keeps the core stable while allowing real-world application families to add
 
 - [Agentic AI Extension](agentic-ai-extension.md)
 - [Verifiable Trust Communities Extension](verifiable-trust-communities-extension.md)
+- [Assurance Extension](assurance-extension.md)
 
 ## Promotion rule
 
