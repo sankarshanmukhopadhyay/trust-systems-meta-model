@@ -1,6 +1,13 @@
+---
+owner: maintainers
+last_reviewed: 2026-03-07
+applicable_version: v0.3.0
+tier: 0
+---
+
 # Trust Systems Meta Model (TSMM)
 
-**Version:** v0.2.0  
+**Version:** v0.3.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -13,29 +20,50 @@ It provides a shared vocabulary for how trust-relevant systems connect:
 - entities and roles
 - authority and constraints
 - artifacts and claims
-- policy and controls
-- threats and evidence
-- verification and levels
-- trust decisions and effects
+- policy, profiles, and requirements
+- controls, threats, and governance context
+- evidence, assessment, and verification
+- trust decisions and downstream effects
 - lifecycle events and state changes
 
 TSMM is intentionally **effect-centered**. It does not treat identity as the final unit of governance. Instead, it treats trust systems as mechanisms for deciding whether a bounded authority, under policy and evidence, should be allowed to produce a defined effect.
 
-That framing makes TSMM usable across trust registries, verifiable credential ecosystems, agent systems, trust signal consumers, conformance suites, and assurance frameworks.
+That framing makes TSMM usable across trust registries, verifiable credential ecosystems, delegated-agent systems, trust signal consumers, conformance suites, and assurance frameworks.
+
+## Documentation site
+
+This repository is structured to publish cleanly with **GitHub Pages**.
+
+- Docs home: `docs/index.md`
+- Recommended Pages source: **Deploy from a branch** → `/docs` folder
+- Jekyll config: `_config.yml`
 
 ## Why this repo exists
 
-Across repositories such as **TRQP-TSPP** and **ERC-8004-CSP**, a recurring pattern is visible:
+Across repositories such as **TRQP-TSPP**, **ERC-8004-CSP**, and **DTG Conformance & Assurance (DCAS)**, a recurring pattern is visible:
 
 - machine-readable trust artifacts
-- normative controls
+- normative controls and requirements
 - explicit threat models
 - conformance or assurance levels
 - evidence expectations
-- policy-governed trust decisions
-- operational consequences for acceptance, denial, downgrade, or warning
+- profile-governed trust decisions
+- operational consequences for acceptance, denial, downgrade, warning, or review
 
 TSMM extracts those recurring invariants into an abstract model so that other projects can apply the theory without waiting for a repo-specific profile, harness, or implementation package.
+
+## Start here
+
+- Conceptual entry point: `docs/index.md`
+- Core abstractions: `docs/core-model.md`
+- Relationship graph: `docs/relationship-model.md`
+- Runtime legitimacy logic: `docs/effect-centered-trust-decision-model.md`
+- Glossary: `docs/glossary.md`
+- Crosswalks:
+  - `docs/crosswalks/trqp-tspp-crosswalk.md`
+  - `docs/crosswalks/erc-8004-csp-crosswalk.md`
+  - `docs/crosswalks/dcas-crosswalk.md`
+- Documentation governance and freshness: `docs/documentation-governance.md`
 
 ## Design principles
 
@@ -49,10 +77,10 @@ The core question is not merely *who are you?* but *should this action, artifact
 Trust decisions are always evaluated in context. TSMM assumes that evaluation without policy is theater wearing a tie.
 
 ### 4. Evidence-backed
-Claims, controls, and trust posture must be substantiated. TSMM treats evidence and verification as first-class concepts.
+Claims, controls, and trust posture must be substantiated. TSMM treats evidence, assessment, and verification as first-class concepts.
 
-### 5. Profile-agnostic
-TSMM is not a replacement for protocol profiles, implementation guides, or assurance frameworks. It is a transfer layer and reference grammar.
+### 5. Profile-aware but profile-agnostic
+Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
 ## Scope status
 
@@ -67,9 +95,21 @@ The original first-release scope included:
 5. one simple JSON schema
 6. two worked examples
 
-**Status in v0.2.0:** complete.
+**Status:** complete since v0.2.0.
 
-The first public seed, v0.1.0, covered the README, core model, and crosswalk tables. It did **not** yet ship the dedicated relationship model, standalone effect-centered trust decision model, schema, or worked examples. v0.2.0 closes that gap.
+## What changed in v0.3.0
+
+v0.3.0 hardens the repo after cross-checking it against TRQP-TSPP, ERC-8004-CSP, DCAS, and the repository freshness checklist.
+
+It adds:
+
+- GitHub Pages readiness
+- explicit documentation governance and freshness metadata
+- a terminology glossary
+- a DCAS crosswalk
+- refinement of the core model to include **governance context**, **profile**, **requirement**, and **assessment**
+- an expanded machine-readable schema and refreshed examples
+- security reporting guidance
 
 ## Repo contents
 
@@ -77,13 +117,20 @@ The first public seed, v0.1.0, covered the README, core model, and crosswalk tab
 trust-systems-meta-model/
 ├── README.md
 ├── LICENSE
+├── SECURITY.md
+├── CONTRIBUTING.md
+├── _config.yml
 ├── docs/
+│   ├── index.md
 │   ├── core-model.md
 │   ├── relationship-model.md
 │   ├── effect-centered-trust-decision-model.md
+│   ├── glossary.md
+│   ├── documentation-governance.md
 │   └── crosswalks/
 │       ├── trqp-tspp-crosswalk.md
-│       └── erc-8004-csp-crosswalk.md
+│       ├── erc-8004-csp-crosswalk.md
+│       └── dcas-crosswalk.md
 ├── schemas/
 │   └── tsmm-core.schema.json
 └── examples/
@@ -91,26 +138,6 @@ trust-systems-meta-model/
     ├── consumer-policy-instance.json
     └── delegated-agent-instance.json
 ```
-
-## What is included in v0.2.0
-
-### Documents
-- `docs/core-model.md`
-- `docs/relationship-model.md`
-- `docs/effect-centered-trust-decision-model.md`
-- crosswalks for TRQP-TSPP and ERC-8004-CSP
-
-### Machine-readable baseline
-- `schemas/tsmm-core.schema.json`
-
-### Worked examples
-- `examples/minimal-trust-registry-instance.json`
-- `examples/consumer-policy-instance.json`
-
-### Additional worked example
-- `examples/delegated-agent-instance.json`
-
-The delegated-agent example goes slightly beyond the original first-release scope because this is exactly the kind of thing meta-models should handle before they start congratulating themselves.
 
 ## What TSMM is not
 
@@ -125,76 +152,6 @@ TSMM does **not**:
 
 In plain terms: this repo is a bridge, not a cathedral.
 
-## Core concepts at a glance
+## License
 
-The current model includes these primary abstractions:
-
-- **Entity**
-- **Role**
-- **Authority**
-- **Artifact**
-- **Claim**
-- **Policy**
-- **Control**
-- **Threat**
-- **Evidence**
-- **Verification**
-- **Level Framework**
-- **Trust Decision**
-- **Effect**
-- **Lifecycle Event**
-
-## Relationship skeleton
-
-```text
-Entity -> Role -> Authority -> Effect
-   |        |        |
-   |        |        v
-   |        |     Constraints
-   |        |
-   v        v
-Artifact -> Claim -> Verification -> Trust Decision -> Effect
-   |           ^          ^                ^
-   v           |          |                |
- Evidence ------          |                |
-   ^                      |                |
-   |                      |                |
-Control <---- mitigates Threat ----> Policy / Level Framework
-```
-
-## Release notes
-
-### v0.2.0
-- added `relationship-model.md`
-- added `effect-centered-trust-decision-model.md`
-- added `schemas/tsmm-core.schema.json`
-- added worked examples for trust registry, consumer policy, and delegated agent patterns
-- cleaned the repo to be self-contained and offline-readable
-- preserved the initial crosswalks and aligned them to the broader release scope
-
-### v0.1.0
-- initial seed
-- README
-- core model
-- first crosswalk tables
-
-## Source repositories informing the first crosswalks
-
-The initial crosswalks are based on the public positioning and repository structure of:
-
-- `sankarshanmukhopadhyay/TRQP-TSPP`
-- `sankarshanmukhopadhyay/ERC-8004-CSP`
-
-These source repositories may evolve over time. TSMM crosswalks should therefore be treated as explanatory mappings, not immutable claims about every future version of those repos.
-
-## Roadmap after v0.2.0
-
-Natural next steps:
-
-1. add a concise terminology registry
-2. add specialization-pattern documents
-3. add more crosswalks, especially for assurance-hub and conformance-suite patterns
-4. add formal relationship constraints and validation profiles
-5. add diagrams in SVG or Mermaid for documentation sites
-
-That is enough abstraction to be useful without becoming a taxonomy theme park.
+This repository is published under **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**.

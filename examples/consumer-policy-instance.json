@@ -1,4 +1,34 @@
 {
+  "governanceContexts": [
+    {
+      "id": "context.marketplace-ops",
+      "name": "Marketplace trust-signal operating context",
+      "description": "Local governance context for interpreting ERC-8004 trust signals."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "profile.consumer-signal",
+      "name": "Consumer trust-signal profile",
+      "contextRef": "context.marketplace-ops",
+      "requirementRefs": [
+        "req.safe-fetch",
+        "req.integrity-check"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "req.safe-fetch",
+      "statement": "metadata retrieval must be bounded and sandboxed",
+      "level": "L1"
+    },
+    {
+      "id": "req.integrity-check",
+      "statement": "trust signals must pass integrity verification before strong presentation",
+      "level": "L1"
+    }
+  ],
   "entities": [
     {
       "id": "entity.marketplace",
@@ -45,6 +75,7 @@
       "id": "policy.signal-handling",
       "name": "Consumer signal handling policy",
       "decisionMode": "mixed",
+      "profileRef": "profile.consumer-signal",
       "rules": [
         "downgrade trust cues when finality evidence is weak",
         "show warnings instead of strong badges when risk is unresolved"
@@ -71,12 +102,12 @@
     {
       "id": "threat.unsafe-fetch",
       "type": "unsafe-fetch",
-      "description": "malicious or unbounded metadata retrieval causes unsafe behavior"
+      "description": "Malicious or unbounded metadata retrieval causes unsafe behavior."
     },
     {
       "id": "threat.badge-theater",
       "type": "misleading-signal-presentation",
-      "description": "a weakly validated signal is shown as though it were strongly trustworthy"
+      "description": "A weakly validated signal is shown as though it were strongly trustworthy."
     }
   ],
   "evidence": [
@@ -85,7 +116,23 @@
       "type": "validation-log",
       "supportsRefs": [
         "control.safe-fetch",
-        "control.integrity-check"
+        "control.integrity-check",
+        "req.safe-fetch",
+        "req.integrity-check"
+      ]
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assessment.consumer-profile",
+      "method": "consumer conformance review",
+      "result": "warn",
+      "requirementRefs": [
+        "req.safe-fetch",
+        "req.integrity-check"
+      ],
+      "evidenceRefs": [
+        "evidence.validation-log"
       ]
     }
   ],
@@ -105,6 +152,9 @@
       "id": "decision.downgrade-signal",
       "outcome": "downgrade",
       "policyRef": "policy.signal-handling",
+      "assessmentRefs": [
+        "assessment.consumer-profile"
+      ],
       "verificationRefs": [
         "verification.consumer-check"
       ],

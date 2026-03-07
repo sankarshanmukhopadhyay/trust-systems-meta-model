@@ -1,4 +1,34 @@
 {
+  "governanceContexts": [
+    {
+      "id": "context.trust-registry-program",
+      "name": "Trust Registry Governance Program",
+      "description": "Institutional governance context for registry publishing and reliance."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "profile.tspp-like",
+      "name": "Registry Security and Privacy Baseline",
+      "contextRef": "context.trust-registry-program",
+      "requirementRefs": [
+        "req.freshness",
+        "req.signed-response"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "req.freshness",
+      "statement": "registry metadata must satisfy the defined freshness window",
+      "level": "AL1"
+    },
+    {
+      "id": "req.signed-response",
+      "statement": "signed response envelope required for higher-assurance use",
+      "level": "AL2"
+    }
+  ],
   "entities": [
     {
       "id": "entity.registry-operator",
@@ -45,6 +75,7 @@
       "id": "policy.registry-reliance",
       "name": "Registry reliance policy",
       "decisionMode": "mixed",
+      "profileRef": "profile.tspp-like",
       "rules": [
         "accept informational use when metadata freshness verification passes",
         "require signed response for high-assurance automated gating"
@@ -64,7 +95,7 @@
     {
       "id": "threat.spoofed-response",
       "type": "spoofed-metadata",
-      "description": "an attacker serves altered registry metadata or a fake response"
+      "description": "An attacker serves altered registry metadata or a fake response."
     }
   ],
   "evidence": [
@@ -73,7 +104,22 @@
       "type": "test-output",
       "supportsRefs": [
         "claim.signed-response-supported",
-        "control.response-signing"
+        "control.response-signing",
+        "req.signed-response"
+      ]
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assessment.profile-evaluation",
+      "method": "profile-based conformance review",
+      "result": "pass-with-warning",
+      "requirementRefs": [
+        "req.freshness",
+        "req.signed-response"
+      ],
+      "evidenceRefs": [
+        "evidence.conformance-report"
       ]
     }
   ],
@@ -105,6 +151,9 @@
       "id": "decision.accept-bounded",
       "outcome": "accept-with-warning",
       "policyRef": "policy.registry-reliance",
+      "assessmentRefs": [
+        "assessment.profile-evaluation"
+      ],
       "verificationRefs": [
         "verification.metadata-check"
       ],

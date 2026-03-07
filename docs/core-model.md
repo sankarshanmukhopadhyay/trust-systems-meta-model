@@ -1,3 +1,10 @@
+---
+owner: maintainers
+last_reviewed: 2026-03-07
+applicable_version: v0.3.0
+tier: 1
+---
+
 # TSMM Core Model
 
 ## 1. Purpose
@@ -6,23 +13,21 @@ The Trust Systems Meta Model (TSMM) provides an abstract model for how trust sys
 
 The model is built around a practical question:
 
-> Under what bounded authority, policy, evidence, and verification conditions should a system allow a trust-relevant effect to occur?
+> Under what bounded authority, policy, evidence, assessment, and verification conditions should a system allow a trust-relevant effect to occur?
 
 TSMM is therefore not primarily identity-centered. It is **effect-centered**.
 
-Identity matters. Roles matter. Authority matters. But the decisive unit of governance is the **effect** produced in context.
-
 ## 2. Core modeling thesis
 
-A trust system is not only a mechanism for storing identifiers or publishing metadata.  
+A trust system is not only a mechanism for storing identifiers or publishing metadata.
 A trust system is a mechanism for:
 
 1. representing participants and artifacts
-2. expressing claims and constraints
-3. applying policy and controls
-4. mitigating threats
+2. expressing claims, requirements, and constraints
+3. applying policy, profiles, and controls
+4. accounting for governance context and threats
 5. gathering evidence
-6. verifying posture or validity
+6. assessing and verifying posture or validity
 7. producing a trust decision
 8. permitting, denying, degrading, or routing an effect
 
@@ -33,40 +38,13 @@ That chain is the operational heart of TSMM.
 ### 3.1 Entity
 An **Entity** is any actor, component, or participant that can exist within a trust system.
 
-Examples include:
-
-- person
-- organization
-- software agent
-- wallet
-- registry operator
-- verifier
-- auditor
-- indexer
-
-An entity is a participant, not yet a permission.
-
 ### 3.2 Role
 A **Role** is a context-specific capacity in which an entity acts.
-
-Examples include:
-
-- issuer
-- subject
-- operator
-- verifier
-- consumer
-- delegate
-- auditor
-- trust anchor maintainer
-
-Roles allow one entity to participate in multiple ways without collapsing everything into a single static identity bucket.
 
 ### 3.3 Authority
 **Authority** is a bounded right, permission, mandate, or recognized competence attached to a role.
 
 Typical attributes include:
-
 - scope
 - source
 - time bounds
@@ -75,214 +53,78 @@ Typical attributes include:
 - delegation status
 - revocation conditions
 
-Authority is not equivalent to identity. This is one of the central non-negotiables of the model.
-
 ### 3.4 Artifact
 An **Artifact** is any structured object that carries trust-relevant information.
 
-Examples include:
-
-- credential
-- trust-list entry
-- registry record
-- signed response
-- metadata document
-- policy file
-- conformance report
-- attestation
-
-Artifacts are the payload-bearing objects of the trust system.
-
 ### 3.5 Claim
 A **Claim** is a proposition asserted by or about an entity, artifact, system, or state.
-
-Examples include:
-
-- this registry supports a defined assurance posture
-- this agent is controlled by a specific principal
-- this metadata is fresh within an accepted window
-- this artifact conforms to a required schema
 
 A claim is not automatically true. It is a statement subject to evaluation.
 
 ### 3.6 Policy
 A **Policy** is a set of evaluation rules that governs interpretation, acceptance, rejection, downgrade, routing, or escalation.
 
-Policy may be machine-readable, human-readable, or both.
-
-Examples include:
-
-- acceptance thresholds
-- trust-context allowlists
-- safe-fetch restrictions
-- freshness windows
-- fail-open or fail-closed behavior
-- validator acceptance rules
-- mandatory human-review triggers
-
-Policy turns raw claims into governed decisions.
-
 ### 3.7 Control
 A **Control** is a safeguard that reduces a defined risk or constrains an unsafe condition.
 
-Examples include:
-
-- signature verification
-- rate limiting
-- context allowlisting
-- safe dereferencing sandbox
-- anti-enumeration controls
-- deterministic finality checks
-- sender-constrained token requirements
-
-Controls are the practical levers by which policy becomes enforceable.
-
 ### 3.8 Threat
-A **Threat** is a modeled abuse case, harm scenario, failure mode, or adverse condition.
-
-Examples include:
-
-- spoofed metadata
-- stale signal consumption
-- mandate escalation
-- enumeration attacks
-- unsafe dereferencing
-- Sybil-amplified reputation distortion
-- bridge inconsistency
-
-Threat modeling is a first-class input to TSMM, not a decorative appendix.
+A **Threat** is a modeled harm, abuse case, or failure mode that matters for trust posture or trust decisions.
 
 ### 3.9 Evidence
-**Evidence** is material used to substantiate a claim, control implementation, verification result, or level assertion.
-
-Examples include:
-
-- signed logs
-- config snapshots
-- test output
-- CI results
-- audit reports
-- traceability records
-- remediation records
-
-In a trust system, unsupported confidence is just expensive optimism.
+**Evidence** is the material used to support a claim, demonstrate a control, substantiate a requirement outcome, or support an assessment result.
 
 ### 3.10 Verification
-**Verification** is the process of evaluating whether claims, artifacts, controls, policies, or evidence satisfy defined conditions.
-
-Examples include:
-
-- schema validation
-- signature verification
-- conformance testing
-- policy evaluation
-- auditor review
-- equivalence testing
-
-Verification transforms assertions into assessable posture.
+**Verification** is a checking process that evaluates whether some expected condition holds.
 
 ### 3.11 Level Framework
-A **Level Framework** is a tiered model expressing progressively different rigor, trust posture, or implementation maturity.
-
-Examples include:
-
-- assurance levels
-- conformance levels
-- policy maturity bands
-- risk-tier classes
-
-TSMM treats level systems abstractly. It does not assume that all level schemes mean the same thing.
+A **Level Framework** is a tiered structure used to express maturity, assurance, conformance, or rigor.
 
 ### 3.12 Trust Decision
-A **Trust Decision** is the result of applying policy and verification to trust-relevant material.
-
-Example outcomes include:
-
-- accept
-- reject
-- accept with warning
-- downgrade confidence
-- quarantine
-- escalate to human review
-- require stronger evidence
-
-Trust decisions are contextual, not universal.
+A **Trust Decision** is the evaluated outcome produced under policy and context.
 
 ### 3.13 Effect
-An **Effect** is the operational consequence produced or blocked by a trust decision.
-
-Examples include:
-
-- show a trust cue
-- allow a transaction
-- deny an action
-- expose a registry result
-- block a fetch
-- trigger manual review
-- update a state record
-
-Effects are where governance stops being philosophy and starts touching the machinery.
+An **Effect** is the operational consequence the system permits, denies, downgrades, routes, or records after a trust decision.
 
 ### 3.14 Lifecycle Event
-A **Lifecycle Event** is a state-changing occurrence relevant to trust posture or authority.
+A **Lifecycle Event** is a change relevant to trust posture or trust state.
 
-Examples include:
+## 4. Supporting abstractions added in v0.3.0
 
-- issuance
-- registration
-- delegation
-- revocation
-- expiry
-- reassessment
-- remediation closure
-- policy change
-- control rotation
+These abstractions were made explicit after reviewing how TRQP-TSPP, ERC-8004-CSP, and DCAS package requirements, profiles, and evaluation methods.
 
-Trust systems are dynamic. TSMM treats change as native rather than accidental.
+### 4.1 Governance Context
+A **Governance Context** captures the institutional, legal, contractual, or ecosystem environment within which trust decisions operate.
 
-## 4. Operating thesis in one line
+Examples:
+- a sovereign trust registry program
+- a marketplace rulebook
+- an assurance hub operating model
+- a sector-specific governance framework
 
-TSMM can be compressed into this line:
+### 4.2 Profile
+A **Profile** is a packaged set of requirements, controls, policy expectations, or assessment expectations defined for a particular implementation class.
 
-> **An entity acting in a role exercises bounded authority through artifacts and claims that are evaluated under policy, controls, threats, evidence, and verification to determine whether an effect should occur.**
+Examples:
+- a security and privacy baseline
+- a consumer trust-signal profile
+- a domain assurance baseline
 
-That sentence is a mouthful, but at least it earns its calories.
+### 4.3 Requirement
+A **Requirement** is a normative or expected condition that a system, process, artifact, or participant should satisfy.
 
-## 5. Why the model is effect-centered
+### 4.4 Assessment
+An **Assessment** is a structured activity that evaluates whether requirements, controls, profiles, or claims are satisfied.
 
-Many digital systems still behave as though identity is enough. It is not.
+Assessment is broader than verification. Verification may be one checking operation. Assessment is often the orchestrated review process that uses verification outputs, evidence, and method guidance.
 
-The decisive question in a trust system is usually not:
+## 5. Why these additions matter
 
-- who are you?
+Without governance context, profile, requirement, and assessment, a meta-model struggles to describe how real repos actually operate.
 
-The decisive question is:
+Those concepts are visible across:
 
-- who is acting
-- in what role
-- under what authority
-- with what evidence
-- under what policy
-- producing what effect
-- and with what recourse if the effect is unsafe
+- **TRQP-TSPP**, where a profile binds controls, requirements, evidence expectations, and verification
+- **ERC-8004-CSP**, where consumer policy and conformance levels shape signal handling
+- **DCAS**, where profiles, control objectives, evidence structures, and verifier workflows are central
 
-TSMM therefore treats **effect** as the center of the model and **identity** as one supporting input among several.
-
-## 6. Adjacent distinctions TSMM keeps separate
-
-TSMM deliberately does not collapse the following into a single concept:
-
-- **assurance** and **reputation**
-- **conformance** and **authorization**
-- **identity** and **authority**
-- **claim** and **truth**
-- **verification** and **effect**
-- **operator posture** and **consumer interpretation**
-
-That separation prevents a lot of conceptual soup.
-
-## 7. Relationship entry point
-
-For the formal relationship view, see `docs/relationship-model.md`.
-
-For the trust-decision logic anchored around runtime effect, see `docs/effect-centered-trust-decision-model.md`.
+TSMM now models those ideas directly while keeping the abstraction layer lean enough to travel.
