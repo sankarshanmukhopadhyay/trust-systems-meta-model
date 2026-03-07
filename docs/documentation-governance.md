@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-07
-applicable_version: v0.4.0
+applicable_version: v0.5.0
 tier: 2
 ---
 
@@ -59,6 +59,6 @@ Before release:
 5. confirm docs site entry points still reflect the actual repo structure
 
 
-## v0.4.0 note
+## v0.5.0 note
 
-The v0.4.0 release expands the documentation surface. New model, conformance, evaluation, security, and pattern documents should remain aligned with the core model, schema, examples, and release notes.
+The v0.5.0 release expands the documentation surface. New model, conformance, evaluation, security, and pattern documents should remain aligned with the core model, schema, examples, and release notes.

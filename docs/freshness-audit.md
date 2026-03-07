@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-07
-applicable_version: v0.4.0
+applicable_version: v0.5.0
 tier: 2
 ---
 
@@ -46,6 +46,6 @@ tier: 2
 - JSON examples validated against the updated schema
 
 
-## v0.4.0 additions
+## v0.5.0 additions
 
 The release introduced new model, conformance, evaluation, security, and pattern documents. Freshness checks should confirm that these remain consistent with the schema, examples, release notes, and README navigation.

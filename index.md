@@ -18,17 +18,23 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Lifecycle model](docs/model/tsmm-lifecycle.md)
 - [Effect evaluation model](docs/evaluation/effect-evaluation-model.md)
 - [Threat model](docs/security/trust-system-threat-model.md)
-- [Release notes](releases/v0.4.0.md)
+- [Release notes](releases/v0.5.0.md)
 
-## Conformance profiles
+## At a glance
 
-- [TSMM Minimal Profile](docs/conformance/tsmm-profile-minimal.md)
-- [TSMM Operational Profile](docs/conformance/tsmm-profile-operational.md)
-- [TSMM Assured Profile](docs/conformance/tsmm-profile-assured.md)
+- **Core abstractions:** entities, roles, authority, artifacts, claims, policy, controls, evidence, assessment, verification, trust decisions, and effects
+- **Profiles and patterns:** reusable guidance for shaping implementations without collapsing into one domain-specific standard
+- **Extensions:** modular specialization for Agentic AI and Verifiable Trust Communities
+- **Operational hygiene:** documentation governance, freshness audit, Pages deployment, and schema/example validation workflow
 
-## Reference patterns
+## Explore by path
 
-- [Trust Registry Pattern](docs/patterns/trust-registry-pattern.md)
-- [Delegated Agent Pattern](docs/patterns/delegated-agent-pattern.md)
-- [Credential Verification Pattern](docs/patterns/credential-verification-pattern.md)
-- [Assurance Evidence Pattern](docs/patterns/assurance-evidence-pattern.md)
+- [Conformance profiles](docs/conformance/tsmm-profile-minimal.md)
+- [Reference patterns](docs/patterns/trust-registry-pattern.md)
+- [Extensions](docs/extensions/index.md)
+- [Crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md)
+- [Glossary](docs/glossary.md)
+
+## Why this matters
+
+TSMM is designed as a bridge. It extracts recurring trust-system invariants from real implementation work so that other projects can apply the theory without waiting for one specific protocol, repository, or assurance package to do the translation for them.

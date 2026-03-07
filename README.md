@@ -1,13 +1,19 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-07
-applicable_version: v0.4.0
+applicable_version: v0.5.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-**Version:** v0.4.0  
+[![Release](https://img.shields.io/badge/release-v0.5.0-blue)](releases/v0.5.0.md)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
+[![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
+[![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
+
+**Version:** v0.5.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -36,7 +42,10 @@ This repository is structured to publish cleanly with **GitHub Pages via GitHub 
 
 - Pages landing page: `index.md`
 - Docs home: `docs/index.md`
+- Extensions home: `docs/extensions/index.md`
 - Workflow: `.github/workflows/pages.yml`
+- Validation workflow: `.github/workflows/validate.yml`
+- Validator script: `scripts/validate_examples.py`
 - Jekyll config: `_config.yml`
 
 ## Why this repo exists
@@ -73,6 +82,10 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
   - `docs/patterns/delegated-agent-pattern.md`
   - `docs/patterns/credential-verification-pattern.md`
   - `docs/patterns/assurance-evidence-pattern.md`
+- Extensions:
+  - `docs/extensions/index.md`
+  - `docs/extensions/agentic-ai-extension.md`
+  - `docs/extensions/verifiable-trust-communities-extension.md`
 - Crosswalks:
   - `docs/crosswalks/trqp-tspp-crosswalk.md`
   - `docs/crosswalks/erc-8004-csp-crosswalk.md`
@@ -96,9 +109,9 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## What changed in v0.4.0
+## What changed in v0.5.0
 
-v0.4.0 turns TSMM from a conceptual bundle into a more operational architecture toolkit.
+v0.5.0 extends TSMM with modular application-layer support while keeping the core model stable.
 
 It adds:
 
@@ -110,6 +123,8 @@ It adds:
 - a reusable threat and failure taxonomy for trust systems
 - reference architecture patterns for trust registries, delegated agents, credential verification, and assurance evidence
 - GitHub Pages deployment through GitHub Actions
+- extension architecture for Agentic AI and Verifiable Trust Communities
+- extension schemas and worked examples
 - refreshed navigation for docs and release packaging
 
 ## Repo contents
@@ -118,7 +133,8 @@ It adds:
 trust-systems-meta-model/
 ├── .github/
 │   └── workflows/
-│       └── pages.yml
+│       ├── pages.yml
+│       └── validate.yml
 ├── README.md
 ├── LICENSE
 ├── SECURITY.md
@@ -138,6 +154,10 @@ trust-systems-meta-model/
 │   │   ├── tsmm-entities.md
 │   │   ├── tsmm-relationships.md
 │   │   └── tsmm-lifecycle.md
+│   ├── extensions/
+│   │   ├── index.md
+│   │   ├── agentic-ai-extension.md
+│   │   └── verifiable-trust-communities-extension.md
 │   ├── conformance/
 │   │   ├── tsmm-profile-minimal.md
 │   │   ├── tsmm-profile-operational.md
@@ -156,14 +176,21 @@ trust-systems-meta-model/
 │       ├── erc-8004-csp-crosswalk.md
 │       └── dcas-crosswalk.md
 ├── schemas/
-│   └── tsmm-core.schema.json
+│   ├── tsmm-core.schema.json
+│   ├── tsmm-agentic-extension.schema.json
+│   └── tsmm-vtc-extension.schema.json
 ├── examples/
 │   ├── minimal-trust-registry-instance.json
 │   ├── consumer-policy-instance.json
-│   └── delegated-agent-instance.json
+│   ├── delegated-agent-instance.json
+│   ├── agentic-ai-extension-instance.json
+│   └── verifiable-trust-community-instance.json
+├── scripts/
+│   └── validate_examples.py
 └── releases/
     ├── v0.3.0.md
-    └── v0.4.0.md
+    ├── v0.4.0.md
+    └── v0.5.0.md
 ```
 
 ## What TSMM is not

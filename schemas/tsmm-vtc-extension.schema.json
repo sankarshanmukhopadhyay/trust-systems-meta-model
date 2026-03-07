@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-vtc-extension.schema.json",
+  "title": "TSMM Verifiable Trust Communities Extension Instance v0.5.0",
+  "description": "Extension schema for representing verifiable trust community concepts layered on top of the TSMM core.",
+  "type": "object",
+  "required": [
+    "communities",
+    "memberships"
+  ],
+  "properties": {
+    "communities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/community"
+      },
+      "minItems": 1
+    },
+    "memberships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/membership"
+      },
+      "minItems": 1
+    },
+    "recognitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recognition"
+      }
+    },
+    "sanctions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sanction"
+      }
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "community": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "charter": {
+          "type": "string"
+        },
+        "trustPosture": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "membership": {
+      "type": "object",
+      "required": [
+        "id",
+        "communityRef",
+        "memberRef",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "communityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "memberRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "good-standing",
+            "probation",
+            "suspended",
+            "revoked",
+            "expired"
+          ]
+        },
+        "basis": {
+          "type": "string"
+        },
+        "validUntil": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "recognition": {
+      "type": "object",
+      "required": [
+        "id",
+        "recognizerRef",
+        "recognizedCommunityRef",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "recognizerRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "recognizedCommunityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "recognized",
+            "conditional",
+            "rejected"
+          ]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "sanction": {
+      "type": "object",
+      "required": [
+        "id",
+        "membershipRef",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "membershipRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "warning",
+            "probation",
+            "scoped-suspension",
+            "suspension",
+            "exclusion"
+          ]
+        },
+        "remediationPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

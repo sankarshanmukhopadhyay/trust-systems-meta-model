@@ -1,0 +1,41 @@
+{
+  "communities": [
+    {
+      "id": "community.trusted-issuers",
+      "name": "Trusted Issuers Community",
+      "purpose": "Coordinate high-assurance issuer participation",
+      "charter": "Charter v1.0",
+      "trustPosture": "AL2 minimum for admission"
+    }
+  ],
+  "memberships": [
+    {
+      "id": "membership.issuer-1",
+      "communityRef": "community.trusted-issuers",
+      "memberRef": "org.issuer-1",
+      "status": "good-standing",
+      "basis": "Independent assessment passed",
+      "validUntil": "2027-03-07"
+    }
+  ],
+  "recognitions": [
+    {
+      "id": "rec.1",
+      "recognizerRef": "community.marketplace-verifiers",
+      "recognizedCommunityRef": "community.trusted-issuers",
+      "status": "conditional",
+      "conditions": [
+        "accept only good-standing memberships",
+        "require current assessment evidence"
+      ]
+    }
+  ],
+  "sanctions": [
+    {
+      "id": "sanction.1",
+      "membershipRef": "membership.issuer-1",
+      "type": "warning",
+      "remediationPath": "Provide updated revocation propagation evidence within 30 days"
+    }
+  ]
+}

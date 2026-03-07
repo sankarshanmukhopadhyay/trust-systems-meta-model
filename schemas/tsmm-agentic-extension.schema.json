@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-agentic-extension.schema.json",
+  "title": "TSMM Agentic AI Extension Instance v0.5.0",
+  "description": "Extension schema for representing agentic AI concepts layered on top of the TSMM core.",
+  "type": "object",
+  "required": [
+    "agents",
+    "actions",
+    "delegations",
+    "executionContexts"
+  ],
+  "properties": {
+    "agents": {
+      "type": "array",
+      "items": {
+        "$ref": "tsmm-core.schema.json#/$defs/entity"
+      },
+      "minItems": 1
+    },
+    "delegations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/delegation"
+      },
+      "minItems": 1
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/capability"
+      }
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/resource"
+      }
+    },
+    "executionContexts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/executionContext"
+      },
+      "minItems": 1
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      },
+      "minItems": 1
+    },
+    "traceRecords": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/traceRecord"
+      }
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "delegation": {
+      "type": "object",
+      "required": [
+        "id",
+        "delegatorRef",
+        "delegateRef",
+        "scope"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "delegatorRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "delegateRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "obligations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "revocationStatus": {
+          "type": "string",
+          "enum": [
+            "active",
+            "revoked",
+            "suspended",
+            "expired"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "capability": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
+        "riskTier": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "resource": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "sensitivity": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "executionContext": {
+      "type": "object",
+      "required": [
+        "id",
+        "environment"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "environment": {
+          "type": "string"
+        },
+        "userPresence": {
+          "type": "string"
+        },
+        "approvalState": {
+          "type": "string"
+        },
+        "riskTier": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "required": [
+        "id",
+        "actorRef",
+        "type",
+        "contextRef"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "actorRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "contextRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "capabilityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "resourceRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "oversightMode": {
+          "type": "string",
+          "enum": [
+            "autonomous",
+            "pre-approved",
+            "approval-gated",
+            "sampled-review",
+            "manual",
+            "emergency-override"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "traceRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "actionRef"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "actionRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "output": {
+          "type": "string"
+        },
+        "effectRef": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

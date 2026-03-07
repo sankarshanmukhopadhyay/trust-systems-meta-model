@@ -1,0 +1,69 @@
+{
+  "agents": [
+    {
+      "id": "agent.procurement-1",
+      "type": "software-agent",
+      "name": "Procurement Review Agent",
+      "roles": [
+        {
+          "id": "role.delegate",
+          "type": "delegate"
+        }
+      ]
+    }
+  ],
+  "delegations": [
+    {
+      "id": "del.1",
+      "delegatorRef": "org.acme",
+      "delegateRef": "agent.procurement-1",
+      "scope": "prepare supplier risk summary",
+      "obligations": [
+        "route high-risk suppliers to human review"
+      ],
+      "revocationStatus": "active"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "cap.read-supplier-record",
+      "name": "Read supplier record",
+      "riskTier": "moderate"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res.supplier-db",
+      "type": "supplier-database",
+      "sensitivity": "confidential"
+    }
+  ],
+  "executionContexts": [
+    {
+      "id": "ctx.1",
+      "environment": "production",
+      "userPresence": "not-present",
+      "approvalState": "required",
+      "riskTier": "high"
+    }
+  ],
+  "actions": [
+    {
+      "id": "act.1",
+      "actorRef": "agent.procurement-1",
+      "type": "generate-risk-summary",
+      "contextRef": "ctx.1",
+      "capabilityRef": "cap.read-supplier-record",
+      "resourceRef": "res.supplier-db",
+      "oversightMode": "approval-gated"
+    }
+  ],
+  "traceRecords": [
+    {
+      "id": "trace.1",
+      "actionRef": "act.1",
+      "output": "draft supplier risk summary",
+      "effectRef": "eff.review-route"
+    }
+  ]
+}
