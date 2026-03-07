@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-07
-applicable_version: v0.3.0
+applicable_version: v0.4.0
 tier: 0
 ---
 
@@ -13,22 +13,38 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 
 ## Read this first
 
-1. `../README.md` for repo overview and release scope
-2. `core-model.md` for the model vocabulary
-3. `relationship-model.md` for the structural graph
-4. `effect-centered-trust-decision-model.md` for runtime legitimacy logic
+1. [Repository overview](../README.md)
+2. [Core model](core-model.md)
+3. [Entity model](model/tsmm-entities.md)
+4. [Relationship model](model/tsmm-relationships.md)
+5. [Lifecycle model](model/tsmm-lifecycle.md)
+6. [Effect evaluation model](evaluation/effect-evaluation-model.md)
+7. [Threat model](security/trust-system-threat-model.md)
+
+## Conformance profiles
+
+- [TSMM Minimal Profile](conformance/tsmm-profile-minimal.md)
+- [TSMM Operational Profile](conformance/tsmm-profile-operational.md)
+- [TSMM Assured Profile](conformance/tsmm-profile-assured.md)
+
+## Reference patterns
+
+- [Trust Registry Pattern](patterns/trust-registry-pattern.md)
+- [Delegated Agent Pattern](patterns/delegated-agent-pattern.md)
+- [Credential Verification Pattern](patterns/credential-verification-pattern.md)
+- [Assurance Evidence Pattern](patterns/assurance-evidence-pattern.md)
 
 ## Crosswalks
 
-- `crosswalks/trqp-tspp-crosswalk.md`
-- `crosswalks/erc-8004-csp-crosswalk.md`
-- `crosswalks/dcas-crosswalk.md`
+- [TRQP-TSPP Crosswalk](crosswalks/trqp-tspp-crosswalk.md)
+- [ERC-8004-CSP Crosswalk](crosswalks/erc-8004-csp-crosswalk.md)
+- [DCAS Crosswalk](crosswalks/dcas-crosswalk.md)
 
 ## Operational docs
 
-- `documentation-governance.md`
-- `freshness-audit.md`
-- `glossary.md`
+- [Documentation governance](documentation-governance.md)
+- [Freshness audit](freshness-audit.md)
+- [Glossary](glossary.md)
 
 ## Model thesis
 

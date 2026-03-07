@@ -47,7 +47,12 @@
                 "responses must satisfy freshness policy",
                 "signed response required for higher-assurance use"
               ],
-              "revocationStatus": "active"
+              "revocationStatus": "active",
+              "timeBounds": "bounded-by-policy",
+              "obligations": [
+                "responses must satisfy freshness policy",
+                "signed response required for higher-assurance use"
+              ]
             }
           ]
         }
@@ -79,7 +84,8 @@
       "rules": [
         "accept informational use when metadata freshness verification passes",
         "require signed response for high-assurance automated gating"
-      ]
+      ],
+      "contextRef": "context.trust-registry-program"
     }
   ],
   "controls": [
@@ -159,6 +165,10 @@
       ],
       "effectRefs": [
         "effect.show-result"
+      ],
+      "contextRef": "context.trust-registry-program",
+      "authorityRefs": [
+        "auth.publish-registry-metadata"
       ]
     }
   ],

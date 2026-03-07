@@ -3,3 +3,9 @@ markdown: kramdown
 theme: minima
 description: Portable reference model for trust systems
 show_downloads: false
+plugins:
+  - jekyll-feed
+header_pages:
+  - index.md
+  - docs/index.md
+  - releases/v0.4.0.md

@@ -47,7 +47,12 @@
                 "no state mutation allowed",
                 "all actions must be logged for review"
               ],
-              "revocationStatus": "active"
+              "revocationStatus": "active",
+              "timeBounds": "bounded-by-policy",
+              "obligations": [
+                "no state mutation allowed",
+                "all actions must be logged for review"
+              ]
             }
           ]
         }
@@ -75,7 +80,8 @@
       "rules": [
         "deny actions that exceed delegated authority scope",
         "route ambiguous cases to human review"
-      ]
+      ],
+      "contextRef": "context.enterprise-delegation"
     }
   ],
   "evidence": [
@@ -126,6 +132,10 @@
       ],
       "effectRefs": [
         "effect.block-purchase-order"
+      ],
+      "contextRef": "context.enterprise-delegation",
+      "authorityRefs": [
+        "auth.retrieve-quotes"
       ]
     }
   ],

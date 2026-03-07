@@ -47,7 +47,12 @@
                 "signals must pass integrity verification",
                 "high-risk actions require stronger finality evidence"
               ],
-              "revocationStatus": "active"
+              "revocationStatus": "active",
+              "timeBounds": "bounded-by-policy",
+              "obligations": [
+                "signals must pass integrity verification",
+                "high-risk actions require stronger finality evidence"
+              ]
             }
           ]
         }
@@ -79,7 +84,8 @@
       "rules": [
         "downgrade trust cues when finality evidence is weak",
         "show warnings instead of strong badges when risk is unresolved"
-      ]
+      ],
+      "contextRef": "context.marketplace-ops"
     }
   ],
   "controls": [
@@ -160,6 +166,10 @@
       ],
       "effectRefs": [
         "effect.show-warning"
+      ],
+      "contextRef": "context.marketplace-ops",
+      "authorityRefs": [
+        "auth.interpret-signals"
       ]
     }
   ],

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.org/tsmm/schemas/tsmm-core.schema.json",
-  "title": "TSMM Core Instance",
-  "description": "Machine-readable representation of a minimal TSMM instance.",
+  "title": "TSMM Core Instance v0.4.0",
+  "description": "Machine-readable representation of a TSMM instance aligned with the v0.4.0 model.",
   "type": "object",
   "required": [
     "entities",
@@ -13,67 +13,97 @@
   "properties": {
     "governanceContexts": {
       "type": "array",
-      "items": { "$ref": "#/$defs/governanceContext" }
+      "items": {
+        "$ref": "#/$defs/governanceContext"
+      }
     },
     "profiles": {
       "type": "array",
-      "items": { "$ref": "#/$defs/profile" }
+      "items": {
+        "$ref": "#/$defs/profile"
+      }
     },
     "requirements": {
       "type": "array",
-      "items": { "$ref": "#/$defs/requirement" }
+      "items": {
+        "$ref": "#/$defs/requirement"
+      }
     },
     "entities": {
       "type": "array",
-      "items": { "$ref": "#/$defs/entity" },
+      "items": {
+        "$ref": "#/$defs/entity"
+      },
       "minItems": 1
     },
     "artifacts": {
       "type": "array",
-      "items": { "$ref": "#/$defs/artifact" }
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
     },
     "policies": {
       "type": "array",
-      "items": { "$ref": "#/$defs/policy" },
+      "items": {
+        "$ref": "#/$defs/policy"
+      },
       "minItems": 1
     },
     "controls": {
       "type": "array",
-      "items": { "$ref": "#/$defs/control" }
+      "items": {
+        "$ref": "#/$defs/control"
+      }
     },
     "threats": {
       "type": "array",
-      "items": { "$ref": "#/$defs/threat" }
+      "items": {
+        "$ref": "#/$defs/threat"
+      }
     },
     "evidence": {
       "type": "array",
-      "items": { "$ref": "#/$defs/evidence" }
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
     },
     "assessments": {
       "type": "array",
-      "items": { "$ref": "#/$defs/assessment" }
+      "items": {
+        "$ref": "#/$defs/assessment"
+      }
     },
     "verifications": {
       "type": "array",
-      "items": { "$ref": "#/$defs/verification" }
+      "items": {
+        "$ref": "#/$defs/verification"
+      }
     },
     "levelFrameworks": {
       "type": "array",
-      "items": { "$ref": "#/$defs/levelFramework" }
+      "items": {
+        "$ref": "#/$defs/levelFramework"
+      }
     },
     "trustDecisions": {
       "type": "array",
-      "items": { "$ref": "#/$defs/trustDecision" },
+      "items": {
+        "$ref": "#/$defs/trustDecision"
+      },
       "minItems": 1
     },
     "effects": {
       "type": "array",
-      "items": { "$ref": "#/$defs/effect" },
+      "items": {
+        "$ref": "#/$defs/effect"
+      },
       "minItems": 1
     },
     "lifecycleEvents": {
       "type": "array",
-      "items": { "$ref": "#/$defs/lifecycleEvent" }
+      "items": {
+        "$ref": "#/$defs/lifecycleEvent"
+      }
     }
   },
   "$defs": {
@@ -83,48 +113,89 @@
     },
     "governanceContext": {
       "type": "object",
-      "required": ["id", "name"],
+      "required": [
+        "id",
+        "name"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "name": { "type": "string" },
-        "description": { "type": "string" }
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
     "profile": {
       "type": "object",
-      "required": ["id", "name"],
+      "required": [
+        "id",
+        "name"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "name": { "type": "string" },
-        "contextRef": { "$ref": "#/$defs/idString" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
+        "contextRef": {
+          "$ref": "#/$defs/idString"
+        },
         "requirementRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" }
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         }
       },
       "additionalProperties": false
     },
     "requirement": {
       "type": "object",
-      "required": ["id", "statement"],
+      "required": [
+        "id",
+        "statement"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "statement": { "type": "string" },
-        "level": { "type": "string" }
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
     "entity": {
       "type": "object",
-      "required": ["id", "type", "roles"],
+      "required": [
+        "id",
+        "type",
+        "roles"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "type": { "type": "string" },
-        "name": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
         "roles": {
           "type": "array",
-          "items": { "$ref": "#/$defs/role" },
+          "items": {
+            "$ref": "#/$defs/role"
+          },
           "minItems": 1
         }
       },
@@ -132,153 +203,295 @@
     },
     "role": {
       "type": "object",
-      "required": ["id", "type"],
+      "required": [
+        "id",
+        "type"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "type": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
         "authorities": {
           "type": "array",
-          "items": { "$ref": "#/$defs/authority" }
+          "items": {
+            "$ref": "#/$defs/authority"
+          }
         }
       },
       "additionalProperties": false
     },
     "authority": {
       "type": "object",
-      "required": ["id", "scope"],
+      "required": [
+        "id",
+        "scope"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "scope": { "type": "string" },
-        "source": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
         "conditions": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
         "revocationStatus": {
           "type": "string",
-          "enum": ["active", "revoked", "suspended", "expired"]
+          "enum": [
+            "active",
+            "revoked",
+            "suspended",
+            "expired"
+          ]
+        },
+        "timeBounds": {
+          "type": "string"
+        },
+        "obligations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
     },
     "artifact": {
       "type": "object",
-      "required": ["id", "type"],
+      "required": [
+        "id",
+        "type"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "type": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
         "claims": {
           "type": "array",
-          "items": { "$ref": "#/$defs/claim" }
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
         }
       },
       "additionalProperties": false
     },
     "claim": {
       "type": "object",
-      "required": ["id", "statement"],
+      "required": [
+        "id",
+        "statement"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "statement": { "type": "string" },
-        "subjectRef": { "$ref": "#/$defs/idString" }
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "subjectRef": {
+          "$ref": "#/$defs/idString"
+        }
       },
       "additionalProperties": false
     },
     "policy": {
       "type": "object",
-      "required": ["id", "name", "decisionMode"],
+      "required": [
+        "id",
+        "name",
+        "decisionMode"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "name": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
         "decisionMode": {
           "type": "string",
-          "enum": ["allow", "deny", "warn", "review", "mixed"]
+          "enum": [
+            "allow",
+            "deny",
+            "warn",
+            "review",
+            "mixed"
+          ]
         },
-        "profileRef": { "$ref": "#/$defs/idString" },
+        "profileRef": {
+          "$ref": "#/$defs/idString"
+        },
         "rules": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
+        },
+        "contextRef": {
+          "$ref": "#/$defs/idString"
         }
       },
       "additionalProperties": false
     },
     "control": {
       "type": "object",
-      "required": ["id", "type"],
+      "required": [
+        "id",
+        "type"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "type": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
         "mitigatesThreatRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" }
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        },
+        "requirementRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         }
       },
       "additionalProperties": false
     },
     "threat": {
       "type": "object",
-      "required": ["id", "type"],
+      "required": [
+        "id",
+        "type"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "type": { "type": "string" },
-        "description": { "type": "string" }
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
     "evidence": {
       "type": "object",
-      "required": ["id", "type"],
+      "required": [
+        "id",
+        "type"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "type": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
         "supportsRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" }
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         }
       },
       "additionalProperties": false
     },
     "assessment": {
       "type": "object",
-      "required": ["id", "method", "result"],
+      "required": [
+        "id",
+        "method",
+        "result"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "method": { "type": "string" },
-        "result": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "method": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
         "requirementRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" }
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         },
         "evidenceRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" }
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         }
       },
       "additionalProperties": false
     },
     "verification": {
       "type": "object",
-      "required": ["id", "method", "result"],
+      "required": [
+        "id",
+        "method",
+        "result"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "method": { "type": "string" },
-        "result": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "method": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
         "inputRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" }
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         }
       },
       "additionalProperties": false
     },
     "levelFramework": {
       "type": "object",
-      "required": ["id", "name", "levels"],
+      "required": [
+        "id",
+        "name",
+        "levels"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "name": { "type": "string" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
         "levels": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "minItems": 1
         }
       },
@@ -286,45 +499,94 @@
     },
     "trustDecision": {
       "type": "object",
-      "required": ["id", "outcome", "policyRef", "effectRefs"],
+      "required": [
+        "id",
+        "outcome",
+        "policyRef",
+        "effectRefs"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "outcome": { "type": "string" },
-        "policyRef": { "$ref": "#/$defs/idString" },
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "outcome": {
+          "type": "string"
+        },
+        "policyRef": {
+          "$ref": "#/$defs/idString"
+        },
         "assessmentRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" }
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         },
         "verificationRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" }
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         },
         "effectRefs": {
           "type": "array",
-          "items": { "$ref": "#/$defs/idString" },
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
           "minItems": 1
+        },
+        "contextRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "authorityRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         }
       },
       "additionalProperties": false
     },
     "effect": {
       "type": "object",
-      "required": ["id", "class", "action", "status"],
+      "required": [
+        "id",
+        "class",
+        "action",
+        "status"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "class": { "type": "string" },
-        "action": { "type": "string" },
-        "status": { "type": "string" }
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "class": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
     "lifecycleEvent": {
       "type": "object",
-      "required": ["id", "type", "targetRef"],
+      "required": [
+        "id",
+        "type",
+        "targetRef"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/idString" },
-        "type": { "type": "string" },
-        "targetRef": { "$ref": "#/$defs/idString" }
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "targetRef": {
+          "$ref": "#/$defs/idString"
+        }
       },
       "additionalProperties": false
     }

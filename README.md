@@ -1,13 +1,13 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-07
-applicable_version: v0.3.0
+applicable_version: v0.4.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-**Version:** v0.3.0  
+**Version:** v0.4.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -32,10 +32,11 @@ That framing makes TSMM usable across trust registries, verifiable credential ec
 
 ## Documentation site
 
-This repository is structured to publish cleanly with **GitHub Pages**.
+This repository is structured to publish cleanly with **GitHub Pages via GitHub Actions**.
 
+- Pages landing page: `index.md`
 - Docs home: `docs/index.md`
-- Recommended Pages source: **Deploy from a branch** → `/docs` folder
+- Workflow: `.github/workflows/pages.yml`
 - Jekyll config: `_config.yml`
 
 ## Why this repo exists
@@ -54,11 +55,24 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 
 ## Start here
 
+- Pages landing page: `index.md`
 - Conceptual entry point: `docs/index.md`
 - Core abstractions: `docs/core-model.md`
-- Relationship graph: `docs/relationship-model.md`
-- Runtime legitimacy logic: `docs/effect-centered-trust-decision-model.md`
+- Entity catalog: `docs/model/tsmm-entities.md`
+- Relationship graph: `docs/model/tsmm-relationships.md`
+- Lifecycle model: `docs/model/tsmm-lifecycle.md`
+- Runtime legitimacy logic: `docs/evaluation/effect-evaluation-model.md`
+- Threat taxonomy: `docs/security/trust-system-threat-model.md`
 - Glossary: `docs/glossary.md`
+- Conformance profiles:
+  - `docs/conformance/tsmm-profile-minimal.md`
+  - `docs/conformance/tsmm-profile-operational.md`
+  - `docs/conformance/tsmm-profile-assured.md`
+- Reference patterns:
+  - `docs/patterns/trust-registry-pattern.md`
+  - `docs/patterns/delegated-agent-pattern.md`
+  - `docs/patterns/credential-verification-pattern.md`
+  - `docs/patterns/assurance-evidence-pattern.md`
 - Crosswalks:
   - `docs/crosswalks/trqp-tspp-crosswalk.md`
   - `docs/crosswalks/erc-8004-csp-crosswalk.md`
@@ -82,43 +96,35 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## Scope status
+## What changed in v0.4.0
 
-### First release scope audit
-
-The original first-release scope included:
-
-1. core concepts
-2. relationship model
-3. effect-centered trust decision model
-4. two crosswalks
-5. one simple JSON schema
-6. two worked examples
-
-**Status:** complete since v0.2.0.
-
-## What changed in v0.3.0
-
-v0.3.0 hardens the repo after cross-checking it against TRQP-TSPP, ERC-8004-CSP, DCAS, and the repository freshness checklist.
+v0.4.0 turns TSMM from a conceptual bundle into a more operational architecture toolkit.
 
 It adds:
 
-- GitHub Pages readiness
-- explicit documentation governance and freshness metadata
-- a terminology glossary
-- a DCAS crosswalk
-- refinement of the core model to include **governance context**, **profile**, **requirement**, and **assessment**
-- an expanded machine-readable schema and refreshed examples
-- security reporting guidance
+- a formal entity catalog with mandatory fields and modeling guidance
+- a normative relationship specification with cardinality and dependency rules
+- a lifecycle model covering issuance, delegation, suspension, revocation, expiry, remediation, and archival
+- TSMM conformance profiles for Minimal, Operational, and Assured implementations
+- a formal effect evaluation model for execution-time trust decisions
+- a reusable threat and failure taxonomy for trust systems
+- reference architecture patterns for trust registries, delegated agents, credential verification, and assurance evidence
+- GitHub Pages deployment through GitHub Actions
+- refreshed navigation for docs and release packaging
 
 ## Repo contents
 
 ```text
 trust-systems-meta-model/
+├── .github/
+│   └── workflows/
+│       └── pages.yml
 ├── README.md
 ├── LICENSE
 ├── SECURITY.md
 ├── CONTRIBUTING.md
+├── VERSION
+├── index.md
 ├── _config.yml
 ├── docs/
 │   ├── index.md
@@ -127,16 +133,37 @@ trust-systems-meta-model/
 │   ├── effect-centered-trust-decision-model.md
 │   ├── glossary.md
 │   ├── documentation-governance.md
+│   ├── freshness-audit.md
+│   ├── model/
+│   │   ├── tsmm-entities.md
+│   │   ├── tsmm-relationships.md
+│   │   └── tsmm-lifecycle.md
+│   ├── conformance/
+│   │   ├── tsmm-profile-minimal.md
+│   │   ├── tsmm-profile-operational.md
+│   │   └── tsmm-profile-assured.md
+│   ├── evaluation/
+│   │   └── effect-evaluation-model.md
+│   ├── security/
+│   │   └── trust-system-threat-model.md
+│   ├── patterns/
+│   │   ├── trust-registry-pattern.md
+│   │   ├── delegated-agent-pattern.md
+│   │   ├── credential-verification-pattern.md
+│   │   └── assurance-evidence-pattern.md
 │   └── crosswalks/
 │       ├── trqp-tspp-crosswalk.md
 │       ├── erc-8004-csp-crosswalk.md
 │       └── dcas-crosswalk.md
 ├── schemas/
 │   └── tsmm-core.schema.json
-└── examples/
-    ├── minimal-trust-registry-instance.json
-    ├── consumer-policy-instance.json
-    └── delegated-agent-instance.json
+├── examples/
+│   ├── minimal-trust-registry-instance.json
+│   ├── consumer-policy-instance.json
+│   └── delegated-agent-instance.json
+└── releases/
+    ├── v0.3.0.md
+    └── v0.4.0.md
 ```
 
 ## What TSMM is not

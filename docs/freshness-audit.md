@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-07
-applicable_version: v0.3.0
+applicable_version: v0.4.0
 tier: 2
 ---
 
@@ -44,3 +44,8 @@ tier: 2
 - no P0 documentation defects identified
 - internal path references reviewed and corrected
 - JSON examples validated against the updated schema
+
+
+## v0.4.0 additions
+
+The release introduced new model, conformance, evaluation, security, and pattern documents. Freshness checks should confirm that these remain consistent with the schema, examples, release notes, and README navigation.
