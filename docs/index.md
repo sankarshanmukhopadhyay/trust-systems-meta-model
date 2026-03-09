@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-07
-applicable_version: v0.5.0
+last_reviewed: 2026-03-09
+applicable_version: v0.6.0
 tier: 0
 ---
 
@@ -42,6 +42,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Delegated Agent Pattern](patterns/delegated-agent-pattern.md)
 - [Credential Verification Pattern](patterns/credential-verification-pattern.md)
 - [Assurance Evidence Pattern](patterns/assurance-evidence-pattern.md)
+- [Multi-Agent Coordination Pattern](patterns/multi-agent-coordination-pattern.md)
 
 ## Extensions
 
@@ -62,6 +63,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Documentation governance](documentation-governance.md)
 - [Freshness audit](freshness-audit.md)
 - [Glossary](glossary.md)
+- [Getting Started: Implementer Guide](getting-started-implementer-guide.md)
 
 ## Model thesis
 

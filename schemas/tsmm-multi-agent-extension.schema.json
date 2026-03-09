@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-multi-agent-extension.schema.json",
+  "title": "TSMM Multi-Agent Coordination Extension Instance v0.6.0",
+  "description": "Extension schema for representing chained delegation and multi-agent coordination layered on top of the TSMM agentic extension.",
+  "type": "object",
+  "required": [
+    "coordinationId",
+    "agents",
+    "delegationChain",
+    "coordinatedActions"
+  ],
+  "properties": {
+    "coordinationId": {
+      "$ref": "#/$defs/idString"
+    },
+    "description": {
+      "type": "string"
+    },
+    "originatingPrincipalRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coordinatingAgent"
+      },
+      "minItems": 2
+    },
+    "delegationChain": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/chainedDelegation"
+      },
+      "minItems": 2
+    },
+    "coordinatedActions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coordinatedAction"
+      },
+      "minItems": 1
+    },
+    "coordinationTraceRecord": {
+      "$ref": "#/$defs/coordinationTrace"
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "coordinatingAgent": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "agentRole"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string"
+        },
+        "agentRole": {
+          "type": "string",
+          "enum": [
+            "principal-agent",
+            "subordinate-agent"
+          ]
+        },
+        "riskTier": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "chainedDelegation": {
+      "type": "object",
+      "required": [
+        "id",
+        "delegatorRef",
+        "delegateRef",
+        "scope",
+        "chainDepth",
+        "subDelegationPermitted"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "delegatorRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "delegateRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "chainDepth": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Depth of this delegation in the chain. The originating principal grant is depth 0."
+        },
+        "subDelegationPermitted": {
+          "type": "boolean",
+          "description": "Whether the delegate may further sub-delegate within this scope."
+        },
+        "obligations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "revocationStatus": {
+          "type": "string",
+          "enum": [
+            "active",
+            "revoked",
+            "suspended",
+            "expired"
+          ]
+        },
+        "parentDelegationRef": {
+          "$ref": "#/$defs/idString",
+          "description": "Reference to the delegation one level up the chain that authorized this sub-delegation."
+        }
+      },
+      "additionalProperties": false
+    },
+    "coordinatedAction": {
+      "type": "object",
+      "required": [
+        "id",
+        "actorRef",
+        "delegationRef",
+        "type",
+        "effectiveOversightMode"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "actorRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "capabilityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "resourceRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "localOversightMode": {
+          "type": "string",
+          "enum": [
+            "autonomous",
+            "pre-approved",
+            "approval-gated",
+            "sampled-review",
+            "manual",
+            "emergency-override"
+          ],
+          "description": "The oversight mode specified in this agent's own delegation."
+        },
+        "effectiveOversightMode": {
+          "type": "string",
+          "enum": [
+            "autonomous",
+            "pre-approved",
+            "approval-gated",
+            "sampled-review",
+            "manual",
+            "emergency-override"
+          ],
+          "description": "The oversight mode after escalation to the strictest mode present in the full delegation chain."
+        },
+        "traceRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "coordinationTrace": {
+      "type": "object",
+      "required": [
+        "id",
+        "coordinationRef",
+        "agentTraceRefs"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "coordinationRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "agentTraceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "minItems": 1,
+          "description": "References to per-agent trace records from the agentic extension."
+        },
+        "compositeEffectRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

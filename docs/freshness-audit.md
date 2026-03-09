@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-07
-applicable_version: v0.5.0
+last_reviewed: 2026-03-09
+applicable_version: v0.6.0
 tier: 2
 ---
 
@@ -49,3 +49,7 @@ tier: 2
 ## v0.5.0 additions
 
 The release introduced new model, conformance, evaluation, security, and pattern documents. Freshness checks should confirm that these remain consistent with the schema, examples, release notes, and README navigation.
+
+## v0.6.0 additions
+
+The release added implementer-readiness artifacts and extended the multi-agent governance model. New documents include the conformance self-assessment checklist, the getting-started implementer guide, the multi-agent coordination pattern, the multi-agent extension schema and example, the OpenID Federation crosswalk, and the schema coverage validation script. All new documents carry v0.6.0 frontmatter. Existing documents were updated to v0.6.0 version metadata. Release notes check confirmed no broken internal links introduced.

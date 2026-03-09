@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-07
-applicable_version: v0.5.0
+last_reviewed: 2026-03-09
+applicable_version: v0.6.0
 tier: 2
 ---
 
@@ -22,7 +22,10 @@ This document defines how TSMM documentation is structured, reviewed, and kept c
 - `docs/relationship-model.md`
 - `docs/effect-centered-trust-decision-model.md`
 - `docs/glossary.md`
+- `docs/getting-started-implementer-guide.md`
 - documents under `docs/crosswalks/`
+- documents under `docs/conformance/`
+- documents under `docs/patterns/`
 
 ### Tier 2
 - `CONTRIBUTING.md`
@@ -62,3 +65,7 @@ Before release:
 ## v0.5.0 note
 
 The v0.5.0 release expands the documentation surface. New model, conformance, evaluation, security, and pattern documents should remain aligned with the core model, schema, examples, and release notes.
+
+## v0.6.0 note
+
+The v0.6.0 release adds implementer-facing documents. The getting-started implementer guide, conformance checklist, multi-agent coordination pattern, and OpenID Federation crosswalk are Tier 1 documents and should be kept aligned with any future changes to conformance profiles, the agentic extension, and the core model. The schema coverage script should be updated whenever new schemas or examples are added.

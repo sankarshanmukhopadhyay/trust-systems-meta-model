@@ -1,0 +1,80 @@
+{
+  "coordinationId": "coord.procurement-summary-2026",
+  "description": "Procurement review workflow: SummaryAgent delegates record lookup to LookupAgent",
+  "originatingPrincipalRef": "org.acme",
+  "agents": [
+    {
+      "id": "agent.summary-1",
+      "name": "Procurement Summary Agent",
+      "agentRole": "principal-agent",
+      "riskTier": "moderate"
+    },
+    {
+      "id": "agent.lookup-1",
+      "name": "Supplier Lookup Agent",
+      "agentRole": "subordinate-agent",
+      "riskTier": "low"
+    }
+  ],
+  "delegationChain": [
+    {
+      "id": "del.acme-to-summary",
+      "delegatorRef": "org.acme",
+      "delegateRef": "agent.summary-1",
+      "scope": "prepare supplier risk summary",
+      "chainDepth": 0,
+      "subDelegationPermitted": true,
+      "obligations": [
+        "route high-risk suppliers to human review",
+        "do not retain supplier records after summary is produced"
+      ],
+      "revocationStatus": "active"
+    },
+    {
+      "id": "del.summary-to-lookup",
+      "delegatorRef": "agent.summary-1",
+      "delegateRef": "agent.lookup-1",
+      "scope": "fetch supplier record for named supplier",
+      "chainDepth": 1,
+      "subDelegationPermitted": false,
+      "obligations": [
+        "return record only to delegating agent",
+        "do not cache result"
+      ],
+      "revocationStatus": "active",
+      "parentDelegationRef": "del.acme-to-summary"
+    }
+  ],
+  "coordinatedActions": [
+    {
+      "id": "act.lookup-fetch",
+      "actorRef": "agent.lookup-1",
+      "delegationRef": "del.summary-to-lookup",
+      "type": "fetch-supplier-record",
+      "resourceRef": "res.supplier-db",
+      "localOversightMode": "autonomous",
+      "effectiveOversightMode": "sampled-review",
+      "traceRef": "trace.lookup-1"
+    },
+    {
+      "id": "act.summary-generate",
+      "actorRef": "agent.summary-1",
+      "delegationRef": "del.acme-to-summary",
+      "type": "generate-risk-summary",
+      "resourceRef": "res.summary-output",
+      "localOversightMode": "sampled-review",
+      "effectiveOversightMode": "sampled-review",
+      "traceRef": "trace.summary-1"
+    }
+  ],
+  "coordinationTraceRecord": {
+    "id": "trace.coord-procurement-summary-2026",
+    "coordinationRef": "coord.procurement-summary-2026",
+    "agentTraceRefs": [
+      "trace.lookup-1",
+      "trace.summary-1"
+    ],
+    "compositeEffectRef": "eff.summary-delivered-for-review",
+    "notes": "Lookup action ran autonomous locally; effective oversight escalated to sampled-review from parent delegation. Summary routed to human review queue per obligation."
+  }
+}

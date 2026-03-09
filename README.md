@@ -1,19 +1,19 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-07
-applicable_version: v0.5.0
+last_reviewed: 2026-03-09
+applicable_version: v0.6.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.5.0-blue)](releases/v0.5.0.md)
+[![Release](https://img.shields.io/badge/release-v0.6.0-blue)](releases/v0.6.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.5.0  
+**Version:** v0.6.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -77,11 +77,13 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
   - `docs/conformance/tsmm-profile-minimal.md`
   - `docs/conformance/tsmm-profile-operational.md`
   - `docs/conformance/tsmm-profile-assured.md`
+  - `docs/conformance/tsmm-conformance-checklist.md`
 - Reference patterns:
   - `docs/patterns/trust-registry-pattern.md`
   - `docs/patterns/delegated-agent-pattern.md`
   - `docs/patterns/credential-verification-pattern.md`
   - `docs/patterns/assurance-evidence-pattern.md`
+  - `docs/patterns/multi-agent-coordination-pattern.md`
 - Extensions:
   - `docs/extensions/index.md`
   - `docs/extensions/agentic-ai-extension.md`
@@ -92,6 +94,8 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
   - `docs/crosswalks/erc-8004-csp-crosswalk.md`
   - `docs/crosswalks/dcas-crosswalk.md`
   - `docs/crosswalks/trust-reference-assurance-architecture-crosswalk.md`
+  - `docs/crosswalks/openid-federation-crosswalk.md`
+- Implementer guide: `docs/getting-started-implementer-guide.md`
 - Documentation governance and freshness: `docs/documentation-governance.md`
 
 ## Design principles
@@ -111,7 +115,19 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## What changed in v0.5.0
+## What changed in v0.6.0
+
+v0.6.0 adds implementer-readiness tooling and closes the gap between the conceptual model and practical adoption.
+
+It adds:
+
+- a conformance self-assessment checklist for Minimal, Operational, and Assured profiles, with extension checklists for Agentic AI, VTC, and Assurance
+- an opinionated getting-started implementer guide with three entry points: trust registry operator, verifiable credential issuer/verifier, and agentic system builder
+- a multi-agent coordination pattern covering chained delegation, sub-delegation governance, and oversight mode escalation
+- a multi-agent coordination extension schema with support for delegation chains, per-agent actions, effective oversight mode tracking, and coordination-level trace records
+- a worked multi-agent coordination example instance
+- an OpenID Federation crosswalk mapping federation concepts to TSMM abstractions
+- a schema coverage validation script that checks whether example instances exercise all properties defined in their paired schemas
 
 v0.5.0 extends TSMM with modular application-layer support while keeping the core model stable.
 
@@ -152,6 +168,7 @@ trust-systems-meta-model/
 │   ├── glossary.md
 │   ├── documentation-governance.md
 │   ├── freshness-audit.md
+│   ├── getting-started-implementer-guide.md
 │   ├── model/
 │   │   ├── tsmm-entities.md
 │   │   ├── tsmm-relationships.md
@@ -164,7 +181,8 @@ trust-systems-meta-model/
 │   ├── conformance/
 │   │   ├── tsmm-profile-minimal.md
 │   │   ├── tsmm-profile-operational.md
-│   │   └── tsmm-profile-assured.md
+│   │   ├── tsmm-profile-assured.md
+│   │   └── tsmm-conformance-checklist.md
 │   ├── evaluation/
 │   │   └── effect-evaluation-model.md
 │   ├── security/
@@ -173,31 +191,37 @@ trust-systems-meta-model/
 │   │   ├── trust-registry-pattern.md
 │   │   ├── delegated-agent-pattern.md
 │   │   ├── credential-verification-pattern.md
-│   │   └── assurance-evidence-pattern.md
+│   │   ├── assurance-evidence-pattern.md
+│   │   └── multi-agent-coordination-pattern.md
 │   └── crosswalks/
 │       ├── trqp-tspp-crosswalk.md
 │       ├── erc-8004-csp-crosswalk.md
 │       ├── dcas-crosswalk.md
-│       └── trust-reference-assurance-architecture-crosswalk.md
+│       ├── trust-reference-assurance-architecture-crosswalk.md
+│       └── openid-federation-crosswalk.md
 ├── schemas/
 │   ├── tsmm-core.schema.json
 │   ├── tsmm-agentic-extension.schema.json
 │   ├── tsmm-vtc-extension.schema.json
-│   └── tsmm-assurance-extension.schema.json
+│   ├── tsmm-assurance-extension.schema.json
+│   └── tsmm-multi-agent-extension.schema.json
 ├── examples/
 │   ├── minimal-trust-registry-instance.json
 │   ├── consumer-policy-instance.json
 │   ├── delegated-agent-instance.json
 │   ├── agentic-ai-extension-instance.json
 │   ├── verifiable-trust-community-instance.json
-│   └── assurance-extension-instance.json
+│   ├── assurance-extension-instance.json
+│   └── multi-agent-coordination-instance.json
 ├── scripts/
 │   ├── validate_examples.py
-│   └── check_docs.py
+│   ├── check_docs.py
+│   └── check_schema_coverage.py
 └── releases/
     ├── v0.3.0.md
     ├── v0.4.0.md
-    └── v0.5.0.md
+    ├── v0.5.0.md
+    └── v0.6.0.md
 ```
 
 ## What TSMM is not

@@ -18,6 +18,7 @@ PAIRS = [
     ("agentic-ai-extension-instance.json", "tsmm-agentic-extension.schema.json"),
     ("verifiable-trust-community-instance.json", "tsmm-vtc-extension.schema.json"),
     ("assurance-extension-instance.json", "tsmm-assurance-extension.schema.json"),
+    ("multi-agent-coordination-instance.json", "tsmm-multi-agent-extension.schema.json"),
 ]
 
 

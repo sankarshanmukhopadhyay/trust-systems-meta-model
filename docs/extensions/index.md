@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-07
-applicable_version: v0.5.0
+last_reviewed: 2026-03-09
+applicable_version: v0.6.0
 tier: 1
 ---
 
@@ -18,6 +18,7 @@ This keeps the core stable while allowing real-world application families to add
 ## Available extensions
 
 - [Agentic AI Extension](agentic-ai-extension.md)
+- [Multi-Agent Coordination Extension](../patterns/multi-agent-coordination-pattern.md) — schema: `schemas/tsmm-multi-agent-extension.schema.json`
 - [Verifiable Trust Communities Extension](verifiable-trust-communities-extension.md)
 - [Assurance Extension](assurance-extension.md)
 
