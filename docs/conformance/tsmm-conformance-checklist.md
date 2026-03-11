@@ -120,6 +120,8 @@ Reference: `docs/patterns/dynamic-authz-pattern.md`
 
 Read `docs/model/dynamic-authorization-framing.md` before completing this checklist. The `experimental` status means promotion to core is deferred, not that the pattern is unsuitable for use.
 
+For agentic system implementations, also read `docs/model/agentic-authz-analysis.md`. The DA checklist covers the evaluation layer. The AE checklist (above) covers the governance envelope. Both must be completed for an agentic system implementation that uses dynamic authorization.
+
 | # | Requirement | Satisfied? | Notes |
 |---|---|---|---|
 | DA-1 | Policy administration (PAP), decision (PDP), and enforcement (PEP) concerns are separated in the implementation architecture | | |
@@ -129,6 +131,7 @@ Read `docs/model/dynamic-authorization-framing.md` before completing this checkl
 | DA-5 | Effect objects retain TSMM class, action, and status structure; permit decisions are not reduced to binary flags | | |
 | DA-6 | Indeterminate and notApplicable decisions have a defined governance-safe default behavior | | |
 | DA-7 | Trust decisions and effects produced by the PDP/PEP are recorded with policy reference and decision outcome | | |
+| DA-8 | *(Agentic systems only)* The governance envelope is in place before the PDP layer: delegation model, oversight mode, risk-tier-driven policy selection, and trace records as structured TSMM Evidence are all defined independently of the authorization evaluation | | |
 
 ---
 
