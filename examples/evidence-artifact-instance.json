@@ -1,0 +1,54 @@
+{
+  "evidenceArtifacts": [
+    {
+      "id": "ea.reconciliation-2026-03-11",
+      "artifactType": "reconciliation",
+      "producedBy": "entity.registry-operator",
+      "timestamp": "2026-03-11T08:00:00Z",
+      "evidenceHash": "sha256:a3f1c9e2d7b04581f2e6c3d1a9b7e4f0c2d8a5b3e1f7c9d2a4b6e8f0c2d4a6b8",
+      "verificationMethod": "schema-validation",
+      "relatedPolicy": "policy.registry-reliance",
+      "supportsRefs": [
+        "req.freshness",
+        "control.response-signing"
+      ]
+    },
+    {
+      "id": "ea.drift-2026-03-11",
+      "artifactType": "drift",
+      "producedBy": "entity.registry-operator",
+      "timestamp": "2026-03-11T09:15:00Z",
+      "verificationMethod": "human-review",
+      "relatedPolicy": "policy.registry-reliance",
+      "supportsRefs": [
+        "assessment.profile-evaluation"
+      ]
+    },
+    {
+      "id": "ea.attestation-operator-2026-03-11",
+      "artifactType": "attestation",
+      "producedBy": "entity.registry-operator",
+      "timestamp": "2026-03-11T10:00:00Z",
+      "evidenceHash": "sha256:b7d3e1f5a2c4d6b8e0f2a4c6d8b0e2f4a6c8d0b2e4f6a8c0d2b4e6f8a0c2d4e6",
+      "verificationMethod": "signature-check",
+      "relatedPolicy": "policy.registry-reliance",
+      "supportsRefs": [
+        "claim.signed-response-supported",
+        "req.signed-response"
+      ]
+    },
+    {
+      "id": "ea.conformance-2026-03-11",
+      "artifactType": "conformance",
+      "producedBy": "entity.registry-operator",
+      "timestamp": "2026-03-11T11:30:00Z",
+      "verificationMethod": "schema-validation",
+      "relatedPolicy": "policy.registry-reliance",
+      "supportsRefs": [
+        "req.freshness",
+        "req.signed-response",
+        "assessment.profile-evaluation"
+      ]
+    }
+  ]
+}

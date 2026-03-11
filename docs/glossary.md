@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-09
-applicable_version: v0.6.0
+last_reviewed: 2026-03-11
+applicable_version: v0.7.0
 tier: 1
 ---
 
@@ -30,6 +30,9 @@ A participant in the trust system, such as a person, organization, software agen
 
 ## Evidence
 Material used to substantiate a claim, control implementation, requirement outcome, or assessment result.
+
+## Evidence Artifact
+A typed, structured output produced by an operational system, authorized actor, or assessment process to demonstrate that a rule was checked, a behavior occurred, or a condition holds. Evidence artifacts specialize the Evidence abstraction with production context, artifact type, integrity anchors, and traceability fields. Defined types include reconciliation, drift, attestation, and conformance. See `docs/model/evidence-artifact.md`.
 
 ## Governance Context
 The governing environment within which trust decisions are made, including legal, institutional, contractual, and ecosystem constraints.

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-evidence-artifact-extension.schema.json",
+  "title": "TSMM Evidence Artifact Extension v0.7.0",
+  "description": "Extension schema for typed evidence artifacts produced by operational systems, authorized actors, and assessment processes in TSMM-aligned trust systems. Specializes the core Evidence abstraction with production context, artifact type, and traceability fields.",
+  "type": "object",
+  "required": [
+    "evidenceArtifacts"
+  ],
+  "properties": {
+    "evidenceArtifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidenceArtifact"
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "evidenceArtifact": {
+      "type": "object",
+      "required": [
+        "id",
+        "artifactType",
+        "producedBy",
+        "timestamp"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "artifactType": {
+          "type": "string",
+          "enum": [
+            "reconciliation",
+            "drift",
+            "attestation",
+            "conformance"
+          ],
+          "description": "The class of evidence this artifact represents. Determines how downstream assessors and verifiers should interpret and process it."
+        },
+        "producedBy": {
+          "$ref": "#/$defs/idString",
+          "description": "Reference to the Actor, system, or process that generated this artifact."
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "ISO 8601 datetime string recording when the artifact was produced."
+        },
+        "evidenceHash": {
+          "type": "string",
+          "description": "Integrity anchor for the artifact content. Supports tamper detection and chain-of-custody claims."
+        },
+        "verificationMethod": {
+          "type": "string",
+          "description": "How this artifact should be verified. Examples: schema-validation, signature-check, human-review."
+        },
+        "relatedPolicy": {
+          "$ref": "#/$defs/idString",
+          "description": "Reference to the Policy whose evaluation this artifact supports or was produced under."
+        },
+        "relatedAction": {
+          "$ref": "#/$defs/idString",
+          "description": "Reference to an Action (agentic extension concept) that this artifact traces. Populated when the artifact is produced in an agentic execution context."
+        },
+        "supportsRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "description": "References to the Claims, Controls, Requirements, Assessments, or Verifications that this artifact substantiates."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

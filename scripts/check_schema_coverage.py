@@ -27,6 +27,7 @@ COVERAGE_PAIRS: list[tuple[str, str]] = [
     ("verifiable-trust-community-instance.json", "tsmm-vtc-extension.schema.json"),
     ("assurance-extension-instance.json", "tsmm-assurance-extension.schema.json"),
     ("multi-agent-coordination-instance.json", "tsmm-multi-agent-extension.schema.json"),
+    ("evidence-artifact-instance.json", "tsmm-evidence-artifact-extension.schema.json"),
 ]
 
 # Properties that are intentionally optional and acceptable to omit from examples.
@@ -38,6 +39,9 @@ ACCEPTABLE_OMISSIONS: set[str] = {
     "levelFrameworks",
     # Notes fields are free-text and do not require demonstration.
     "notes",
+    # relatedAction is only populated in agentic execution contexts. The evidence artifact
+    # base example demonstrates a trust registry context where no Action is in scope.
+    "relatedAction",
 }
 
 

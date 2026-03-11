@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-09
-applicable_version: v0.6.0
+last_reviewed: 2026-03-11
+applicable_version: v0.7.0
 tier: 1
 ---
 
@@ -21,6 +21,7 @@ This keeps the core stable while allowing real-world application families to add
 - [Multi-Agent Coordination Extension](../patterns/multi-agent-coordination-pattern.md) — schema: `schemas/tsmm-multi-agent-extension.schema.json`
 - [Verifiable Trust Communities Extension](verifiable-trust-communities-extension.md)
 - [Assurance Extension](assurance-extension.md)
+- [Evidence Artifact Extension](../model/evidence-artifact.md) — schema: `schemas/tsmm-evidence-artifact-extension.schema.json`
 
 ## Promotion rule
 
