@@ -1,19 +1,19 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-09
-applicable_version: v0.6.0
+last_reviewed: 2026-03-11
+applicable_version: v0.8.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.6.0-blue)](releases/v0.6.0.md)
+[![Release](https://img.shields.io/badge/release-v0.8.0-blue)](releases/v0.8.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.6.0  
+**Version:** v0.8.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -70,6 +70,8 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Entity catalog: `docs/model/tsmm-entities.md`
 - Relationship graph: `docs/model/tsmm-relationships.md`
 - Lifecycle model: `docs/model/tsmm-lifecycle.md`
+- Evidence artifact model: `docs/model/evidence-artifact.md`
+- Dynamic authorization framing: `docs/model/dynamic-authorization-framing.md`
 - Runtime legitimacy logic: `docs/evaluation/effect-evaluation-model.md`
 - Threat taxonomy: `docs/security/trust-system-threat-model.md`
 - Glossary: `docs/glossary.md`
@@ -84,17 +86,20 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
   - `docs/patterns/credential-verification-pattern.md`
   - `docs/patterns/assurance-evidence-pattern.md`
   - `docs/patterns/multi-agent-coordination-pattern.md`
+  - `docs/patterns/dynamic-authz-pattern.md` *(experimental)*
 - Extensions:
   - `docs/extensions/index.md`
   - `docs/extensions/agentic-ai-extension.md`
   - `docs/extensions/verifiable-trust-communities-extension.md`
   - `docs/extensions/assurance-extension.md`
+  - `docs/model/evidence-artifact.md` (Evidence Artifact Extension)
 - Crosswalks:
   - `docs/crosswalks/trqp-tspp-crosswalk.md`
   - `docs/crosswalks/erc-8004-csp-crosswalk.md`
   - `docs/crosswalks/dcas-crosswalk.md`
   - `docs/crosswalks/trust-reference-assurance-architecture-crosswalk.md`
   - `docs/crosswalks/openid-federation-crosswalk.md`
+  - `docs/crosswalks/xacml-abac-crosswalk.md` *(experimental)*
 - Implementer guide: `docs/getting-started-implementer-guide.md`
 - Documentation governance and freshness: `docs/documentation-governance.md`
 
@@ -115,6 +120,29 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
+## What changed in v0.8.0
+
+v0.8.0 introduces TSMM's treatment of dynamic authorization as a crosswalk and pattern release rather than a schema extension release. The decision to hold dynamic authorization at this scope — rather than introducing new core primitives — is deliberate and documented. No core abstractions were changed. No schemas were added or modified.
+
+It adds:
+
+- a framing document (`docs/model/dynamic-authorization-framing.md`) establishing TSMM's position: dynamic authorization is a runtime evaluation pattern that operates within the TSMM governance chain, not a replacement framing for it
+- a crosswalk (`docs/crosswalks/xacml-abac-crosswalk.md`) mapping XACML 3.0, ABAC, and NGAC concepts to TSMM abstractions, covering the PAP/PDP/PEP/PIP architecture, request/response flow, and obligations as TSMM conditions
+- a pattern document (`docs/patterns/dynamic-authz-pattern.md`) defining the TSMM-aligned sequence for a runtime authorization flow, the structural rules that must hold, and an example in a verifiable credential context
+- a formal definition of the `status: experimental` frontmatter field in `docs/documentation-governance.md` — a governance signal that a concept is mapped carefully and core promotion is deliberately deferred, not a quality or stability signal
+
+The crosswalk and pattern carry `status: experimental`. The framing document is stable.
+
+## What changed in v0.7.0
+
+v0.7.0 adds the Evidence Artifact model, formalizing how trust systems produce, structure, and consume operational evidence. It closes the conceptual gap between rule definition and behavioral proof — the third layer of trust systems that most governance frameworks leave implicit.
+
+It adds:
+
+- a conceptual document (`docs/model/evidence-artifact.md`) defining the EvidenceArtifact concept as a typed specialization of the core Evidence abstraction, with four types (reconciliation, drift, attestation, conformance), a property specification, lifecycle expectations, and profile mapping
+- an extension schema (`schemas/tsmm-evidence-artifact-extension.schema.json`) with required fields and optional traceability fields including integrity anchors, verification method, policy reference, and action reference for agentic contexts
+- a worked example instance demonstrating all four artifact types in a trust registry context
+
 ## What changed in v0.6.0
 
 v0.6.0 adds implementer-readiness tooling and closes the gap between the conceptual model and practical adoption.
@@ -124,26 +152,9 @@ It adds:
 - a conformance self-assessment checklist for Minimal, Operational, and Assured profiles, with extension checklists for Agentic AI, VTC, and Assurance
 - an opinionated getting-started implementer guide with three entry points: trust registry operator, verifiable credential issuer/verifier, and agentic system builder
 - a multi-agent coordination pattern covering chained delegation, sub-delegation governance, and oversight mode escalation
-- a multi-agent coordination extension schema with support for delegation chains, per-agent actions, effective oversight mode tracking, and coordination-level trace records
-- a worked multi-agent coordination example instance
-- an OpenID Federation crosswalk mapping federation concepts to TSMM abstractions
-- a schema coverage validation script that checks whether example instances exercise all properties defined in their paired schemas
-
-v0.5.0 extends TSMM with modular application-layer support while keeping the core model stable.
-
-It adds:
-
-- a formal entity catalog with mandatory fields and modeling guidance
-- a normative relationship specification with cardinality and dependency rules
-- a lifecycle model covering issuance, delegation, suspension, revocation, expiry, remediation, and archival
-- TSMM conformance profiles for Minimal, Operational, and Assured implementations
-- a formal effect evaluation model for execution-time trust decisions
-- a reusable threat and failure taxonomy for trust systems
-- reference architecture patterns for trust registries, delegated agents, credential verification, and assurance evidence
-- GitHub Pages deployment through GitHub Actions
-- extension architecture for Agentic AI, Verifiable Trust Communities, and assurance-oriented trust workflows
-- extension schemas and worked examples
-- refreshed navigation for docs and release packaging
+- a multi-agent coordination extension schema and worked example
+- an OpenID Federation crosswalk
+- a schema coverage validation script
 
 ## Repo contents
 
@@ -172,7 +183,9 @@ trust-systems-meta-model/
 │   ├── model/
 │   │   ├── tsmm-entities.md
 │   │   ├── tsmm-relationships.md
-│   │   └── tsmm-lifecycle.md
+│   │   ├── tsmm-lifecycle.md
+│   │   ├── evidence-artifact.md
+│   │   └── dynamic-authorization-framing.md
 │   ├── extensions/
 │   │   ├── index.md
 │   │   ├── agentic-ai-extension.md
@@ -192,19 +205,22 @@ trust-systems-meta-model/
 │   │   ├── delegated-agent-pattern.md
 │   │   ├── credential-verification-pattern.md
 │   │   ├── assurance-evidence-pattern.md
-│   │   └── multi-agent-coordination-pattern.md
+│   │   ├── multi-agent-coordination-pattern.md
+│   │   └── dynamic-authz-pattern.md          ← experimental
 │   └── crosswalks/
 │       ├── trqp-tspp-crosswalk.md
 │       ├── erc-8004-csp-crosswalk.md
 │       ├── dcas-crosswalk.md
 │       ├── trust-reference-assurance-architecture-crosswalk.md
-│       └── openid-federation-crosswalk.md
+│       ├── openid-federation-crosswalk.md
+│       └── xacml-abac-crosswalk.md           ← experimental
 ├── schemas/
 │   ├── tsmm-core.schema.json
 │   ├── tsmm-agentic-extension.schema.json
 │   ├── tsmm-vtc-extension.schema.json
 │   ├── tsmm-assurance-extension.schema.json
-│   └── tsmm-multi-agent-extension.schema.json
+│   ├── tsmm-multi-agent-extension.schema.json
+│   └── tsmm-evidence-artifact-extension.schema.json
 ├── examples/
 │   ├── minimal-trust-registry-instance.json
 │   ├── consumer-policy-instance.json
@@ -212,7 +228,8 @@ trust-systems-meta-model/
 │   ├── agentic-ai-extension-instance.json
 │   ├── verifiable-trust-community-instance.json
 │   ├── assurance-extension-instance.json
-│   └── multi-agent-coordination-instance.json
+│   ├── multi-agent-coordination-instance.json
+│   └── evidence-artifact-instance.json
 ├── scripts/
 │   ├── validate_examples.py
 │   ├── check_docs.py
@@ -221,7 +238,9 @@ trust-systems-meta-model/
     ├── v0.3.0.md
     ├── v0.4.0.md
     ├── v0.5.0.md
-    └── v0.6.0.md
+    ├── v0.6.0.md
+    ├── v0.7.0.md
+    └── v0.8.0.md
 ```
 
 ## What TSMM is not
