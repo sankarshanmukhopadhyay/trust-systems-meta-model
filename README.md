@@ -72,6 +72,7 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Lifecycle model: `docs/model/tsmm-lifecycle.md`
 - Evidence artifact model: `docs/model/evidence-artifact.md`
 - Dynamic authorization framing: `docs/model/dynamic-authorization-framing.md`
+- Agentic AI and dynamic authorization analysis: `docs/model/agentic-authz-analysis.md`
 - Runtime legitimacy logic: `docs/evaluation/effect-evaluation-model.md`
 - Threat taxonomy: `docs/security/trust-system-threat-model.md`
 - Glossary: `docs/glossary.md`
@@ -119,6 +120,18 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
+
+## What changed after v0.8.0
+
+Following the v0.8.0 release, three documents were added or updated to address the emerging consensus that dynamic authorization is *the* governance pattern for agentic AI systems.
+
+The analysis document concludes that dynamic authorization correctly describes the runtime evaluation layer but does not model the governance envelope that makes that layer trustworthy. Four elements present in TSMM's agentic extension are absent from dynamic authorization frameworks: delegation governance, oversight mode, risk-tier-driven profile selection, and trace records as structured Evidence. A system built on dynamic authorization alone has access control, not governance.
+
+It adds and updates:
+
+- `docs/model/agentic-authz-analysis.md` *(new)* — structural analysis of the relationship between dynamic authorization and TSMM's agentic governance model; introduces the governance envelope framing and implementer guidance for building the envelope before the PDP layer
+- `docs/model/dynamic-authorization-framing.md` *(updated)* — adds an agentic context note to section 6 and extends implementer guidance in section 7 with a dedicated paragraph for agentic system builders
+- `docs/conformance/tsmm-conformance-checklist.md` *(updated)* — adds a cross-reference to the analysis document in the Dynamic Authorization checklist preamble and adds DA-8, a new agentic-systems-only item requiring the governance envelope to be defined before the PDP layer is built
 
 ## What changed in v0.8.0
 
@@ -185,7 +198,8 @@ trust-systems-meta-model/
 │   │   ├── tsmm-relationships.md
 │   │   ├── tsmm-lifecycle.md
 │   │   ├── evidence-artifact.md
-│   │   └── dynamic-authorization-framing.md
+│   │   ├── dynamic-authorization-framing.md
+│   │   └── agentic-authz-analysis.md
 │   ├── extensions/
 │   │   ├── index.md
 │   │   ├── agentic-ai-extension.md
