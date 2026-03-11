@@ -96,6 +96,14 @@ The crosswalk and pattern documents that accompany this framing carry `status: e
 
 The framing document itself is not experimental. The position it states is stable: dynamic authorization belongs in TSMM's orbit, positioned as a runtime evaluation specialization within the governance architecture the core model defines.
 
+### Note on agentic AI systems
+
+There is an emerging consensus that dynamic authorization is *the* governance pattern for agentic AI systems. That consensus correctly identifies the evaluation layer. It understates what agentic governance requires.
+
+In agentic systems, dynamic authorization describes the runtime request evaluation step. The governance envelope that makes that step trustworthy — delegation governance, oversight mode, risk-tier-driven profile selection, and trace records as structured evidence — is modeled in TSMM's agentic extension and is not captured by dynamic authorization frameworks.
+
+`docs/model/agentic-authz-analysis.md` works through this in full, including the structural relationship between the dynamic authorization evaluation moment and the agentic governance envelope, and what is missing from a system that implements only the former.
+
 ## 7. Guidance for implementers
 
 If you are building a system that uses OPA, Cedar, XACML, or a similar policy engine and want to align it with TSMM:
@@ -107,5 +115,7 @@ If you are building a system that uses OPA, Cedar, XACML, or a similar policy en
 - Do not reduce `Effect` to a permit flag — preserve the class, action, and status distinctions
 - Read `docs/patterns/dynamic-authz-pattern.md` for the TSMM-aligned sequence
 - Read `docs/crosswalks/xacml-abac-crosswalk.md` for concept-by-concept mappings
+
+If you are building an **agentic system** and intend to use dynamic authorization as part of your governance architecture, read `docs/model/agentic-authz-analysis.md` before designing your authorization layer. That document describes the governance envelope — delegation model, oversight mode, risk tier, and trace-as-evidence — that must be in place for dynamic authorization decisions to be trustworthy rather than merely technically correct.
 
 If you find that TSMM's current abstractions are insufficient for your dynamic authz use case, document the gap precisely. That is the kind of implementation experience that will inform whether and how the promotion rule should be applied.
