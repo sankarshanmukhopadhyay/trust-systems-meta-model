@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-09
-applicable_version: v0.6.0
+last_reviewed: 2026-03-11
+applicable_version: v0.8.0
 tier: 2
 ---
 
@@ -45,6 +45,16 @@ Every markdown document should include frontmatter with:
 - `applicable_version`
 - `tier`
 
+## Status field
+
+Documents that map adjacent concepts onto TSMM without introducing new core primitives, or whose promotion to core is deliberately deferred, should carry:
+
+- `status: experimental`
+- `status_note`: a brief explanation of what experimental means for that document and a reference to the relevant framing document
+
+The `experimental` status is a governance signal, not a quality signal. It means: the intellectual mapping has been done carefully, the framing rationale is documented, and promotion to core is deferred pending implementation experience. Experimental documents are production-quality and suitable for implementer use.
+
+A document carrying `status: experimental` should always reference its framing document in `status_note`. Documents without a `status` field are considered stable.
 ## Review cadence
 
 - Tier 0: every 30 days or at each release
@@ -66,6 +76,10 @@ Before release:
 
 The v0.5.0 release expands the documentation surface. New model, conformance, evaluation, security, and pattern documents should remain aligned with the core model, schema, examples, and release notes.
 
-## v0.6.0 note
+## v0.7.0 note
 
-The v0.6.0 release adds implementer-facing documents. The getting-started implementer guide, conformance checklist, multi-agent coordination pattern, and OpenID Federation crosswalk are Tier 1 documents and should be kept aligned with any future changes to conformance profiles, the agentic extension, and the core model. The schema coverage script should be updated whenever new schemas or examples are added.
+The v0.7.0 release added the evidence artifact model. The new conceptual document, extension schema, and example instance are Tier 1 artifacts and should be kept aligned with any future changes to the core Evidence abstraction, the assurance extension, and the Assured profile requirements.
+
+## v0.8.0 note
+
+The v0.8.0 release introduces the dynamic authorization framing document, crosswalk, and pattern. The framing document (`docs/model/dynamic-authorization-framing.md`) is a stable Tier 1 position statement and should be updated if the model's position on dynamic authorization changes. The crosswalk and pattern carry `status: experimental` and should be reviewed whenever the core Policy, Trust Decision, or Effect abstractions are modified, or when implementation experience warrants promotion consideration.

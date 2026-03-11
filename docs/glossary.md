@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-11
-applicable_version: v0.7.0
+applicable_version: v0.8.0
 tier: 1
 ---
 
@@ -21,6 +21,9 @@ A proposition asserted by or about an entity, artifact, system, or state.
 
 ## Control
 A safeguard that reduces a defined risk or constrains unsafe behavior.
+
+## Dynamic Authorization
+A family of approaches to access control in which authorization decisions are made at runtime by evaluating contextual attributes against an externalized policy. The canonical architecture separates policy administration (PAP), policy decision (PDP), policy enforcement (PEP), and policy information retrieval (PIP). Within TSMM, dynamic authorization is a runtime evaluation specialization of the Policy → Trust Decision → Effect chain, not a replacement framing for it. See `docs/model/dynamic-authorization-framing.md`.
 
 ## Effect
 The downstream consequence a system permits, denies, downgrades, routes, or records after a trust decision.
@@ -45,6 +48,18 @@ A state change relevant to trust posture, such as issuance, revocation, expiry, 
 
 ## Policy
 Rules that govern how the system evaluates trust-relevant inputs and chooses an outcome.
+
+## Policy Administration Point (PAP)
+The component where policies are authored, versioned, and governed. In TSMM terms, where Policy, Profile, and Requirement objects are defined under a Governance Context. See `docs/model/dynamic-authorization-framing.md`.
+
+## Policy Decision Point (PDP)
+The component that evaluates a policy against a specific authorization request and produces a structured decision. In TSMM terms, the evaluation step within Trust Decision production. See `docs/model/dynamic-authorization-framing.md`.
+
+## Policy Enforcement Point (PEP)
+The component that enforces a policy decision by permitting or blocking an effect and fulfilling any obligations attached to the decision. See `docs/model/dynamic-authorization-framing.md`.
+
+## Policy Information Point (PIP)
+The component that retrieves contextual attribute data to support PDP evaluation. In TSMM terms, the retrieval of Evidence, Artifact state, and Lifecycle Event data. See `docs/model/dynamic-authorization-framing.md`.
 
 ## Profile
 A packaged set of requirements, controls, or evaluation expectations defined for a particular context or implementation class.

@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-09
-applicable_version: v0.6.0
+last_reviewed: 2026-03-11
+applicable_version: v0.8.0
 tier: 1
 ---
 
@@ -113,6 +113,22 @@ Reference: `docs/extensions/assurance-extension.md`
 | AS-1 | Assurance activities reference a defined level framework | | |
 | AS-2 | Assurance outcomes are linked to trust decisions | | |
 | AS-3 | Evidence referenced in assurance activities exists and is retrievable | | |
+
+### Dynamic Authorization Pattern *(experimental)*
+
+Reference: `docs/patterns/dynamic-authz-pattern.md`
+
+Read `docs/model/dynamic-authorization-framing.md` before completing this checklist. The `experimental` status means promotion to core is deferred, not that the pattern is unsuitable for use.
+
+| # | Requirement | Satisfied? | Notes |
+|---|---|---|---|
+| DA-1 | Policy administration (PAP), decision (PDP), and enforcement (PEP) concerns are separated in the implementation architecture | | |
+| DA-2 | PDP evaluation is governed by a TSMM Policy operating under a defined Governance Context | | |
+| DA-3 | PIP attribute retrieval includes lifecycle state (revocation, suspension, expiry) as a first-class input, not as an optional attribute | | |
+| DA-4 | Obligations attached to permit decisions are enforced by the PEP; an unfulfilled obligation is treated as deny | | |
+| DA-5 | Effect objects retain TSMM class, action, and status structure; permit decisions are not reduced to binary flags | | |
+| DA-6 | Indeterminate and notApplicable decisions have a defined governance-safe default behavior | | |
+| DA-7 | Trust decisions and effects produced by the PDP/PEP are recorded with policy reference and decision outcome | | |
 
 ---
 

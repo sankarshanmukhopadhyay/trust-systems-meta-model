@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-11
-applicable_version: v0.7.0
+applicable_version: v0.8.0
 tier: 1
 ---
 
@@ -22,6 +22,7 @@ This keeps the core stable while allowing real-world application families to add
 - [Verifiable Trust Communities Extension](verifiable-trust-communities-extension.md)
 - [Assurance Extension](assurance-extension.md)
 - [Evidence Artifact Extension](../model/evidence-artifact.md) — schema: `schemas/tsmm-evidence-artifact-extension.schema.json`
+- [Dynamic Authorization Pattern](../patterns/dynamic-authz-pattern.md) *(experimental)* — see also: [Dynamic Authorization Framing](../model/dynamic-authorization-framing.md), [XACML / ABAC Crosswalk](../crosswalks/xacml-abac-crosswalk.md)
 
 ## Promotion rule
 
