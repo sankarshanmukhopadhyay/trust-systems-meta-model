@@ -12,7 +12,7 @@ FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 APP_VERSION_RE = re.compile(r"^applicable_version:\s*(.+)$", re.MULTILINE)
 
 IGNORE_PREFIXES = ("http://", "https://", "mailto:", "#")
-IGNORE_FILES_FOR_VERSION = {ROOT / "releases" / "v0.3.0.md", ROOT / "releases" / "v0.4.0.md", ROOT / "releases" / "v0.5.0.md"}
+IGNORE_FILES_FOR_VERSION = {p for p in (ROOT / "releases").glob("v*.md") if p.name != f"{VERSION}.md"}
 
 
 def check_frontmatter_version(path: Path) -> list[str]:

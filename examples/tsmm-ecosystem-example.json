@@ -1,0 +1,47 @@
+{
+  "graphId": "graph.tsmm-reference-ecosystem",
+  "label": "TSMM Reference Ecosystem",
+  "description": "Reference graph showing the core governance and trust relationships across a registry-mediated verifiable credential ecosystem.",
+  "profile": "operational",
+  "contexts": [
+    "cross-domain trust governance",
+    "verifiable credential reliance"
+  ],
+  "nodes": [
+    {"id": "td.global", "type": "TrustDomain", "label": "Global Trust Domain"},
+    {"id": "ga.foundation", "type": "GovernanceAuthority", "label": "Foundation Governance Authority"},
+    {"id": "reg.primary", "type": "TrustRegistry", "label": "Primary Trust Registry"},
+    {"id": "svc.reference", "type": "RegistryService", "label": "Reference Registry Service"},
+    {"id": "issuer.member", "type": "Issuer", "label": "Member Issuer"},
+    {"id": "subject.alice", "type": "Subject", "label": "Credential Subject"},
+    {"id": "cred.membership", "type": "Credential", "label": "Membership Credential"},
+    {"id": "verifier.portal", "type": "Verifier", "label": "Verifier Portal"},
+    {"id": "policy.reliance", "type": "Policy", "label": "Reliance Policy"},
+    {"id": "profile.al2", "type": "AssuranceProfile", "label": "AL2 Assurance Profile"},
+    {"id": "evidence.bundle", "type": "EvidenceBundle", "label": "Evidence Bundle"},
+    {"id": "assessment.profile", "type": "Assessment", "label": "Profile Assessment"},
+    {"id": "decision.access", "type": "TrustDecision", "label": "Access Decision"},
+    {"id": "effect.allow", "type": "Effect", "label": "Allow Service Access"}
+  ],
+  "edges": [
+    {"id": "edge.1", "type": "governs", "from": "ga.foundation", "to": "td.global"},
+    {"id": "edge.2", "type": "operates", "from": "ga.foundation", "to": "reg.primary"},
+    {"id": "edge.3", "type": "operates", "from": "reg.primary", "to": "svc.reference"},
+    {"id": "edge.4", "type": "registers", "from": "reg.primary", "to": "issuer.member"},
+    {"id": "edge.5", "type": "defines", "from": "ga.foundation", "to": "policy.reliance"},
+    {"id": "edge.6", "type": "defines", "from": "ga.foundation", "to": "profile.al2"},
+    {"id": "edge.7", "type": "constrains", "from": "policy.reliance", "to": "issuer.member"},
+    {"id": "edge.8", "type": "issues", "from": "issuer.member", "to": "cred.membership"},
+    {"id": "edge.9", "type": "asserts", "from": "cred.membership", "to": "subject.alice"},
+    {"id": "edge.10", "type": "verifies", "from": "verifier.portal", "to": "cred.membership"},
+    {"id": "edge.11", "type": "substantiates", "from": "evidence.bundle", "to": "issuer.member"},
+    {"id": "edge.12", "type": "assesses", "from": "assessment.profile", "to": "profile.al2", "evidenceRefs": ["evidence.bundle"]},
+    {"id": "edge.13", "type": "informs", "from": "assessment.profile", "to": "decision.access"},
+    {"id": "edge.14", "type": "produces", "from": "decision.access", "to": "effect.allow"},
+    {"id": "edge.15", "type": "anchors", "from": "reg.primary", "to": "cred.membership"}
+  ],
+  "metadata": {
+    "version": "v0.9.0",
+    "stability": "reference"
+  }
+}

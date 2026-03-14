@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.org/tsmm/schemas/tsmm-multi-agent-extension.schema.json",
-  "title": "TSMM Multi-Agent Coordination Extension Instance v0.6.0",
+  "title": "TSMM Multi-Agent Coordination Extension Instance v0.9.0",
   "description": "Extension schema for representing chained delegation and multi-agent coordination layered on top of the TSMM agentic extension.",
   "type": "object",
   "required": [

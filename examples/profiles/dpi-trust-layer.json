@@ -1,0 +1,23 @@
+{
+  "graphId": "graph.profile.dpi-trust-layer",
+  "label": "DPI Trust Layer Profile",
+  "description": "TSMM graph profile for trust-layered digital public infrastructure.",
+  "profile": "operational",
+  "nodes": [
+    {"id": "ga.dpi", "type": "GovernanceAuthority", "label": "Public Governance Authority"},
+    {"id": "profile.dpi", "type": "AssuranceProfile", "label": "DPI Assurance Profile"},
+    {"id": "issuer.dpi", "type": "Issuer", "label": "Public Service Issuer"},
+    {"id": "verifier.dpi", "type": "Verifier", "label": "Service Gateway Verifier"},
+    {"id": "rp.dpi", "type": "RelyingParty", "label": "Public Service Relying Party"},
+    {"id": "decision.dpi", "type": "TrustDecision", "label": "Eligibility Decision"},
+    {"id": "effect.dpi", "type": "Effect", "label": "Grant Service Eligibility"}
+  ],
+  "edges": [
+    {"id": "edge.dpi.1", "type": "defines", "from": "ga.dpi", "to": "profile.dpi"},
+    {"id": "edge.dpi.2", "type": "authorizes", "from": "ga.dpi", "to": "issuer.dpi"},
+    {"id": "edge.dpi.3", "type": "verifies", "from": "verifier.dpi", "to": "issuer.dpi"},
+    {"id": "edge.dpi.4", "type": "reliesOn", "from": "rp.dpi", "to": "decision.dpi"},
+    {"id": "edge.dpi.5", "type": "informs", "from": "profile.dpi", "to": "decision.dpi"},
+    {"id": "edge.dpi.6", "type": "produces", "from": "decision.dpi", "to": "effect.dpi"}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "graphId": "graph.profile.ssi",
+  "label": "SSI Ecosystem Profile",
+  "description": "TSMM graph profile for a registry-mediated SSI ecosystem.",
+  "profile": "minimal",
+  "nodes": [
+    {"id": "ga.ssi", "type": "GovernanceAuthority", "label": "SSI Governance Authority"},
+    {"id": "reg.ssi", "type": "TrustRegistry", "label": "SSI Trust Registry"},
+    {"id": "issuer.ssi", "type": "Issuer", "label": "Credential Issuer"},
+    {"id": "cred.ssi", "type": "Credential", "label": "Verifiable Credential"},
+    {"id": "verifier.ssi", "type": "Verifier", "label": "Verifier"},
+    {"id": "subject.ssi", "type": "Subject", "label": "Holder Subject"}
+  ],
+  "edges": [
+    {"id": "edge.ssi.1", "type": "operates", "from": "ga.ssi", "to": "reg.ssi"},
+    {"id": "edge.ssi.2", "type": "registers", "from": "reg.ssi", "to": "issuer.ssi"},
+    {"id": "edge.ssi.3", "type": "issues", "from": "issuer.ssi", "to": "cred.ssi"},
+    {"id": "edge.ssi.4", "type": "asserts", "from": "cred.ssi", "to": "subject.ssi"},
+    {"id": "edge.ssi.5", "type": "verifies", "from": "verifier.ssi", "to": "cred.ssi"}
+  ]
+}

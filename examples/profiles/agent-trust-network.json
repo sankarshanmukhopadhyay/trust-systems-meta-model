@@ -1,0 +1,23 @@
+{
+  "graphId": "graph.profile.agent-network",
+  "label": "Agent Trust Network Profile",
+  "description": "TSMM graph profile for delegated agent governance and bounded execution.",
+  "profile": "operational",
+  "nodes": [
+    {"id": "ga.agent", "type": "GovernanceAuthority", "label": "Agent Governance Authority"},
+    {"id": "policy.agent", "type": "Policy", "label": "Agent Execution Policy"},
+    {"id": "agent.primary", "type": "Agent", "label": "Primary Agent"},
+    {"id": "agent.sub", "type": "Agent", "label": "Sub-Agent"},
+    {"id": "evidence.agent", "type": "EvidenceBundle", "label": "Agent Trace Evidence"},
+    {"id": "decision.agent", "type": "TrustDecision", "label": "Delegation Decision"},
+    {"id": "effect.agent", "type": "Effect", "label": "Permit Bounded Action"}
+  ],
+  "edges": [
+    {"id": "edge.agent.1", "type": "defines", "from": "ga.agent", "to": "policy.agent"},
+    {"id": "edge.agent.2", "type": "constrains", "from": "policy.agent", "to": "agent.primary"},
+    {"id": "edge.agent.3", "type": "delegates", "from": "agent.primary", "to": "agent.sub"},
+    {"id": "edge.agent.4", "type": "substantiates", "from": "evidence.agent", "to": "agent.sub"},
+    {"id": "edge.agent.5", "type": "informs", "from": "evidence.agent", "to": "decision.agent"},
+    {"id": "edge.agent.6", "type": "produces", "from": "decision.agent", "to": "effect.agent"}
+  ]
+}

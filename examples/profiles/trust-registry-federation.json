@@ -1,0 +1,23 @@
+{
+  "graphId": "graph.profile.registry-federation",
+  "label": "Trust Registry Federation Profile",
+  "description": "TSMM graph profile for federated trust registry arrangements.",
+  "profile": "assured",
+  "nodes": [
+    {"id": "td.federation", "type": "TrustDomain", "label": "Federated Trust Domain"},
+    {"id": "ga.federation", "type": "GovernanceAuthority", "label": "Federation Authority"},
+    {"id": "reg.root", "type": "TrustRegistry", "label": "Root Registry"},
+    {"id": "reg.member", "type": "TrustRegistry", "label": "Member Registry"},
+    {"id": "issuer.member", "type": "Issuer", "label": "Member Issuer"},
+    {"id": "assessment.fed", "type": "Assessment", "label": "Federation Assessment"},
+    {"id": "evidence.fed", "type": "EvidenceBundle", "label": "Federation Evidence"}
+  ],
+  "edges": [
+    {"id": "edge.fed.1", "type": "governs", "from": "ga.federation", "to": "td.federation"},
+    {"id": "edge.fed.2", "type": "operates", "from": "ga.federation", "to": "reg.root"},
+    {"id": "edge.fed.3", "type": "registers", "from": "reg.root", "to": "reg.member"},
+    {"id": "edge.fed.4", "type": "registers", "from": "reg.member", "to": "issuer.member"},
+    {"id": "edge.fed.5", "type": "substantiates", "from": "evidence.fed", "to": "reg.member"},
+    {"id": "edge.fed.6", "type": "assesses", "from": "assessment.fed", "to": "reg.member", "evidenceRefs": ["evidence.fed"]}
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-11
-applicable_version: v0.8.0
+last_reviewed: 2026-03-14
+applicable_version: v0.9.0
 tier: 1
 ---
 

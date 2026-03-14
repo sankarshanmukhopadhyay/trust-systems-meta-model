@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-09
-applicable_version: v0.6.0
+last_reviewed: 2026-03-14
+applicable_version: v0.9.0
 tier: 0
 ---
 
@@ -19,6 +19,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - reusable **reference patterns** for recurring trust-system designs
 - modular **extensions** for application domains such as Agentic AI, Verifiable Trust Communities, and assurance-oriented architectures
 - practical **crosswalks** to related repositories and implementations
+- a machine-readable **graph model** for executable trust topology design
 
 ## Read this first
 
@@ -27,8 +28,9 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 3. [Entity model](model/tsmm-entities.md)
 4. [Relationship model](model/tsmm-relationships.md)
 5. [Lifecycle model](model/tsmm-lifecycle.md)
-6. [Effect evaluation model](evaluation/effect-evaluation-model.md)
-7. [Threat model](security/trust-system-threat-model.md)
+6. [Graph model](model/tsmm-graph-model.md)
+7. [Effect evaluation model](evaluation/effect-evaluation-model.md)
+8. [Threat model](security/trust-system-threat-model.md)
 
 ## Conformance profiles
 
@@ -58,6 +60,16 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [DCAS Crosswalk](crosswalks/dcas-crosswalk.md)
 - [TRAA Crosswalk](crosswalks/trust-reference-assurance-architecture-crosswalk.md)
 
+## Executable graph layer
+
+- [TSMM Graph Model](model/tsmm-graph-model.md)
+- `schemas/tsmm-graph.schema.json`
+- `examples/tsmm-ecosystem-example.json`
+- `examples/profiles/ssi-ecosystem.json`
+- `examples/profiles/agent-trust-network.json`
+- `examples/profiles/trust-registry-federation.json`
+- `examples/profiles/dpi-trust-layer.json`
+
 ## Operational docs
 
 - [Documentation governance](documentation-governance.md)
@@ -71,4 +83,4 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Release snapshot
 
-This documentation set is aligned to **v0.5.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation workflow coverage is included for schema and example integrity so the reference model does not quietly drift into decorative theory.
+This documentation set is aligned to **v0.9.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer so the reference model does not quietly drift into decorative theory.

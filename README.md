@@ -1,19 +1,19 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-11
-applicable_version: v0.8.0
+last_reviewed: 2026-03-14
+applicable_version: v0.9.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.8.0-blue)](releases/v0.8.0.md)
+[![Release](https://img.shields.io/badge/release-v0.9.0-blue)](releases/v0.9.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.8.0  
+**Version:** v0.9.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -69,6 +69,7 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Core abstractions: `docs/core-model.md`
 - Entity catalog: `docs/model/tsmm-entities.md`
 - Relationship graph: `docs/model/tsmm-relationships.md`
+- Graph model: `docs/model/tsmm-graph-model.md`
 - Lifecycle model: `docs/model/tsmm-lifecycle.md`
 - Evidence artifact model: `docs/model/evidence-artifact.md`
 - Dynamic authorization framing: `docs/model/dynamic-authorization-framing.md`
@@ -121,7 +122,19 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## What changed after v0.8.0
+## What changed in v0.9.0
+
+v0.9.0 adds an executable graph layer for TSMM so that the model can be represented, validated, and reused as machine-readable infrastructure rather than prose alone.
+
+It adds:
+
+- a canonical graph schema (`schemas/tsmm-graph.schema.json`) defining TSMM node and relationship classes
+- a reference ecosystem graph (`examples/tsmm-ecosystem-example.json`) showing a registry-mediated verifiable credential ecosystem
+- a semantic graph validator (`scripts/validate_tsmm_graph.py`) that checks both JSON schema validity and allowed relationship pairings
+- reusable graph profiles under `examples/profiles/` for SSI ecosystems, delegated agent trust networks, trust registry federations, and DPI trust layers
+- a graph-model explainer (`docs/model/tsmm-graph-model.md`) documenting the purpose, structure, and use of the executable layer
+
+## What changed after v0.9.0
 
 Following the v0.8.0 release, three documents were added or updated to address the emerging consensus that dynamic authorization is *the* governance pattern for agentic AI systems.
 
@@ -197,6 +210,7 @@ trust-systems-meta-model/
 │   │   ├── tsmm-entities.md
 │   │   ├── tsmm-relationships.md
 │   │   ├── tsmm-lifecycle.md
+│   │   ├── tsmm-graph-model.md
 │   │   ├── evidence-artifact.md
 │   │   ├── dynamic-authorization-framing.md
 │   │   └── agentic-authz-analysis.md
@@ -230,6 +244,7 @@ trust-systems-meta-model/
 │       └── xacml-abac-crosswalk.md           ← experimental
 ├── schemas/
 │   ├── tsmm-core.schema.json
+│   ├── tsmm-graph.schema.json
 │   ├── tsmm-agentic-extension.schema.json
 │   ├── tsmm-vtc-extension.schema.json
 │   ├── tsmm-assurance-extension.schema.json
@@ -237,6 +252,12 @@ trust-systems-meta-model/
 │   └── tsmm-evidence-artifact-extension.schema.json
 ├── examples/
 │   ├── minimal-trust-registry-instance.json
+│   ├── tsmm-ecosystem-example.json
+│   ├── profiles/
+│   │   ├── ssi-ecosystem.json
+│   │   ├── agent-trust-network.json
+│   │   ├── trust-registry-federation.json
+│   │   └── dpi-trust-layer.json
 │   ├── consumer-policy-instance.json
 │   ├── delegated-agent-instance.json
 │   ├── agentic-ai-extension-instance.json
