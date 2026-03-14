@@ -7,7 +7,7 @@ tier: 0
 
 # TSMM Binding: TRQP
 
-This binding aligns TSMM with the TRQP operational stack so that the trust registry, trusted service provider publication logic, conformance evidence, and relying-party consumption flow can be expressed through one shared semantic frame.
+This binding aligns TSMM with the TRQP operational stack so that the trust registry, trusted service provider publication logic, conformance evidence, and relying-party consumption flow can be expressed through one shared semantic frame. TSMM contributes the abstract model; trust-infrastructure-schemas contributes the canonical machine-readable trust artifact formats that TRQP-adjacent systems can publish or consume.
 
 ## Primary mappings
 
@@ -27,3 +27,4 @@ The TRQP family already carries the ingredients TSMM cares about: policy, public
 - `bindings/trqp/tsmm-trqp-binding.json`
 - `docs/crosswalks/trqp-tspp-crosswalk.md`
 - `docs/patterns/trust-registry-pattern.md`
+- `trust-infrastructure-schemas` for concrete artifact schemas aligned to this binding

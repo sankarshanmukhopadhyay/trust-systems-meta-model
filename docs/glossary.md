@@ -46,6 +46,9 @@ A tiered expression of expected rigor or trust posture, such as assurance levels
 ## Lifecycle Event
 A state change relevant to trust posture, such as issuance, revocation, expiry, reassessment, or remediation closure.
 
+## Open Trust Artifact Model (OTAM)
+A shorthand for the canonical trust artifact layer implemented in the `trust-infrastructure-schemas` repository. OTAM expresses concrete machine-readable formats for assurance declarations, conformance statements, governance credentials, and related trust artifacts. TSMM does not replace OTAM; it supplies the abstract semantics those artifacts instantiate.
+
 ## Policy
 Rules that govern how the system evaluates trust-relevant inputs and chooses an outcome.
 

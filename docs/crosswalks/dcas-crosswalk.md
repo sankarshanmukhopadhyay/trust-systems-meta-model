@@ -21,7 +21,7 @@ Within TSMM terms, DCAS is primarily about:
 - evidence organization
 - repeatable verifier workflow and evaluation method
 
-Its center of gravity is therefore **assessment-oriented trust system assurance**.
+Its center of gravity is therefore **assessment-oriented trust system assurance**. In the current stack, TSMM supplies the abstract semantics, while trust-infrastructure-schemas provides the canonical machine-readable trust artifact layer that DCAS can consume, assess, and package as evidence.
 
 ## Crosswalk table
 
@@ -58,3 +58,8 @@ DCAS shows why TSMM cannot stop at claims, controls, and verification alone. Rea
 - repeatable effect on acceptance, remediation, or review
 
 That is why these abstractions were made explicit in TSMM v0.3.0.
+
+
+## Layering note
+
+DCAS should not be read as redefining the artifact layer locally. Canonical trust artifact schemas now live in `trust-infrastructure-schemas`; DCAS specializes those artifacts into verifier workflows, evidence handling, and assurance outcomes. TSMM remains the semantic frame that keeps the whole stack from turning into a very earnest pile of YAML.

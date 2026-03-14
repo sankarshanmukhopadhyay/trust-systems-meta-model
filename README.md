@@ -50,7 +50,7 @@ This repository is structured to publish cleanly with **GitHub Pages via GitHub 
 
 ## Why this repo exists
 
-Across repositories such as **TRQP-TSPP**, **ERC-8004-CSP**, and **DTG Conformance & Assurance (DCAS)**, a recurring pattern is visible:
+Across repositories such as **trust-infrastructure-schemas**, **TRQP-TSPP**, **ERC-8004-CSP**, and **DTG Conformance & Assurance (DCAS)**, a recurring pattern is visible:
 
 - machine-readable trust artifacts
 - normative controls and requirements
@@ -60,7 +60,7 @@ Across repositories such as **TRQP-TSPP**, **ERC-8004-CSP**, and **DTG Conforman
 - profile-governed trust decisions
 - operational consequences for acceptance, denial, downgrade, warning, or review
 
-TSMM extracts those recurring invariants into an abstract model so that other projects can apply the theory without waiting for a repo-specific profile, harness, or implementation package.
+TSMM extracts those recurring invariants into an abstract model so that other projects can apply the theory without waiting for a repo-specific profile, harness, or implementation package. In the current stack, **trust-infrastructure-schemas** implements the canonical machine-readable trust artifact layer, while TSMM defines the abstract semantics and relationships those artifacts rely on. The model is the blueprint; the schema registry is the concrete wiring.
 
 ## Start here
 
@@ -118,6 +118,17 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Rendering utility:
   - `scripts/render_tsmm_graph.py`
 - Documentation governance and freshness: `docs/documentation-governance.md`
+
+## Ecosystem positioning
+
+TSMM sits above protocol and schema repositories. It should be read as the conceptual layer that explains **what kinds of trust objects exist, how they relate, and how trust decisions are formed**. Adjacent repositories then operationalize those abstractions:
+
+- **trust-infrastructure-schemas** implements the canonical trust artifact layer, also described as the Open Trust Artifact Model (OTAM)
+- **TRQP** and related bindings use those artifacts in discovery, query, and publication flows
+- **DCAS** applies them in assessment, evidence, and assurance workflows
+- domain baselines such as **ANAB** specialize them for bounded contexts
+
+That separation matters because it keeps TSMM from collapsing into a schema dump wearing a philosophy hat.
 
 ## Design principles
 

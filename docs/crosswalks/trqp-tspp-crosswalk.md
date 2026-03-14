@@ -20,7 +20,7 @@ Within TSMM terms, TRQP-TSPP is primarily about:
 - profile-bound controls and requirements
 - evidence-backed conformance and assurance readiness
 
-Its center of gravity is therefore **operator-side trust infrastructure assurance**.
+Its center of gravity is therefore **operator-side trust infrastructure assurance**. In the current stack, TSMM defines the abstract concepts, while trust-infrastructure-schemas provides the canonical machine-readable trust artifact layer that TSPP-aligned deployments can reference alongside protocol-specific metadata.
 
 ## Crosswalk table
 
@@ -55,3 +55,8 @@ Projects that are not implementing TRQP directly can still reuse the TSPP patter
 - require evidence for implemented safeguards
 - assess and verify conformance with repeatable tooling
 - tie validated posture to real downstream effects
+
+
+## Layering note
+
+TRQP-TSPP can continue to define protocol- and deployment-specific controls, but it no longer needs to pretend it is the source of truth for generic trust artifact classes. Those concrete artifact definitions belong in `trust-infrastructure-schemas`, while TSMM explains why those artifacts exist and how they relate to policy, evidence, and effect.
