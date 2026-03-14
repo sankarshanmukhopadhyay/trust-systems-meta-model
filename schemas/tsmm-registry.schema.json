@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-registry.schema.json",
+  "title": "TSMM Registry Format v0.10.0",
+  "description": "Portable publication format for TSMM graphs, bindings, and profile metadata.",
+  "type": "object",
+  "required": ["registryId", "label", "entries"],
+  "properties": {
+    "registryId": {"$ref": "#/defs/idString"},
+    "label": {"type": "string"},
+    "description": {"type": "string"},
+    "publisher": {"type": "string"},
+    "version": {"type": "string"},
+    "defaultProfile": {"type": "string"},
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/defs/entry"}
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {"type": ["string", "number", "boolean"]}
+    }
+  },
+  "defs": {
+    "idString": {"type": "string", "pattern": "^[A-Za-z0-9._:-]+$"},
+    "entryKind": {
+      "type": "string",
+      "enum": ["graph", "binding", "profile", "policy", "evidence", "registry-service"]
+    },
+    "status": {"type": "string", "enum": ["draft", "active", "deprecated", "retired"]},
+    "entry": {
+      "type": "object",
+      "required": ["id", "kind", "label", "location", "status"],
+      "properties": {
+        "id": {"$ref": "#/defs/idString"},
+        "kind": {"$ref": "#/defs/entryKind"},
+        "label": {"type": "string"},
+        "location": {"type": "string"},
+        "status": {"$ref": "#/defs/status"},
+        "profile": {"type": "string"},
+        "bindingTarget": {"type": "string"},
+        "hash": {"type": "string"},
+        "effectiveFrom": {"type": "string"},
+        "effectiveUntil": {"type": "string"},
+        "description": {"type": "string"},
+        "tags": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

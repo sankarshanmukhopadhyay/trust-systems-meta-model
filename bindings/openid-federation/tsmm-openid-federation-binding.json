@@ -1,0 +1,57 @@
+{
+  "bindingId": "tsmm.binding.openid-federation.v1",
+  "label": "TSMM to OpenID Federation binding",
+  "description": "Maps OpenID Federation concepts into TSMM abstractions for cross-ecosystem reasoning and topology comparison.",
+  "targetEcosystem": "OpenID Federation",
+  "version": "1.0.0",
+  "sources": [
+    "docs/crosswalks/openid-federation-crosswalk.md",
+    "docs/bindings/openid-federation-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "Federation Entity",
+      "tsmmType": "TrustDomain",
+      "bindingStrength": "approximate",
+      "description": "Participating domain within a governed federation context."
+    },
+    {
+      "externalConcept": "Federation Operator",
+      "tsmmType": "GovernanceAuthority",
+      "bindingStrength": "approximate",
+      "description": "Operates governance logic and authority chains for the federation."
+    },
+    {
+      "externalConcept": "Federation Authority",
+      "tsmmType": "TrustRegistry",
+      "bindingStrength": "approximate",
+      "description": "Registry-like publication and trust anchor function over federation statements."
+    },
+    {
+      "externalConcept": "OpenID Provider / Issuer",
+      "tsmmType": "Issuer",
+      "bindingStrength": "exact",
+      "description": "Entity issuing signed assertions or tokens into the trust ecosystem."
+    },
+    {
+      "externalConcept": "Relying Party",
+      "tsmmType": "Verifier",
+      "bindingStrength": "approximate",
+      "description": "Verifier of signed assertions, metadata, and trust chains."
+    },
+    {
+      "externalConcept": "Entity Statement",
+      "tsmmType": "Credential",
+      "bindingStrength": "composite",
+      "description": "Signed metadata artifact functioning as a credential-like trust assertion under policy and governance constraints."
+    }
+  ],
+  "notes": [
+    "OpenID Federation distributes authority through signed metadata, which TSMM models as a governance and publication graph.",
+    "The mapping is approximate where federation semantics bundle governance and publication roles together."
+  ],
+  "metadata": {
+    "maintainer": "maintainers",
+    "status": "draft"
+  }
+}

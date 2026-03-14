@@ -14,6 +14,7 @@ DEFAULT_TARGETS = [
     ROOT / "examples" / "tsmm-ecosystem-example.json",
     ROOT / "examples" / "profiles" / "ssi-ecosystem.json",
     ROOT / "examples" / "profiles" / "agent-trust-network.json",
+    ROOT / "examples" / "profiles" / "agent-governance-network.json",
     ROOT / "examples" / "profiles" / "trust-registry-federation.json",
     ROOT / "examples" / "profiles" / "dpi-trust-layer.json",
 ]

@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-14
-applicable_version: v0.9.0
+applicable_version: v0.10.0
 tier: 0
 ---
 
@@ -24,12 +24,14 @@ The graph layer addresses that gap.
 
 ## Core components
 
-The executable layer introduced in v0.9.0 includes four elements:
+The executable layer now includes six practical elements:
 
 1. `schemas/tsmm-graph.schema.json` — canonical graph schema for TSMM nodes and edges
 2. `examples/tsmm-ecosystem-example.json` — reference ecosystem graph instance
 3. `scripts/validate_tsmm_graph.py` — graph validator with schema and semantic checks
 4. `examples/profiles/` — reusable graph profiles for recurring ecosystem patterns
+5. `scripts/render_tsmm_graph.py` — renderer for Mermaid and DOT outputs
+6. `examples/registries/tsmm-registry-example.json` — registry publication example that indexes graph artifacts for discovery
 
 ## Node classes
 
@@ -96,6 +98,7 @@ The initial profile set is intentionally practical:
 
 - `examples/profiles/ssi-ecosystem.json`
 - `examples/profiles/agent-trust-network.json`
+- `examples/profiles/agent-governance-network.json`
 - `examples/profiles/trust-registry-federation.json`
 - `examples/profiles/dpi-trust-layer.json`
 

@@ -19,14 +19,15 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Graph model](docs/model/tsmm-graph-model.md)
 - [Effect evaluation model](docs/evaluation/effect-evaluation-model.md)
 - [Threat model](docs/security/trust-system-threat-model.md)
-- [Release notes](releases/v0.9.0.md)
+- [Release notes](releases/v0.10.0.md)
 
 ## At a glance
 
 - **Core abstractions:** entities, roles, authority, artifacts, claims, policy, controls, evidence, assessment, verification, trust decisions, and effects
 - **Profiles and patterns:** reusable guidance for shaping implementations without collapsing into one domain-specific standard
 - **Extensions:** modular specialization for Agentic AI, Verifiable Trust Communities, and assurance architectures
-- **Operational hygiene:** documentation governance, freshness audit, graph validation, and schema/example validation workflow
+- **Operational hygiene:** documentation governance, freshness audit, graph validation, registry validation, and schema/example validation workflow
+- **Bindings and publication:** ecosystem bindings, registry publication format, and graph rendering utility for implementers
 
 ## Explore by path
 
@@ -34,6 +35,8 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Reference patterns](docs/patterns/trust-registry-pattern.md)
 - [Extensions](docs/extensions/index.md)
 - [Crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md)
+- [Bindings](docs/bindings/index.md)
+- [Registry format](docs/registry/tsmm-registry-format.md)
 - [Assurance extension](docs/extensions/assurance-extension.md)
 - [Glossary](docs/glossary.md)
 

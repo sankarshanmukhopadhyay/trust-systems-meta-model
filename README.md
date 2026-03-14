@@ -1,19 +1,19 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-14
-applicable_version: v0.9.0
+applicable_version: v0.10.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.9.0-blue)](releases/v0.9.0.md)
+[![Release](https://img.shields.io/badge/release-v0.10.0-blue)](releases/v0.10.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.9.0  
+**Version:** v0.10.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -75,6 +75,8 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Dynamic authorization framing: `docs/model/dynamic-authorization-framing.md`
 - Agentic AI and dynamic authorization analysis: `docs/model/agentic-authz-analysis.md`
 - Runtime legitimacy logic: `docs/evaluation/effect-evaluation-model.md`
+- Ecosystem bindings: `docs/bindings/index.md`
+- Registry publication format: `docs/registry/tsmm-registry-format.md`
 - Threat taxonomy: `docs/security/trust-system-threat-model.md`
 - Glossary: `docs/glossary.md`
 - Conformance profiles:
@@ -103,6 +105,18 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
   - `docs/crosswalks/openid-federation-crosswalk.md`
   - `docs/crosswalks/xacml-abac-crosswalk.md` *(experimental)*
 - Implementer guide: `docs/getting-started-implementer-guide.md`
+- Ecosystem bindings:
+  - `docs/bindings/index.md`
+  - `docs/bindings/trqp-binding.md`
+  - `docs/bindings/openid-federation-binding.md`
+  - `bindings/trqp/tsmm-trqp-binding.json`
+  - `bindings/openid-federation/tsmm-openid-federation-binding.json`
+- Registry publication:
+  - `docs/registry/tsmm-registry-format.md`
+  - `schemas/tsmm-registry.schema.json`
+  - `examples/registries/tsmm-registry-example.json`
+- Rendering utility:
+  - `scripts/render_tsmm_graph.py`
 - Documentation governance and freshness: `docs/documentation-governance.md`
 
 ## Design principles
@@ -121,6 +135,20 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
+
+## What changed in v0.10.0
+
+v0.10.0 adds ecosystem bindings and a portable registry publication format so TSMM can describe not only abstract trust topologies, but also how real ecosystems align to them and publish those alignments for tooling.
+
+It adds:
+
+- a binding schema (`schemas/tsmm-binding.schema.json`) for machine-readable ecosystem mappings into TSMM
+- TRQP and OpenID Federation bindings under `bindings/` with matching explainer docs under `docs/bindings/`
+- an agent governance network profile (`examples/profiles/agent-governance-network.json`) extending the executable graph layer toward delegated agent control
+- a registry publication schema (`schemas/tsmm-registry.schema.json`) and example registry index (`examples/registries/tsmm-registry-example.json`)
+- a registry explainer (`docs/registry/tsmm-registry-format.md`) describing how ecosystems can publish TSMM graphs, profiles, and bindings together
+- a renderer (`scripts/render_tsmm_graph.py`) for Mermaid and DOT output from TSMM graph instances
+- updated validation coverage for the new graph profile and registry example
 
 ## What changed in v0.9.0
 

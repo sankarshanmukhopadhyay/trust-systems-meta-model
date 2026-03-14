@@ -1,0 +1,50 @@
+{
+  "graphId": "tsmm-profile-agent-governance-network",
+  "label": "TSMM Agent Governance Network Profile",
+  "description": "Profile expressing a delegated agent ecosystem with explicit operator policy, capability constraints, evidence, and trust effects.",
+  "profile": "agent-governance-network",
+  "contexts": ["agentic-ai", "delegation", "runtime-governance"],
+  "nodes": [
+    {"id": "domain1", "type": "TrustDomain", "label": "Agent Governance Domain"},
+    {"id": "ga1", "type": "GovernanceAuthority", "label": "Agent Governance Authority"},
+    {"id": "reg1", "type": "TrustRegistry", "label": "Agent Registry"},
+    {"id": "issuer1", "type": "Issuer", "label": "Agent Operator"},
+    {"id": "agent1", "type": "Agent", "label": "Procurement Agent"},
+    {"id": "verifier1", "type": "Verifier", "label": "Execution Gateway"},
+    {"id": "subject1", "type": "Subject", "label": "Delegating Organization"},
+    {"id": "cred1", "type": "Credential", "label": "Agent Mandate Credential"},
+    {"id": "policy1", "type": "Policy", "label": "Capability and Spending Policy"},
+    {"id": "profile1", "type": "AssuranceProfile", "label": "High Risk Agent Profile"},
+    {"id": "evidence1", "type": "EvidenceBundle", "label": "Audit and Safety Evidence"},
+    {"id": "assessment1", "type": "Assessment", "label": "Independent Agent Assessment"},
+    {"id": "decision1", "type": "TrustDecision", "label": "Runtime Approval Decision"},
+    {"id": "effect1", "type": "Effect", "label": "Release Procurement Transaction"},
+    {"id": "rp1", "type": "RelyingParty", "label": "Finance System"}
+  ],
+  "edges": [
+    {"id": "e1", "type": "governs", "from": "ga1", "to": "domain1"},
+    {"id": "e2", "type": "operates", "from": "ga1", "to": "reg1"},
+    {"id": "e3", "type": "registers", "from": "reg1", "to": "issuer1"},
+    {"id": "e4", "type": "registers", "from": "reg1", "to": "agent1"},
+    {"id": "e5", "type": "defines", "from": "ga1", "to": "policy1"},
+    {"id": "e6", "type": "defines", "from": "ga1", "to": "profile1"},
+    {"id": "e7", "type": "authorizes", "from": "ga1", "to": "issuer1"},
+    {"id": "e8", "type": "authorizes", "from": "policy1", "to": "agent1"},
+    {"id": "e9", "type": "issues", "from": "issuer1", "to": "cred1"},
+    {"id": "e10", "type": "asserts", "from": "cred1", "to": "subject1"},
+    {"id": "e11", "type": "delegates", "from": "issuer1", "to": "agent1", "evidenceRefs": ["evidence1"]},
+    {"id": "e12", "type": "constrains", "from": "policy1", "to": "issuer1"},
+    {"id": "e13", "type": "constrains", "from": "policy1", "to": "agent1"},
+    {"id": "e14", "type": "substantiates", "from": "evidence1", "to": "assessment1"},
+    {"id": "e15", "type": "assesses", "from": "assessment1", "to": "agent1"},
+    {"id": "e16", "type": "informs", "from": "assessment1", "to": "decision1"},
+    {"id": "e17", "type": "informs", "from": "policy1", "to": "decision1"},
+    {"id": "e18", "type": "produces", "from": "decision1", "to": "effect1"},
+    {"id": "e19", "type": "reliesOn", "from": "rp1", "to": "decision1"},
+    {"id": "e20", "type": "verifies", "from": "verifier1", "to": "cred1"}
+  ],
+  "metadata": {
+    "riskTier": "high",
+    "status": "draft"
+  }
+}

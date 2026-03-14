@@ -1,0 +1,54 @@
+{
+  "registryId": "tsmm-registry-example-v1",
+  "label": "TSMM Registry Example",
+  "description": "Illustrative registry publication that indexes a TSMM graph, ecosystem profiles, and external ecosystem bindings.",
+  "publisher": "TSMM Maintainers",
+  "version": "1.0.0",
+  "defaultProfile": "tsi-core",
+  "entries": [
+    {
+      "id": "entry.graph.reference",
+      "kind": "graph",
+      "label": "Reference ecosystem graph",
+      "location": "examples/tsmm-ecosystem-example.json",
+      "status": "active",
+      "profile": "tsi-core",
+      "description": "Reference graph for a registry-mediated credential ecosystem.",
+      "tags": ["reference", "graph"]
+    },
+    {
+      "id": "entry.profile.agent-governance",
+      "kind": "profile",
+      "label": "Agent governance network profile",
+      "location": "examples/profiles/agent-governance-network.json",
+      "status": "active",
+      "profile": "agent-governance-network",
+      "description": "Runtime governance topology for delegated agent ecosystems.",
+      "tags": ["agent", "profile"]
+    },
+    {
+      "id": "entry.binding.trqp",
+      "kind": "binding",
+      "label": "TRQP ecosystem binding",
+      "location": "bindings/trqp/tsmm-trqp-binding.json",
+      "status": "active",
+      "bindingTarget": "TRQP",
+      "description": "Semantic alignment between TSMM and the TRQP stack.",
+      "tags": ["binding", "trqp"]
+    },
+    {
+      "id": "entry.binding.openid-fed",
+      "kind": "binding",
+      "label": "OpenID Federation binding",
+      "location": "bindings/openid-federation/tsmm-openid-federation-binding.json",
+      "status": "active",
+      "bindingTarget": "OpenID Federation",
+      "description": "Semantic alignment between TSMM and OpenID Federation.",
+      "tags": ["binding", "openid"]
+    }
+  ],
+  "metadata": {
+    "status": "draft",
+    "format": "tsmm-registry"
+  }
+}

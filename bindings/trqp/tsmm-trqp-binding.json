@@ -1,0 +1,59 @@
+{
+  "bindingId": "tsmm.binding.trqp.v1",
+  "label": "TSMM to TRQP binding",
+  "description": "Maps TRQP stack concepts into TSMM abstractions so TSMM can act as the semantic layer across assurance, conformance, and trusted service provider publication flows.",
+  "targetEcosystem": "TRQP",
+  "version": "1.0.0",
+  "sources": [
+    "docs/crosswalks/trqp-tspp-crosswalk.md",
+    "docs/bindings/trqp-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "TRQP Trust Registry",
+      "tsmmType": "TrustRegistry",
+      "bindingStrength": "exact",
+      "description": "Registry-mediated publication and lookup function.",
+      "relatedDocs": ["docs/patterns/trust-registry-pattern.md"]
+    },
+    {
+      "externalConcept": "Trust Framework Authority",
+      "tsmmType": "GovernanceAuthority",
+      "bindingStrength": "exact",
+      "description": "Authority defining operating rules, publication criteria, and acceptable evidence."
+    },
+    {
+      "externalConcept": "Trusted Service Provider",
+      "tsmmType": "Issuer",
+      "bindingStrength": "approximate",
+      "description": "The published ecosystem participant whose assertions and status are evaluated.",
+      "conditions": ["May be modeled as Agent where service acts autonomously."]
+    },
+    {
+      "externalConcept": "Conformance Evidence",
+      "tsmmType": "EvidenceBundle",
+      "bindingStrength": "exact",
+      "description": "Evidence submitted to substantiate conformance or operational trust posture."
+    },
+    {
+      "externalConcept": "Assurance Profile",
+      "tsmmType": "AssuranceProfile",
+      "bindingStrength": "exact",
+      "description": "Profile determining required controls and evidence depth."
+    },
+    {
+      "externalConcept": "Relying ecosystem consumer",
+      "tsmmType": "RelyingParty",
+      "bindingStrength": "exact",
+      "description": "Actor depending on registry-mediated trust decisions downstream."
+    }
+  ],
+  "notes": [
+    "TRQP publication flows can be expressed as TSMM graph instances and surfaced through the TSMM registry format.",
+    "This binding is intentionally semantic rather than normative and does not override TRQP wording."
+  ],
+  "metadata": {
+    "maintainer": "maintainers",
+    "status": "draft"
+  }
+}
