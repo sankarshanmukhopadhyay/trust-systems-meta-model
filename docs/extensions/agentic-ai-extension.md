@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
-applicable_version: v0.11.0
+last_reviewed: 2026-03-19
+applicable_version: v0.12.0
 tier: 1
 ---
 
@@ -48,12 +48,24 @@ A **Trace Record** captures provenance for a multi-step agent action path: input
 ### 3.9 Risk Tier
 A **Risk Tier** classifies workflow severity so that stronger controls can be required for rights-affecting or high-impact automation.
 
+### 3.10 Agent Class
+An **Agent Class** distinguishes the operating posture of an agentic actor, such as identity-proxy, execution, predictive, coordination, or attention-gateway.
+
+### 3.11 Control Mode
+A **Control Mode** describes whether the agent operates as human-in-loop, human-on-loop, sidecar, or fully-bounded-autonomous.
+
+### 3.12 Attention Policy
+An **Attention Policy** describes how inbound signals, interruptions, delivery thresholds, and escalation rules are governed before a principal is interrupted or represented.
+
 ## 4. Relationship to TSMM core
 
 - An **Agent** is a specialized TSMM **Entity**.
 - A **Delegation** specializes bounded **Authority** and links it to an acting agent.
 - A **Capability** constrains which **Action** types can be attempted.
 - An **Execution Context** informs **Policy**, **Assessment**, **Verification**, and the resulting **Trust Decision**.
+- An **Agent Class** clarifies what kind of acting role is in scope.
+- A **Control Mode** clarifies the governance posture of runtime behavior.
+- An **Attention Policy** makes signal admission and interruption control reviewable.
 - A **Trace Record** becomes structured **Evidence** for later audit, review, and remediation.
 - A **Risk Tier** informs profile and policy selection.
 

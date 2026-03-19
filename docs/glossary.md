@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-19
-applicable_version: v0.11.0
+applicable_version: v0.12.0
 tier: 1
 ---
 
@@ -21,6 +21,15 @@ A proposition asserted by or about an entity, artifact, system, or state.
 
 ## Control
 A safeguard that reduces a defined risk or constrains unsafe behavior.
+
+## Agent Class
+A typed descriptor for the operating posture of an agentic actor. TSMM defines five classes: identity-proxy, execution, predictive, coordination, and attention-gateway. Agent class is used alongside control mode to make explicit what kind of role an agent fills and under what governance shape it operates. See `docs/model/agent-role-classification.md`.
+
+## Attention Policy
+An extension object that governs how inbound signals are admitted, deferred, summarized, rerouted, or rejected before reaching a principal or downstream decision layer. An attention policy records the delivery mode, interruption budget, escalation rule, and signal source for a given attention-gateway agent. See `docs/model/attention-governance.md`.
+
+## Control Mode
+A descriptor for the human-oversight shape of an agent's runtime behavior. TSMM defines four control modes: human-in-loop, human-on-loop, sidecar, and fully-bounded-autonomous. Control mode makes the governance posture of agent behavior explicit so that policy, evidence, and oversight requirements can be aligned to it. See `docs/model/agent-role-classification.md`.
 
 ## Dynamic Authorization
 A family of approaches to access control in which authorization decisions are made at runtime by evaluating contextual attributes against an externalized policy. The canonical architecture separates policy administration (PAP), policy decision (PDP), policy enforcement (PEP), and policy information retrieval (PIP). Within TSMM, dynamic authorization is a runtime evaluation specialization of the Policy → Trust Decision → Effect chain, not a replacement framing for it. See `docs/model/dynamic-authorization-framing.md`.

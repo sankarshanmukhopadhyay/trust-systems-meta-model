@@ -10,6 +10,17 @@
           "type": "delegate"
         }
       ]
+    },
+    {
+      "id": "agent.attention-gateway-1",
+      "type": "software-agent",
+      "name": "Supplier Signal Gatekeeper",
+      "roles": [
+        {
+          "id": "role.gateway",
+          "type": "attention-gateway"
+        }
+      ]
     }
   ],
   "delegations": [
@@ -64,6 +75,32 @@
       "actionRef": "act.1",
       "output": "draft supplier risk summary",
       "effectRef": "eff.review-route"
+    }
+  ],
+  "agentClasses": [
+    {
+      "id": "aclass.1",
+      "agentRef": "agent.procurement-1",
+      "classType": "execution",
+      "controlMode": "human-on-loop",
+      "representationScope": "prepare bounded procurement summaries under review"
+    },
+    {
+      "id": "aclass.2",
+      "agentRef": "agent.attention-gateway-1",
+      "classType": "attention-gateway",
+      "controlMode": "sidecar",
+      "representationScope": "filter and route inbound supplier signals before escalation"
+    }
+  ],
+  "attentionPolicies": [
+    {
+      "id": "apol.1",
+      "agentRef": "agent.attention-gateway-1",
+      "deliveryMode": "summarize",
+      "interruptionBudget": "only escalate high-risk supplier events during review windows",
+      "escalationRule": "immediately reroute sanctions or fraud indicators to human review",
+      "signalSource": "supplier-alert-feed"
     }
   ]
 }

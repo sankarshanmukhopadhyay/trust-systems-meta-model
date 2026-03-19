@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.org/tsmm/schemas/tsmm-agentic-extension.schema.json",
-  "title": "TSMM Agentic AI Extension Instance v0.9.0",
-  "description": "Extension schema for representing agentic AI concepts layered on top of the TSMM core.",
+  "title": "TSMM Agentic AI Extension Instance v0.12.0",
+  "description": "Extension schema for representing agentic AI concepts layered on top of the TSMM core, including agent classification and attention-governance objects.",
   "type": "object",
   "required": [
     "agents",
@@ -56,6 +56,20 @@
       "items": {
         "$ref": "#/$defs/traceRecord"
       }
+    },
+    "agentClasses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/agentClass"
+      },
+      "minItems": 1
+    },
+    "attentionPolicies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/attentionPolicy"
+      },
+      "minItems": 1
     }
   },
   "$defs": {
@@ -223,6 +237,83 @@
           "type": "string"
         },
         "effectRef": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "agentClass": {
+      "type": "object",
+      "required": [
+        "id",
+        "agentRef",
+        "classType",
+        "controlMode"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "agentRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "classType": {
+          "type": "string",
+          "enum": [
+            "identity-proxy",
+            "execution",
+            "predictive",
+            "coordination",
+            "attention-gateway"
+          ]
+        },
+        "controlMode": {
+          "type": "string",
+          "enum": [
+            "human-in-loop",
+            "human-on-loop",
+            "sidecar",
+            "fully-bounded-autonomous"
+          ]
+        },
+        "representationScope": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "attentionPolicy": {
+      "type": "object",
+      "required": [
+        "id",
+        "agentRef",
+        "deliveryMode",
+        "escalationRule"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "agentRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "deliveryMode": {
+          "type": "string",
+          "enum": [
+            "admit",
+            "defer",
+            "summarize",
+            "reroute",
+            "reject"
+          ]
+        },
+        "interruptionBudget": {
+          "type": "string"
+        },
+        "escalationRule": {
+          "type": "string"
+        },
+        "signalSource": {
           "type": "string"
         }
       },

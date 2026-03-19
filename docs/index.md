@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-19
-applicable_version: v0.11.0
+applicable_version: v0.12.0
 tier: 0
 ---
 
@@ -28,9 +28,11 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 3. [Entity model](model/tsmm-entities.md)
 4. [Relationship model](model/tsmm-relationships.md)
 5. [Lifecycle model](model/tsmm-lifecycle.md)
-6. [Graph model](model/tsmm-graph-model.md)
-7. [Effect evaluation model](evaluation/effect-evaluation-model.md)
-8. [Threat model](security/trust-system-threat-model.md)
+6. [Agent role classification](model/agent-role-classification.md)
+7. [Attention governance model](model/attention-governance.md)
+8. [Graph model](model/tsmm-graph-model.md)
+9. [Effect evaluation model](evaluation/effect-evaluation-model.md)
+10. [Threat model](security/trust-system-threat-model.md)
 
 ## Conformance profiles
 
@@ -61,6 +63,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [DCAS Crosswalk](crosswalks/dcas-crosswalk.md)
 - [TRAA Crosswalk](crosswalks/trust-reference-assurance-architecture-crosswalk.md)
 - [OpenID Federation Crosswalk](crosswalks/openid-federation-crosswalk.md)
+- [Agent Taxonomy and SSA Crosswalk](crosswalks/agent-taxonomy-ssa-crosswalk.md)
 
 ## Ecosystem bindings
 
@@ -105,4 +108,4 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Release snapshot
 
-This documentation set is aligned to **v0.11.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, ecosystem publication artifacts, and indexed agentic instances so the reference model does not quietly drift into decorative theory.
+This documentation set is aligned to **v0.12.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, ecosystem publication artifacts, and indexed agentic instances so the reference model does not quietly drift into decorative theory.

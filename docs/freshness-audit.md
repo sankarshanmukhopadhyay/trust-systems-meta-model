@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-19
-applicable_version: v0.11.0
+applicable_version: v0.12.0
 tier: 2
 ---
 
@@ -9,7 +9,7 @@ tier: 2
 
 ## Audit date
 
-2026-03-07
+2026-03-19
 
 ## Baseline findings before v0.3.0
 
@@ -45,15 +45,13 @@ tier: 2
 - internal path references reviewed and corrected
 - JSON examples validated against the updated schema
 
-
 ## v0.5.0 additions
 
 The release introduced new model, conformance, evaluation, security, and pattern documents. Freshness checks should confirm that these remain consistent with the schema, examples, release notes, and README navigation.
 
 ## v0.6.0 additions
 
-The release added implementer-readiness artifacts and extended the multi-agent governance model. New documents include the conformance self-assessment checklist, the getting-started implementer guide, the multi-agent coordination pattern, the multi-agent extension schema and example, the OpenID Federation crosswalk, and the schema coverage validation script. All new documents carry v0.6.0 frontmatter. Existing documents were updated to v0.6.0 version metadata. Release notes check confirmed no broken internal links introduced.
-
+The release added implementer-readiness artifacts and extended the multi-agent governance model. New documents include the conformance self-assessment checklist, the getting-started implementer guide, the multi-agent coordination pattern, the multi-agent extension schema and example, the OpenID Federation crosswalk, and the schema coverage validation script. All new documents carry current version frontmatter. Existing documents were updated to current version metadata. Release notes check confirmed no broken internal links introduced.
 
 ## v0.8.0 additions
 
@@ -70,3 +68,7 @@ The release introduced bindings, the registry format, and the graph renderer. Fr
 ## v0.11.0 additions
 
 The release closes the binding catalog gap for DCAS and Verifiable Trust Communities, adds an agentic conformance profile, extends registry indexing to include agentic instances, and enhances the graph renderer with clustering and profile annotation. Freshness checks should confirm that the README, docs home, glossary, checklist, implementer guide, and registry example all reference the new artifacts consistently.
+
+## v0.12.0 additions
+
+The release adds typed agent operating posture and attention-governance concepts to the agentic extension. Freshness checks should confirm that the schema, worked example, README navigation, docs home, roadmap, and crosswalk set all reference `agentClass`, `controlMode`, and `attentionPolicies` consistently.

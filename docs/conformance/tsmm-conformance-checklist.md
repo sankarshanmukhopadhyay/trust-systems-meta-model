@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-19
-applicable_version: v0.11.0
+applicable_version: v0.12.0
 tier: 1
 ---
 
@@ -93,6 +93,20 @@ Use this checklist in addition to the applicable base profile checklist when an 
 | AE-7 | For multi-agent coordination: sub-delegation permission is explicitly granted rather than inferred | | |
 | AE-8 | For multi-agent coordination: oversight mode escalates to the strictest mode present in the delegation chain | | |
 
+#### Agent classification and attention governance *(v0.12.0)*
+
+Reference: `docs/model/agent-role-classification.md`, `docs/model/attention-governance.md`
+
+Use these additional items when an implementation uses the agent classification or attention governance concepts introduced in v0.12.0.
+
+| # | Requirement | Satisfied? | Notes |
+|---|---|---|---|
+| AC-1 | Agent class is declared for each agent in scope | | |
+| AC-2 | Control mode is declared and is consistent with the oversight mode assigned to governed actions | | |
+| AC-3 | Representation scope is documented for identity-proxy agents | | |
+| AC-4 | Where an attention-gateway agent is present, an attention policy with a defined escalation rule is associated with it | | |
+| AC-5 | Interruption budget and delivery mode are documented for attention policies that govern rights-affecting or time-sensitive signals | | |
+
 ### Verifiable Trust Communities Extension
 
 Reference: `docs/extensions/verifiable-trust-communities-extension.md`
@@ -147,6 +161,8 @@ This checklist is a self-assessment tool. It does not constitute third-party cer
 
 
 ## Agentic profile overlay
+
+Reference: `docs/conformance/tsmm-profile-agentic.md`
 
 Use this section when TSMM governs delegated or agentic action. This overlay may be applied alongside the Operational or Assured baseline.
 

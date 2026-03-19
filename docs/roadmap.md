@@ -1,24 +1,25 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-19
-applicable_version: v0.11.0
+applicable_version: v0.12.0
 tier: 1
 ---
 
 # TSMM Roadmap
 
-This file records plausible next steps for TSMM after v0.11.0. It is directional. It is not a schedule.
+This file records plausible next steps for TSMM after v0.12.0. It is directional. It is not a schedule.
 
-## 1. Evidence and execution depth
+## 1. Agent role and control semantics
 
-- strengthen evidence bundle modeling and publication patterns
-- connect traceability artifacts more directly to assurance workflows
-- explore executable policy and norm-evaluation integration
+- determine whether agent class should remain an extension concept or be promoted into a more reusable cross-domain actor taxonomy
+- deepen control-mode semantics so side-car, staged, and review-bound execution patterns can be compared more precisely
+- add stronger examples for identity-proxy, execution, predictive, and coordination agents
 
-## 2. Binding coverage expansion
+## 2. Attention governance and signal routing
 
-- add further machine-readable bindings for adjacent governance and assurance ecosystems
-- improve comparison guidance across bindings so the catalog becomes easier to operationalize
+- expand attention-policy examples beyond single-agent screening into digital twin and unified-feed patterns
+- connect interruption and routing logic more directly to trust decisions, evidence, and remediation
+- explore how sender reputation, urgency scoring, and delivery pricing can be represented without overfitting TSMM to one product model
 
 ## 3. Registry and publication tooling
 
@@ -31,3 +32,9 @@ This file records plausible next steps for TSMM after v0.11.0. It is directional
 - deepen agent trace verification patterns
 - improve delegated-action governance examples
 - connect multi-agent coordination more tightly to review and remediation processes
+
+## 5. Binding and crosswalk coverage
+
+- add further machine-readable bindings for adjacent governance and assurance ecosystems
+- improve comparison guidance across bindings so the catalog becomes easier to operationalize
+- continue crosswalk work where external models expose missing but reusable TSMM structure

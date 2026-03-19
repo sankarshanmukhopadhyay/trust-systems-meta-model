@@ -1,19 +1,19 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-19
-applicable_version: v0.11.0
+applicable_version: v0.12.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.11.0-blue)](releases/v0.11.0.md)
+[![Release](https://img.shields.io/badge/release-v0.12.0-blue)](releases/v0.12.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.11.0  
+**Version:** v0.12.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -65,64 +65,16 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 ## Start here
 
 - Pages landing page: `index.md`
-- Conceptual entry point: `docs/index.md`
-- Core abstractions: `docs/core-model.md`
-- Entity catalog: `docs/model/tsmm-entities.md`
-- Relationship graph: `docs/model/tsmm-relationships.md`
-- Graph model: `docs/model/tsmm-graph-model.md`
+- Documentation home: `docs/index.md`
+- Core model: `docs/core-model.md`
+- Entity model: `docs/model/tsmm-entities.md`
+- Relationship model: `docs/model/tsmm-relationships.md`
 - Lifecycle model: `docs/model/tsmm-lifecycle.md`
-- Evidence artifact model: `docs/model/evidence-artifact.md`
-- Dynamic authorization framing: `docs/model/dynamic-authorization-framing.md`
-- Agentic AI and dynamic authorization analysis: `docs/model/agentic-authz-analysis.md`
-- Runtime legitimacy logic: `docs/evaluation/effect-evaluation-model.md`
-- Ecosystem bindings: `docs/bindings/index.md`
-- Registry publication format: `docs/registry/tsmm-registry-format.md`
-- Threat taxonomy: `docs/security/trust-system-threat-model.md`
-- Glossary: `docs/glossary.md`
-- Conformance profiles:
-  - `docs/conformance/tsmm-profile-minimal.md`
-  - `docs/conformance/tsmm-profile-operational.md`
-  - `docs/conformance/tsmm-profile-assured.md`
-  - `docs/conformance/tsmm-profile-agentic.md`
-  - `docs/conformance/tsmm-conformance-checklist.md`
-- Reference patterns:
-  - `docs/patterns/trust-registry-pattern.md`
-  - `docs/patterns/delegated-agent-pattern.md`
-  - `docs/patterns/credential-verification-pattern.md`
-  - `docs/patterns/assurance-evidence-pattern.md`
-  - `docs/patterns/multi-agent-coordination-pattern.md`
-  - `docs/patterns/dynamic-authz-pattern.md` *(experimental)*
-- Extensions:
-  - `docs/extensions/index.md`
-  - `docs/extensions/agentic-ai-extension.md`
-  - `docs/extensions/verifiable-trust-communities-extension.md`
-  - `docs/extensions/assurance-extension.md`
-  - `docs/model/evidence-artifact.md` (Evidence Artifact Extension)
-- Crosswalks:
-  - `docs/crosswalks/trqp-tspp-crosswalk.md`
-  - `docs/crosswalks/erc-8004-csp-crosswalk.md`
-  - `docs/crosswalks/dcas-crosswalk.md`
-  - `docs/crosswalks/trust-reference-assurance-architecture-crosswalk.md`
-  - `docs/crosswalks/openid-federation-crosswalk.md`
-  - `docs/crosswalks/xacml-abac-crosswalk.md` *(experimental)*
+- Agent role classification: `docs/model/agent-role-classification.md`
+- Attention governance model: `docs/model/attention-governance.md`
+- Effect evaluation model: `docs/evaluation/effect-evaluation-model.md`
+- Threat model: `docs/security/trust-system-threat-model.md`
 - Implementer guide: `docs/getting-started-implementer-guide.md`
-- Ecosystem bindings:
-  - `docs/bindings/index.md`
-  - `docs/bindings/trqp-binding.md`
-  - `docs/bindings/openid-federation-binding.md`
-  - `docs/bindings/dcas-binding.md`
-  - `docs/bindings/vtc-binding.md`
-  - `bindings/trqp/tsmm-trqp-binding.json`
-  - `bindings/openid-federation/tsmm-openid-federation-binding.json`
-  - `bindings/dcas/tsmm-dcas-binding.json`
-  - `bindings/vtc/tsmm-vtc-binding.json`
-- Registry publication:
-  - `docs/registry/tsmm-registry-format.md`
-  - `schemas/tsmm-registry.schema.json`
-  - `examples/registries/tsmm-registry-example.json`
-- Rendering utility:
-  - `scripts/render_tsmm_graph.py`
-- Documentation governance and freshness: `docs/documentation-governance.md`
 - Roadmap: `docs/roadmap.md`
 
 ## Ecosystem positioning
@@ -153,92 +105,19 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## What changed in v0.11.0
+## What changed in v0.12.0
 
-v0.11.0 adds ecosystem bindings and a portable registry publication format so TSMM can describe not only abstract trust topologies, but also how real ecosystems align to them and publish those alignments for tooling.
-
-It adds:
-
-- a binding schema (`schemas/tsmm-binding.schema.json`) for machine-readable ecosystem mappings into TSMM
-- TRQP and OpenID Federation bindings under `bindings/` with matching explainer docs under `docs/bindings/`
-- an agent governance network profile (`examples/profiles/agent-governance-network.json`) extending the executable graph layer toward delegated agent control
-- a registry publication schema (`schemas/tsmm-registry.schema.json`) and example registry index (`examples/registries/tsmm-registry-example.json`)
-- a registry explainer (`docs/registry/tsmm-registry-format.md`) describing how ecosystems can publish TSMM graphs, profiles, and bindings together
-- a renderer (`scripts/render_tsmm_graph.py`) for Mermaid and DOT output from TSMM graph instances
-- updated validation coverage for the new graph profile and registry example
-
-## What changed in v0.11.0
-
-v0.11.0 closes the main structural gaps exposed by v0.10.0. It completes the binding catalog for DCAS and Verifiable Trust Communities, adds a cross-cutting agentic conformance profile, extends the registry format to index agentic instances, improves graph rendering for grouped review, and refreshes governance-facing documentation.
+v0.12.0 extends the agentic extension so TSMM can model typed agent operating posture and policy-governed attention routing more explicitly. This release is aimed at digital twin, virtual assistant, predictive side-car, and signal-gateway patterns without forcing those concepts into TSMM core.
 
 It adds:
 
-- machine-readable DCAS and VTC bindings under `bindings/` with paired explainer documents under `docs/bindings/`
-- an agentic conformance profile under `docs/conformance/tsmm-profile-agentic.md`
-- an expanded registry example that publishes graphs, profiles, bindings, and agentic instances together
-- `agentic-instance` support in `schemas/tsmm-registry.schema.json`
-- `--cluster` and `--annotate-profiles` options in `scripts/render_tsmm_graph.py`
-- refreshed bindings, glossary, checklist, implementer guide, freshness audit, and roadmap documentation
-
-## What changed in v0.9.0
-
-v0.9.0 adds an executable graph layer for TSMM so that the model can be represented, validated, and reused as machine-readable infrastructure rather than prose alone.
-
-It adds:
-
-- a canonical graph schema (`schemas/tsmm-graph.schema.json`) defining TSMM node and relationship classes
-- a reference ecosystem graph (`examples/tsmm-ecosystem-example.json`) showing a registry-mediated verifiable credential ecosystem
-- a semantic graph validator (`scripts/validate_tsmm_graph.py`) that checks both JSON schema validity and allowed relationship pairings
-- reusable graph profiles under `examples/profiles/` for SSI ecosystems, delegated agent trust networks, trust registry federations, and DPI trust layers
-- a graph-model explainer (`docs/model/tsmm-graph-model.md`) documenting the purpose, structure, and use of the executable layer
-
-## What changed after v0.9.0
-
-Following the v0.8.0 release, three documents were added or updated to address the emerging consensus that dynamic authorization is *the* governance pattern for agentic AI systems.
-
-The analysis document concludes that dynamic authorization correctly describes the runtime evaluation layer but does not model the governance envelope that makes that layer trustworthy. Four elements present in TSMM's agentic extension are absent from dynamic authorization frameworks: delegation governance, oversight mode, risk-tier-driven profile selection, and trace records as structured Evidence. A system built on dynamic authorization alone has access control, not governance.
-
-It adds and updates:
-
-- `docs/model/agentic-authz-analysis.md` *(new)* — structural analysis of the relationship between dynamic authorization and TSMM's agentic governance model; introduces the governance envelope framing and implementer guidance for building the envelope before the PDP layer
-- `docs/model/dynamic-authorization-framing.md` *(updated)* — adds an agentic context note to section 6 and extends implementer guidance in section 7 with a dedicated paragraph for agentic system builders
-- `docs/conformance/tsmm-conformance-checklist.md` *(updated)* — adds a cross-reference to the analysis document in the Dynamic Authorization checklist preamble and adds DA-8, a new agentic-systems-only item requiring the governance envelope to be defined before the PDP layer is built
-
-## What changed in v0.8.0
-
-v0.8.0 introduces TSMM's treatment of dynamic authorization as a crosswalk and pattern release rather than a schema extension release. The decision to hold dynamic authorization at this scope — rather than introducing new core primitives — is deliberate and documented. No core abstractions were changed. No schemas were added or modified.
-
-It adds:
-
-- a framing document (`docs/model/dynamic-authorization-framing.md`) establishing TSMM's position: dynamic authorization is a runtime evaluation pattern that operates within the TSMM governance chain, not a replacement framing for it
-- a crosswalk (`docs/crosswalks/xacml-abac-crosswalk.md`) mapping XACML 3.0, ABAC, and NGAC concepts to TSMM abstractions, covering the PAP/PDP/PEP/PIP architecture, request/response flow, and obligations as TSMM conditions
-- a pattern document (`docs/patterns/dynamic-authz-pattern.md`) defining the TSMM-aligned sequence for a runtime authorization flow, the structural rules that must hold, and an example in a verifiable credential context
-- a formal definition of the `status: experimental` frontmatter field in `docs/documentation-governance.md` — a governance signal that a concept is mapped carefully and core promotion is deliberately deferred, not a quality or stability signal
-
-The crosswalk and pattern carry `status: experimental`. The framing document is stable.
-
-## What changed in v0.7.0
-
-v0.7.0 adds the Evidence Artifact model, formalizing how trust systems produce, structure, and consume operational evidence. It closes the conceptual gap between rule definition and behavioral proof — the third layer of trust systems that most governance frameworks leave implicit.
-
-It adds:
-
-- a conceptual document (`docs/model/evidence-artifact.md`) defining the EvidenceArtifact concept as a typed specialization of the core Evidence abstraction, with four types (reconciliation, drift, attestation, conformance), a property specification, lifecycle expectations, and profile mapping
-- an extension schema (`schemas/tsmm-evidence-artifact-extension.schema.json`) with required fields and optional traceability fields including integrity anchors, verification method, policy reference, and action reference for agentic contexts
-- a worked example instance demonstrating all four artifact types in a trust registry context
-
-## What changed in v0.6.0
-
-v0.6.0 adds implementer-readiness tooling and closes the gap between the conceptual model and practical adoption.
-
-It adds:
-
-- a conformance self-assessment checklist for Minimal, Operational, and Assured profiles, with extension checklists for Agentic AI, VTC, and Assurance
-- an opinionated getting-started implementer guide with three entry points: trust registry operator, verifiable credential issuer/verifier, and agentic system builder
-- a multi-agent coordination pattern covering chained delegation, sub-delegation governance, and oversight mode escalation
-- a multi-agent coordination extension schema and worked example
-- an OpenID Federation crosswalk
-- a schema coverage validation script
+- `agentClass` and `controlMode` support to the agentic extension schema
+- `attentionPolicies` support to the agentic extension schema
+- richer worked examples for execution agents and attention-gateway agents
+- `docs/model/agent-role-classification.md`
+- `docs/model/attention-governance.md`
+- `docs/crosswalks/agent-taxonomy-ssa-crosswalk.md`
+- refreshed README navigation, repository tree, roadmap, freshness audit, and release notes
 
 ## Repo contents
 
@@ -248,107 +127,97 @@ trust-systems-meta-model/
 │   └── workflows/
 │       ├── pages.yml
 │       └── validate.yml
-├── README.md
-├── LICENSE
-├── SECURITY.md
-├── CONTRIBUTING.md
-├── VERSION
-├── index.md
-├── _config.yml
+├── bindings/
+│   ├── dcas/
+│   │   └── tsmm-dcas-binding.json
+│   ├── openid-federation/
+│   │   └── tsmm-openid-federation-binding.json
+│   ├── trqp/
+│   │   └── tsmm-trqp-binding.json
+│   └── vtc/
+│       └── tsmm-vtc-binding.json
 ├── docs/
-│   ├── index.md
+│   ├── bindings/
+│   ├── conformance/
+│   ├── crosswalks/
+│   ├── evaluation/
+│   ├── extensions/
+│   ├── model/
+│   ├── patterns/
+│   ├── registry/
+│   ├── security/
 │   ├── core-model.md
-│   ├── relationship-model.md
-│   ├── effect-centered-trust-decision-model.md
-│   ├── glossary.md
 │   ├── documentation-governance.md
+│   ├── effect-centered-trust-decision-model.md
 │   ├── freshness-audit.md
 │   ├── getting-started-implementer-guide.md
-│   ├── model/
-│   │   ├── tsmm-entities.md
-│   │   ├── tsmm-relationships.md
-│   │   ├── tsmm-lifecycle.md
-│   │   ├── tsmm-graph-model.md
-│   │   ├── evidence-artifact.md
-│   │   ├── dynamic-authorization-framing.md
-│   │   └── agentic-authz-analysis.md
-│   ├── extensions/
-│   │   ├── index.md
-│   │   ├── agentic-ai-extension.md
-│   │   ├── verifiable-trust-communities-extension.md
-│   │   └── assurance-extension.md
-│   ├── conformance/
-│   │   ├── tsmm-profile-minimal.md
-│   │   ├── tsmm-profile-operational.md
-│   │   ├── tsmm-profile-assured.md
-│   │   └── tsmm-conformance-checklist.md
-│   ├── evaluation/
-│   │   └── effect-evaluation-model.md
-│   ├── security/
-│   │   └── trust-system-threat-model.md
-│   ├── patterns/
-│   │   ├── trust-registry-pattern.md
-│   │   ├── delegated-agent-pattern.md
-│   │   ├── credential-verification-pattern.md
-│   │   ├── assurance-evidence-pattern.md
-│   │   ├── multi-agent-coordination-pattern.md
-│   │   └── dynamic-authz-pattern.md          ← experimental
-│   └── crosswalks/
-│       ├── trqp-tspp-crosswalk.md
-│       ├── erc-8004-csp-crosswalk.md
-│       ├── dcas-crosswalk.md
-│       ├── trust-reference-assurance-architecture-crosswalk.md
-│       ├── openid-federation-crosswalk.md
-│       └── xacml-abac-crosswalk.md           ← experimental
-├── schemas/
-│   ├── tsmm-core.schema.json
-│   ├── tsmm-graph.schema.json
-│   ├── tsmm-agentic-extension.schema.json
-│   ├── tsmm-vtc-extension.schema.json
-│   ├── tsmm-assurance-extension.schema.json
-│   ├── tsmm-multi-agent-extension.schema.json
-│   └── tsmm-evidence-artifact-extension.schema.json
+│   ├── glossary.md
+│   ├── index.md
+│   ├── relationship-model.md
+│   └── roadmap.md
 ├── examples/
-│   ├── minimal-trust-registry-instance.json
-│   ├── tsmm-ecosystem-example.json
 │   ├── profiles/
-│   │   ├── ssi-ecosystem.json
-│   │   ├── agent-trust-network.json
-│   │   ├── trust-registry-federation.json
-│   │   └── dpi-trust-layer.json
+│   ├── registries/
+│   ├── agentic-ai-extension-instance.json
+│   ├── assurance-extension-instance.json
 │   ├── consumer-policy-instance.json
 │   ├── delegated-agent-instance.json
-│   ├── agentic-ai-extension-instance.json
-│   ├── verifiable-trust-community-instance.json
-│   ├── assurance-extension-instance.json
+│   ├── evidence-artifact-instance.json
+│   ├── minimal-trust-registry-instance.json
 │   ├── multi-agent-coordination-instance.json
-│   └── evidence-artifact-instance.json
+│   ├── tsmm-ecosystem-example.json
+│   └── verifiable-trust-community-instance.json
+├── releases/
+│   ├── v0.10.0.md
+│   ├── v0.11.0.md
+│   └── v0.12.0.md
+├── schemas/
+│   ├── tsmm-agentic-extension.schema.json
+│   ├── tsmm-assurance-extension.schema.json
+│   ├── tsmm-binding.schema.json
+│   ├── tsmm-core.schema.json
+│   ├── tsmm-evidence-artifact-extension.schema.json
+│   ├── tsmm-graph.schema.json
+│   ├── tsmm-multi-agent-extension.schema.json
+│   ├── tsmm-registry.schema.json
+│   └── tsmm-vtc-extension.schema.json
 ├── scripts/
-│   ├── validate_examples.py
 │   ├── check_docs.py
-│   └── check_schema_coverage.py
-└── releases/
-    ├── v0.3.0.md
-    ├── v0.4.0.md
-    ├── v0.5.0.md
-    ├── v0.6.0.md
-    ├── v0.7.0.md
-    └── v0.8.0.md
+│   ├── check_schema_coverage.py
+│   ├── render_tsmm_graph.py
+│   ├── validate_examples.py
+│   ├── validate_tsmm_graph.py
+│   └── validate_tsmm_registry.py
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── SECURITY.md
+├── VERSION
+├── _config.yml
+└── index.md
 ```
 
-## What TSMM is not
+## Validation
 
-TSMM does **not**:
+Run these checks from the repository root:
 
-- define the full semantics of every assurance model
-- prescribe one universal trust policy
-- collapse assurance, conformance, reputation, and authorization into one blob
-- require one serialization format
-- claim that every trust decision is binary
-- replace domain-specific standards or implementation profiles
+```bash
+python3 scripts/validate_examples.py
+python3 scripts/check_schema_coverage.py
+python3 scripts/check_docs.py
+python3 scripts/validate_tsmm_graph.py examples/tsmm-ecosystem-example.json
+python3 scripts/validate_tsmm_registry.py examples/registries/tsmm-registry-example.json
+```
 
-In plain terms: this repo is a bridge, not a cathedral.
+## Release history
 
-## License
-
-This repository is published under **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**.
+- `releases/v0.3.0.md`
+- `releases/v0.4.0.md`
+- `releases/v0.5.0.md`
+- `releases/v0.6.0.md`
+- `releases/v0.7.0.md`
+- `releases/v0.8.0.md`
+- `releases/v0.9.0.md`
+- `releases/v0.10.0.md`
+- `releases/v0.11.0.md`
+- `releases/v0.12.0.md`

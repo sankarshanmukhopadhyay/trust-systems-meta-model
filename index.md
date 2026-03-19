@@ -19,7 +19,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Graph model](docs/model/tsmm-graph-model.md)
 - [Effect evaluation model](docs/evaluation/effect-evaluation-model.md)
 - [Threat model](docs/security/trust-system-threat-model.md)
-- [Release notes](releases/v0.11.0.md)
+- [Release notes](releases/v0.12.0.md)
 
 ## At a glance
 
