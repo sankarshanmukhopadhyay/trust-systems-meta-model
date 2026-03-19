@@ -66,11 +66,13 @@
       "claims": [
         {
           "id": "claim.signed-response-supported",
-          "statement": "registry supports signed response envelopes"
+          "statement": "registry supports signed response envelopes",
+          "subjectRef": "entity.registry-operator"
         },
         {
           "id": "claim.freshness-window",
-          "statement": "metadata freshness window is 24 hours"
+          "statement": "metadata freshness window is 24 hours",
+          "subjectRef": "entity.registry-operator"
         }
       ]
     }

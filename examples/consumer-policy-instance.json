@@ -66,11 +66,13 @@
       "claims": [
         {
           "id": "claim.reputation-signal",
-          "statement": "token carries a high reputation score"
+          "statement": "token carries a high reputation score",
+          "subjectRef": "entity.marketplace"
         },
         {
           "id": "claim.finality-status",
-          "statement": "transfer is final"
+          "statement": "transfer is final",
+          "subjectRef": "entity.marketplace"
         }
       ]
     }
@@ -179,6 +181,23 @@
       "class": "interaction",
       "action": "show contextual warning and suppress strong trust badge",
       "status": "degraded"
+    }
+  ],
+  "levelFrameworks": [
+    {
+      "id": "levels.consumer-rigor",
+      "name": "Consumer decision rigor levels",
+      "levels": [
+        "L1",
+        "L2"
+      ]
+    }
+  ],
+  "lifecycleEvents": [
+    {
+      "id": "event.metadata-refresh",
+      "type": "refresh",
+      "targetRef": "artifact.erc8004-metadata"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "registryId": "tsmm-registry-example-v1",
   "label": "TSMM Registry Example",
-  "description": "Illustrative registry publication that indexes a TSMM graph, ecosystem profiles, and external ecosystem bindings.",
+  "description": "Illustrative registry publication that indexes a TSMM graph, ecosystem profiles, bindings, and agentic extension instances.",
   "publisher": "TSMM Maintainers",
   "version": "1.0.0",
   "defaultProfile": "tsi-core",
@@ -14,7 +14,10 @@
       "status": "active",
       "profile": "tsi-core",
       "description": "Reference graph for a registry-mediated credential ecosystem.",
-      "tags": ["reference", "graph"]
+      "tags": [
+        "reference",
+        "graph"
+      ]
     },
     {
       "id": "entry.profile.agent-governance",
@@ -24,7 +27,10 @@
       "status": "active",
       "profile": "agent-governance-network",
       "description": "Runtime governance topology for delegated agent ecosystems.",
-      "tags": ["agent", "profile"]
+      "tags": [
+        "agent",
+        "profile"
+      ]
     },
     {
       "id": "entry.binding.trqp",
@@ -34,7 +40,10 @@
       "status": "active",
       "bindingTarget": "TRQP",
       "description": "Semantic alignment between TSMM and the TRQP stack.",
-      "tags": ["binding", "trqp"]
+      "tags": [
+        "binding",
+        "trqp"
+      ]
     },
     {
       "id": "entry.binding.openid-fed",
@@ -44,7 +53,49 @@
       "status": "active",
       "bindingTarget": "OpenID Federation",
       "description": "Semantic alignment between TSMM and OpenID Federation.",
-      "tags": ["binding", "openid"]
+      "tags": [
+        "binding",
+        "openid"
+      ]
+    },
+    {
+      "id": "entry.binding.dcas",
+      "kind": "binding",
+      "label": "DCAS binding",
+      "location": "bindings/dcas/tsmm-dcas-binding.json",
+      "status": "active",
+      "bindingTarget": "DCAS",
+      "description": "Semantic alignment between TSMM and DCAS.",
+      "tags": [
+        "binding",
+        "dcas"
+      ]
+    },
+    {
+      "id": "entry.binding.vtc",
+      "kind": "binding",
+      "label": "Verifiable Trust Communities binding",
+      "location": "bindings/vtc/tsmm-vtc-binding.json",
+      "status": "active",
+      "bindingTarget": "Verifiable Trust Communities",
+      "description": "Semantic alignment between TSMM and the Verifiable Trust Communities extension.",
+      "tags": [
+        "binding",
+        "vtc"
+      ]
+    },
+    {
+      "id": "entry.agentic.instance.reference",
+      "kind": "agentic-instance",
+      "label": "Agentic AI extension instance",
+      "location": "examples/agentic-ai-extension-instance.json",
+      "status": "active",
+      "profile": "agentic-profile",
+      "description": "Reference agentic extension instance used for delegated-action and oversight validation.",
+      "tags": [
+        "agentic",
+        "instance"
+      ]
     }
   ],
   "metadata": {

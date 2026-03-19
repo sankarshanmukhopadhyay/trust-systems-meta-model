@@ -1,19 +1,19 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
-applicable_version: v0.10.0
+last_reviewed: 2026-03-19
+applicable_version: v0.11.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.10.0-blue)](releases/v0.10.0.md)
+[![Release](https://img.shields.io/badge/release-v0.11.0-blue)](releases/v0.11.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.10.0  
+**Version:** v0.11.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -83,6 +83,7 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
   - `docs/conformance/tsmm-profile-minimal.md`
   - `docs/conformance/tsmm-profile-operational.md`
   - `docs/conformance/tsmm-profile-assured.md`
+  - `docs/conformance/tsmm-profile-agentic.md`
   - `docs/conformance/tsmm-conformance-checklist.md`
 - Reference patterns:
   - `docs/patterns/trust-registry-pattern.md`
@@ -109,8 +110,12 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
   - `docs/bindings/index.md`
   - `docs/bindings/trqp-binding.md`
   - `docs/bindings/openid-federation-binding.md`
+  - `docs/bindings/dcas-binding.md`
+  - `docs/bindings/vtc-binding.md`
   - `bindings/trqp/tsmm-trqp-binding.json`
   - `bindings/openid-federation/tsmm-openid-federation-binding.json`
+  - `bindings/dcas/tsmm-dcas-binding.json`
+  - `bindings/vtc/tsmm-vtc-binding.json`
 - Registry publication:
   - `docs/registry/tsmm-registry-format.md`
   - `schemas/tsmm-registry.schema.json`
@@ -118,6 +123,7 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Rendering utility:
   - `scripts/render_tsmm_graph.py`
 - Documentation governance and freshness: `docs/documentation-governance.md`
+- Roadmap: `docs/roadmap.md`
 
 ## Ecosystem positioning
 
@@ -147,9 +153,9 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## What changed in v0.10.0
+## What changed in v0.11.0
 
-v0.10.0 adds ecosystem bindings and a portable registry publication format so TSMM can describe not only abstract trust topologies, but also how real ecosystems align to them and publish those alignments for tooling.
+v0.11.0 adds ecosystem bindings and a portable registry publication format so TSMM can describe not only abstract trust topologies, but also how real ecosystems align to them and publish those alignments for tooling.
 
 It adds:
 
@@ -160,6 +166,19 @@ It adds:
 - a registry explainer (`docs/registry/tsmm-registry-format.md`) describing how ecosystems can publish TSMM graphs, profiles, and bindings together
 - a renderer (`scripts/render_tsmm_graph.py`) for Mermaid and DOT output from TSMM graph instances
 - updated validation coverage for the new graph profile and registry example
+
+## What changed in v0.11.0
+
+v0.11.0 closes the main structural gaps exposed by v0.10.0. It completes the binding catalog for DCAS and Verifiable Trust Communities, adds a cross-cutting agentic conformance profile, extends the registry format to index agentic instances, improves graph rendering for grouped review, and refreshes governance-facing documentation.
+
+It adds:
+
+- machine-readable DCAS and VTC bindings under `bindings/` with paired explainer documents under `docs/bindings/`
+- an agentic conformance profile under `docs/conformance/tsmm-profile-agentic.md`
+- an expanded registry example that publishes graphs, profiles, bindings, and agentic instances together
+- `agentic-instance` support in `schemas/tsmm-registry.schema.json`
+- `--cluster` and `--annotate-profiles` options in `scripts/render_tsmm_graph.py`
+- refreshed bindings, glossary, checklist, implementer guide, freshness audit, and roadmap documentation
 
 ## What changed in v0.9.0
 

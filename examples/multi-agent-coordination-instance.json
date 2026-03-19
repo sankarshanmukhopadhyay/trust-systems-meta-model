@@ -54,7 +54,8 @@
       "resourceRef": "res.supplier-db",
       "localOversightMode": "autonomous",
       "effectiveOversightMode": "sampled-review",
-      "traceRef": "trace.lookup-1"
+      "traceRef": "trace.lookup-1",
+      "capabilityRef": "cap.lookup-supplier"
     },
     {
       "id": "act.summary-generate",
@@ -64,7 +65,8 @@
       "resourceRef": "res.summary-output",
       "localOversightMode": "sampled-review",
       "effectiveOversightMode": "sampled-review",
-      "traceRef": "trace.summary-1"
+      "traceRef": "trace.summary-1",
+      "capabilityRef": "cap.generate-summary"
     }
   ],
   "coordinationTraceRecord": {

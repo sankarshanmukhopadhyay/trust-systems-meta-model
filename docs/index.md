@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
-applicable_version: v0.10.0
+last_reviewed: 2026-03-19
+applicable_version: v0.11.0
 tier: 0
 ---
 
@@ -37,6 +37,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [TSMM Minimal Profile](conformance/tsmm-profile-minimal.md)
 - [TSMM Operational Profile](conformance/tsmm-profile-operational.md)
 - [TSMM Assured Profile](conformance/tsmm-profile-assured.md)
+- [TSMM Agentic Conformance Profile](conformance/tsmm-profile-agentic.md)
 
 ## Reference patterns
 
@@ -66,8 +67,12 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Bindings overview](bindings/index.md)
 - [TRQP binding](bindings/trqp-binding.md)
 - [OpenID Federation binding](bindings/openid-federation-binding.md)
+- [DCAS binding](bindings/dcas-binding.md)
+- [Verifiable Trust Communities binding](bindings/vtc-binding.md)
 - `bindings/trqp/tsmm-trqp-binding.json`
 - `bindings/openid-federation/tsmm-openid-federation-binding.json`
+- `bindings/dcas/tsmm-dcas-binding.json`
+- `bindings/vtc/tsmm-vtc-binding.json`
 
 ## Executable graph layer
 
@@ -92,6 +97,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Freshness audit](freshness-audit.md)
 - [Glossary](glossary.md)
 - [Getting Started: Implementer Guide](getting-started-implementer-guide.md)
+- [Roadmap](roadmap.md)
 
 ## Model thesis
 
@@ -99,4 +105,4 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Release snapshot
 
-This documentation set is aligned to **v0.10.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, and ecosystem publication artifacts so the reference model does not quietly drift into decorative theory.
+This documentation set is aligned to **v0.11.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, ecosystem publication artifacts, and indexed agentic instances so the reference model does not quietly drift into decorative theory.

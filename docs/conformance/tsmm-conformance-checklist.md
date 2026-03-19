@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
-applicable_version: v0.10.0
+last_reviewed: 2026-03-19
+applicable_version: v0.11.0
 tier: 1
 ---
 
@@ -144,3 +144,14 @@ For agentic system implementations, also read `docs/model/agentic-authz-analysis
 5. Retain the completed checklist as part of the implementation evidence package.
 
 This checklist is a self-assessment tool. It does not constitute third-party certification or independent assurance.
+
+
+## Agentic profile overlay
+
+Use this section when TSMM governs delegated or agentic action. This overlay may be applied alongside the Operational or Assured baseline.
+
+- [ ] Delegation artifacts are explicit, reviewable, and revocable
+- [ ] Oversight mode is declared for governed action classes
+- [ ] Risk tiers are documented with rationale
+- [ ] Trace records preserve action, context, and resulting effect references
+- [ ] Multi-agent coordination boundaries are documented where relevant

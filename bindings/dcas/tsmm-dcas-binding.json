@@ -1,0 +1,54 @@
+{
+  "bindingId": "tsmm.binding.dcas.v1",
+  "label": "TSMM to DCAS binding",
+  "description": "Maps DTG Conformance & Assurance System (DCAS) concepts into TSMM abstractions for assurance, evidence, and evaluation workflows.",
+  "targetEcosystem": "DCAS",
+  "version": "1.0.0",
+  "sources": [
+    "docs/crosswalks/dcas-crosswalk.md",
+    "docs/bindings/dcas-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "DCAS Control Objective",
+      "tsmmType": "Policy",
+      "bindingStrength": "approximate",
+      "description": "Normative expectation used to govern evaluation and downstream trust effects."
+    },
+    {
+      "externalConcept": "DCAS Evidence Bundle",
+      "tsmmType": "EvidenceBundle",
+      "bindingStrength": "exact",
+      "description": "Structured evidence set used to substantiate conformance and assurance posture.",
+      "relatedDocs": [
+        "docs/patterns/assurance-evidence-pattern.md"
+      ]
+    },
+    {
+      "externalConcept": "DCAS Assessment",
+      "tsmmType": "Assessment",
+      "bindingStrength": "exact",
+      "description": "Formal evaluation activity over declared controls and observed evidence."
+    },
+    {
+      "externalConcept": "DCAS Assurance Profile",
+      "tsmmType": "AssuranceProfile",
+      "bindingStrength": "exact",
+      "description": "Profile defining rigor, evidence depth, and assessment expectations."
+    },
+    {
+      "externalConcept": "Relying verifier or assessor",
+      "tsmmType": "Verifier",
+      "bindingStrength": "approximate",
+      "description": "Actor evaluating whether evidence and controls are sufficient in context."
+    }
+  ],
+  "notes": [
+    "DCAS is assurance-heavy and maps most directly into the policy, evidence, assessment, and profile surfaces of TSMM.",
+    "This binding is semantic and explanatory. It does not replace DCAS terminology or normative requirements."
+  ],
+  "metadata": {
+    "maintainer": "maintainers",
+    "status": "draft"
+  }
+}

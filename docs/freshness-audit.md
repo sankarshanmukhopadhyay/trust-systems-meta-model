@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
-applicable_version: v0.10.0
+last_reviewed: 2026-03-19
+applicable_version: v0.11.0
 tier: 2
 ---
 
@@ -53,3 +53,20 @@ The release introduced new model, conformance, evaluation, security, and pattern
 ## v0.6.0 additions
 
 The release added implementer-readiness artifacts and extended the multi-agent governance model. New documents include the conformance self-assessment checklist, the getting-started implementer guide, the multi-agent coordination pattern, the multi-agent extension schema and example, the OpenID Federation crosswalk, and the schema coverage validation script. All new documents carry v0.6.0 frontmatter. Existing documents were updated to v0.6.0 version metadata. Release notes check confirmed no broken internal links introduced.
+
+
+## v0.8.0 additions
+
+The release deepened the effect-centered evaluation logic and extension framing. Freshness checks should confirm that those conceptual additions remain aligned with later conformance, registry, and graph artifacts.
+
+## v0.9.0 additions
+
+The release added the executable graph layer, graph validator, and reusable profile instances. Freshness checks should confirm that the graph schema, examples, README navigation, and documentation site continue to describe the same allowed topology shape.
+
+## v0.10.0 additions
+
+The release introduced bindings, the registry format, and the graph renderer. Freshness checks should confirm that all published bindings remain machine-readable, all registry examples validate, and all binding and registry documentation paths remain accurate.
+
+## v0.11.0 additions
+
+The release closes the binding catalog gap for DCAS and Verifiable Trust Communities, adds an agentic conformance profile, extends registry indexing to include agentic instances, and enhances the graph renderer with clustering and profile annotation. Freshness checks should confirm that the README, docs home, glossary, checklist, implementer guide, and registry example all reference the new artifacts consistently.

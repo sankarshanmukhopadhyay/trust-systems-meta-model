@@ -1,34 +1,28 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
-applicable_version: v0.10.0
-tier: 0
+last_reviewed: 2026-03-19
+applicable_version: v0.11.0
+tier: 1
 ---
 
 # TSMM Ecosystem Bindings
 
-TSMM bindings map external ecosystem concepts into TSMM abstractions. This is the practical move that keeps the model from becoming a beautiful conceptual terrarium: glass walls, lovely structure, zero operational gravity.
+Bindings package semantic alignments between TSMM and adjacent ecosystems into machine-readable JSON artifacts paired with brief human-readable explanation documents.
 
-Bindings let implementers ask a much harder and more useful question than “what does TSMM mean?”
-
-They ask:
-
-- how does a real ecosystem map into TSMM terms
-- where is the mapping exact versus approximate
-- which ecosystem concepts bundle several TSMM abstractions together
-- how can one topology be compared with another without flattening their differences
-
-## Binding catalog
+## Available bindings
 
 - [TRQP binding](trqp-binding.md)
 - [OpenID Federation binding](openid-federation-binding.md)
+- [DCAS binding](dcas-binding.md)
+- [Verifiable Trust Communities binding](vtc-binding.md)
 
 ## Machine-readable artifacts
 
 - `bindings/trqp/tsmm-trqp-binding.json`
 - `bindings/openid-federation/tsmm-openid-federation-binding.json`
-- `schemas/tsmm-binding.schema.json`
+- `bindings/dcas/tsmm-dcas-binding.json`
+- `bindings/vtc/tsmm-vtc-binding.json`
 
-## Design intent
+## Publication note
 
-Bindings are semantic translation layers. They do not replace upstream specifications, and they do not claim that every concept lands in TSMM with perfect symmetry. In some ecosystems, one external object combines registry, governance, and evidence semantics in a single artifact. TSMM pulls those apart so the governance logic can be seen clearly.
+As of v0.11.0, bindings are intended to be indexable through the TSMM registry format so graphs, profiles, bindings, and extension instances can travel together as publishable infrastructure.

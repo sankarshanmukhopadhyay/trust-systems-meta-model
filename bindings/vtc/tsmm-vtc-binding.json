@@ -1,0 +1,51 @@
+{
+  "bindingId": "tsmm.binding.vtc.v1",
+  "label": "TSMM to Verifiable Trust Communities binding",
+  "description": "Maps Verifiable Trust Communities (VTC) extension concepts into TSMM abstractions so community-governed trust structures can be indexed and compared consistently.",
+  "targetEcosystem": "Verifiable Trust Communities",
+  "version": "1.0.0",
+  "sources": [
+    "docs/extensions/verifiable-trust-communities-extension.md",
+    "docs/bindings/vtc-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "Verifiable Trust Community",
+      "tsmmType": "TrustDomain",
+      "bindingStrength": "exact",
+      "description": "Community-bounded trust domain governed by explicit participation and policy expectations."
+    },
+    {
+      "externalConcept": "Community Governance Authority",
+      "tsmmType": "GovernanceAuthority",
+      "bindingStrength": "exact",
+      "description": "Authority defining participation conditions, review rules, and remediation expectations."
+    },
+    {
+      "externalConcept": "Community Member Registry",
+      "tsmmType": "TrustRegistry",
+      "bindingStrength": "approximate",
+      "description": "Registry-like publication and lookup surface for community state and member status."
+    },
+    {
+      "externalConcept": "Membership Credential",
+      "tsmmType": "Credential",
+      "bindingStrength": "exact",
+      "description": "Credential or attestable artifact expressing community membership or standing."
+    },
+    {
+      "externalConcept": "Community Relying Service",
+      "tsmmType": "RelyingParty",
+      "bindingStrength": "exact",
+      "description": "Downstream consumer that depends on community trust state to produce effects."
+    }
+  ],
+  "notes": [
+    "The VTC extension is modeled as a specialized trust domain with additional governance and membership semantics.",
+    "This binding makes the extension publishable in the same registry vocabulary as core TSMM graphs and external ecosystem bindings."
+  ],
+  "metadata": {
+    "maintainer": "maintainers",
+    "status": "draft"
+  }
+}

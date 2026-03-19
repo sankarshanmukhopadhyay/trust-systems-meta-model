@@ -66,7 +66,8 @@
       "claims": [
         {
           "id": "claim.agent-scope",
-          "statement": "agent may retrieve quotes but may not submit purchase orders"
+          "statement": "agent may retrieve quotes but may not submit purchase orders",
+          "subjectRef": "entity.agent"
         }
       ]
     }
@@ -90,7 +91,8 @@
       "type": "audit-log",
       "supportsRefs": [
         "req.review-logging",
-        "claim.agent-scope"
+        "claim.agent-scope",
+        "control.scope-enforcement"
       ]
     }
   ],
@@ -152,6 +154,32 @@
       "id": "event.delegation-revocation",
       "type": "revocation",
       "targetRef": "auth.retrieve-quotes"
+    }
+  ],
+  "threats": [
+    {
+      "id": "threat.scope-creep",
+      "type": "authority-expansion",
+      "description": "The delegated agent attempts actions beyond its approved scope."
+    }
+  ],
+  "controls": [
+    {
+      "id": "control.scope-enforcement",
+      "type": "delegation-scope-check",
+      "mitigatesThreatRefs": [
+        "threat.scope-creep"
+      ]
+    }
+  ],
+  "levelFrameworks": [
+    {
+      "id": "levels.agent-governance",
+      "name": "Delegated action rigor",
+      "levels": [
+        "baseline",
+        "reviewed"
+      ]
     }
   ]
 }
