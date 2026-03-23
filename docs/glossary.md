@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-23
-applicable_version: v0.13.0
+applicable_version: v0.14.0
 tier: 1
 ---
 
@@ -21,6 +21,9 @@ A bounded right, mandate, or recognized competence attached to a role.
 
 ## Claim
 A proposition asserted by or about an entity, artifact, system, or state.
+
+## ContentProvenancePolicy
+A governance policy specifying what must be known and verified about interaction payload content before it can be acted upon, stored, or forwarded. Defined per content modality (text, structured-data, file-reference, audio-video, embedded-ui, other). Models provenance requirements, sanitization obligations, redaction rules, and evidence capture obligations — not wire-level content type details. See `docs/model/content-provenance-policy.md`.
 
 ## Control
 A safeguard that reduces a defined risk or constrains unsafe behavior.
@@ -61,6 +64,9 @@ A tiered expression of expected rigor or trust posture, such as assurance levels
 ## InteractionContext
 A session or conversation scope that groups tasks, messages, and trust decisions into a shared governance envelope. Extends `ExecutionContext` to the session level: captures accumulated governance state across a sequence of interactions, including what authority and evidence carry forward and what conditions trigger re-authorization. See `docs/model/interaction-context.md`.
 
+## InteractionTask
+A durable, stateful work unit with governance-significant state transitions (submitted, working, input-required, auth-required, completed, cancelled, failed), artifact accumulation, and cancellation/continuation semantics. Distinct from `ExecutionContext` (per-evaluation operational parameters) and `InteractionContext` (session-level governance envelope). The `auth-required` and `input-required` states link to an `AuthorizationCheckpoint`. See `docs/model/interaction-task.md`.
+
 ## Lifecycle Event
 A state change relevant to trust posture, such as issuance, revocation, expiry, reassessment, or remediation closure.
 
@@ -81,6 +87,9 @@ The component that enforces a policy decision by permitting or blocking an effec
 
 ## Policy Information Point (PIP)
 The component that retrieves contextual attribute data to support PDP evaluation. In TSMM terms, the retrieval of Evidence, Artifact state, and Lifecycle Event data. See `docs/model/dynamic-authorization-framing.md`.
+
+## ObservabilityMode
+The governance observability properties of an interaction delivery channel — what can be known about delivery, timing, and progress given the channel's delivery model (`synchronous`, `streaming`, `polling`, `push-callback`). Properties include `auditabilityLevel` (full / partial / metadata-only / none), `replayRisk`, `userAwarenessModel` (real-time / delayed / opaque), and required compensating controls. Models governance implications, not transport mechanics. See `docs/model/observability-mode.md`.
 
 ## OpacityBoundary
 A structural governance constraint declaring what is deliberately not observable about an agent's operation and the trust and evidence implications of that non-observability. TSMM models what is observable; OpacityBoundary models what is structurally unknowable and how trust decisions must be scoped accordingly. Properties include `opaqueComponents` (internalState, toolSet, memory, reasoningTrace), `evidenceGap`, `trustScopeConstraint`, and optional `mitigations`. See `docs/model/opacity-boundary.md`.

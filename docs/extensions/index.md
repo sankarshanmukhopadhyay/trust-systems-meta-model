@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-23
-applicable_version: v0.13.0
+applicable_version: v0.14.0
 tier: 1
 ---
 
@@ -24,7 +24,7 @@ This keeps the core stable while allowing real-world application families to add
 - [Verifiable Trust Communities Extension](verifiable-trust-communities-extension.md)
 - [Assurance Extension](assurance-extension.md)
 - [Evidence Artifact Extension](../model/evidence-artifact.md) — schema: `schemas/tsmm-evidence-artifact-extension.schema.json`
-- [Agent Interaction Extension](../model/service-descriptor.md) *(v0.13.0)* — schema: `schemas/tsmm-agent-interaction-extension.schema.json` — models trust-relevant aspects of agent-to-agent interaction: [ServiceDescriptor](../model/service-descriptor.md), [SkillContract](../model/skill-contract.md), [InteractionContext](../model/interaction-context.md), [AuthorizationCheckpoint](../model/authorization-checkpoint.md), [ExtensionContract](../model/extension-contract.md), [OpacityBoundary](../model/opacity-boundary.md), [PeerTrustRelation](../model/peer-trust-relation.md)
+- [Agent Interaction Extension](../model/service-descriptor.md) *(v0.13.0 / v0.14.0)* — schema: `schemas/tsmm-agent-interaction-extension.schema.json` — models trust-relevant aspects of agent-to-agent interaction: [ServiceDescriptor](../model/service-descriptor.md), [SkillContract](../model/skill-contract.md), [InteractionContext](../model/interaction-context.md), [AuthorizationCheckpoint](../model/authorization-checkpoint.md), [ExtensionContract](../model/extension-contract.md), [OpacityBoundary](../model/opacity-boundary.md), [PeerTrustRelation](../model/peer-trust-relation.md), [InteractionTask](../model/interaction-task.md), [ContentProvenancePolicy](../model/content-provenance-policy.md), [ObservabilityMode](../model/observability-mode.md)
 - [Dynamic Authorization Pattern](../patterns/dynamic-authz-pattern.md) *(experimental)* — see also: [Dynamic Authorization Framing](../model/dynamic-authorization-framing.md), [XACML / ABAC Crosswalk](../crosswalks/xacml-abac-crosswalk.md)
 
 ## Promotion rule

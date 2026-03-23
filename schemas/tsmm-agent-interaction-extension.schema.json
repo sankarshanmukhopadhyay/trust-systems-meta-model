@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.org/tsmm/schemas/tsmm-agent-interaction-extension.schema.json",
-  "title": "TSMM Agent Interaction Extension Instance v0.13.0",
+  "title": "TSMM Agent Interaction Extension Instance v0.14.0",
   "description": "Extension schema for modeling trust-relevant aspects of agent-to-agent interaction: service disclosure, capability contracts, session continuity, runtime authorization checkpoints, extension negotiation, opacity constraints, and lateral peer trust.",
   "type": "object",
   "required": [
@@ -54,6 +54,24 @@
       "type": "array",
       "items": {
         "$ref": "#/$defs/extensionContract"
+      }
+    },
+    "interactionTasks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/interactionTask"
+      }
+    },
+    "contentProvenancePolicies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/contentProvenancePolicy"
+      }
+    },
+    "observabilityModes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/observabilityMode"
       }
     }
   },
@@ -460,6 +478,177 @@
         "resolutionRecord": {
           "type": "string",
           "description": "Optional record of why the negotiation reached its current status."
+        }
+      },
+      "additionalProperties": false
+    },
+    "interactionTask": {
+      "type": "object",
+      "description": "A durable, stateful work unit with governance-significant state transitions, artifact accumulation, and cancellation/continuation semantics. Distinct from ExecutionContext (which models single-evaluation operational parameters) and from InteractionContext (which models session-level governance state). InteractionTask models the bounded piece of work in progress \u2014 its status, what it has produced, and how it was resolved or terminated.",
+      "required": [
+        "id",
+        "contextRef",
+        "initiatorRef",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "contextRef": {
+          "$ref": "#/$defs/idString",
+          "description": "The InteractionContext within which this task operates."
+        },
+        "initiatorRef": {
+          "$ref": "#/$defs/idString",
+          "description": "The entity that initiated this task."
+        },
+        "assigneeRef": {
+          "$ref": "#/$defs/idString",
+          "description": "The entity currently responsible for executing this task."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "submitted",
+            "working",
+            "input-required",
+            "auth-required",
+            "completed",
+            "cancelled",
+            "failed"
+          ],
+          "description": "Governance-significant task state. 'submitted': accepted and queued. 'working': actively executing. 'input-required': paused, awaiting additional input (non-terminal). 'auth-required': paused at an AuthorizationCheckpoint (non-terminal). 'completed': successfully resolved (terminal). 'cancelled': terminated before completion (terminal). 'failed': terminated due to error or unresolvable checkpoint (terminal)."
+        },
+        "authorizationCheckpointRef": {
+          "$ref": "#/$defs/idString",
+          "description": "Reference to the active AuthorizationCheckpoint when status is 'auth-required' or 'input-required'."
+        },
+        "artifactRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "description": "Artifacts produced or accumulated during task execution."
+        },
+        "cancellationReason": {
+          "type": "string",
+          "description": "Reason recorded when status is 'cancelled'. Required for governance traceability when a task is terminated before completion."
+        },
+        "historyRef": {
+          "$ref": "#/$defs/idString",
+          "description": "Optional reference to a trace record capturing the task's execution history."
+        }
+      },
+      "additionalProperties": false
+    },
+    "contentProvenancePolicy": {
+      "type": "object",
+      "description": "A policy governing the trust-relevant properties of interaction payload content: provenance requirements, sanitization obligations, redaction rules, and evidence capture obligations, differentiated by content modality. This is not a wire-level content type registry \u2014 it is the governance envelope specifying what must be known and verified about payload content before it can be acted upon, stored, or forwarded.",
+      "required": [
+        "id",
+        "applicableModalities",
+        "provenanceRequirements",
+        "sanitizationRequired",
+        "evidenceCaptureObligation"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "applicableModalities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "text",
+              "structured-data",
+              "file-reference",
+              "audio-video",
+              "embedded-ui",
+              "other"
+            ]
+          },
+          "description": "Content modalities to which this policy applies."
+        },
+        "provenanceRequirements": {
+          "type": "string",
+          "description": "What must be known about the origin, authorship, or chain of custody of content before it may be used. Includes any signing, attestation, or source verification requirements."
+        },
+        "sanitizationRequired": {
+          "type": "boolean",
+          "description": "Whether content must be sanitized before processing or forwarding. Applies especially to file-reference and structured-data modalities where injection or traversal risks apply."
+        },
+        "redactionRules": {
+          "type": "string",
+          "description": "Rules governing redaction of sensitive content before storage, forwarding, or evidence capture."
+        },
+        "evidenceCaptureObligation": {
+          "type": "string",
+          "description": "What must be captured as evidence when content of this modality is processed. Specifies the minimum evidence record needed to satisfy auditability and provenance requirements."
+        }
+      },
+      "additionalProperties": false
+    },
+    "observabilityMode": {
+      "type": "object",
+      "description": "The governance observability properties of an interaction delivery channel \u2014 what can be known about delivery, timing, and progress given the channel's delivery model. Models the governance coverage that is or is not possible, and what compensating controls are required. Not the channel type itself, but its governance implications.",
+      "required": [
+        "id",
+        "deliveryModel",
+        "auditabilityLevel",
+        "replayRisk",
+        "userAwarenessModel"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "deliveryModel": {
+          "type": "string",
+          "enum": [
+            "synchronous",
+            "streaming",
+            "polling",
+            "push-callback"
+          ],
+          "description": "The delivery model of the interaction channel."
+        },
+        "auditabilityLevel": {
+          "type": "string",
+          "enum": [
+            "full",
+            "partial",
+            "metadata-only",
+            "none"
+          ],
+          "description": "What level of auditability is structurally achievable given this delivery model. 'full': complete request/response record available. 'partial': progress or intermediate state recordable but not complete. 'metadata-only': timing and routing metadata only. 'none': no reliable audit trail possible without external instrumentation."
+        },
+        "replayRisk": {
+          "type": "string",
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ],
+          "description": "Risk of undetected replay or duplicate delivery in this channel."
+        },
+        "userAwarenessModel": {
+          "type": "string",
+          "enum": [
+            "real-time",
+            "delayed",
+            "opaque"
+          ],
+          "description": "Whether and when a human principal is aware of interaction progress. 'real-time': principal can observe progress as it occurs. 'delayed': principal is notified after completion or at intervals. 'opaque': principal has no visibility into in-progress state."
+        },
+        "requiredCompensatingControls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Controls required to compensate for governance gaps introduced by this delivery model, e.g. idempotency keys, replay detection, out-of-band notification, or mandatory audit logging."
         }
       },
       "additionalProperties": false

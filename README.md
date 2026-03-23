@@ -1,19 +1,19 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-23
-applicable_version: v0.13.0
+applicable_version: v0.14.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.13.0-blue)](releases/v0.13.0.md)
+[![Release](https://img.shields.io/badge/release-v0.14.0-blue)](releases/v0.14.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.13.0  
+**Version:** v0.14.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -87,6 +87,11 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Peer trust relation: `docs/model/peer-trust-relation.md`
 - Schema: `schemas/tsmm-agent-interaction-extension.schema.json`
 - Example: `examples/agent-interaction-extension-instance.json`
+- Interaction task: `docs/model/interaction-task.md`
+- Content provenance policy: `docs/model/content-provenance-policy.md`
+- Observability mode: `docs/model/observability-mode.md`
+- A2A crosswalk: `docs/crosswalks/a2a-crosswalk.md`
+- A2A binding: `docs/bindings/a2a-binding.md`
 
 ## Ecosystem positioning
 
@@ -116,24 +121,22 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## What changed in v0.13.0
+## What changed in v0.14.0
 
-v0.13.0 adds the Agent Interaction Extension — seven new trust-semantic abstractions for agent-to-agent interaction. The extension is aimed at A2A-class agent ecosystems and any protocol where agents discover, negotiate, and interact as peers without hierarchical authority relationships. No core model changes.
+v0.14.0 completes the Agent Interaction Extension and delivers the A2A binding. Three deferred abstractions land, the A2A crosswalk and machine-readable binding are published, and a full A2A-aligned worked example is added. No core model changes.
 
 It adds:
 
-- `schemas/tsmm-agent-interaction-extension.schema.json` — new extension schema with seven abstractions
-- `examples/agent-interaction-extension-instance.json` — two-party procurement interaction worked example
-- `docs/model/service-descriptor.md` — trust-relevant capability disclosure artifacts
-- `docs/model/skill-contract.md` — operational envelope separating capability from authorization
-- `docs/model/interaction-context.md` — session-level governance state across multi-turn interactions
-- `docs/model/authorization-checkpoint.md` — runtime authorization pause as a first-class trust event
-- `docs/model/extension-contract.md` — negotiated extension compatibility record
-- `docs/model/opacity-boundary.md` — governance constraints from deliberate agent non-observability
-- `docs/model/peer-trust-relation.md` — lateral peer trust distinct from hierarchical delegation
-- Agent Interaction Extension checklist tier added to `docs/conformance/tsmm-conformance-checklist.md`
-- Seven new terms added to `docs/glossary.md`
-- `docs/extensions/index.md` updated with Agent Interaction Extension entry
+- `docs/model/interaction-task.md` — durable stateful work unit with governance-significant status transitions
+- `docs/model/content-provenance-policy.md` — governance obligations for payload content by modality
+- `docs/model/observability-mode.md` — governance coverage constraints from delivery model
+- `examples/agent-interaction-a2a-binding-instance.json` — full worked example exercising all 10 abstractions
+- `docs/crosswalks/a2a-crosswalk.md` — A2A protocol concept-level alignment
+- `docs/bindings/a2a-binding.md` — A2A binding prose
+- `bindings/a2a/tsmm-a2a-binding.json` — machine-readable A2A binding
+- Three new terms added to `docs/glossary.md`
+- Conformance checklist extended with AI-15 through AI-21
+- `docs/bindings/index.md` updated with A2A entry
 
 ## Repo contents
 
@@ -144,6 +147,8 @@ trust-systems-meta-model/
 │       ├── pages.yml
 │       └── validate.yml
 ├── bindings/
+│   ├── a2a/
+│   │   └── tsmm-a2a-binding.json
 │   ├── dcas/
 │   │   └── tsmm-dcas-binding.json
 │   ├── openid-federation/
@@ -154,14 +159,65 @@ trust-systems-meta-model/
 │       └── tsmm-vtc-binding.json
 ├── docs/
 │   ├── bindings/
+│   │   ├── a2a-binding.md
+│   │   ├── dcas-binding.md
+│   │   ├── index.md
+│   │   ├── openid-federation-binding.md
+│   │   ├── trqp-binding.md
+│   │   └── vtc-binding.md
 │   ├── conformance/
+│   │   ├── tsmm-conformance-checklist.md
+│   │   ├── tsmm-profile-agentic.md
+│   │   ├── tsmm-profile-assured.md
+│   │   ├── tsmm-profile-minimal.md
+│   │   └── tsmm-profile-operational.md
 │   ├── crosswalks/
+│   │   ├── a2a-crosswalk.md
+│   │   ├── agent-taxonomy-ssa-crosswalk.md
+│   │   ├── dcas-crosswalk.md
+│   │   ├── erc-8004-csp-crosswalk.md
+│   │   ├── openid-federation-crosswalk.md
+│   │   ├── trqp-tspp-crosswalk.md
+│   │   ├── trust-reference-assurance-architecture-crosswalk.md
+│   │   └── xacml-abac-crosswalk.md
 │   ├── evaluation/
+│   │   └── effect-evaluation-model.md
 │   ├── extensions/
+│   │   ├── agentic-ai-extension.md
+│   │   ├── assurance-extension.md
+│   │   ├── index.md
+│   │   └── verifiable-trust-communities-extension.md
 │   ├── model/
+│   │   ├── agent-role-classification.md
+│   │   ├── agentic-authz-analysis.md
+│   │   ├── attention-governance.md
+│   │   ├── authorization-checkpoint.md
+│   │   ├── content-provenance-policy.md
+│   │   ├── dynamic-authorization-framing.md
+│   │   ├── evidence-artifact.md
+│   │   ├── extension-contract.md
+│   │   ├── interaction-context.md
+│   │   ├── interaction-task.md
+│   │   ├── observability-mode.md
+│   │   ├── opacity-boundary.md
+│   │   ├── peer-trust-relation.md
+│   │   ├── service-descriptor.md
+│   │   ├── skill-contract.md
+│   │   ├── tsmm-entities.md
+│   │   ├── tsmm-graph-model.md
+│   │   ├── tsmm-lifecycle.md
+│   │   └── tsmm-relationships.md
 │   ├── patterns/
+│   │   ├── assurance-evidence-pattern.md
+│   │   ├── credential-verification-pattern.md
+│   │   ├── delegated-agent-pattern.md
+│   │   ├── dynamic-authz-pattern.md
+│   │   ├── multi-agent-coordination-pattern.md
+│   │   └── trust-registry-pattern.md
 │   ├── registry/
+│   │   └── tsmm-registry-format.md
 │   ├── security/
+│   │   └── trust-system-threat-model.md
 │   ├── core-model.md
 │   ├── documentation-governance.md
 │   ├── effect-centered-trust-decision-model.md
@@ -173,7 +229,14 @@ trust-systems-meta-model/
 │   └── roadmap.md
 ├── examples/
 │   ├── profiles/
+│   │   ├── agent-governance-network.json
+│   │   ├── agent-trust-network.json
+│   │   ├── dpi-trust-layer.json
+│   │   ├── ssi-ecosystem.json
+│   │   └── trust-registry-federation.json
 │   ├── registries/
+│   │   └── tsmm-registry-example.json
+│   ├── agent-interaction-a2a-binding-instance.json
 │   ├── agent-interaction-extension-instance.json
 │   ├── agentic-ai-extension-instance.json
 │   ├── assurance-extension-instance.json
@@ -185,9 +248,18 @@ trust-systems-meta-model/
 │   ├── tsmm-ecosystem-example.json
 │   └── verifiable-trust-community-instance.json
 ├── releases/
+│   ├── v0.3.0.md
+│   ├── v0.4.0.md
+│   ├── v0.5.0.md
+│   ├── v0.6.0.md
+│   ├── v0.7.0.md
+│   ├── v0.8.0.md
+│   ├── v0.9.0.md
 │   ├── v0.10.0.md
 │   ├── v0.11.0.md
-│   └── v0.12.0.md
+│   ├── v0.12.0.md
+│   ├── v0.13.0.md
+│   └── v0.14.0.md
 ├── schemas/
 │   ├── tsmm-agent-interaction-extension.schema.json
 │   ├── tsmm-agentic-extension.schema.json
@@ -240,3 +312,4 @@ python3 scripts/validate_tsmm_registry.py examples/registries/tsmm-registry-exam
 - `releases/v0.11.0.md`
 - `releases/v0.12.0.md`
 - `releases/v0.13.0.md`
+- `releases/v0.14.0.md`

@@ -1,0 +1,143 @@
+{
+  "bindingId": "tsmm.binding.a2a.v1",
+  "label": "TSMM to A2A Protocol binding",
+  "description": "Maps A2A protocol concepts to TSMM agent interaction extension abstractions for cross-ecosystem reasoning and governance analysis. A2A and TSMM operate at different layers: A2A specifies wire formats and interaction mechanics; TSMM models the trust-semantic invariants those mechanics instantiate.",
+  "targetEcosystem": "Agent2Agent (A2A) Protocol",
+  "version": "1.0.0",
+  "sources": [
+    "docs/crosswalks/a2a-crosswalk.md",
+    "docs/bindings/a2a-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "AgentCard (public)",
+      "tsmmType": "ServiceDescriptor",
+      "bindingStrength": "approximate",
+      "description": "Public Agent Card maps to ServiceDescriptor with disclosurePolicy: public. Authenticity binding is optional at this tier.",
+      "tsmmProperties": {
+        "disclosurePolicy": "public"
+      }
+    },
+    {
+      "externalConcept": "AgentCard (authenticated extended)",
+      "tsmmType": "ServiceDescriptor",
+      "bindingStrength": "approximate",
+      "description": "Authenticated extended Agent Card maps to ServiceDescriptor with disclosurePolicy: authenticated. authenticityBinding is required.",
+      "tsmmProperties": {
+        "disclosurePolicy": "authenticated"
+      }
+    },
+    {
+      "externalConcept": "Skill",
+      "tsmmType": "SkillContract",
+      "bindingStrength": "approximate",
+      "description": "A2A Skill maps to SkillContract. inputModes, outputModes, and tags map directly. authorizationScope is added by TSMM as the governance layer A2A does not explicitly model.",
+      "mappedFields": {
+        "inputModes": "inputModes",
+        "outputModes": "outputModes",
+        "tags": "tags"
+      }
+    },
+    {
+      "externalConcept": "contextId",
+      "tsmmType": "InteractionContext",
+      "bindingStrength": "approximate",
+      "description": "A2A contextId groups tasks and messages. TSMM InteractionContext adds inheritedAuthorityRefs, inheritedEvidenceRefs, and reAuthorizationPolicy — the governance semantics contextId implies but does not formalize.",
+      "mappedFields": {
+        "contextId": "id"
+      }
+    },
+    {
+      "externalConcept": "Task",
+      "tsmmType": "InteractionTask",
+      "bindingStrength": "approximate",
+      "description": "A2A Task maps to InteractionTask. TSMM adds explicit governance significance to each status transition, authorizationCheckpointRef for paused tasks, and cancellationReason as a governance-required field.",
+      "mappedFields": {
+        "id": "id",
+        "contextId": "contextRef",
+        "status": "status"
+      }
+    },
+    {
+      "externalConcept": "Task status: input-required",
+      "tsmmType": "InteractionTask + AuthorizationCheckpoint",
+      "bindingStrength": "composite",
+      "description": "A2A input-required task state maps to InteractionTask (status: input-required) with an active AuthorizationCheckpoint (triggerCondition: input-required). TSMM treats this as a governance checkpoint, not a transport wait state.",
+      "tsmmProperties": {
+        "status": "input-required",
+        "triggerCondition": "input-required"
+      }
+    },
+    {
+      "externalConcept": "Task status: auth-required",
+      "tsmmType": "InteractionTask + AuthorizationCheckpoint",
+      "bindingStrength": "composite",
+      "description": "A2A auth-required task state maps to InteractionTask (status: auth-required) with an AuthorizationCheckpoint (triggerCondition: auth-required or scope-exceeded). TSMM models the authority boundary event explicitly.",
+      "tsmmProperties": {
+        "status": "auth-required",
+        "triggerCondition": "auth-required"
+      }
+    },
+    {
+      "externalConcept": "Extensions (required/optional negotiation)",
+      "tsmmType": "ExtensionContract",
+      "bindingStrength": "approximate",
+      "description": "A2A extension mechanism maps to ExtensionContract. requiredness, negotiatedStatus, and failureHandling capture the negotiation record. resolutionRecord is added by TSMM for audit purposes.",
+      "mappedFields": {
+        "uri": "extensionUri",
+        "required": "requiredness"
+      }
+    },
+    {
+      "externalConcept": "Agent opacity invariant",
+      "tsmmType": "OpacityBoundary",
+      "bindingStrength": "new",
+      "description": "A2A's foundational design principle — agents collaborate without exposing internal state, memory, or tools — is not a protocol element in A2A but has direct governance consequences. TSMM models it as a structural governance constraint with explicit evidenceGap and trustScopeConstraint."
+    },
+    {
+      "externalConcept": "Agent-to-agent peer interaction",
+      "tsmmType": "PeerTrustRelation",
+      "bindingStrength": "new",
+      "description": "A2A assumes agents interact as peers with no hierarchical relationship. TSMM formalizes this as PeerTrustRelation with explicit trustBasis and trustScope — governance structure A2A implies but does not model."
+    },
+    {
+      "externalConcept": "Message / Artifact / Part (content exchange)",
+      "tsmmType": "ContentProvenancePolicy",
+      "bindingStrength": "abstract",
+      "description": "A2A's Message, Artifact, and Part model the wire payload structure. TSMM does not mirror the wire model; it models the governance obligations governing payload content by modality via ContentProvenancePolicy."
+    },
+    {
+      "externalConcept": "SSE streaming",
+      "tsmmType": "ObservabilityMode",
+      "bindingStrength": "abstract",
+      "description": "A2A SSE streaming maps to ObservabilityMode (deliveryModel: streaming). TSMM models governance consequences: auditabilityLevel: partial, replayRisk: low, required compensating controls for sequence gaps and clean-close confirmation.",
+      "tsmmProperties": {
+        "deliveryModel": "streaming",
+        "auditabilityLevel": "partial",
+        "replayRisk": "low"
+      }
+    },
+    {
+      "externalConcept": "Push notification callbacks",
+      "tsmmType": "ObservabilityMode",
+      "bindingStrength": "abstract",
+      "description": "A2A push notification maps to ObservabilityMode (deliveryModel: push-callback). Governance consequence: userAwarenessModel: delayed or opaque; replayRisk: medium from retries; idempotency keys required as compensating control.",
+      "tsmmProperties": {
+        "deliveryModel": "push-callback",
+        "replayRisk": "medium"
+      }
+    },
+    {
+      "externalConcept": "Security schemes in AgentCard",
+      "tsmmType": "ServiceDescriptor + SkillContract + AuthorizationCheckpoint",
+      "bindingStrength": "composite",
+      "description": "A2A security schemes declared in the Agent Card map to a two-layer TSMM model: declared posture in ServiceDescriptor.authenticityBinding, runtime enforcement through SkillContract.authorizationScope, and checkpoint-raising via AuthorizationCheckpoint when authentication requirements are unmet."
+    }
+  ],
+  "notes": [
+    "A2A and TSMM operate at different layers. This binding maps trust-semantic invariants, not wire-format fields.",
+    "Three A2A concepts — agent opacity, peer interaction, and security scheme enforcement — are modeled in TSMM but have no explicit schema counterpart in A2A. These are marked bindingStrength: new.",
+    "Message/Artifact/Part and delivery models are mapped at the governance-semantics level only. Wire-level fields are not represented in TSMM.",
+    "This binding covers A2A protocol as of a2aproject/A2A main branch, March 2026."
+  ]
+}

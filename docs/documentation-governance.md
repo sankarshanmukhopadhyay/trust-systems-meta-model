@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-23
-applicable_version: v0.13.0
+applicable_version: v0.14.0
 tier: 2
 ---
 
@@ -87,3 +87,7 @@ The v0.8.0 release introduces the dynamic authorization framing document, crossw
 ## v0.13.0 note
 
 The v0.13.0 release adds the Agent Interaction Extension. Seven new model documents are Tier 1 artifacts: `service-descriptor.md`, `skill-contract.md`, `interaction-context.md`, `authorization-checkpoint.md`, `extension-contract.md`, `opacity-boundary.md`, and `peer-trust-relation.md`. These should be kept aligned with the extension schema (`tsmm-agent-interaction-extension.schema.json`), the worked example (`agent-interaction-extension-instance.json`), the glossary (seven new terms), and the conformance checklist (Agent Interaction Extension tier). The A2A binding planned for v0.14.0 must align with all seven model documents and the schema; any changes to this extension before the binding is published must be reflected in the binding draft.
+
+## v0.14.0 note
+
+The v0.14.0 release completes the Agent Interaction Extension and adds the A2A binding. Three additional Tier 1 model documents are added: `interaction-task.md`, `content-provenance-policy.md`, `observability-mode.md`. The A2A binding JSON and binding/crosswalk prose documents are Tier 0 artifacts (released at each version). The A2A binding carries an implicit currency note — it reflects the A2A protocol as of March 2026 and should be reviewed if the A2A specification changes. The complete Agent Interaction Extension now comprises ten abstractions across two schema releases; any future changes to the extension schema must propagate to all ten model documents, both worked examples, the glossary, the conformance checklist (AI-1 through AI-21), and the A2A binding.

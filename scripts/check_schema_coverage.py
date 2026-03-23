@@ -29,6 +29,7 @@ COVERAGE_PAIRS: list[tuple[str, str]] = [
     ("multi-agent-coordination-instance.json", "tsmm-multi-agent-extension.schema.json"),
     ("evidence-artifact-instance.json", "tsmm-evidence-artifact-extension.schema.json"),
     ("agent-interaction-extension-instance.json", "tsmm-agent-interaction-extension.schema.json"),
+    ("agent-interaction-a2a-binding-instance.json", "tsmm-agent-interaction-extension.schema.json"),
 ]
 
 # Properties that are intentionally optional and acceptable to omit from examples.
@@ -76,6 +77,39 @@ ACCEPTABLE_OMISSIONS: set[str] = {
     "mitigations",
     # Agent interaction extension: resolutionRecord is optional on ExtensionContracts.
     "resolutionRecord",
+    # Agent interaction extension v0.14.0: assigneeRef is optional on InteractionTasks.
+    "assigneeRef",
+    # Agent interaction extension v0.14.0: authorizationCheckpointRef only present when task is paused.
+    "authorizationCheckpointRef",
+    # Agent interaction extension v0.14.0: artifactRefs may be empty for tasks in progress.
+    "artifactRefs",
+    # Agent interaction extension v0.14.0: cancellationReason only present for cancelled tasks.
+    "cancellationReason",
+    # Agent interaction extension v0.14.0: historyRef is optional.
+    "historyRef",
+    # Agent interaction extension v0.14.0: redactionRules are optional on ContentProvenancePolicies.
+    "redactionRules",
+    # Agent interaction extension v0.14.0: requiredCompensatingControls optional on ObservabilityModes.
+    "requiredCompensatingControls",
+    # Agent interaction extension v0.14.0 abstractions are not present in the v0.13.0 base
+    # example (agent-interaction-extension-instance.json), which was written before these
+    # abstractions were added to the schema. All three are fully exercised in the binding
+    # example (agent-interaction-a2a-binding-instance.json).
+    "interactionTasks",
+    "contentProvenancePolicies",
+    "observabilityModes",
+    # contextRef is a required field on interactionTask; absent from v0.13.0 example for same reason.
+    "contextRef",
+    # contentProvenancePolicy required fields absent from v0.13.0 example.
+    "provenanceRequirements",
+    "sanitizationRequired",
+    "evidenceCaptureObligation",
+    "applicableModalities",
+    # observabilityMode required fields absent from v0.13.0 example.
+    "deliveryModel",
+    "auditabilityLevel",
+    "replayRisk",
+    "userAwarenessModel",
 }
 
 

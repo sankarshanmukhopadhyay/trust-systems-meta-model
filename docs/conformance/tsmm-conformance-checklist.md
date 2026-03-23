@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-23
-applicable_version: v0.13.0
+applicable_version: v0.14.0
 tier: 1
 ---
 
@@ -150,6 +150,18 @@ Use this checklist in addition to the applicable base profile checklist when an 
 | AI-12 | *(OpacityBoundary)* Trust decisions about opaque agents are scoped to what is declared in the `trustScopeConstraint`; they do not assert claims about unobservable components | | |
 | AI-13 | *(ExtensionContract)* Every extension negotiated in an interaction is recorded with `requiredness`, `negotiatedStatus`, and `failureHandling` | | |
 | AI-14 | *(ExtensionContract)* A `required` extension with `negotiatedStatus: rejected` or `degraded` and `failureHandling: continue` produces an explicit governance record justifying continuation | | |
+
+#### Agent Interaction Extension additions *(v0.14.0)*
+
+| # | Requirement | Satisfied? | Notes |
+|---|---|---|---|
+| AI-15 | *(InteractionTask)* Every bounded work unit in an agent interaction is modeled as an InteractionTask with an explicit `status` and a reference to its governing `InteractionContext` | | |
+| AI-16 | *(InteractionTask)* Tasks with `status: auth-required` or `input-required` reference an active `AuthorizationCheckpoint` via `authorizationCheckpointRef` | | |
+| AI-17 | *(InteractionTask)* Cancelled tasks carry a `cancellationReason`; the governance record does not contain open tasks with terminal status and no recorded reason | | |
+| AI-18 | *(ContentProvenancePolicy)* A ContentProvenancePolicy is defined for each content modality exchanged in the interaction | | |
+| AI-19 | *(ContentProvenancePolicy)* The `evidenceCaptureObligation` is implemented; evidence records for processed content can be produced on demand | | |
+| AI-20 | *(ObservabilityMode)* An ObservabilityMode is declared for each delivery channel used in the interaction | | |
+| AI-21 | *(ObservabilityMode)* All `requiredCompensatingControls` identified in the ObservabilityMode are implemented; channels with `auditabilityLevel: none` are not used without explicit governance justification | | |
 
 ### Dynamic Authorization Pattern *(experimental)*
 

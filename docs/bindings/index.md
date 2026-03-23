@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-19
-applicable_version: v0.13.0
+applicable_version: v0.14.0
 tier: 1
 ---
 
@@ -15,6 +15,7 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 - [OpenID Federation binding](openid-federation-binding.md)
 - [DCAS binding](dcas-binding.md)
 - [Verifiable Trust Communities binding](vtc-binding.md)
+- [A2A Protocol binding](a2a-binding.md) *(v0.14.0)*
 
 ## Machine-readable artifacts
 
@@ -22,6 +23,7 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 - `bindings/openid-federation/tsmm-openid-federation-binding.json`
 - `bindings/dcas/tsmm-dcas-binding.json`
 - `bindings/vtc/tsmm-vtc-binding.json`
+- `bindings/a2a/tsmm-a2a-binding.json`
 
 ## Publication note
 

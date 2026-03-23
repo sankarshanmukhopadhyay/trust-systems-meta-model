@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-23
-applicable_version: v0.13.0
+applicable_version: v0.14.0
 tier: 0
 ---
 
@@ -67,6 +67,12 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Peer Trust Relation](model/peer-trust-relation.md)
 - Schema: `schemas/tsmm-agent-interaction-extension.schema.json`
 - Example: `examples/agent-interaction-extension-instance.json`
+- Example (A2A binding): `examples/agent-interaction-a2a-binding-instance.json`
+- Interaction task: [InteractionTask](model/interaction-task.md)
+- Content provenance policy: [ContentProvenancePolicy](model/content-provenance-policy.md)
+- Observability mode: [ObservabilityMode](model/observability-mode.md)
+- A2A crosswalk: [A2A Crosswalk](crosswalks/a2a-crosswalk.md)
+- A2A binding: [A2A Binding](bindings/a2a-binding.md)
 
 ## Crosswalks
 
@@ -120,4 +126,4 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Release snapshot
 
-This documentation set is aligned to **v0.13.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, ecosystem publication artifacts, and indexed agentic instances so the reference model does not quietly drift into decorative theory. v0.13.0 adds the Agent Interaction Extension with seven new trust-semantic abstractions for agent-to-agent interaction.
+This documentation set is aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, ecosystem publication artifacts, and indexed agentic instances so the reference model does not quietly drift into decorative theory. v0.14.0 completes the Agent Interaction Extension (InteractionTask, ContentProvenancePolicy, ObservabilityMode) and delivers the A2A binding and crosswalk.

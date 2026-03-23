@@ -1,0 +1,263 @@
+{
+  "interactionId": "interaction.procurement.2026-q1.002",
+  "description": "Extended two-party procurement workflow demonstrating all ten agent interaction extension abstractions including the v0.14.0 additions: InteractionTask, ContentProvenancePolicy, and ObservabilityMode. Extends the v0.13.0 procurement scenario to show the full A2A-aligned governance surface.",
+  "serviceDescriptors": [
+    {
+      "id": "sd.agentA.buyer",
+      "entityRef": "entity.buyer-orchestration-agent",
+      "disclosurePolicy": "public",
+      "version": "1.2.0",
+      "providerRef": "entity.buyer-org",
+      "endpointSet": [
+        "https://agents.buyer.example/orchestration/v1"
+      ],
+      "supportedTransports": [
+        "https",
+        "sse"
+      ],
+      "authenticityBinding": "did:web:agents.buyer.example#orchestration-v1",
+      "expiresAt": "2026-12-31T23:59:59Z"
+    },
+    {
+      "id": "sd.agentB.supplier",
+      "entityRef": "entity.supplier-fulfillment-agent",
+      "disclosurePolicy": "authenticated",
+      "version": "2.0.1",
+      "providerRef": "entity.supplier-org",
+      "endpointSet": [
+        "https://api.supplier.example/fulfillment/v2",
+        "https://api.supplier.example/fulfillment/v2/stream"
+      ],
+      "supportedTransports": [
+        "https",
+        "sse",
+        "webhook"
+      ],
+      "authenticityBinding": "did:web:api.supplier.example#fulfillment-v2",
+      "expiresAt": "2026-09-30T23:59:59Z"
+    }
+  ],
+  "skillContracts": [
+    {
+      "id": "skill.agentA.initiate-rfq",
+      "capabilityRef": "cap.initiate-request-for-quote",
+      "inputModes": [
+        "structured-data"
+      ],
+      "outputModes": [
+        "structured-data"
+      ],
+      "authorizationScope": "procurement:rfq:create",
+      "policyConditions": [
+        "delegation.buyer-to-agentA active",
+        "rfq-value <= buyer-delegated-threshold"
+      ],
+      "tags": [
+        "procurement",
+        "rfq",
+        "buyer-side"
+      ]
+    },
+    {
+      "id": "skill.agentB.generate-quote",
+      "capabilityRef": "cap.generate-supplier-quote",
+      "inputModes": [
+        "structured-data"
+      ],
+      "outputModes": [
+        "structured-data",
+        "file-reference"
+      ],
+      "authorizationScope": "fulfillment:quote:generate",
+      "policyConditions": [
+        "peerTrustRelation.procurement-peers active",
+        "request authenticated against sd.agentB.supplier"
+      ],
+      "tags": [
+        "procurement",
+        "quote",
+        "supplier-side"
+      ]
+    }
+  ],
+  "peerTrustRelations": [
+    {
+      "id": "ptr.procurement-peers",
+      "partyARefs": [
+        "entity.buyer-orchestration-agent"
+      ],
+      "partyBRefs": [
+        "entity.supplier-fulfillment-agent"
+      ],
+      "trustBasis": "credential-exchange",
+      "trustScope": "Mutual trust for procurement workflow interactions within the shared supplier-buyer framework agreement. Bounded to procurement domain.",
+      "establishedAt": "2026-01-15T09:00:00Z",
+      "conditionsForWithdrawal": "Framework agreement termination, credential revocation by either party, or breach of disclosed capability boundaries.",
+      "governingPolicyRef": "policy.framework-agreement-2026"
+    }
+  ],
+  "interactionContexts": [
+    {
+      "id": "ctx.procurement.q1-rfq-002",
+      "initiatorRef": "entity.buyer-orchestration-agent",
+      "participantRefs": [
+        "entity.buyer-orchestration-agent",
+        "entity.supplier-fulfillment-agent"
+      ],
+      "inheritedAuthorityRefs": [
+        "authority.buyer-procurement-delegation"
+      ],
+      "inheritedEvidenceRefs": [
+        "evidence.buyer-org-credential",
+        "evidence.supplier-org-credential"
+      ],
+      "reAuthorizationPolicy": "Re-authorization required if requested action scope exceeds the delegated procurement threshold, if session idle exceeds 60 minutes, or if resource sensitivity tier escalates beyond tier-2.",
+      "createdAt": "2026-03-20T10:00:00Z",
+      "expiresAt": "2026-03-20T18:00:00Z"
+    }
+  ],
+  "interactionTasks": [
+    {
+      "id": "task.quote-request-001",
+      "contextRef": "ctx.procurement.q1-rfq-002",
+      "initiatorRef": "entity.buyer-orchestration-agent",
+      "assigneeRef": "entity.supplier-fulfillment-agent",
+      "status": "completed",
+      "artifactRefs": [
+        "artifact.supplier-quote-2026-q1"
+      ],
+      "historyRef": "trace.quote-request-001"
+    },
+    {
+      "id": "task.purchase-order-001",
+      "contextRef": "ctx.procurement.q1-rfq-002",
+      "initiatorRef": "entity.buyer-orchestration-agent",
+      "assigneeRef": "entity.supplier-fulfillment-agent",
+      "status": "auth-required",
+      "authorizationCheckpointRef": "chk.po-scope-exceeded",
+      "artifactRefs": []
+    }
+  ],
+  "authorizationCheckpoints": [
+    {
+      "id": "chk.po-scope-exceeded",
+      "triggerCondition": "scope-exceeded",
+      "interactionContextRef": "ctx.procurement.q1-rfq-002",
+      "taskRef": "task.purchase-order-001",
+      "requiredEvidenceRefs": [
+        "evidence.elevated-po-approval"
+      ],
+      "resolutionPaths": [
+        "Obtain elevated purchase-order approval from buyer procurement manager",
+        "Reduce requested purchase-order value to within existing delegated threshold",
+        "Terminate interaction context and escalate to human procurement review"
+      ],
+      "status": "pending"
+    }
+  ],
+  "opacityBoundaries": [
+    {
+      "id": "ob.agentB.fulfillment",
+      "agentRef": "entity.supplier-fulfillment-agent",
+      "opaqueComponents": [
+        "internalState",
+        "toolSet",
+        "reasoningTrace"
+      ],
+      "evidenceGap": "AgentB's internal pricing logic, tool selection, and reasoning trace are not disclosed. Counterparties can verify the declared ServiceDescriptor, SkillContract boundaries, and authenticity binding, but cannot audit quote generation steps.",
+      "trustScopeConstraint": "Trust decisions about AgentB must be scoped to its disclosed SkillContracts and authenticated ServiceDescriptor. No trust claim about AgentB's internal correctness or completeness can be substantiated.",
+      "mitigations": [
+        "attestation",
+        "contractual-commitment"
+      ]
+    },
+    {
+      "id": "ob.agentA.orchestration",
+      "agentRef": "entity.buyer-orchestration-agent",
+      "opaqueComponents": [
+        "internalState",
+        "memory"
+      ],
+      "evidenceGap": "AgentA's memory of prior negotiation sessions and internal orchestration state are not visible to AgentB.",
+      "trustScopeConstraint": "AgentB must treat each session independently against the declared peer trust relation. Continuity claims from AgentA are accepted only to the extent evidenced within the current InteractionContext.",
+      "mitigations": [
+        "behavioral-monitoring",
+        "contractual-commitment"
+      ]
+    }
+  ],
+  "extensionContracts": [
+    {
+      "id": "ec.sse-streaming",
+      "extensionUri": "https://a2a-protocol.org/extensions/streaming/sse/v1",
+      "version": "1.0",
+      "requiredness": "optional",
+      "negotiatedStatus": "accepted",
+      "failureHandling": "warn",
+      "resolutionRecord": "Both parties declared SSE streaming support in their ServiceDescriptors. Accepted for progress notifications on long-running quote generation."
+    },
+    {
+      "id": "ec.push-notification",
+      "extensionUri": "https://a2a-protocol.org/extensions/push-notification/webhook/v1",
+      "version": "1.0",
+      "requiredness": "optional",
+      "negotiatedStatus": "rejected",
+      "failureHandling": "warn",
+      "resolutionRecord": "AgentA did not include a webhook callback endpoint in its ServiceDescriptor. Falling back to polling for async task status."
+    }
+  ],
+  "contentProvenancePolicies": [
+    {
+      "id": "cpp.structured-data-policy",
+      "applicableModalities": [
+        "structured-data"
+      ],
+      "provenanceRequirements": "All structured data payloads exchanged between agents must carry an issuer reference traceable to the authenticated ServiceDescriptor of the sending party. Unsigned or unattributed structured data must not be acted upon.",
+      "sanitizationRequired": true,
+      "redactionRules": "Fields classified as commercially sensitive in the framework agreement (unit pricing, margin data, supplier identifiers) must be redacted before evidence capture or logging.",
+      "evidenceCaptureObligation": "A hash of the sanitized payload and the issuer reference must be captured as evidence at the time of receipt. Evidence must be retained for the duration of the framework agreement plus 90 days."
+    },
+    {
+      "id": "cpp.file-reference-policy",
+      "applicableModalities": [
+        "file-reference"
+      ],
+      "provenanceRequirements": "File references must resolve to resources within the declared endpoint set of the sending party's ServiceDescriptor. External or redirected references must be rejected without resolution.",
+      "sanitizationRequired": true,
+      "redactionRules": "No automatic redaction. File contents are treated as opaque until explicitly processed by an authorized skill.",
+      "evidenceCaptureObligation": "The reference URI and the resolution time must be captured. File content hash must be captured if the file is processed beyond reference validation."
+    }
+  ],
+  "observabilityModes": [
+    {
+      "id": "om.sse-streaming",
+      "deliveryModel": "streaming",
+      "auditabilityLevel": "partial",
+      "replayRisk": "low",
+      "userAwarenessModel": "real-time",
+      "requiredCompensatingControls": [
+        "Sequence numbers on streamed events to detect gaps or reordering",
+        "Final-state confirmation message required at stream close to distinguish clean completion from connection drop"
+      ]
+    },
+    {
+      "id": "om.synchronous-rpc",
+      "deliveryModel": "synchronous",
+      "auditabilityLevel": "full",
+      "replayRisk": "none",
+      "userAwarenessModel": "real-time"
+    },
+    {
+      "id": "om.polling-fallback",
+      "deliveryModel": "polling",
+      "auditabilityLevel": "metadata-only",
+      "replayRisk": "medium",
+      "userAwarenessModel": "delayed",
+      "requiredCompensatingControls": [
+        "Idempotency keys on all task status requests",
+        "Maximum polling interval enforced to bound staleness",
+        "Terminal state confirmation required before polling ceases"
+      ]
+    }
+  ]
+}
