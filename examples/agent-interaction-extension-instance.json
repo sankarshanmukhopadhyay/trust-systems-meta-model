@@ -1,0 +1,217 @@
+{
+  "interactionId": "interaction.procurement.2026-q1.001",
+  "description": "Two-party agent interaction instance demonstrating a procurement workflow between a buyer-side orchestration agent (AgentA) and a supplier-side fulfillment agent (AgentB). Neither party holds authority over the other. AgentB's internal reasoning and tool set are deliberately opaque. A mid-interaction authorization checkpoint is raised when AgentB requests a purchase-order scope that exceeds AgentA's delegated authority.",
+
+  "serviceDescriptors": [
+    {
+      "id": "sd.agentA.buyer",
+      "entityRef": "entity.buyer-orchestration-agent",
+      "disclosurePolicy": "public",
+      "version": "1.2.0",
+      "providerRef": "entity.buyer-org",
+      "endpointSet": [
+        "https://agents.buyer.example/orchestration/v1"
+      ],
+      "supportedTransports": [
+        "https",
+        "sse"
+      ],
+      "authenticityBinding": "did:web:agents.buyer.example#orchestration-v1",
+      "expiresAt": "2026-12-31T23:59:59Z"
+    },
+    {
+      "id": "sd.agentB.supplier",
+      "entityRef": "entity.supplier-fulfillment-agent",
+      "disclosurePolicy": "authenticated",
+      "version": "2.0.1",
+      "providerRef": "entity.supplier-org",
+      "endpointSet": [
+        "https://api.supplier.example/fulfillment/v2",
+        "https://api.supplier.example/fulfillment/v2/stream"
+      ],
+      "supportedTransports": [
+        "https",
+        "sse",
+        "webhook"
+      ],
+      "authenticityBinding": "did:web:api.supplier.example#fulfillment-v2",
+      "expiresAt": "2026-09-30T23:59:59Z"
+    }
+  ],
+
+  "skillContracts": [
+    {
+      "id": "skill.agentA.initiate-rfq",
+      "capabilityRef": "cap.initiate-request-for-quote",
+      "inputModes": [
+        "structured-data"
+      ],
+      "outputModes": [
+        "structured-data"
+      ],
+      "authorizationScope": "procurement:rfq:create",
+      "policyConditions": [
+        "delegation.buyer-to-agentA active",
+        "rfq-value <= buyer-delegated-threshold"
+      ],
+      "tags": [
+        "procurement",
+        "rfq",
+        "buyer-side"
+      ]
+    },
+    {
+      "id": "skill.agentB.generate-quote",
+      "capabilityRef": "cap.generate-supplier-quote",
+      "inputModes": [
+        "structured-data"
+      ],
+      "outputModes": [
+        "structured-data",
+        "file-reference"
+      ],
+      "authorizationScope": "fulfillment:quote:generate",
+      "policyConditions": [
+        "peerTrustRelation.procurement-peers active",
+        "request authenticated against sd.agentB.supplier"
+      ],
+      "tags": [
+        "procurement",
+        "quote",
+        "supplier-side"
+      ]
+    },
+    {
+      "id": "skill.agentB.issue-purchase-order",
+      "capabilityRef": "cap.issue-purchase-order",
+      "inputModes": [
+        "structured-data"
+      ],
+      "outputModes": [
+        "structured-data",
+        "file-reference"
+      ],
+      "authorizationScope": "fulfillment:po:create",
+      "policyConditions": [
+        "peerTrustRelation.procurement-peers active",
+        "po-value <= authorised-po-ceiling",
+        "AuthorizationCheckpoint resolved before invocation"
+      ],
+      "tags": [
+        "procurement",
+        "purchase-order",
+        "supplier-side",
+        "authority-required"
+      ]
+    }
+  ],
+
+  "peerTrustRelations": [
+    {
+      "id": "ptr.procurement-peers",
+      "partyARefs": [
+        "entity.buyer-orchestration-agent"
+      ],
+      "partyBRefs": [
+        "entity.supplier-fulfillment-agent"
+      ],
+      "trustBasis": "credential-exchange",
+      "trustScope": "Mutual trust for procurement workflow interactions within the shared supplier-buyer framework agreement. Neither party holds authority over the other. Trust is bounded to the procurement domain and does not extend to identity-proxy or delegated action outside that domain.",
+      "establishedAt": "2026-01-15T09:00:00Z",
+      "conditionsForWithdrawal": "Framework agreement termination, credential revocation by either party, or breach of disclosed capability boundaries.",
+      "governingPolicyRef": "policy.framework-agreement-2026"
+    }
+  ],
+
+  "interactionContexts": [
+    {
+      "id": "ctx.procurement.q1-rfq-001",
+      "initiatorRef": "entity.buyer-orchestration-agent",
+      "participantRefs": [
+        "entity.buyer-orchestration-agent",
+        "entity.supplier-fulfillment-agent"
+      ],
+      "inheritedAuthorityRefs": [
+        "authority.buyer-procurement-delegation"
+      ],
+      "inheritedEvidenceRefs": [
+        "evidence.buyer-org-credential",
+        "evidence.supplier-org-credential"
+      ],
+      "reAuthorizationPolicy": "Re-authorization required if requested action scope exceeds the delegated procurement threshold, if session idle exceeds 60 minutes, or if resource sensitivity tier escalates beyond tier-2.",
+      "createdAt": "2026-03-15T10:00:00Z",
+      "expiresAt": "2026-03-15T18:00:00Z"
+    }
+  ],
+
+  "authorizationCheckpoints": [
+    {
+      "id": "chk.po-scope-exceeded",
+      "triggerCondition": "scope-exceeded",
+      "interactionContextRef": "ctx.procurement.q1-rfq-001",
+      "taskRef": "task.issue-po-draft-001",
+      "requiredEvidenceRefs": [
+        "evidence.elevated-po-approval"
+      ],
+      "resolutionPaths": [
+        "Obtain elevated purchase-order approval from buyer procurement manager",
+        "Reduce requested purchase-order value to within existing delegated threshold",
+        "Terminate interaction context and escalate to human procurement review"
+      ],
+      "status": "pending"
+    }
+  ],
+
+  "opacityBoundaries": [
+    {
+      "id": "ob.agentB.fulfillment",
+      "agentRef": "entity.supplier-fulfillment-agent",
+      "opaqueComponents": [
+        "internalState",
+        "toolSet",
+        "reasoningTrace"
+      ],
+      "evidenceGap": "AgentB's internal pricing logic, tool selection, and reasoning trace are not disclosed. Counterparties can verify the declared ServiceDescriptor, the SkillContract boundaries, and the authenticity binding, but cannot audit the steps by which a quote or purchase order was generated.",
+      "trustScopeConstraint": "Trust decisions about AgentB must be scoped to its disclosed SkillContracts and the authenticated ServiceDescriptor. No trust claim about AgentB's internal correctness, fairness, or completeness can be substantiated without independent audit access that AgentB has not granted.",
+      "mitigations": [
+        "attestation",
+        "contractual-commitment"
+      ]
+    },
+    {
+      "id": "ob.agentA.orchestration",
+      "agentRef": "entity.buyer-orchestration-agent",
+      "opaqueComponents": [
+        "internalState",
+        "memory"
+      ],
+      "evidenceGap": "AgentA's memory of prior negotiation sessions and internal orchestration state are not visible to AgentB. AgentB cannot verify whether AgentA's scope claims reflect the full state of buyer authorizations.",
+      "trustScopeConstraint": "AgentB must treat each session independently against the declared peer trust relation and the authenticated ServiceDescriptor. Continuity claims from AgentA are accepted only to the extent evidenced within the current InteractionContext.",
+      "mitigations": [
+        "behavioral-monitoring",
+        "contractual-commitment"
+      ]
+    }
+  ],
+
+  "extensionContracts": [
+    {
+      "id": "ec.sse-streaming",
+      "extensionUri": "https://a2a-protocol.org/extensions/streaming/sse/v1",
+      "version": "1.0",
+      "requiredness": "optional",
+      "negotiatedStatus": "accepted",
+      "failureHandling": "warn",
+      "resolutionRecord": "Both parties declared SSE streaming support in their ServiceDescriptors. Extension accepted for progress notifications on long-running quote generation."
+    },
+    {
+      "id": "ec.push-notification",
+      "extensionUri": "https://a2a-protocol.org/extensions/push-notification/webhook/v1",
+      "version": "1.0",
+      "requiredness": "optional",
+      "negotiatedStatus": "rejected",
+      "failureHandling": "warn",
+      "resolutionRecord": "AgentA did not include a webhook callback endpoint in its ServiceDescriptor for this session. Push notification extension rejected; falling back to polling for async task status."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-19
-applicable_version: v0.12.0
+last_reviewed: 2026-03-23
+applicable_version: v0.13.0
 tier: 1
 ---
 
@@ -9,6 +9,9 @@ tier: 1
 
 ## Assessment
 A structured evaluation activity that tests or reviews whether requirements, controls, claims, or profiles are satisfied.
+
+## AuthorizationCheckpoint
+A first-class trust event representing a runtime authorization challenge that interrupts or pauses an interaction pending resolution. An AuthorizationCheckpoint is structurally distinct from policy evaluation: it signals that the inputs required for evaluation are absent or insufficient and that the interaction cannot proceed until the gap is resolved. Trigger conditions include `policy-gap`, `auth-required`, `input-required`, and `scope-exceeded`. See `docs/model/authorization-checkpoint.md`.
 
 ## Artifact
 A structured object that carries trust-relevant information, such as metadata, a policy file, a registry record, a credential, or a conformance report.
@@ -46,11 +49,17 @@ Material used to substantiate a claim, control implementation, requirement outco
 ## Evidence Artifact
 A typed, structured output produced by an operational system, authorized actor, or assessment process to demonstrate that a rule was checked, a behavior occurred, or a condition holds. Evidence artifacts specialize the Evidence abstraction with production context, artifact type, integrity anchors, and traceability fields. Defined types include reconciliation, drift, attestation, and conformance. See `docs/model/evidence-artifact.md`.
 
+## ExtensionContract
+A protocol-neutral abstraction for negotiated extension compatibility in agent or protocol interactions. Captures extension URI, version, requiredness, negotiated status (`accepted`, `degraded`, `rejected`, `not-attempted`), and failure handling. The negotiation record is governance-relevant: silent capability downgrade without a recorded failure signal creates an audit gap. Generalizes across A2A, MCP, OpenID Federation, and any extension-carrying protocol. See `docs/model/extension-contract.md`.
+
 ## Governance Context
 The governing environment within which trust decisions are made, including legal, institutional, contractual, and ecosystem constraints.
 
 ## Level Framework
 A tiered expression of expected rigor or trust posture, such as assurance levels or conformance levels.
+
+## InteractionContext
+A session or conversation scope that groups tasks, messages, and trust decisions into a shared governance envelope. Extends `ExecutionContext` to the session level: captures accumulated governance state across a sequence of interactions, including what authority and evidence carry forward and what conditions trigger re-authorization. See `docs/model/interaction-context.md`.
 
 ## Lifecycle Event
 A state change relevant to trust posture, such as issuance, revocation, expiry, reassessment, or remediation closure.
@@ -73,6 +82,12 @@ The component that enforces a policy decision by permitting or blocking an effec
 ## Policy Information Point (PIP)
 The component that retrieves contextual attribute data to support PDP evaluation. In TSMM terms, the retrieval of Evidence, Artifact state, and Lifecycle Event data. See `docs/model/dynamic-authorization-framing.md`.
 
+## OpacityBoundary
+A structural governance constraint declaring what is deliberately not observable about an agent's operation and the trust and evidence implications of that non-observability. TSMM models what is observable; OpacityBoundary models what is structurally unknowable and how trust decisions must be scoped accordingly. Properties include `opaqueComponents` (internalState, toolSet, memory, reasoningTrace), `evidenceGap`, `trustScopeConstraint`, and optional `mitigations`. See `docs/model/opacity-boundary.md`.
+
+## PeerTrustRelation
+A trust relationship between lateral agents operating as peers with no pre-existing hierarchical relationship. Structurally parallel to but distinct from `Delegation`: where Delegation is vertical (principal → sub-agent), a PeerTrustRelation is lateral (peer ↔ peer) and neither party holds authority over the other. Trust basis may be `credential-exchange`, `capability-negotiation`, `policy-acceptance`, or `third-party-introduction`. See `docs/model/peer-trust-relation.md`.
+
 ## Profile
 A packaged set of requirements, controls, or evaluation expectations defined for a particular context or implementation class.
 
@@ -81,6 +96,12 @@ A normative or expected condition that a system, artifact, process, or participa
 
 ## Role
 A context-specific capacity in which an entity acts.
+
+## ServiceDescriptor
+A trust-relevant capability disclosure artifact whose visibility is policy-bound and whose authenticity may be signed. The structured surface through which an agent, service, or system publishes what it is, what it can do, and how it can be reached — under a declared disclosure policy (`public`, `authenticated`, or `restricted`). Generalizes Agent Card, OpenID Federation entity statement, and TRQP ecosystem descriptor constructs. See `docs/model/service-descriptor.md`.
+
+## SkillContract
+An operational contract for a discrete capability unit, separating what an entity can do (capability) from what it may do under defined modalities, scopes, and policy conditions (operational envelope). A SkillContract governs a `Capability` object and defines `inputModes`, `outputModes`, `authorizationScope`, and applicable `policyConditions`. See `docs/model/skill-contract.md`.
 
 ## Threat
 A modeled harm, abuse case, or failure mode.

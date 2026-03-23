@@ -1,13 +1,13 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-19
-applicable_version: v0.12.0
+last_reviewed: 2026-03-23
+applicable_version: v0.13.0
 tier: 1
 ---
 
 # TSMM Roadmap
 
-This file records plausible next steps for TSMM after v0.12.0. It is directional. It is not a schedule.
+This file records plausible next steps for TSMM after v0.13.0. It is directional. It is not a schedule.
 
 ## 1. Agent role and control semantics
 
@@ -33,7 +33,16 @@ This file records plausible next steps for TSMM after v0.12.0. It is directional
 - improve delegated-action governance examples
 - connect multi-agent coordination more tightly to review and remediation processes
 
-## 5. Binding and crosswalk coverage
+## 5. Agent Interaction Extension completion *(v0.14.0 target)*
+
+- A2A binding: machine-readable `bindings/a2a/tsmm-a2a-binding.json` and `docs/bindings/a2a-binding.md` mapping all seven v0.13.0 abstractions to A2A protocol concepts
+- A2A crosswalk: `docs/crosswalks/a2a-crosswalk.md` with concept-level alignment table
+- `InteractionTask` resolution: determine whether `ExecutionContext` + lifecycle event composition is sufficient or whether a new schema object is warranted
+- `ContentProvenancePolicy`: trust-policy envelope for interaction payload content, scoped to governance semantics not wire structure
+- `ObservabilityMode`: governance coverage constraints derivable from delivery model (synchronous, streaming, polling, push-callback)
+- Extended worked example exercising the full v0.14.0 surface alongside v0.13.0 abstractions
+
+## 6. Binding and crosswalk coverage
 
 - add further machine-readable bindings for adjacent governance and assurance ecosystems
 - improve comparison guidance across bindings so the catalog becomes easier to operationalize

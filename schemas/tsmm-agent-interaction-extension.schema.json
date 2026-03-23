@@ -1,0 +1,468 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-agent-interaction-extension.schema.json",
+  "title": "TSMM Agent Interaction Extension Instance v0.13.0",
+  "description": "Extension schema for modeling trust-relevant aspects of agent-to-agent interaction: service disclosure, capability contracts, session continuity, runtime authorization checkpoints, extension negotiation, opacity constraints, and lateral peer trust.",
+  "type": "object",
+  "required": [
+    "interactionId"
+  ],
+  "properties": {
+    "interactionId": {
+      "$ref": "#/$defs/idString"
+    },
+    "description": {
+      "type": "string"
+    },
+    "serviceDescriptors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/serviceDescriptor"
+      }
+    },
+    "skillContracts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/skillContract"
+      }
+    },
+    "peerTrustRelations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/peerTrustRelation"
+      }
+    },
+    "interactionContexts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/interactionContext"
+      }
+    },
+    "authorizationCheckpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/authorizationCheckpoint"
+      }
+    },
+    "opacityBoundaries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/opacityBoundary"
+      }
+    },
+    "extensionContracts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/extensionContract"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "serviceDescriptor": {
+      "type": "object",
+      "description": "A trust-relevant capability disclosure artifact whose visibility is policy-bound and whose authenticity may be signed. Generalizes Agent Card, OpenID Federation entity statement, and TRQP ecosystem descriptor constructs.",
+      "required": [
+        "id",
+        "entityRef",
+        "disclosurePolicy",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "entityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "disclosurePolicy": {
+          "type": "string",
+          "enum": [
+            "public",
+            "authenticated",
+            "restricted"
+          ],
+          "description": "Visibility scope of the descriptor. 'public': no authentication required. 'authenticated': extended metadata available after credential presentation. 'restricted': access governed by explicit policy."
+        },
+        "version": {
+          "type": "string"
+        },
+        "providerRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "endpointSet": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Published endpoint URIs for this entity."
+        },
+        "supportedTransports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Transport protocols the entity accepts."
+        },
+        "authenticityBinding": {
+          "type": "string",
+          "description": "Reference to an integrity or signing mechanism confirming authenticity of this descriptor, e.g. a JWK thumbprint or verification method identifier."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "skillContract": {
+      "type": "object",
+      "description": "An operational contract for a discrete capability unit, separating what an entity can do (capability) from what it may do under defined modalities, scopes, and policy conditions (operational envelope).",
+      "required": [
+        "id",
+        "capabilityRef",
+        "inputModes",
+        "outputModes",
+        "authorizationScope"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "capabilityRef": {
+          "$ref": "#/$defs/idString",
+          "description": "Reference to the capability object this contract governs."
+        },
+        "inputModes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Accepted input modalities for this capability, e.g. text, structured-data, file-reference."
+        },
+        "outputModes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Produced output modalities."
+        },
+        "authorizationScope": {
+          "type": "string",
+          "description": "The authorization boundary under which this skill may be exercised."
+        },
+        "policyConditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Policy conditions or constraints that must be satisfied before the skill may be exercised."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Illustrative input/output examples for this skill."
+        }
+      },
+      "additionalProperties": false
+    },
+    "peerTrustRelation": {
+      "type": "object",
+      "description": "A trust relationship between lateral agents operating as peers with no pre-existing hierarchical relationship. Distinct from the delegation model, which is hierarchical. Models how trust is established and maintained between peers where neither holds authority over the other.",
+      "required": [
+        "id",
+        "partyARefs",
+        "partyBRefs",
+        "trustBasis",
+        "trustScope",
+        "establishedAt"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "partyARefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "minItems": 1,
+          "description": "Identifiers of the first lateral party or parties."
+        },
+        "partyBRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "minItems": 1,
+          "description": "Identifiers of the second lateral party or parties."
+        },
+        "trustBasis": {
+          "type": "string",
+          "enum": [
+            "credential-exchange",
+            "capability-negotiation",
+            "policy-acceptance",
+            "third-party-introduction"
+          ],
+          "description": "The mechanism through which this peer trust relation was established."
+        },
+        "trustScope": {
+          "type": "string",
+          "description": "The bounded scope of what is trusted between these peers."
+        },
+        "establishedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "conditionsForWithdrawal": {
+          "type": "string",
+          "description": "Conditions under which this peer trust relation may be revoked or suspended."
+        },
+        "governingPolicyRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "interactionContext": {
+      "type": "object",
+      "description": "A session or conversation scope that groups tasks, messages, and trust decisions into a shared governance context. Extends ExecutionContext to the session level: captures accumulated governance state across a sequence of interactions, including what authority and evidence carry forward and what requires re-authorization.",
+      "required": [
+        "id",
+        "initiatorRef",
+        "participantRefs",
+        "createdAt"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "initiatorRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "participantRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "minItems": 1
+        },
+        "inheritedAuthorityRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "description": "Authority objects from earlier in the session that remain in force for subsequent turns."
+        },
+        "inheritedEvidenceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "description": "Evidence objects established earlier in the session that carry forward without re-verification."
+        },
+        "reAuthorizationPolicy": {
+          "type": "string",
+          "description": "Policy governing when re-authorization is required despite inherited authority, e.g. on scope change, after time threshold, or on resource sensitivity escalation."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terminationReason": {
+          "type": "string",
+          "description": "Reason recorded when this interaction context was closed. Only present after termination."
+        }
+      },
+      "additionalProperties": false
+    },
+    "authorizationCheckpoint": {
+      "type": "object",
+      "description": "A first-class trust event representing a runtime authorization challenge that interrupts or pauses an interaction pending resolution. Distinct from policy evaluation: models the case where evaluation inputs are absent or insufficient and the interaction is suspended until they are provided.",
+      "required": [
+        "id",
+        "triggerCondition",
+        "interactionContextRef",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "triggerCondition": {
+          "type": "string",
+          "enum": [
+            "policy-gap",
+            "auth-required",
+            "input-required",
+            "scope-exceeded"
+          ],
+          "description": "Why this checkpoint was raised. 'policy-gap': policy cannot be evaluated with available attributes. 'auth-required': authentication credential is missing or expired. 'input-required': required input data is absent. 'scope-exceeded': requested action falls outside delegated or contracted scope."
+        },
+        "interactionContextRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "taskRef": {
+          "$ref": "#/$defs/idString",
+          "description": "Optional reference to the specific task or work unit that triggered this checkpoint."
+        },
+        "requiredEvidenceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "description": "Evidence objects that would satisfy this checkpoint if supplied."
+        },
+        "resolutionPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ordered candidate paths for resolving this checkpoint, e.g. user authentication, principal escalation, evidence retrieval."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "resolved",
+            "failed",
+            "timed-out"
+          ]
+        },
+        "resolvedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "opacityBoundary": {
+      "type": "object",
+      "description": "A structural governance constraint declaring what is deliberately unobservable about an agent's operation and the trust and evidence implications of that non-observability. TSMM models what is observable; OpacityBoundary models what is structurally unknowable and how trust decisions must be scoped accordingly.",
+      "required": [
+        "id",
+        "agentRef",
+        "opaqueComponents",
+        "evidenceGap",
+        "trustScopeConstraint"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "agentRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "opaqueComponents": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "internalState",
+              "toolSet",
+              "memory",
+              "reasoningTrace",
+              "other"
+            ]
+          },
+          "description": "Components of the agent's operation that are structurally not observable to counterparties."
+        },
+        "evidenceGap": {
+          "type": "string",
+          "description": "Description of what cannot be verified about this agent due to its opacity boundary."
+        },
+        "trustScopeConstraint": {
+          "type": "string",
+          "description": "How trust decisions about or involving this agent must be bounded given what cannot be verified."
+        },
+        "mitigations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "attestation",
+              "audit",
+              "behavioral-monitoring",
+              "contractual-commitment"
+            ]
+          },
+          "description": "Controls that partially compensate for the evidence gap introduced by opacity."
+        }
+      },
+      "additionalProperties": false
+    },
+    "extensionContract": {
+      "type": "object",
+      "description": "A protocol-neutral abstraction for negotiated extension compatibility. Captures extension URI, version, requiredness, negotiated status, and failure handling. Generalizes across A2A, MCP, OpenID Federation, and any extension-carrying protocol. The negotiation record is governance-relevant: silent downgrade without a failure signal creates an audit gap.",
+      "required": [
+        "id",
+        "extensionUri",
+        "version",
+        "requiredness",
+        "negotiatedStatus",
+        "failureHandling"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "extensionUri": {
+          "type": "string",
+          "description": "Versioned URI identifying the extension."
+        },
+        "version": {
+          "type": "string"
+        },
+        "requiredness": {
+          "type": "string",
+          "enum": [
+            "required",
+            "optional"
+          ],
+          "description": "Whether the interaction requires this extension to proceed."
+        },
+        "negotiatedStatus": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "degraded",
+            "rejected",
+            "not-attempted"
+          ],
+          "description": "Outcome of extension negotiation. 'degraded' signals capability reduction without full rejection."
+        },
+        "failureHandling": {
+          "type": "string",
+          "enum": [
+            "abort",
+            "warn",
+            "continue"
+          ],
+          "description": "How the system behaves if a required extension cannot be negotiated."
+        },
+        "resolutionRecord": {
+          "type": "string",
+          "description": "Optional record of why the negotiation reached its current status."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

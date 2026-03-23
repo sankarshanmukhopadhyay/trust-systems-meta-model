@@ -28,6 +28,7 @@ COVERAGE_PAIRS: list[tuple[str, str]] = [
     ("assurance-extension-instance.json", "tsmm-assurance-extension.schema.json"),
     ("multi-agent-coordination-instance.json", "tsmm-multi-agent-extension.schema.json"),
     ("evidence-artifact-instance.json", "tsmm-evidence-artifact-extension.schema.json"),
+    ("agent-interaction-extension-instance.json", "tsmm-agent-interaction-extension.schema.json"),
 ]
 
 # Properties that are intentionally optional and acceptable to omit from examples.
@@ -42,6 +43,39 @@ ACCEPTABLE_OMISSIONS: set[str] = {
     # relatedAction is only populated in agentic execution contexts. The evidence artifact
     # base example demonstrates a trust registry context where no Action is in scope.
     "relatedAction",
+    # Agent interaction extension: providerRef is optional (may not be known at disclosure time).
+    "providerRef",
+    # Agent interaction extension: authenticityBinding is optional for public descriptors.
+    "authenticityBinding",
+    # Agent interaction extension: expiresAt is optional across several abstractions.
+    "expiresAt",
+    # Agent interaction extension: policyConditions are optional on SkillContracts.
+    "policyConditions",
+    # Agent interaction extension: tags and examples are optional discovery aids on SkillContracts.
+    "tags",
+    "examples",
+    # Agent interaction extension: conditionsForWithdrawal is optional on PeerTrustRelations.
+    "conditionsForWithdrawal",
+    # Agent interaction extension: governingPolicyRef is optional on PeerTrustRelations.
+    "governingPolicyRef",
+    # Agent interaction extension: inheritedAuthorityRefs and inheritedEvidenceRefs are optional
+    # for sessions where no prior authority has been established.
+    "inheritedAuthorityRefs",
+    "inheritedEvidenceRefs",
+    # Agent interaction extension: reAuthorizationPolicy is optional where no inherited authority exists.
+    "reAuthorizationPolicy",
+    # Agent interaction extension: terminationReason only present after session close.
+    "terminationReason",
+    # Agent interaction extension: taskRef is optional on AuthorizationCheckpoints.
+    "taskRef",
+    # Agent interaction extension: requiredEvidenceRefs is optional where evidence is not pre-identified.
+    "requiredEvidenceRefs",
+    # Agent interaction extension: resolvedAt only present after resolution.
+    "resolvedAt",
+    # Agent interaction extension: mitigations are optional on OpacityBoundaries.
+    "mitigations",
+    # Agent interaction extension: resolutionRecord is optional on ExtensionContracts.
+    "resolutionRecord",
 }
 
 

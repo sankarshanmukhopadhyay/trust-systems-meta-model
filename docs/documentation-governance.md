@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
-applicable_version: v0.12.0
+last_reviewed: 2026-03-23
+applicable_version: v0.13.0
 tier: 2
 ---
 
@@ -83,3 +83,7 @@ The v0.7.0 release added the evidence artifact model. The new conceptual documen
 ## v0.8.0 note
 
 The v0.8.0 release introduces the dynamic authorization framing document, crosswalk, and pattern. The framing document (`docs/model/dynamic-authorization-framing.md`) is a stable Tier 1 position statement and should be updated if the model's position on dynamic authorization changes. The crosswalk and pattern carry `status: experimental` and should be reviewed whenever the core Policy, Trust Decision, or Effect abstractions are modified, or when implementation experience warrants promotion consideration.
+
+## v0.13.0 note
+
+The v0.13.0 release adds the Agent Interaction Extension. Seven new model documents are Tier 1 artifacts: `service-descriptor.md`, `skill-contract.md`, `interaction-context.md`, `authorization-checkpoint.md`, `extension-contract.md`, `opacity-boundary.md`, and `peer-trust-relation.md`. These should be kept aligned with the extension schema (`tsmm-agent-interaction-extension.schema.json`), the worked example (`agent-interaction-extension-instance.json`), the glossary (seven new terms), and the conformance checklist (Agent Interaction Extension tier). The A2A binding planned for v0.14.0 must align with all seven model documents and the schema; any changes to this extension before the binding is published must be reflected in the binding draft.

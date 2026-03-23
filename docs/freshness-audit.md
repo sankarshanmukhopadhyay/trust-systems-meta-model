@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-19
-applicable_version: v0.12.0
+last_reviewed: 2026-03-23
+applicable_version: v0.13.0
 tier: 2
 ---
 
@@ -72,3 +72,7 @@ The release closes the binding catalog gap for DCAS and Verifiable Trust Communi
 ## v0.12.0 additions
 
 The release adds typed agent operating posture and attention-governance concepts to the agentic extension. Freshness checks should confirm that the schema, worked example, README navigation, docs home, roadmap, and crosswalk set all reference `agentClass`, `controlMode`, and `attentionPolicies` consistently.
+
+## v0.13.0 additions
+
+The release adds the Agent Interaction Extension with seven new trust-semantic abstractions for agent-to-agent interaction. New Tier 1 documents: `docs/model/service-descriptor.md`, `docs/model/skill-contract.md`, `docs/model/interaction-context.md`, `docs/model/authorization-checkpoint.md`, `docs/model/extension-contract.md`, `docs/model/opacity-boundary.md`, `docs/model/peer-trust-relation.md`. New schema: `schemas/tsmm-agent-interaction-extension.schema.json`. New example: `examples/agent-interaction-extension-instance.json`. Freshness checks should confirm that all seven model documents, the schema, the example, the glossary additions, the conformance checklist Agent Interaction Extension tier, `docs/extensions/index.md`, `README.md` navigation, and `docs/index.md` all reference the same seven abstraction names and schema properties consistently. The v0.14.0 A2A binding will extend this surface — alignment checks between the v0.13.0 extension documents and the binding draft should be completed before that release.

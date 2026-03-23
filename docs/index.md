@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-19
-applicable_version: v0.12.0
+last_reviewed: 2026-03-23
+applicable_version: v0.13.0
 tier: 0
 ---
 
@@ -17,7 +17,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - an **effect-centered evaluation model** for runtime legitimacy
 - **conformance profiles** that help structure implementation maturity
 - reusable **reference patterns** for recurring trust-system designs
-- modular **extensions** for application domains such as Agentic AI, Verifiable Trust Communities, and assurance-oriented architectures
+- modular **extensions** for application domains such as Agentic AI, Agent Interaction (A2A-class ecosystems), Verifiable Trust Communities, and assurance-oriented architectures
 - practical **crosswalks** to related repositories and implementations
 - a machine-readable **graph model** for executable trust topology design
 
@@ -55,6 +55,18 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Agentic AI Extension](extensions/agentic-ai-extension.md)
 - [Verifiable Trust Communities Extension](extensions/verifiable-trust-communities-extension.md)
 - [Assurance Extension](extensions/assurance-extension.md)
+
+## Agent Interaction Extension *(v0.13.0)*
+
+- [Service Descriptor](model/service-descriptor.md)
+- [Skill Contract](model/skill-contract.md)
+- [Interaction Context](model/interaction-context.md)
+- [Authorization Checkpoint](model/authorization-checkpoint.md)
+- [Extension Contract](model/extension-contract.md)
+- [Opacity Boundary](model/opacity-boundary.md)
+- [Peer Trust Relation](model/peer-trust-relation.md)
+- Schema: `schemas/tsmm-agent-interaction-extension.schema.json`
+- Example: `examples/agent-interaction-extension-instance.json`
 
 ## Crosswalks
 
@@ -108,4 +120,4 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Release snapshot
 
-This documentation set is aligned to **v0.12.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, ecosystem publication artifacts, and indexed agentic instances so the reference model does not quietly drift into decorative theory.
+This documentation set is aligned to **v0.13.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, ecosystem publication artifacts, and indexed agentic instances so the reference model does not quietly drift into decorative theory. v0.13.0 adds the Agent Interaction Extension with seven new trust-semantic abstractions for agent-to-agent interaction.

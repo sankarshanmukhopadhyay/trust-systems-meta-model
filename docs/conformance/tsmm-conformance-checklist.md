@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-19
-applicable_version: v0.12.0
+last_reviewed: 2026-03-23
+applicable_version: v0.13.0
 tier: 1
 ---
 
@@ -127,6 +127,29 @@ Reference: `docs/extensions/assurance-extension.md`
 | AS-1 | Assurance activities reference a defined level framework | | |
 | AS-2 | Assurance outcomes are linked to trust decisions | | |
 | AS-3 | Evidence referenced in assurance activities exists and is retrievable | | |
+
+### Agent Interaction Extension *(v0.13.0)*
+
+Reference: `docs/model/service-descriptor.md`, `docs/model/skill-contract.md`, `docs/model/interaction-context.md`, `docs/model/authorization-checkpoint.md`, `docs/model/extension-contract.md`, `docs/model/opacity-boundary.md`, `docs/model/peer-trust-relation.md`
+
+Use this checklist in addition to the applicable base profile checklist when an implementation uses the agent interaction extension. Items prefixed with the abstraction name apply only when that abstraction is in use.
+
+| # | Requirement | Satisfied? | Notes |
+|---|---|---|---|
+| AI-1 | *(ServiceDescriptor)* Every agent or service that initiates or accepts agent-to-agent interactions has a ServiceDescriptor with a declared `disclosurePolicy` | | |
+| AI-2 | *(ServiceDescriptor)* Authenticated or restricted ServiceDescriptors carry an `authenticityBinding` reference | | |
+| AI-3 | *(SkillContract)* Every capability exercised in an agent interaction has a corresponding SkillContract with explicit `inputModes`, `outputModes`, and `authorizationScope` | | |
+| AI-4 | *(SkillContract)* The `authorizationScope` in each SkillContract is consistent with an authority object in the applicable governance context | | |
+| AI-5 | *(PeerTrustRelation)* Lateral agent interactions where neither party is subordinate are governed by a PeerTrustRelation rather than a Delegation | | |
+| AI-6 | *(PeerTrustRelation)* The `trustScope` of every PeerTrustRelation is explicitly bounded; trust does not generalise beyond the declared scope | | |
+| AI-7 | *(InteractionContext)* Multi-turn or session-scoped agent interactions are governed by an InteractionContext with explicit `inheritedAuthorityRefs` and a `reAuthorizationPolicy` | | |
+| AI-8 | *(InteractionContext)* Session expiry is treated as a governance boundary: inherited authority and evidence cannot be used after `expiresAt` without re-verification | | |
+| AI-9 | *(AuthorizationCheckpoint)* Any point where an interaction pauses pending authorization resolution is modeled as an AuthorizationCheckpoint with a recorded `triggerCondition` and `status` | | |
+| AI-10 | *(AuthorizationCheckpoint)* `scope-exceeded` checkpoints are not resolved by credential supply alone; resolution requires principal escalation or scope reduction | | |
+| AI-11 | *(OpacityBoundary)* Every agent whose internal state, tool set, memory, or reasoning trace is not observable to counterparties has an OpacityBoundary with a specific `evidenceGap` and `trustScopeConstraint` | | |
+| AI-12 | *(OpacityBoundary)* Trust decisions about opaque agents are scoped to what is declared in the `trustScopeConstraint`; they do not assert claims about unobservable components | | |
+| AI-13 | *(ExtensionContract)* Every extension negotiated in an interaction is recorded with `requiredness`, `negotiatedStatus`, and `failureHandling` | | |
+| AI-14 | *(ExtensionContract)* A `required` extension with `negotiatedStatus: rejected` or `degraded` and `failureHandling: continue` produces an explicit governance record justifying continuation | | |
 
 ### Dynamic Authorization Pattern *(experimental)*
 

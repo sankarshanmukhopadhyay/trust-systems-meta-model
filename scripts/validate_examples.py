@@ -20,6 +20,7 @@ PAIRS = [
     ("assurance-extension-instance.json", "tsmm-assurance-extension.schema.json"),
     ("multi-agent-coordination-instance.json", "tsmm-multi-agent-extension.schema.json"),
     ("evidence-artifact-instance.json", "tsmm-evidence-artifact-extension.schema.json"),
+    ("agent-interaction-extension-instance.json", "tsmm-agent-interaction-extension.schema.json"),
     ("tsmm-ecosystem-example.json", "tsmm-graph.schema.json"),
     ("profiles/ssi-ecosystem.json", "tsmm-graph.schema.json"),
     ("profiles/agent-trust-network.json", "tsmm-graph.schema.json"),

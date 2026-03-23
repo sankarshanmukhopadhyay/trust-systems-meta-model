@@ -1,19 +1,19 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-19
-applicable_version: v0.12.0
+last_reviewed: 2026-03-23
+applicable_version: v0.13.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.12.0-blue)](releases/v0.12.0.md)
+[![Release](https://img.shields.io/badge/release-v0.13.0-blue)](releases/v0.13.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.12.0  
+**Version:** v0.13.0  
 **Status:** Draft reference model  
 **License:** CC BY-SA 4.0
 
@@ -77,6 +77,17 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Implementer guide: `docs/getting-started-implementer-guide.md`
 - Roadmap: `docs/roadmap.md`
 
+**Agent Interaction Extension (v0.13.0):**
+- Service descriptor: `docs/model/service-descriptor.md`
+- Skill contract: `docs/model/skill-contract.md`
+- Interaction context: `docs/model/interaction-context.md`
+- Authorization checkpoint: `docs/model/authorization-checkpoint.md`
+- Extension contract: `docs/model/extension-contract.md`
+- Opacity boundary: `docs/model/opacity-boundary.md`
+- Peer trust relation: `docs/model/peer-trust-relation.md`
+- Schema: `schemas/tsmm-agent-interaction-extension.schema.json`
+- Example: `examples/agent-interaction-extension-instance.json`
+
 ## Ecosystem positioning
 
 TSMM sits above protocol and schema repositories. It should be read as the conceptual layer that explains **what kinds of trust objects exist, how they relate, and how trust decisions are formed**. Adjacent repositories then operationalize those abstractions:
@@ -105,19 +116,24 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## What changed in v0.12.0
+## What changed in v0.13.0
 
-v0.12.0 extends the agentic extension so TSMM can model typed agent operating posture and policy-governed attention routing more explicitly. This release is aimed at digital twin, virtual assistant, predictive side-car, and signal-gateway patterns without forcing those concepts into TSMM core.
+v0.13.0 adds the Agent Interaction Extension — seven new trust-semantic abstractions for agent-to-agent interaction. The extension is aimed at A2A-class agent ecosystems and any protocol where agents discover, negotiate, and interact as peers without hierarchical authority relationships. No core model changes.
 
 It adds:
 
-- `agentClass` and `controlMode` support to the agentic extension schema
-- `attentionPolicies` support to the agentic extension schema
-- richer worked examples for execution agents and attention-gateway agents
-- `docs/model/agent-role-classification.md`
-- `docs/model/attention-governance.md`
-- `docs/crosswalks/agent-taxonomy-ssa-crosswalk.md`
-- refreshed README navigation, repository tree, roadmap, freshness audit, and release notes
+- `schemas/tsmm-agent-interaction-extension.schema.json` — new extension schema with seven abstractions
+- `examples/agent-interaction-extension-instance.json` — two-party procurement interaction worked example
+- `docs/model/service-descriptor.md` — trust-relevant capability disclosure artifacts
+- `docs/model/skill-contract.md` — operational envelope separating capability from authorization
+- `docs/model/interaction-context.md` — session-level governance state across multi-turn interactions
+- `docs/model/authorization-checkpoint.md` — runtime authorization pause as a first-class trust event
+- `docs/model/extension-contract.md` — negotiated extension compatibility record
+- `docs/model/opacity-boundary.md` — governance constraints from deliberate agent non-observability
+- `docs/model/peer-trust-relation.md` — lateral peer trust distinct from hierarchical delegation
+- Agent Interaction Extension checklist tier added to `docs/conformance/tsmm-conformance-checklist.md`
+- Seven new terms added to `docs/glossary.md`
+- `docs/extensions/index.md` updated with Agent Interaction Extension entry
 
 ## Repo contents
 
@@ -158,6 +174,7 @@ trust-systems-meta-model/
 ├── examples/
 │   ├── profiles/
 │   ├── registries/
+│   ├── agent-interaction-extension-instance.json
 │   ├── agentic-ai-extension-instance.json
 │   ├── assurance-extension-instance.json
 │   ├── consumer-policy-instance.json
@@ -172,6 +189,7 @@ trust-systems-meta-model/
 │   ├── v0.11.0.md
 │   └── v0.12.0.md
 ├── schemas/
+│   ├── tsmm-agent-interaction-extension.schema.json
 │   ├── tsmm-agentic-extension.schema.json
 │   ├── tsmm-assurance-extension.schema.json
 │   ├── tsmm-binding.schema.json
@@ -221,3 +239,4 @@ python3 scripts/validate_tsmm_registry.py examples/registries/tsmm-registry-exam
 - `releases/v0.10.0.md`
 - `releases/v0.11.0.md`
 - `releases/v0.12.0.md`
+- `releases/v0.13.0.md`
