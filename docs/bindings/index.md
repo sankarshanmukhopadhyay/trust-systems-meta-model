@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-19
+last_reviewed: 2026-03-25
 applicable_version: v0.14.0
 tier: 1
 ---
@@ -16,6 +16,7 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 - [DCAS binding](dcas-binding.md)
 - [Verifiable Trust Communities binding](vtc-binding.md)
 - [A2A Protocol binding](a2a-binding.md) *(v0.14.0)*
+- [OASF binding](oasf-binding.md) *(integration increment)*
 
 ## Machine-readable artifacts
 
@@ -24,6 +25,7 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 - `bindings/dcas/tsmm-dcas-binding.json`
 - `bindings/vtc/tsmm-vtc-binding.json`
 - `bindings/a2a/tsmm-a2a-binding.json`
+- `bindings/oasf/tsmm-oasf-binding.json`
 
 ## Publication note
 

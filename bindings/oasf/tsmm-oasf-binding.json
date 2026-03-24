@@ -1,0 +1,57 @@
+{
+  "bindingId": "tsmm.binding.oasf.v1",
+  "label": "TSMM to OASF binding",
+  "description": "Maps Open Agentic Schema Framework (OASF) publication and evaluation structures into TSMM abstractions so OASF-described agents become assurance-addressable without collapsing TSMM into a schema catalog.",
+  "targetEcosystem": "OASF",
+  "version": "1.0.0",
+  "sources": [
+    "docs/crosswalks/oasf-crosswalk.md",
+    "docs/bindings/oasf-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "OASF record",
+      "tsmmType": "ServiceDescriptor",
+      "bindingStrength": "approximate",
+      "description": "Published machine-readable description of an agent or service surface that can be evaluated as a trust-relevant service description."
+    },
+    {
+      "externalConcept": "OASF publisher",
+      "tsmmType": "Operator",
+      "bindingStrength": "approximate",
+      "description": "Entity accountable for publishing and maintaining the described agent or service record."
+    },
+    {
+      "externalConcept": "OASF module / extension",
+      "tsmmType": "ExtensionContract",
+      "bindingStrength": "exact",
+      "description": "Composable extension point used to attach bounded semantics, assurance metadata, or ecosystem-specific publication requirements."
+    },
+    {
+      "externalConcept": "OASF a2a_data",
+      "tsmmType": "InteractionContext",
+      "bindingStrength": "approximate",
+      "description": "Structured interaction metadata describing communication surface, protocol attachment, and operational context relevant to trust decisions."
+    },
+    {
+      "externalConcept": "OASF evaluation_report",
+      "tsmmType": "Assessment",
+      "bindingStrength": "exact",
+      "description": "Structured evaluation output describing observed results, scores, and findings over a subject or artifact."
+    },
+    {
+      "externalConcept": "OASF referred_evaluation",
+      "tsmmType": "EvidenceArtifact",
+      "bindingStrength": "exact",
+      "description": "Reference to an externally produced evaluation artifact that can be cited as evidence in later assurance decisions."
+    }
+  ],
+  "notes": [
+    "The binding is intentionally lightweight. It lets TSMM point to OASF-described subjects and evaluation artifacts without turning OASF into a trust semantics replacement.",
+    "Assurance-addressable means TSMM entities can be referenced by OASF-aware control catalogs, evidence bundles, and evaluation outputs."
+  ],
+  "metadata": {
+    "maintainer": "maintainers",
+    "status": "draft"
+  }
+}

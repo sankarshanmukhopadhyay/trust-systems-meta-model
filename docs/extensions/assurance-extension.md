@@ -116,3 +116,18 @@ It is intended as a modular home for those concepts inside TSMM without narrowin
 ## 8. Non-goals
 
 This extension does not prescribe one certification regime, one audit framework, or one control taxonomy. It provides a portable structure for **assurance-oriented trust workflows grounded in controls, evidence, and review**.
+
+## 9. OASF publication note
+
+This extension now has an explicit interplay with **OASF** as a publication and extension surface. The relevant architectural point is modest but important.
+
+TSMM does not need OASF in order to model assurance. OASF does, however, provide a practical machine-readable way to publish agent descriptions, interaction metadata, and evaluation artifacts that downstream assurance systems can consume.
+
+That makes OASF useful as a transport layer for assurance-addressable TSMM concepts:
+
+- TSMM defines what kind of thing is being described.
+- OASF can publish the record and attached extension metadata.
+- ANAB can attach domain-specific control and evidence expectations.
+- DCAS can emit evaluation outputs that stay traceable to the described subject.
+
+See `docs/bindings/oasf-binding.md` and `docs/crosswalks/oasf-crosswalk.md`.

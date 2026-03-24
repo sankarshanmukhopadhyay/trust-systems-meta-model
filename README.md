@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-23
+last_reviewed: 2026-03-25
 applicable_version: v0.14.0
 tier: 0
 ---
@@ -92,6 +92,8 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Observability mode: `docs/model/observability-mode.md`
 - A2A crosswalk: `docs/crosswalks/a2a-crosswalk.md`
 - A2A binding: `docs/bindings/a2a-binding.md`
+- OASF binding: `docs/bindings/oasf-binding.md`
+- OASF crosswalk: `docs/crosswalks/oasf-crosswalk.md`
 
 ## Ecosystem positioning
 
@@ -101,6 +103,7 @@ TSMM sits above protocol and schema repositories. It should be read as the conce
 - **TRQP** and related bindings use those artifacts in discovery, query, and publication flows
 - **DCAS** applies them in assessment, evidence, and assurance workflows
 - domain baselines such as **ANAB** specialize them for bounded contexts
+- **OASF** can act as a publication and extension surface so TSMM-described subjects become assurance-addressable in agent ecosystems
 
 That separation matters because it keeps TSMM from collapsing into a schema dump wearing a philosophy hat.
 

@@ -42,3 +42,7 @@ All ten abstractions of the Agent Interaction Extension are now delivered. The A
 - add further machine-readable bindings for adjacent governance and assurance ecosystems
 - improve comparison guidance across bindings so the catalog becomes easier to operationalize
 - continue crosswalk work where external models expose missing but reusable TSMM structure
+
+## OASF integration follow-through
+
+A completed next increment is to move from semantic OASF binding to profile-level publication guidance so TSMM profiles, ANAB control publication, and DCAS evaluation outputs can travel through a shared OASF-facing surface without losing traceability.
