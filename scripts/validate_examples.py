@@ -12,6 +12,7 @@ SCHEMAS = ROOT / "schemas"
 EXAMPLES = ROOT / "examples"
 
 PAIRS = [
+    ("tsmm-meta-model-instance.json", "tsmm.schema.json"),
     ("minimal-trust-registry-instance.json", "tsmm-core.schema.json"),
     ("consumer-policy-instance.json", "tsmm-core.schema.json"),
     ("delegated-agent-instance.json", "tsmm-core.schema.json"),

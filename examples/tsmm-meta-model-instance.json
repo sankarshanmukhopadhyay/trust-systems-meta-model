@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "tsmm-main-workstream-1",
+  "modelId": "tsmm.meta-model.core",
+  "label": "TSMM canonical primitive catalog",
+  "description": "Canonical primitive catalog for the TSMM core meta-model formalization completed on the main branch without a tagged release.",
+  "primitiveDefinitions": [
+    {
+      "identifier": "primitive.actor",
+      "kind": "Actor",
+      "description": "Any person, organization, software agent, or system component that can participate in a trust-relevant flow.",
+      "requiredFields": [
+        "identifier"
+      ],
+      "fieldDefinitions": [
+        {
+          "name": "identifier",
+          "type": "string",
+          "description": "Stable identifier for the actor primitive in the canonical meta-model."
+        }
+      ],
+      "tsmmCoreMapping": {
+        "objectType": "entity",
+        "fieldAliases": {
+          "identifier": "id"
+        }
+      },
+      "notes": [
+        "Operational TSMM instances refine Actor through roles and authorities."
+      ]
+    },
+    {
+      "identifier": "primitive.authority",
+      "kind": "Authority",
+      "description": "A bounded right, mandate, permission, or recognized competence attached to a role.",
+      "requiredFields": [
+        "identifier",
+        "authority_source",
+        "revocation_mechanism"
+      ],
+      "fieldDefinitions": [
+        {
+          "name": "identifier",
+          "type": "string",
+          "description": "Stable identifier for the authority primitive."
+        },
+        {
+          "name": "authority_source",
+          "type": "string",
+          "description": "Origin of the authority, such as law, governance framework, contract, or delegation chain."
+        },
+        {
+          "name": "revocation_mechanism",
+          "type": "string",
+          "description": "How the authority can be suspended, revoked, or expire."
+        }
+      ],
+      "tsmmCoreMapping": {
+        "objectType": "authority",
+        "fieldAliases": {
+          "identifier": "id",
+          "authority_source": "source",
+          "revocation_mechanism": "revocationStatus"
+        }
+      }
+    },
+    {
+      "identifier": "primitive.credential",
+      "kind": "Credential",
+      "description": "A structured artifact that carries a trust-relevant claim set and can be checked for validity over time.",
+      "requiredFields": [
+        "identifier",
+        "validation_method",
+        "revocation_mechanism"
+      ],
+      "fieldDefinitions": [
+        {
+          "name": "identifier",
+          "type": "string",
+          "description": "Stable identifier for the credential primitive."
+        },
+        {
+          "name": "validation_method",
+          "type": "string",
+          "description": "How the credential is checked for authenticity and integrity."
+        },
+        {
+          "name": "revocation_mechanism",
+          "type": "string",
+          "description": "How the credential status can be invalidated or rechecked."
+        }
+      ],
+      "tsmmCoreMapping": {
+        "objectType": "artifact",
+        "fieldAliases": {
+          "identifier": "id",
+          "validation_method": "verification.method",
+          "revocation_mechanism": "lifecycleEvents.type"
+        }
+      },
+      "notes": [
+        "TSMM core uses the more general Artifact abstraction for operational instances."
+      ]
+    },
+    {
+      "identifier": "primitive.policy",
+      "kind": "Policy",
+      "description": "Ruleset governing acceptance, denial, downgrade, routing, or escalation.",
+      "requiredFields": [
+        "identifier"
+      ],
+      "fieldDefinitions": [
+        {
+          "name": "identifier",
+          "type": "string",
+          "description": "Stable identifier for the policy primitive."
+        }
+      ],
+      "tsmmCoreMapping": {
+        "objectType": "policy",
+        "fieldAliases": {
+          "identifier": "id"
+        }
+      }
+    },
+    {
+      "identifier": "primitive.trust-relationship",
+      "kind": "TrustRelationship",
+      "description": "A modeled reliance relationship that connects participants, artifacts, or decisions under stated conditions.",
+      "requiredFields": [
+        "identifier"
+      ],
+      "fieldDefinitions": [
+        {
+          "name": "identifier",
+          "type": "string",
+          "description": "Stable identifier for the trust relationship primitive."
+        }
+      ],
+      "tsmmCoreMapping": {
+        "objectType": "trustDecision",
+        "fieldAliases": {
+          "identifier": "id"
+        }
+      },
+      "notes": [
+        "In the current core schema, trust relationships are represented operationally through trust decisions, authority references, and effect references."
+      ]
+    },
+    {
+      "identifier": "primitive.delegation",
+      "kind": "Delegation",
+      "description": "A transfer or grant of bounded authority from one participant or role to another.",
+      "requiredFields": [
+        "identifier",
+        "authority_source",
+        "revocation_mechanism"
+      ],
+      "fieldDefinitions": [
+        {
+          "name": "identifier",
+          "type": "string",
+          "description": "Stable identifier for the delegation primitive."
+        },
+        {
+          "name": "authority_source",
+          "type": "string",
+          "description": "Source chain or upstream authority that legitimizes the delegation."
+        },
+        {
+          "name": "revocation_mechanism",
+          "type": "string",
+          "description": "How the delegation can be withdrawn, expire, or be superseded."
+        }
+      ],
+      "tsmmCoreMapping": {
+        "objectType": "authority",
+        "fieldAliases": {
+          "identifier": "id",
+          "authority_source": "source",
+          "revocation_mechanism": "revocationStatus"
+        }
+      },
+      "notes": [
+        "Delegation remains modeled through authority plus conditions in the current core instance schema."
+      ]
+    },
+    {
+      "identifier": "primitive.verification-process",
+      "kind": "VerificationProcess",
+      "description": "A checking operation that evaluates whether an expected trust condition holds.",
+      "requiredFields": [
+        "identifier",
+        "validation_method"
+      ],
+      "fieldDefinitions": [
+        {
+          "name": "identifier",
+          "type": "string",
+          "description": "Stable identifier for the verification primitive."
+        },
+        {
+          "name": "validation_method",
+          "type": "string",
+          "description": "Method used to evaluate the target condition."
+        }
+      ],
+      "tsmmCoreMapping": {
+        "objectType": "verification",
+        "fieldAliases": {
+          "identifier": "id",
+          "validation_method": "method"
+        }
+      }
+    }
+  ],
+  "notes": [
+    "This schema formalizes the primitive catalog for TSMM itself.",
+    "Operational trust-system examples continue to validate against schemas/tsmm-core.schema.json and extension schemas."
+  ]
+}

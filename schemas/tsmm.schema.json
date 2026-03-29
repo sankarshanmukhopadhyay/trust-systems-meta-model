@@ -1,0 +1,375 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm.schema.json",
+  "title": "TSMM Canonical Meta-Model Schema",
+  "description": "Machine-readable canonical schema for the TSMM primitive catalog. This schema defines the first-class abstractions and their required fields so the meta-model itself can be parsed, compared, and validated independently of any concrete TSMM instance.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "modelId",
+    "label",
+    "primitiveDefinitions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "modelId": {
+      "$ref": "#/$defs/idString"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "primitiveDefinitions": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "$ref": "#/$defs/primitiveDefinition"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "Actor"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "Authority"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "Credential"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "Policy"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "TrustRelationship"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "Delegation"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "VerificationProcess"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        }
+      ]
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "primitiveKind": {
+      "type": "string",
+      "enum": [
+        "Actor",
+        "Authority",
+        "Credential",
+        "Policy",
+        "TrustRelationship",
+        "Delegation",
+        "VerificationProcess"
+      ]
+    },
+    "fieldName": {
+      "type": "string",
+      "enum": [
+        "identifier",
+        "authority_source",
+        "validation_method",
+        "revocation_mechanism"
+      ]
+    },
+    "fieldDefinition": {
+      "type": "object",
+      "required": [
+        "name",
+        "type",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/fieldName"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "uri",
+            "array",
+            "object"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "primitiveDefinition": {
+      "type": "object",
+      "required": [
+        "identifier",
+        "kind",
+        "description",
+        "requiredFields",
+        "fieldDefinitions",
+        "tsmmCoreMapping"
+      ],
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/idString"
+        },
+        "kind": {
+          "$ref": "#/$defs/primitiveKind"
+        },
+        "description": {
+          "type": "string"
+        },
+        "requiredFields": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/fieldName"
+          }
+        },
+        "fieldDefinitions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/fieldDefinition"
+          }
+        },
+        "tsmmCoreMapping": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "fieldAliases"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string"
+            },
+            "fieldAliases": {
+              "type": "object",
+              "properties": {
+                "identifier": {
+                  "type": "string"
+                },
+                "authority_source": {
+                  "type": "string"
+                },
+                "validation_method": {
+                  "type": "string"
+                },
+                "revocation_mechanism": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Authority"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "requiredFields": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "const": "authority_source"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "revocation_mechanism"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Credential"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "requiredFields": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "const": "validation_method"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "revocation_mechanism"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Delegation"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "requiredFields": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "const": "authority_source"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "revocation_mechanism"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "VerificationProcess"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "requiredFields": {
+                "contains": {
+                  "const": "validation_method"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "additionalProperties": false
+}

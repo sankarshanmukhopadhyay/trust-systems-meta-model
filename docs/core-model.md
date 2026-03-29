@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
+last_reviewed: 2026-03-29
 applicable_version: v0.14.0
 tier: 1
 ---
@@ -10,6 +10,8 @@ tier: 1
 ## 1. Purpose
 
 The Trust Systems Meta Model (TSMM) provides an abstract model for how trust systems are structured and how they make operational decisions.
+
+The current main-branch increment also introduces a canonical primitive catalog at `schemas/tsmm.schema.json`. That schema formalizes the meta-model layer itself, while this document continues to explain how those primitives combine in a concrete trust-system instance.
 
 The model is built around a practical question:
 

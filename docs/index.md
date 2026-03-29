@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-23
+last_reviewed: 2026-03-29
 applicable_version: v0.14.0
 tier: 0
 ---
@@ -13,6 +13,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 
 ## What you get here
 
+- a canonical **primitive catalog** for the meta-model itself
 - a compact **core model** for trust systems
 - an **effect-centered evaluation model** for runtime legitimacy
 - **conformance profiles** that help structure implementation maturity
@@ -25,14 +26,15 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 
 1. [Repository overview](../README.md)
 2. [Core model](core-model.md)
-3. [Entity model](model/tsmm-entities.md)
-4. [Relationship model](model/tsmm-relationships.md)
-5. [Lifecycle model](model/tsmm-lifecycle.md)
-6. [Agent role classification](model/agent-role-classification.md)
-7. [Attention governance model](model/attention-governance.md)
-8. [Graph model](model/tsmm-graph-model.md)
-9. [Effect evaluation model](evaluation/effect-evaluation-model.md)
-10. [Threat model](security/trust-system-threat-model.md)
+3. [Canonical meta-model schema](model/tsmm-meta-model-schema.md)
+4. [Entity model](model/tsmm-entities.md)
+5. [Relationship model](model/tsmm-relationships.md)
+6. [Lifecycle model](model/tsmm-lifecycle.md)
+7. [Agent role classification](model/agent-role-classification.md)
+8. [Attention governance model](model/attention-governance.md)
+9. [Graph model](model/tsmm-graph-model.md)
+10. [Effect evaluation model](evaluation/effect-evaluation-model.md)
+11. [Threat model](security/trust-system-threat-model.md)
 
 ## Conformance profiles
 
@@ -124,6 +126,6 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 
 TSMM is effect-centered. The core governance question is not merely whether an identity exists. The question is whether a bounded authority, evaluated under policy and evidence, should be allowed to produce a specific effect.
 
-## Release snapshot
+## Current documentation snapshot
 
-This documentation set is aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. Validation coverage now includes the executable TSMM graph layer, the registry format, ecosystem publication artifacts, and indexed agentic instances so the reference model does not quietly drift into decorative theory. v0.14.0 completes the Agent Interaction Extension (InteractionTask, ContentProvenancePolicy, ObservabilityMode) and delivers the A2A binding and crosswalk.
+This documentation set remains aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main-branch increment adds a canonical primitive catalog at `schemas/tsmm.schema.json`, with validation coverage for `examples/tsmm-meta-model-instance.json`, so the reference model can now describe itself as a machine-readable contract rather than only through prose and instance examples.

@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-23
+last_reviewed: 2026-03-29
 applicable_version: v0.14.0
 tier: 1
 ---
@@ -8,6 +8,11 @@ tier: 1
 # TSMM Roadmap
 
 This file records plausible next steps for TSMM after v0.14.0. It is directional. It is not a schedule.
+
+## Workstream status
+
+- **Completed on main branch (no release):** Workstream 1 — Meta-Model Core Formalization
+- **Next logical focus:** Workstream 2 — Binding Layer formalization
 
 ## 1. Agent role and control semantics
 

@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
+last_reviewed: 2026-03-29
 applicable_version: v0.14.0
 tier: 1
 ---
@@ -11,15 +11,17 @@ tier: 1
 
 This document defines the core TSMM entities in a more normative form than the conceptual overview in `docs/core-model.md`.
 
+For the canonical machine-readable primitive catalog, see `docs/model/tsmm-meta-model-schema.md` and `schemas/tsmm.schema.json`. This document remains focused on the instance-layer semantics used by `schemas/tsmm-core.schema.json`.
+
 The objective is portability. Different ecosystems can name things differently, but if they share these structural invariants they can still map to a common trust grammar.
 
 ## 2. Core entities
 
 | Entity | Description | Mandatory fields |
 |---|---|---|
-| Actor | A person, organization, software agent, or system component capable of participating in a trust-relevant flow | `id`, `type` |
+| Actor | A person, organization, software agent, or system component capable of participating in a trust-relevant flow | `id`, `type` *(canonical primitive field: `identifier`)* |
 | Role | The context-specific capacity in which an actor operates | `id`, `type` |
-| Authority | A bounded right, mandate, permission, or recognized competence attached to a role | `id`, `scope` |
+| Authority | A bounded right, mandate, permission, or recognized competence attached to a role | `id`, `scope` *(canonical primitive fields include `authority_source` and `revocation_mechanism`)* |
 | Artifact | A structured object that carries trust-relevant information | `id`, `type` |
 | Claim | A proposition asserted by or about an actor, artifact, system, or state | `id`, `statement` |
 | Policy | A ruleset governing acceptance, denial, routing, downgrade, or escalation | `id`, `name`, `decisionMode` |
@@ -28,7 +30,7 @@ The objective is portability. Different ecosystems can name things differently, 
 | Threat | A modeled harm, abuse case, or failure mode relevant to trust posture | `id`, `type` |
 | Evidence | Material used to substantiate a claim, requirement, control, or assessment outcome | `id`, `type` |
 | Assessment | A structured evaluation activity over requirements, controls, or profiles | `id`, `method`, `result` |
-| Verification | A checking operation that evaluates whether a target condition holds | `id`, `method`, `result` |
+| Verification | A checking operation that evaluates whether a target condition holds | `id`, `method`, `result` *(canonical primitive field: `validation_method`)* |
 | Trust Decision | The evaluated outcome produced under policy and context | `id`, `outcome`, `policyRef`, `effectRefs` |
 | Effect | The operational consequence permitted, denied, degraded, routed, or recorded | `id`, `class`, `action`, `status` |
 | Lifecycle Event | A state change affecting trust posture or trust-relevant validity | `id`, `type`, `targetRef` |

@@ -20,6 +20,7 @@ EXAMPLES = ROOT / "examples"
 # Maps each example to the schema it exercises.
 # Extend this list when new examples or schemas are added.
 COVERAGE_PAIRS: list[tuple[str, str]] = [
+    ("tsmm-meta-model-instance.json", "tsmm.schema.json"),
     ("minimal-trust-registry-instance.json", "tsmm-core.schema.json"),
     ("consumer-policy-instance.json", "tsmm-core.schema.json"),
     ("delegated-agent-instance.json", "tsmm-core.schema.json"),
@@ -35,6 +36,8 @@ COVERAGE_PAIRS: list[tuple[str, str]] = [
 # Properties that are intentionally optional and acceptable to omit from examples.
 # Add property names here only with a documented reason.
 ACCEPTABLE_OMISSIONS: set[str] = {
+    # Meta-model notes are explanatory only.
+    "notes",
     # Lifecycle fields are only relevant in live operational instances, not worked examples.
     "lifecycleEvents",
     # Level frameworks are defined in standalone examples only.

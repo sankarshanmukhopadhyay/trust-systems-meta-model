@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-25
+last_reviewed: 2026-03-29
 applicable_version: v0.14.0
 tier: 0
 ---
@@ -14,7 +14,7 @@ tier: 0
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
 **Version:** v0.14.0  
-**Status:** Draft reference model  
+**Status:** Draft reference model with canonical primitive catalog  
 **License:** CC BY-SA 4.0
 
 ## Overview
@@ -35,6 +35,8 @@ Trust Systems Meta Model (TSMM) is a portable abstract reference model for desig
 TSMM is intentionally **effect-centered**. The key question is not only who an actor is, but whether a bounded authority, under policy and evidence, should be allowed to produce a defined effect. That makes the model useful for examining where trust is asserted, where it is verified, what substantiates it, how policy shapes decisions, and what consequences follow from acceptance, denial, downgrade, warning, or review.
 
 That framing makes TSMM usable across trust registries, verifiable credential ecosystems, delegated-agent systems, trust signal consumers, conformance suites, assurance frameworks, and modular domain extensions. In practice, TSMM is not meant to be a product or a protocol. It is a way to make trust systems more legible so they can be studied with more clarity and built with more rigor.
+
+On the current main branch, Workstream 1 of the meta-model hardening plan is now implemented. TSMM has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples.
 
 ## Documentation site
 
@@ -67,6 +69,7 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Pages landing page: `index.md`
 - Documentation home: `docs/index.md`
 - Core model: `docs/core-model.md`
+- Canonical meta-model schema: `docs/model/tsmm-meta-model-schema.md`
 - Entity model: `docs/model/tsmm-entities.md`
 - Relationship model: `docs/model/tsmm-relationships.md`
 - Lifecycle model: `docs/model/tsmm-lifecycle.md`
@@ -110,7 +113,7 @@ That separation matters because it keeps TSMM from collapsing into a schema dump
 ## Design principles
 
 ### 1. Minimal but useful
-TSMM aims to define the smallest practical abstraction layer that remains operationally meaningful.
+TSMM aims to define the smallest practical abstraction layer that remains operationally meaningful. Workstream 1 makes that abstraction layer machine-addressable rather than leaving it as prose alone.
 
 ### 2. Effect-centered
 The core question is not merely *who are you?* but *should this action, artifact, or signal produce an effect right now under bounded authority and policy?*
@@ -123,6 +126,20 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
+
+## Current main-branch increment
+
+The current non-release increment completes **Workstream 1 — Meta-Model Core Formalization**.
+
+It adds:
+
+- `schemas/tsmm.schema.json` — canonical schema for the TSMM primitive catalog
+- `examples/tsmm-meta-model-instance.json` — worked example of the primitive catalog
+- `docs/model/tsmm-meta-model-schema.md` — documentation for the canonical schema and required fields
+- validation and coverage checks updated to include the new schema/example pair
+- refreshed `schemas/tsmm-core.schema.json` description so the instance-layer schema is clearly distinguished from the canonical meta-model schema
+
+This is intentionally a main-branch documentation-and-schema increment. It does not cut a new release.
 
 ## What changed in v0.14.0
 
@@ -207,6 +224,7 @@ trust-systems-meta-model/
 │   │   ├── service-descriptor.md
 │   │   ├── skill-contract.md
 │   │   ├── tsmm-entities.md
+│   │   ├── tsmm-meta-model-schema.md
 │   │   ├── tsmm-graph-model.md
 │   │   ├── tsmm-lifecycle.md
 │   │   └── tsmm-relationships.md
@@ -231,6 +249,7 @@ trust-systems-meta-model/
 │   ├── relationship-model.md
 │   └── roadmap.md
 ├── examples/
+│   ├── tsmm-meta-model-instance.json
 │   ├── profiles/
 │   │   ├── agent-governance-network.json
 │   │   ├── agent-trust-network.json
@@ -264,6 +283,7 @@ trust-systems-meta-model/
 │   ├── v0.13.0.md
 │   └── v0.14.0.md
 ├── schemas/
+│   ├── tsmm.schema.json
 │   ├── tsmm-agent-interaction-extension.schema.json
 │   ├── tsmm-agentic-extension.schema.json
 │   ├── tsmm-assurance-extension.schema.json
