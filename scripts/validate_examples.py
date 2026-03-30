@@ -24,6 +24,7 @@ PAIRS = [
     ("agent-interaction-extension-instance.json", "tsmm-agent-interaction-extension.schema.json"),
     ("agent-interaction-a2a-binding-instance.json", "tsmm-agent-interaction-extension.schema.json"),
     ("tsmm-ecosystem-example.json", "tsmm-graph.schema.json"),
+    ("../model/graph/tsmm.graph.json", "tsmm-graph.schema.json"),
     ("profiles/ssi-ecosystem.json", "tsmm-graph.schema.json"),
     ("profiles/agent-trust-network.json", "tsmm-graph.schema.json"),
     ("profiles/agent-governance-network.json", "tsmm-graph.schema.json"),
@@ -32,6 +33,8 @@ PAIRS = [
     ("systems/trqp-registry-system.json", "tsmm-graph.schema.json"),
     ("systems/openid-federation-system.json", "tsmm-graph.schema.json"),
     ("systems/decentralized-directory-system.json", "tsmm-graph.schema.json"),
+    ("systems/content-authenticity-workflow.json", "tsmm-graph.schema.json"),
+    ("systems/verifiable-trust-community-system.json", "tsmm-graph.schema.json"),
     ("registries/tsmm-registry-example.json", "tsmm-registry.schema.json"),
 ]
 
@@ -54,9 +57,16 @@ def build_registry() -> Registry:
 REGISTRY = build_registry()
 
 
+def resolve_example_path(example_name: str) -> Path:
+    candidate = (ROOT / example_name).resolve()
+    if candidate.exists():
+        return candidate
+    return (EXAMPLES / example_name).resolve()
+
+
 def validate(example_name: str, schema_name: str) -> None:
     schema_path = SCHEMAS / schema_name
-    example_path = EXAMPLES / example_name
+    example_path = resolve_example_path(example_name)
     schema = load_json(schema_path)
     instance = load_json(example_path)
     validator = Draft202012Validator(schema, registry=REGISTRY)

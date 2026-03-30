@@ -13,7 +13,8 @@ This file records plausible next steps for TSMM after v0.14.0. It is directional
 
 - **Completed on main branch (no release):** canonical primitive catalog formalization for the meta-model core
 - **Completed on main branch (no release):** explicit ecosystem binding contracts and validation/test-vector scaffolding
-- **Current main-branch direction:** deepen authority, delegation, lifecycle, assurance portability, and interoperability semantics with more concrete system coverage
+- **Completed on main branch (no release):** authority, delegation, lifecycle, assurance portability, and interoperability artifacts
+- **Current main-branch direction:** make the graph layer the default entry point, expand concrete example coverage, and keep the contributor path clear around model, bind, validate, and compare
 
 ## Newly completed modeling surfaces on main branch
 
@@ -21,7 +22,9 @@ This file records plausible next steps for TSMM after v0.14.0. It is directional
 - machine-readable lifecycle state model
 - compact assurance property model for evidence, verification, auditability, and revocation traceability
 - interoperability matrix covering structural, semantic, and behavioral comparison modes
-- concrete system examples for TRQP-style registry, OpenID Federation, and decentralized directory patterns
+- canonical graph instance at `model/graph/tsmm.graph.json`
+- concrete system examples for TRQP-style registry, OpenID Federation, decentralized directory, content authenticity, and verifiable trust community patterns
+- graph-level semantic validation for metadata file references and expanded relation coverage
 
 ## 1. Agent role and control semantics
 

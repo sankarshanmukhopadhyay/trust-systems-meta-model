@@ -32,6 +32,11 @@
       "label": "Participant agent"
     },
     {
+      "id": "subject.1",
+      "type": "Subject",
+      "label": "Listed participant"
+    },
+    {
       "id": "cred.1",
       "type": "Credential",
       "label": "Membership credential"
@@ -50,6 +55,11 @@
       "id": "effect.1",
       "type": "Effect",
       "label": "Surface entry for discovery"
+    },
+    {
+      "id": "evidence.1",
+      "type": "EvidenceBundle",
+      "label": "Directory evidence bundle"
     }
   ],
   "edges": [
@@ -59,7 +69,7 @@
       "from": "auth.1",
       "to": "reg.1",
       "conditions": [
-        "active policy in force"
+        "directory policy active"
       ],
       "evidenceRefs": [
         "evidence.1"
@@ -69,7 +79,7 @@
       "id": "e2",
       "type": "asserts",
       "from": "cred.1",
-      "to": "agent.1"
+      "to": "subject.1"
     },
     {
       "id": "e3",

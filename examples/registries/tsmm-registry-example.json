@@ -7,6 +7,19 @@
   "defaultProfile": "tsi-core",
   "entries": [
     {
+      "id": "entry.graph.canonical",
+      "kind": "graph",
+      "label": "Canonical TSMM graph",
+      "location": "model/graph/tsmm.graph.json",
+      "status": "active",
+      "profile": "canonical",
+      "description": "Graph-first reference topology for modeling, binding, validation, and comparison.",
+      "tags": [
+        "canonical",
+        "graph"
+      ]
+    },
+    {
       "id": "entry.graph.reference",
       "kind": "graph",
       "label": "Reference ecosystem graph",
@@ -95,6 +108,32 @@
       "tags": [
         "agentic",
         "instance"
+      ]
+    },
+    {
+      "id": "entry.system.content-authenticity",
+      "kind": "graph",
+      "label": "Content authenticity workflow",
+      "location": "examples/systems/content-authenticity-workflow.json",
+      "status": "active",
+      "profile": "content-authenticity",
+      "description": "Governed provenance and verification workflow.",
+      "tags": [
+        "system",
+        "content"
+      ]
+    },
+    {
+      "id": "entry.system.vtc",
+      "kind": "graph",
+      "label": "Verifiable trust community system",
+      "location": "examples/systems/verifiable-trust-community-system.json",
+      "status": "active",
+      "profile": "vtc",
+      "description": "Community-governed membership and reliance workflow.",
+      "tags": [
+        "system",
+        "community"
       ]
     }
   ],

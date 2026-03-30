@@ -1,41 +1,54 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-14
+last_reviewed: 2026-03-30
 applicable_version: v0.14.0
-tier: 0
+tier: 1
 ---
 
 # TSMM Graph Model
 
-The TSMM Graph Model introduces a machine-readable representation of the Trust Systems Meta Model. Its job is simple: take the prose abstractions in TSMM and express them as nodes, edges, profiles, and governance constraints that tooling can inspect.
+The graph layer is now the shortest route into TSMM.
 
-This is the point where the repo stops being only an architectural reference and starts acting like executable infrastructure design. A trust model that cannot be represented in a machine-readable way is still useful, but it remains trapped in the land of elegant PDFs and committee eyebrows.
+Instead of beginning with prose and then asking implementers to translate that prose into their own diagrams, TSMM now provides a graph-first surface that can be modeled, rendered, validated, and compared directly. That matters because a meta-model starts to become operational only when people can express systems in a form that tooling can inspect.
 
-## Why the graph layer exists
+## Why the graph layer is central
 
-The conceptual TSMM documents define entities, relationships, governance context, evidence, assessment, and trust effects. Implementers still need a practical way to:
+The graph layer is where the repository's main promises meet each other:
 
-- represent a trust ecosystem as a graph
-- validate whether a relationship is structurally valid
-- package reference ecosystem topologies for reuse
-- build tooling such as visualizers, validators, registries, and conformance harnesses
+- the **core model** provides the abstractions
+- the **binding layer** connects those abstractions to concrete ecosystems
+- the **validation layer** rejects structurally incoherent examples
+- the **interoperability layer** compares systems once they share a common topology vocabulary
 
-The graph layer addresses that gap.
+In other words, the graph is where TSMM stops being only a reference model and starts behaving like a usable modeling surface.
 
-## Core components
+## Core artifacts
 
-The executable layer now includes six practical elements:
+The graph layer now has three anchor points:
 
-1. `schemas/tsmm-graph.schema.json` — canonical graph schema for TSMM nodes and edges
-2. `examples/tsmm-ecosystem-example.json` — reference ecosystem graph instance
-3. `scripts/validate_tsmm_graph.py` — graph validator with schema and semantic checks
-4. `examples/profiles/` — reusable graph profiles for recurring ecosystem patterns
-5. `scripts/render_tsmm_graph.py` — renderer for Mermaid and DOT outputs
-6. `examples/registries/tsmm-registry-example.json` — registry publication example that indexes graph artifacts for discovery
+1. `schemas/tsmm-graph.schema.json` — the canonical graph schema
+2. `model/graph/tsmm.graph.json` — the canonical graph instance used as the main branch reference topology
+3. `scripts/validate_tsmm_graph.py` — graph validation with schema and semantic checks
+
+Alongside those anchors are reusable examples and rendering support:
+
+- `examples/tsmm-ecosystem-example.json`
+- `examples/profiles/`
+- `examples/systems/`
+- `scripts/render_tsmm_graph.py`
+- `examples/registries/tsmm-registry-example.json`
+
+## What the canonical graph does
+
+`model/graph/tsmm.graph.json` is not meant to describe one protocol or one product. It is the compact reference topology for the recurring TSMM path:
+
+**authority → policy/profile → issuance/verification → evidence/assessment → trust decision → operational effect**
+
+That reference path gives contributors a concrete place to start before moving into ecosystem-specific system examples.
 
 ## Node classes
 
-The schema currently supports the following node classes:
+The schema currently supports these node classes:
 
 - `TrustDomain`
 - `GovernanceAuthority`
@@ -54,11 +67,9 @@ The schema currently supports the following node classes:
 - `Effect`
 - `RelyingParty`
 
-These are not arbitrary labels. They are constrained abstractions aligned with the existing TSMM entity and evaluation model.
-
 ## Relationship classes
 
-The schema and validator support a controlled relationship vocabulary:
+The graph schema and validator support a controlled relationship vocabulary:
 
 - `governs`
 - `defines`
@@ -76,12 +87,13 @@ The schema and validator support a controlled relationship vocabulary:
 - `produces`
 - `reliesOn`
 - `anchors`
+- `publishes`
 
-The validator checks not only whether the JSON is syntactically valid, but also whether a given relationship is used between permitted node types.
+That list is intentionally smaller than the total number of relationships one might imagine. The goal is not to capture every nuance in one schema. The goal is to provide a stable vocabulary that remains reusable across examples and bindings.
 
 ## What gets validated
 
-The validator currently checks for:
+The graph validator checks for:
 
 - schema conformance
 - duplicate node identifiers
@@ -89,47 +101,65 @@ The validator currently checks for:
 - missing node references
 - illegal relation pairings
 - invalid `evidenceRefs`
+- missing metadata file references such as `bindingRef`, `comparisonRef`, `validationProfileRef`, and `registryRef`
 
-That means the graph layer is not just decorative JSON. It can reject structurally incoherent trust topologies before they leak into downstream tooling.
+This means the graph layer is not just a diagram format. It is a constrained modeling surface with enough semantics to catch common structural mistakes early.
 
-## Reference ecosystem profiles
+## Example coverage
 
-The initial profile set is intentionally practical:
+The graph examples now cover multiple starting points:
 
+### Canonical graph
+- `model/graph/tsmm.graph.json`
+
+### Reference ecosystem and profiles
+- `examples/tsmm-ecosystem-example.json`
 - `examples/profiles/ssi-ecosystem.json`
 - `examples/profiles/agent-trust-network.json`
 - `examples/profiles/agent-governance-network.json`
 - `examples/profiles/trust-registry-federation.json`
 - `examples/profiles/dpi-trust-layer.json`
 
-These profiles help implementers start from known patterns rather than inventing a topology from scratch every time. Reinventing the governance wheel is a beloved industry pastime, but it is not a serious interoperability strategy.
+### Concrete systems
+- `examples/systems/trqp-registry-system.json`
+- `examples/systems/openid-federation-system.json`
+- `examples/systems/decentralized-directory-system.json`
+- `examples/systems/content-authenticity-workflow.json`
+- `examples/systems/verifiable-trust-community-system.json`
 
-## Example use cases
+This spread matters because contributors usually need different entry points. Some want a compact canonical topology. Others want a federation example. Others need a concrete workflow they can adapt.
 
-The graph layer is designed to support:
+## Rendering
 
-- trust registry topology description
-- credential ecosystem mapping
-- delegated agent governance modeling
-- assurance and evidence traceability
-- profile-driven conformance tooling
-- graph visualization and inspection
+You can render a graph example directly.
 
-## Position within TSMM
+```bash
+python scripts/render_tsmm_graph.py model/graph/tsmm.graph.json --format mermaid --cluster
+```
 
-The graph model does not replace the conceptual documentation. It operationalizes it.
+Or render a concrete system example:
 
-- The conceptual documents explain what the abstractions mean.
-- The graph schema expresses those abstractions as machine-readable structures.
-- The validator enforces structural discipline.
-- The profile examples provide starting points for adoption.
+```bash
+python scripts/render_tsmm_graph.py examples/systems/content-authenticity-workflow.json --format dot
+```
 
-Together, they make TSMM more portable across standards work, open-source tooling, and trust-system implementation programs.
+## How the graph layer fits the repo
+
+A practical way to use the repo is:
+
+1. start from the **canonical graph**
+2. adapt the graph into a **system example**
+3. connect it to an **ecosystem binding**
+4. run the **validators**
+5. compare it with adjacent systems through the **interoperability layer**
+
+That sequence gives the repository a clearer shape around **model, bind, validate, compare** rather than leaving readers to infer how the parts relate.
 
 ## Related artifacts
 
-- [Entity model](tsmm-entities.md)
-- [Relationship model](tsmm-relationships.md)
-- [Lifecycle model](tsmm-lifecycle.md)
-- [Effect evaluation model](../evaluation/effect-evaluation-model.md)
-- [Getting Started: Implementer Guide](../getting-started-implementer-guide.md)
+- [Model, Bind, Validate, Compare](../getting-started/model-bind-validate-compare.md)
+- [Core model](../core-model.md)
+- [Authority graph](authority-graph.md)
+- [Delegation patterns](delegation-patterns.md)
+- [Interoperability layer](../interop/interoperability.md)
+- [System examples](../examples/system-examples.md)

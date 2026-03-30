@@ -1,0 +1,184 @@
+{
+  "graphId": "graph.tsmm.canonical.v1",
+  "label": "TSMM canonical graph",
+  "description": "Canonical graph-first TSMM instance that connects governance authority, policy, assurance, verification, trust decision, and operational effect in one reference topology.",
+  "profile": "canonical",
+  "contexts": [
+    "model",
+    "bind",
+    "validate",
+    "compare"
+  ],
+  "nodes": [
+    {
+      "id": "dom.core",
+      "type": "TrustDomain",
+      "label": "Trust domain",
+      "attributes": {
+        "role": "root-context"
+      }
+    },
+    {
+      "id": "auth.core",
+      "type": "GovernanceAuthority",
+      "label": "Governance authority"
+    },
+    {
+      "id": "reg.core",
+      "type": "TrustRegistry",
+      "label": "Trust registry"
+    },
+    {
+      "id": "issuer.core",
+      "type": "Issuer",
+      "label": "Issuer"
+    },
+    {
+      "id": "verifier.core",
+      "type": "Verifier",
+      "label": "Verifier"
+    },
+    {
+      "id": "subject.core",
+      "type": "Subject",
+      "label": "Subject"
+    },
+    {
+      "id": "cred.core",
+      "type": "Credential",
+      "label": "Credential"
+    },
+    {
+      "id": "policy.core",
+      "type": "Policy",
+      "label": "Policy"
+    },
+    {
+      "id": "profile.core",
+      "type": "AssuranceProfile",
+      "label": "Assurance profile"
+    },
+    {
+      "id": "evidence.core",
+      "type": "EvidenceBundle",
+      "label": "Evidence bundle"
+    },
+    {
+      "id": "assessment.core",
+      "type": "Assessment",
+      "label": "Assessment"
+    },
+    {
+      "id": "decision.core",
+      "type": "TrustDecision",
+      "label": "Trust decision"
+    },
+    {
+      "id": "effect.core",
+      "type": "Effect",
+      "label": "Operational effect"
+    },
+    {
+      "id": "rp.core",
+      "type": "RelyingParty",
+      "label": "Relying party"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.1",
+      "type": "governs",
+      "from": "auth.core",
+      "to": "dom.core",
+      "conditions": [
+        "governance authority recognized"
+      ]
+    },
+    {
+      "id": "edge.2",
+      "type": "operates",
+      "from": "auth.core",
+      "to": "reg.core"
+    },
+    {
+      "id": "edge.3",
+      "type": "registers",
+      "from": "reg.core",
+      "to": "issuer.core"
+    },
+    {
+      "id": "edge.4",
+      "type": "defines",
+      "from": "auth.core",
+      "to": "policy.core"
+    },
+    {
+      "id": "edge.5",
+      "type": "defines",
+      "from": "auth.core",
+      "to": "profile.core"
+    },
+    {
+      "id": "edge.6",
+      "type": "issues",
+      "from": "issuer.core",
+      "to": "cred.core"
+    },
+    {
+      "id": "edge.7",
+      "type": "asserts",
+      "from": "cred.core",
+      "to": "subject.core"
+    },
+    {
+      "id": "edge.8",
+      "type": "verifies",
+      "from": "verifier.core",
+      "to": "cred.core"
+    },
+    {
+      "id": "edge.9",
+      "type": "substantiates",
+      "from": "evidence.core",
+      "to": "issuer.core"
+    },
+    {
+      "id": "edge.10",
+      "type": "assesses",
+      "from": "assessment.core",
+      "to": "profile.core",
+      "evidenceRefs": [
+        "evidence.core"
+      ]
+    },
+    {
+      "id": "edge.11",
+      "type": "informs",
+      "from": "assessment.core",
+      "to": "decision.core"
+    },
+    {
+      "id": "edge.12",
+      "type": "produces",
+      "from": "decision.core",
+      "to": "effect.core"
+    },
+    {
+      "id": "edge.13",
+      "type": "reliesOn",
+      "from": "rp.core",
+      "to": "decision.core"
+    },
+    {
+      "id": "edge.14",
+      "type": "anchors",
+      "from": "reg.core",
+      "to": "issuer.core"
+    }
+  ],
+  "metadata": {
+    "kind": "canonical-graph",
+    "renderHint": "cluster-by-profile",
+    "registryRef": "examples/registries/tsmm-registry-example.json"
+  }
+}

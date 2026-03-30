@@ -64,10 +64,10 @@
       "from": "auth.1",
       "to": "reg.1",
       "conditions": [
-        "active policy in force"
+        "governance policy active"
       ],
       "evidenceRefs": [
-        "evidence.1"
+        "bundle.1"
       ]
     },
     {

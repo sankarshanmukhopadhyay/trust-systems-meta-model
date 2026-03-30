@@ -12,6 +12,8 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 ## Start here
 
 - [Documentation home](docs/index.md)
+- [Model, Bind, Validate, Compare](docs/getting-started/model-bind-validate-compare.md)
+- [TSMM Graph Model](docs/model/tsmm-graph-model.md)
 - [Core model](docs/core-model.md)
 - [Canonical meta-model schema](docs/model/tsmm-meta-model-schema.md)
 - [Authority graph](docs/model/authority-graph.md)
@@ -28,7 +30,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - **Core abstractions:** entities, roles, authority, artifacts, claims, policy, controls, evidence, assessment, verification, trust decisions, and effects
 - **Profiles and patterns:** reusable guidance for shaping implementations without collapsing into one domain-specific standard
 - **Extensions:** modular specialization for Agentic AI, Verifiable Trust Communities, and assurance architectures
-- **Operational hygiene:** documentation governance, freshness audit, graph validation, registry validation, schema/example validation, and representative valid/invalid test-vector checks
+- **Operational hygiene:** documentation governance, freshness audit, graph validation, registry validation, schema/example validation, representative valid/invalid test-vector checks, and metadata reference checks across graph examples
 - **Bindings and publication:** ecosystem bindings, registry publication format, agentic instance indexing, graph rendering utility, and a clear handoff to the canonical trust artifact schema layer
 
 ## Explore by path
@@ -45,4 +47,4 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 
 ## Why this matters
 
-TSMM is designed as a bridge. It extracts recurring trust-system invariants from real implementation work so that other projects can apply the theory without waiting for one specific protocol, repository, or assurance package to do the translation for them. In the current ecosystem split, TSMM defines the abstract model, while trust-infrastructure-schemas implements the canonical machine-readable trust artifact layer consumed by assurance and protocol repos.
+TSMM is designed as a bridge. It extracts recurring trust-system invariants from real implementation work so that other projects can apply the theory without waiting for one specific protocol, repository, or assurance package to do the translation for them. On the current main branch, the clearest way to use the repo is to start from the graph layer, adapt one of the concrete system examples, bind it to an ecosystem surface, and then validate the result.

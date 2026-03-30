@@ -26,24 +26,23 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 ## Read this first
 
 1. [Repository overview](../README.md)
-2. [Core model](core-model.md)
-3. [Canonical meta-model schema](model/tsmm-meta-model-schema.md)
-4. [Entity model](model/tsmm-entities.md)
-5. [Relationship model](model/tsmm-relationships.md)
-6. [Lifecycle model](model/tsmm-lifecycle.md)
-7. [Agent role classification](model/agent-role-classification.md)
-8. [Attention governance model](model/attention-governance.md)
-9. [Graph model](model/tsmm-graph-model.md)
-10. [Effect evaluation model](evaluation/effect-evaluation-model.md)
-11. [Threat model](security/trust-system-threat-model.md)
+2. [Model, Bind, Validate, Compare](getting-started/model-bind-validate-compare.md)
+3. [TSMM Graph Model](model/tsmm-graph-model.md)
+4. [Core model](core-model.md)
+5. [Canonical meta-model schema](model/tsmm-meta-model-schema.md)
+6. [Entity model](model/tsmm-entities.md)
+7. [Relationship model](model/tsmm-relationships.md)
+8. [Lifecycle model](model/tsmm-lifecycle.md)
+9. [Effect evaluation model](evaluation/effect-evaluation-model.md)
+10. [Threat model](security/trust-system-threat-model.md)
 
 
 ## Start by task
 
-- **Model a system:** [Core model](core-model.md), [Authority graph](model/authority-graph.md), [Delegation patterns](model/delegation-patterns.md), [System examples](examples/system-examples.md)
+- **Model a system:** [Model, Bind, Validate, Compare](getting-started/model-bind-validate-compare.md), [TSMM Graph Model](model/tsmm-graph-model.md), [Authority graph](model/authority-graph.md), [System examples](examples/system-examples.md)
 - **Bind a system:** [Bindings overview](bindings/index.md), [Binding contract model](bindings/binding-contract.md)
-- **Validate a system:** [Validation and testability guide](conformance/validation-and-testability.md), `scripts/validate_examples.py`, `scripts/validate_yaml_models.py`
-- **Compare systems:** [Interoperability layer](interop/interoperability.md), [Crosswalks](crosswalks/trqp-tspp-crosswalk.md)
+- **Validate a system:** [Validation and testability guide](conformance/validation-and-testability.md), `scripts/validate_examples.py`, `scripts/validate_tsmm_graph.py`, `scripts/validate_yaml_models.py`
+- **Compare systems:** [Interoperability layer](interop/interoperability.md), [Crosswalks](crosswalks/trqp-tspp-crosswalk.md), [System examples](examples/system-examples.md)
 
 ## Conformance profiles
 
@@ -111,7 +110,9 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 ## Executable graph layer
 
 - [TSMM Graph Model](model/tsmm-graph-model.md)
+- [Model, Bind, Validate, Compare](getting-started/model-bind-validate-compare.md)
 - `schemas/tsmm-graph.schema.json`
+- `model/graph/tsmm.graph.json`
 - `examples/tsmm-ecosystem-example.json`
 - `examples/profiles/ssi-ecosystem.json`
 - `examples/profiles/agent-trust-network.json`
@@ -138,6 +139,8 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - `examples/systems/trqp-registry-system.json`
 - `examples/systems/openid-federation-system.json`
 - `examples/systems/decentralized-directory-system.json`
+- `examples/systems/content-authenticity-workflow.json`
+- `examples/systems/verifiable-trust-community-system.json`
 
 ## Registry publication
 
@@ -168,4 +171,4 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Current documentation snapshot
 
-This documentation set remains aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main-branch increment now includes a canonical primitive catalog, explicit binding contracts with constraint sets, machine-readable authority and lifecycle models, assurance properties, an interoperability matrix, and concrete system examples so the reference model can describe itself, compare ecosystems, and validate representative artifacts.
+This documentation set remains aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main branch now places the graph layer at the center of the repo, expands concrete system coverage, and tightens the contributor path around model, bind, validate, and compare.

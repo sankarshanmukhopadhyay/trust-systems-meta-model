@@ -1,0 +1,159 @@
+{
+  "graphId": "system.content.authenticity.workflow.v1",
+  "label": "Content authenticity workflow",
+  "description": "TSMM graph instance for a governed content authenticity workflow with provenance issuance, policy checks, evidence-backed assessment, and verifier reliance.",
+  "profile": "Content Authenticity",
+  "contexts": [
+    "content-provenance",
+    "verification",
+    "publication"
+  ],
+  "nodes": [
+    {
+      "id": "dom.ca",
+      "type": "TrustDomain",
+      "label": "Content authenticity domain",
+      "attributes": {
+        "exampleClass": "system-model"
+      }
+    },
+    {
+      "id": "auth.ca",
+      "type": "GovernanceAuthority",
+      "label": "Authenticity governance authority"
+    },
+    {
+      "id": "reg.ca",
+      "type": "TrustRegistry",
+      "label": "Approved issuer registry"
+    },
+    {
+      "id": "issuer.ca",
+      "type": "Issuer",
+      "label": "Publisher or signing service"
+    },
+    {
+      "id": "subject.ca",
+      "type": "Subject",
+      "label": "Content asset"
+    },
+    {
+      "id": "cred.ca",
+      "type": "Credential",
+      "label": "Provenance assertion"
+    },
+    {
+      "id": "verifier.ca",
+      "type": "Verifier",
+      "label": "Authenticity verifier"
+    },
+    {
+      "id": "policy.ca",
+      "type": "Policy",
+      "label": "Reliance policy"
+    },
+    {
+      "id": "evidence.ca",
+      "type": "EvidenceBundle",
+      "label": "Processing evidence bundle"
+    },
+    {
+      "id": "assessment.ca",
+      "type": "Assessment",
+      "label": "Policy conformance assessment"
+    },
+    {
+      "id": "decision.ca",
+      "type": "TrustDecision",
+      "label": "Accept authenticity signal"
+    },
+    {
+      "id": "effect.ca",
+      "type": "Effect",
+      "label": "Surface authenticity indicator"
+    },
+    {
+      "id": "rp.ca",
+      "type": "RelyingParty",
+      "label": "Consumer application"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "type": "governs",
+      "from": "auth.ca",
+      "to": "dom.ca",
+      "conditions": [
+        "approved issuer rules active"
+      ]
+    },
+    {
+      "id": "e2",
+      "type": "operates",
+      "from": "auth.ca",
+      "to": "reg.ca"
+    },
+    {
+      "id": "e3",
+      "type": "registers",
+      "from": "reg.ca",
+      "to": "issuer.ca"
+    },
+    {
+      "id": "e4",
+      "type": "defines",
+      "from": "auth.ca",
+      "to": "policy.ca"
+    },
+    {
+      "id": "e5",
+      "type": "issues",
+      "from": "issuer.ca",
+      "to": "cred.ca"
+    },
+    {
+      "id": "e6",
+      "type": "asserts",
+      "from": "cred.ca",
+      "to": "subject.ca"
+    },
+    {
+      "id": "e7",
+      "type": "verifies",
+      "from": "verifier.ca",
+      "to": "cred.ca"
+    },
+    {
+      "id": "e8",
+      "type": "substantiates",
+      "from": "evidence.ca",
+      "to": "assessment.ca"
+    },
+    {
+      "id": "e9",
+      "type": "informs",
+      "from": "assessment.ca",
+      "to": "decision.ca",
+      "evidenceRefs": [
+        "evidence.ca"
+      ]
+    },
+    {
+      "id": "e10",
+      "type": "produces",
+      "from": "decision.ca",
+      "to": "effect.ca"
+    },
+    {
+      "id": "e11",
+      "type": "reliesOn",
+      "from": "rp.ca",
+      "to": "decision.ca"
+    }
+  ],
+  "metadata": {
+    "comparisonRef": "interop/interoperability-matrix.yaml",
+    "validationProfileRef": "validation/conformance/tsmm-validation-profile.json"
+  }
+}

@@ -40,10 +40,10 @@ On the current main branch, TSMM now has a canonical primitive catalog at `schem
 
 ## Use TSMM by task
 
-- **Model a system** with the [core model](docs/core-model.md), [authority graph](docs/model/authority-graph.md), [delegation patterns](docs/model/delegation-patterns.md), and [system examples](docs/examples/system-examples.md).
+- **Model a system** with the [graph-first guide](docs/getting-started/model-bind-validate-compare.md), [TSMM Graph Model](docs/model/tsmm-graph-model.md), [authority graph](docs/model/authority-graph.md), [delegation patterns](docs/model/delegation-patterns.md), and [system examples](docs/examples/system-examples.md).
 - **Bind a system** with the [bindings overview](docs/bindings/index.md) and [binding contract model](docs/bindings/binding-contract.md).
-- **Validate a system** with `scripts/validate_examples.py`, `scripts/validate_bindings.py`, `scripts/validate_test_vectors.py`, and `scripts/validate_yaml_models.py`.
-- **Compare systems** with the [interoperability layer](docs/interop/interoperability.md), [crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md), and ecosystem bindings.
+- **Validate a system** with `scripts/validate_examples.py`, `scripts/validate_tsmm_graph.py`, `scripts/validate_bindings.py`, `scripts/validate_test_vectors.py`, and `scripts/validate_yaml_models.py`.
+- **Compare systems** with the [interoperability layer](docs/interop/interoperability.md), [crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md), ecosystem bindings, and the concrete graph examples under `examples/systems/`.
 
 ## Documentation site
 
@@ -75,6 +75,7 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 
 - Pages landing page: `index.md`
 - Documentation home: `docs/index.md`
+- Graph-first guide: `docs/getting-started/model-bind-validate-compare.md`
 - Core model: `docs/core-model.md`
 - Canonical meta-model schema: `docs/model/tsmm-meta-model-schema.md`
 - Entity model: `docs/model/tsmm-entities.md`
@@ -83,6 +84,7 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Authority graph: `docs/model/authority-graph.md`
 - Delegation patterns: `docs/model/delegation-patterns.md`
 - Interoperability layer: `docs/interop/interoperability.md`
+- TSMM Graph Model: `docs/model/tsmm-graph-model.md`
 - System examples: `docs/examples/system-examples.md`
 - Agent role classification: `docs/model/agent-role-classification.md`
 - Attention governance model: `docs/model/attention-governance.md`
@@ -138,15 +140,13 @@ Claims, controls, and trust posture must be substantiated. TSMM treats evidence,
 ### 5. Profile-aware but profile-agnostic
 Many real systems implement trust through profiles, requirements, and assessment methods. TSMM models those structures without forcing one domain-specific profile on everyone.
 
-## Current main-branch increment
+## Current main-branch focus
 
-The current non-release increment strengthens five areas that make TSMM resemble a meta-model more robustly:
+The current non-release increment makes three things clearer for contributors:
 
-- **authority and delegation semantics** through a canonical authority graph and delegation pattern catalog
-- **lifecycle modeling** through an explicit state and transition model for trust-relevant objects
-- **assurance portability** through reusable assurance properties for evidence, verification, auditability, and revocation traceability
-- **interoperability comparison** through explicit structural, semantic, and behavioral modes
-- **concrete system modeling** through TRQP-style registry, OpenID Federation, and decentralized directory examples validated in-repo
+- **graph representation is now central** through a canonical graph instance at `model/graph/tsmm.graph.json`, expanded graph validation, and clearer rendering paths
+- **system coverage is broader** through concrete examples for TRQP-style registry, OpenID Federation, decentralized directory, content authenticity, and verifiable trust community patterns
+- **entry paths are tighter** through a clearer workflow around model, bind, validate, and compare
 
 ## Additional machine-readable artifacts on main branch
 
@@ -158,6 +158,9 @@ The current non-release increment strengthens five areas that make TSMM resemble
 - `examples/systems/trqp-registry-system.json`
 - `examples/systems/openid-federation-system.json`
 - `examples/systems/decentralized-directory-system.json`
+- `examples/systems/content-authenticity-workflow.json`
+- `examples/systems/verifiable-trust-community-system.json`
+- `model/graph/tsmm.graph.json`
 
 ## What changed in v0.14.0
 

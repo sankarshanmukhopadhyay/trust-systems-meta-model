@@ -12,15 +12,24 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "schemas" / "tsmm-graph.schema.json"
 DEFAULT_TARGETS = [
     ROOT / "examples" / "tsmm-ecosystem-example.json",
+    ROOT / "model" / "graph" / "tsmm.graph.json",
     ROOT / "examples" / "profiles" / "ssi-ecosystem.json",
     ROOT / "examples" / "profiles" / "agent-trust-network.json",
     ROOT / "examples" / "profiles" / "agent-governance-network.json",
     ROOT / "examples" / "profiles" / "trust-registry-federation.json",
     ROOT / "examples" / "profiles" / "dpi-trust-layer.json",
+    ROOT / "examples" / "systems" / "trqp-registry-system.json",
+    ROOT / "examples" / "systems" / "openid-federation-system.json",
+    ROOT / "examples" / "systems" / "decentralized-directory-system.json",
+    ROOT / "examples" / "systems" / "content-authenticity-workflow.json",
+    ROOT / "examples" / "systems" / "verifiable-trust-community-system.json",
 ]
 
 ALLOWED_RELATIONS: dict[str, set[tuple[str, str]]] = {
-    "governs": {("GovernanceAuthority", "TrustDomain")},
+    "governs": {
+        ("GovernanceAuthority", "TrustDomain"),
+        ("GovernanceAuthority", "TrustRegistry"),
+    },
     "defines": {
         ("GovernanceAuthority", "Policy"),
         ("GovernanceAuthority", "AssuranceProfile"),
@@ -77,12 +86,18 @@ ALLOWED_RELATIONS: dict[str, set[tuple[str, str]]] = {
         ("EvidenceBundle", "TrustDecision"),
         ("AssuranceProfile", "TrustDecision"),
         ("Policy", "TrustDecision"),
+        ("Credential", "TrustDecision"),
     },
     "produces": {("TrustDecision", "Effect")},
     "reliesOn": {("RelyingParty", "TrustDecision")},
     "anchors": {
         ("TrustRegistry", "Credential"),
         ("TrustRegistry", "Issuer"),
+        ("GovernanceAuthority", "Issuer"),
+    },
+    "publishes": {
+        ("RegistryService", "Issuer"),
+        ("RegistryService", "Credential"),
     },
 }
 
@@ -118,6 +133,18 @@ def validate_graph(path: Path) -> None:
         raise SystemExit(f"FAILED semantic validation: {path.relative_to(ROOT)} has duplicate node ids")
 
     edge_ids: set[str] = set()
+
+    metadata = instance.get("metadata", {})
+    for key in ("bindingRef", "validationProfileRef", "comparisonRef", "registryRef"):
+        ref = metadata.get(key)
+        if ref is None:
+            continue
+        ref_path = (ROOT / ref).resolve()
+        if not ref_path.exists():
+            raise SystemExit(
+                f"FAILED semantic validation: {path.relative_to(ROOT)} metadata {key} points to missing file {ref}"
+            )
+
     for edge in edges:
         if edge["id"] in edge_ids:
             raise SystemExit(f"FAILED semantic validation: {path.relative_to(ROOT)} has duplicate edge id {edge['id']}")

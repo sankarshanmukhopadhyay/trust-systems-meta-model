@@ -42,6 +42,11 @@
       "label": "Metadata policy"
     },
     {
+      "id": "evidence.1",
+      "type": "EvidenceBundle",
+      "label": "Federation evidence bundle"
+    },
+    {
       "id": "decision.1",
       "type": "TrustDecision",
       "label": "Accept provider metadata"
@@ -59,7 +64,7 @@
       "from": "anchor.1",
       "to": "issuer.1",
       "conditions": [
-        "active policy in force"
+        "anchor statement current"
       ],
       "evidenceRefs": [
         "evidence.1"
@@ -79,7 +84,7 @@
     },
     {
       "id": "e4",
-      "type": "constrains",
+      "type": "informs",
       "from": "policy.1",
       "to": "decision.1"
     },

@@ -1,0 +1,165 @@
+{
+  "graphId": "system.verifiable.trust.community.v1",
+  "label": "Verifiable trust community system",
+  "description": "TSMM graph instance for a community-governed trust system with membership issuance, evidence-backed assessment, and verifier reliance.",
+  "profile": "Verifiable Trust Community",
+  "contexts": [
+    "community",
+    "membership",
+    "assurance"
+  ],
+  "nodes": [
+    {
+      "id": "dom.vtc",
+      "type": "TrustDomain",
+      "label": "Trust community domain",
+      "attributes": {
+        "exampleClass": "system-model"
+      }
+    },
+    {
+      "id": "auth.vtc",
+      "type": "GovernanceAuthority",
+      "label": "Community governance authority"
+    },
+    {
+      "id": "reg.vtc",
+      "type": "TrustRegistry",
+      "label": "Community registry"
+    },
+    {
+      "id": "issuer.vtc",
+      "type": "Issuer",
+      "label": "Membership issuer"
+    },
+    {
+      "id": "subject.vtc",
+      "type": "Subject",
+      "label": "Community member"
+    },
+    {
+      "id": "cred.vtc",
+      "type": "Credential",
+      "label": "Membership credential"
+    },
+    {
+      "id": "verifier.vtc",
+      "type": "Verifier",
+      "label": "Community verifier"
+    },
+    {
+      "id": "profile.vtc",
+      "type": "AssuranceProfile",
+      "label": "Community assurance profile"
+    },
+    {
+      "id": "evidence.vtc",
+      "type": "EvidenceBundle",
+      "label": "Community evidence bundle"
+    },
+    {
+      "id": "assessment.vtc",
+      "type": "Assessment",
+      "label": "Membership assessment"
+    },
+    {
+      "id": "decision.vtc",
+      "type": "TrustDecision",
+      "label": "Accept member status"
+    },
+    {
+      "id": "effect.vtc",
+      "type": "Effect",
+      "label": "Grant community participation"
+    },
+    {
+      "id": "rp.vtc",
+      "type": "RelyingParty",
+      "label": "Community service"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "type": "governs",
+      "from": "auth.vtc",
+      "to": "dom.vtc",
+      "conditions": [
+        "community charter in force"
+      ]
+    },
+    {
+      "id": "e2",
+      "type": "operates",
+      "from": "auth.vtc",
+      "to": "reg.vtc"
+    },
+    {
+      "id": "e3",
+      "type": "registers",
+      "from": "reg.vtc",
+      "to": "issuer.vtc"
+    },
+    {
+      "id": "e4",
+      "type": "defines",
+      "from": "auth.vtc",
+      "to": "profile.vtc"
+    },
+    {
+      "id": "e5",
+      "type": "issues",
+      "from": "issuer.vtc",
+      "to": "cred.vtc"
+    },
+    {
+      "id": "e6",
+      "type": "asserts",
+      "from": "cred.vtc",
+      "to": "subject.vtc"
+    },
+    {
+      "id": "e7",
+      "type": "verifies",
+      "from": "verifier.vtc",
+      "to": "cred.vtc"
+    },
+    {
+      "id": "e8",
+      "type": "substantiates",
+      "from": "evidence.vtc",
+      "to": "assessment.vtc"
+    },
+    {
+      "id": "e9",
+      "type": "assesses",
+      "from": "assessment.vtc",
+      "to": "profile.vtc",
+      "evidenceRefs": [
+        "evidence.vtc"
+      ]
+    },
+    {
+      "id": "e10",
+      "type": "informs",
+      "from": "assessment.vtc",
+      "to": "decision.vtc"
+    },
+    {
+      "id": "e11",
+      "type": "produces",
+      "from": "decision.vtc",
+      "to": "effect.vtc"
+    },
+    {
+      "id": "e12",
+      "type": "reliesOn",
+      "from": "rp.vtc",
+      "to": "decision.vtc"
+    }
+  ],
+  "metadata": {
+    "bindingRef": "bindings/vtc/tsmm-vtc-binding.json",
+    "validationProfileRef": "validation/conformance/tsmm-validation-profile.json"
+  }
+}
