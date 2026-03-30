@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-authority-graph.schema.json",
+  "title": "TSMM Authority Graph Model",
+  "description": "Machine-readable representation of authority origins, delegation chains, scope constraints, and revocation semantics in a TSMM-governed system.",
+  "type": "object",
+  "required": ["graphId", "label", "nodes", "edges"],
+  "properties": {
+    "graphId": {"$ref": "#/$defs/idString"},
+    "label": {"type": "string"},
+    "description": {"type": "string"},
+    "nodes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"$ref": "#/$defs/node"}
+    },
+    "edges": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/edge"}
+    },
+    "delegationChains": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/delegationChain"}
+    },
+    "revocationRules": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/revocationRule"}
+    },
+    "notes": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "nodeType": {
+      "type": "string",
+      "enum": ["AuthoritySource", "DelegatedActor", "Verifier", "Policy", "Artifact", "Registry"]
+    },
+    "edgeType": {
+      "type": "string",
+      "enum": ["originates", "delegates", "constrains", "verifies", "revokes", "publishes"]
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "type", "label"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "type": {"$ref": "#/$defs/nodeType"},
+        "label": {"type": "string"},
+        "scope": {"type": "string"},
+        "authorityOrigin": {"type": "string"},
+        "evidenceRef": {"$ref": "#/$defs/idString"}
+      },
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "type", "from", "to"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "type": {"$ref": "#/$defs/edgeType"},
+        "from": {"$ref": "#/$defs/idString"},
+        "to": {"$ref": "#/$defs/idString"},
+        "scopeConstraint": {"type": "string"},
+        "revocationSemantics": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "delegationChain": {
+      "type": "object",
+      "required": ["id", "steps", "maxDepth"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/idString"}
+        },
+        "maxDepth": {"type": "integer", "minimum": 1},
+        "terminationCondition": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "revocationRule": {
+      "type": "object",
+      "required": ["id", "trigger", "effect"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "trigger": {"type": "string"},
+        "effect": {"type": "string"},
+        "propagation": {
+          "type": "string",
+          "enum": ["immediate", "bounded-delay", "manual-review"]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -14,7 +14,7 @@ tier: 0
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
 **Version:** v0.14.0  
-**Status:** Draft reference model with canonical primitive catalog  
+**Status:** Draft reference model with machine-readable modeling and comparison artifacts  
 **License:** CC BY-SA 4.0
 
 ## Overview
@@ -36,7 +36,14 @@ TSMM is intentionally **effect-centered**. The key question is not only who an a
 
 That framing makes TSMM usable across trust registries, verifiable credential ecosystems, delegated-agent systems, trust signal consumers, conformance suites, assurance frameworks, and modular domain extensions. In practice, TSMM is not meant to be a product or a protocol. It is a way to make trust systems more legible so they can be studied with more clarity and built with more rigor.
 
-On the current main branch, TSMM now has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples. The current increment extends that foundation with explicit binding contracts, per-ecosystem constraint sets, and a lightweight validation suite for representative valid and invalid cases.
+On the current main branch, TSMM now has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples. The current increment extends that foundation with explicit binding contracts, per-ecosystem constraint sets, authority and delegation models, a lifecycle state model, assurance properties, an interoperability matrix, and concrete system examples.
+
+## Use TSMM by task
+
+- **Model a system** with the [core model](docs/core-model.md), [authority graph](docs/model/authority-graph.md), [delegation patterns](docs/model/delegation-patterns.md), and [system examples](docs/examples/system-examples.md).
+- **Bind a system** with the [bindings overview](docs/bindings/index.md) and [binding contract model](docs/bindings/binding-contract.md).
+- **Validate a system** with `scripts/validate_examples.py`, `scripts/validate_bindings.py`, `scripts/validate_test_vectors.py`, and `scripts/validate_yaml_models.py`.
+- **Compare systems** with the [interoperability layer](docs/interop/interoperability.md), [crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md), and ecosystem bindings.
 
 ## Documentation site
 
@@ -73,6 +80,10 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Entity model: `docs/model/tsmm-entities.md`
 - Relationship model: `docs/model/tsmm-relationships.md`
 - Lifecycle model: `docs/model/tsmm-lifecycle.md`
+- Authority graph: `docs/model/authority-graph.md`
+- Delegation patterns: `docs/model/delegation-patterns.md`
+- Interoperability layer: `docs/interop/interoperability.md`
+- System examples: `docs/examples/system-examples.md`
 - Agent role classification: `docs/model/agent-role-classification.md`
 - Attention governance model: `docs/model/attention-governance.md`
 - Effect evaluation model: `docs/evaluation/effect-evaluation-model.md`
@@ -129,10 +140,24 @@ Many real systems implement trust through profiles, requirements, and assessment
 
 ## Current main-branch increment
 
-The current non-release increment strengthens two areas that make TSMM resemble a meta-model more robustly:
+The current non-release increment strengthens five areas that make TSMM resemble a meta-model more robustly:
 
-- **binding contracts** for TRQP, OpenID Federation, DCAS, and Verifiable Trust Communities, each with guarantees, limitations, behavioral expectations, and explicit constraint sets
-- **validation and testability** through a dedicated `validation/` tree, representative valid and invalid test vectors, and scripts that check the binding catalog as a first-class artifact
+- **authority and delegation semantics** through a canonical authority graph and delegation pattern catalog
+- **lifecycle modeling** through an explicit state and transition model for trust-relevant objects
+- **assurance portability** through reusable assurance properties for evidence, verification, auditability, and revocation traceability
+- **interoperability comparison** through explicit structural, semantic, and behavioral modes
+- **concrete system modeling** through TRQP-style registry, OpenID Federation, and decentralized directory examples validated in-repo
+
+## Additional machine-readable artifacts on main branch
+
+- `model/authority-graph.yaml` and `schemas/tsmm-authority-graph.schema.json`
+- `model/delegation-patterns.yaml` and `schemas/tsmm-delegation-patterns.schema.json`
+- `model/lifecycle/trust-object-lifecycle.yaml` and `schemas/tsmm-lifecycle.schema.json`
+- `extensions/assurance/assurance-properties.yaml` and `schemas/tsmm-assurance-properties.schema.json`
+- `interop/interoperability-matrix.yaml` and `schemas/tsmm-interoperability.schema.json`
+- `examples/systems/trqp-registry-system.json`
+- `examples/systems/openid-federation-system.json`
+- `examples/systems/decentralized-directory-system.json`
 
 ## What changed in v0.14.0
 

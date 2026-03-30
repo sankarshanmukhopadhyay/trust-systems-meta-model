@@ -13,6 +13,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = ROOT / "schemas"
 EXAMPLES = ROOT / "examples"
@@ -32,6 +34,14 @@ COVERAGE_PAIRS: list[tuple[str, str]] = [
     ("evidence-artifact-instance.json", "tsmm-evidence-artifact-extension.schema.json"),
     ("agent-interaction-extension-instance.json", "tsmm-agent-interaction-extension.schema.json"),
     ("agent-interaction-a2a-binding-instance.json", "tsmm-agent-interaction-extension.schema.json"),
+    ("systems/trqp-registry-system.json", "tsmm-graph.schema.json"),
+    ("systems/openid-federation-system.json", "tsmm-graph.schema.json"),
+    ("systems/decentralized-directory-system.json", "tsmm-graph.schema.json"),
+    ("model/authority-graph.yaml", "schemas/tsmm-authority-graph.schema.json"),
+    ("model/delegation-patterns.yaml", "schemas/tsmm-delegation-patterns.schema.json"),
+    ("model/lifecycle/trust-object-lifecycle.yaml", "schemas/tsmm-lifecycle.schema.json"),
+    ("extensions/assurance/assurance-properties.yaml", "schemas/tsmm-assurance-properties.schema.json"),
+    ("interop/interoperability-matrix.yaml", "schemas/tsmm-interoperability.schema.json"),
     ("validation/test_vectors/valid/tsmm-binding-valid.json", "tsmm-binding.schema.json"),
     ("validation/test_vectors/valid/tsmm-binding-constraints-valid.json", "validation/schemas/tsmm-binding-constraints.schema.json"),
 ]
@@ -119,8 +129,19 @@ ACCEPTABLE_OMISSIONS: set[str] = {
 }
 
 
-def load_json(path: Path) -> Any:
+
+
+def resolve_repo_path(relative: str, default_root: Path) -> Path:
+    candidate = ROOT / relative
+    if candidate.exists():
+        return candidate
+    candidate = default_root / relative
+    return candidate
+
+def load_structured(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as f:
+        if path.suffix in {".yaml", ".yml"}:
+            return yaml.safe_load(f)
         return json.load(f)
 
 
@@ -160,11 +181,11 @@ def collect_instance_keys(obj: Any, found: set[str] | None = None) -> set[str]:
 
 
 def check_coverage(example_name: str, schema_name: str) -> list[str]:
-    schema_path = ROOT / schema_name if "/" in schema_name else SCHEMAS / schema_name
-    example_path = ROOT / example_name if "/" in example_name else EXAMPLES / example_name
+    schema_path = resolve_repo_path(schema_name, SCHEMAS)
+    example_path = resolve_repo_path(example_name, EXAMPLES)
 
-    schema = load_json(schema_path)
-    instance = load_json(example_path)
+    schema = load_structured(schema_path)
+    instance = load_structured(example_path)
 
     schema_props = collect_schema_properties(schema)
     instance_keys = collect_instance_keys(instance)
@@ -184,8 +205,8 @@ def main() -> None:
     all_gaps: list[str] = []
 
     for example_name, schema_name in COVERAGE_PAIRS:
-        example_path = ROOT / example_name if "/" in example_name else EXAMPLES / example_name
-        schema_path = ROOT / schema_name if "/" in schema_name else SCHEMAS / schema_name
+        example_path = resolve_repo_path(example_name, EXAMPLES)
+        schema_path = resolve_repo_path(schema_name, SCHEMAS)
 
         if not example_path.exists():
             print(f"SKIP (example not found): {example_name}")

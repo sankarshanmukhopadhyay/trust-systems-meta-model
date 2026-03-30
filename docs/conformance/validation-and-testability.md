@@ -11,13 +11,14 @@ TSMM should be testable as a model, not only readable as documentation. The curr
 
 ## Validation surfaces
 
-The repository now validates five surfaces:
+The repository now validates six surfaces:
 
 1. core and extension examples against their schemas
 2. schema coverage so examples exercise modeled properties
 3. ecosystem bindings against the binding schema
 4. binding constraint sets against the constraint-set schema
 5. representative valid and invalid test vectors
+6. YAML-based authority, delegation, lifecycle, assurance, and interoperability artifacts
 
 ## Validation tree
 
@@ -33,6 +34,7 @@ The repository now validates five surfaces:
 - `python scripts/validate_bindings.py`
 - `python scripts/validate_test_vectors.py`
 - `python scripts/check_docs.py`
+- `python scripts/validate_yaml_models.py`
 
 ## Design intent
 

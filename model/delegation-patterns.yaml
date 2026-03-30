@@ -1,0 +1,54 @@
+catalogId: tsmm.delegation.patterns.v1
+label: Canonical delegation pattern catalog
+patterns:
+  - id: pattern.direct
+    type: direct
+    label: Direct authority
+    authorityOrigin: Original authority acts without intermediate delegation
+    scopeModel: Scope is intrinsic to the original mandate
+    revocationModel: Revoke or suspend the root authority directly
+    verificationExpectation: Verify source authority and current status
+    exampleContexts:
+      - Foundational governance authority
+      - Root trust list operator
+    failureModes:
+      - stale authority record
+  - id: pattern.delegated
+    type: delegated
+    label: Delegated authority
+    authorityOrigin: Authority is granted from a root or parent authority
+    scopeModel: Scope is explicit and narrower than the parent mandate
+    revocationModel: Parent revocation cascades to the delegate
+    verificationExpectation: Verify parent chain, scope, and current status
+    exampleContexts:
+      - Trusted service provider issuance
+      - Agent mandate for procurement action
+    failureModes:
+      - hidden over-delegation
+      - broken revocation cascade
+  - id: pattern.federated
+    type: federated
+    label: Federated authority
+    authorityOrigin: Authority is recognized across a network of governed domains
+    scopeModel: Scope is constrained by federation policy and local trust anchors
+    revocationModel: Federation status changes must propagate across members
+    verificationExpectation: Verify both local anchor and federation-level status
+    exampleContexts:
+      - OpenID Federation operator sets
+      - Multi-registry trust network
+    failureModes:
+      - anchor mismatch
+      - delayed federation update
+  - id: pattern.conditional
+    type: conditional
+    label: Conditional authority
+    authorityOrigin: Authority exists only while contextual conditions remain true
+    scopeModel: Scope is dynamically bounded by purpose, time, or task context
+    revocationModel: Authority terminates when condition fails or evidence expires
+    verificationExpectation: Verify live condition and evidence freshness at decision time
+    exampleContexts:
+      - Step-up delegation for high-risk transaction
+      - Time-bound automated agent execution
+    failureModes:
+      - expired evidence reused
+      - condition not re-evaluated

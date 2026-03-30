@@ -9,7 +9,7 @@ tier: 0
 
 Welcome to the documentation site for **Trust Systems Meta Model (TSMM)**.
 
-TSMM is a portable reference model for designing, comparing, and implementing trust systems. It gives architects, standards authors, assurance teams, and protocol designers a common grammar for reasoning about roles, authority, policies, profiles, controls, evidence, assessment, verification, trust decisions, and operational effects.
+TSMM is a portable reference model for designing, comparing, and implementing trust systems. It gives architects, standards authors, assurance teams, and protocol designers a common grammar for reasoning about roles, authority, policies, profiles, controls, evidence, assessment, verification, trust decisions, and operational effects. On the current main branch it also provides machine-readable authority, lifecycle, assurance, interoperability, and system-example artifacts so the model can be exercised directly.
 
 ## What you get here
 
@@ -36,6 +36,14 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 9. [Graph model](model/tsmm-graph-model.md)
 10. [Effect evaluation model](evaluation/effect-evaluation-model.md)
 11. [Threat model](security/trust-system-threat-model.md)
+
+
+## Start by task
+
+- **Model a system:** [Core model](core-model.md), [Authority graph](model/authority-graph.md), [Delegation patterns](model/delegation-patterns.md), [System examples](examples/system-examples.md)
+- **Bind a system:** [Bindings overview](bindings/index.md), [Binding contract model](bindings/binding-contract.md)
+- **Validate a system:** [Validation and testability guide](conformance/validation-and-testability.md), `scripts/validate_examples.py`, `scripts/validate_yaml_models.py`
+- **Compare systems:** [Interoperability layer](interop/interoperability.md), [Crosswalks](crosswalks/trqp-tspp-crosswalk.md)
 
 ## Conformance profiles
 
@@ -111,6 +119,26 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - `examples/profiles/trust-registry-federation.json`
 - `examples/profiles/dpi-trust-layer.json`
 
+
+## Authority, delegation, lifecycle, and interoperability
+
+- [Authority graph](model/authority-graph.md)
+- [Delegation patterns](model/delegation-patterns.md)
+- [Lifecycle model](model/tsmm-lifecycle.md)
+- [Interoperability layer](interop/interoperability.md)
+- `model/authority-graph.yaml`
+- `model/delegation-patterns.yaml`
+- `model/lifecycle/trust-object-lifecycle.yaml`
+- `extensions/assurance/assurance-properties.yaml`
+- `interop/interoperability-matrix.yaml`
+
+## System examples
+
+- [System examples overview](examples/system-examples.md)
+- `examples/systems/trqp-registry-system.json`
+- `examples/systems/openid-federation-system.json`
+- `examples/systems/decentralized-directory-system.json`
+
 ## Registry publication
 
 - [TSMM Registry Format](registry/tsmm-registry-format.md)
@@ -140,4 +168,4 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Current documentation snapshot
 
-This documentation set remains aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main-branch increment now includes a canonical primitive catalog, explicit binding contracts with constraint sets, and a lightweight validation suite so the reference model can describe itself, translate across ecosystems, and test representative cases as machine-readable artifacts.
+This documentation set remains aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main-branch increment now includes a canonical primitive catalog, explicit binding contracts with constraint sets, machine-readable authority and lifecycle models, assurance properties, an interoperability matrix, and concrete system examples so the reference model can describe itself, compare ecosystems, and validate representative artifacts.

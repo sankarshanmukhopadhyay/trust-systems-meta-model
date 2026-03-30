@@ -1,0 +1,114 @@
+{
+  "graphId": "system.trqp.registry.v1",
+  "label": "TRQP-style trust registry system",
+  "description": "A concrete TSMM graph instance for a registry-mediated trust publication and consumption flow.",
+  "profile": "TRQP",
+  "contexts": [
+    "registry-publication",
+    "assurance"
+  ],
+  "nodes": [
+    {
+      "id": "dom.1",
+      "type": "TrustDomain",
+      "label": "TRQP ecosystem",
+      "attributes": {
+        "exampleClass": "system-model"
+      }
+    },
+    {
+      "id": "auth.1",
+      "type": "GovernanceAuthority",
+      "label": "Trust framework authority"
+    },
+    {
+      "id": "reg.1",
+      "type": "TrustRegistry",
+      "label": "Registry operator"
+    },
+    {
+      "id": "issuer.1",
+      "type": "Issuer",
+      "label": "Trusted service provider"
+    },
+    {
+      "id": "profile.1",
+      "type": "AssuranceProfile",
+      "label": "AL2 profile"
+    },
+    {
+      "id": "bundle.1",
+      "type": "EvidenceBundle",
+      "label": "Conformance evidence bundle"
+    },
+    {
+      "id": "decision.1",
+      "type": "TrustDecision",
+      "label": "Rely decision"
+    },
+    {
+      "id": "effect.1",
+      "type": "Effect",
+      "label": "Allow registry-mediated trust effect"
+    },
+    {
+      "id": "rp.1",
+      "type": "RelyingParty",
+      "label": "Consumer application"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "type": "governs",
+      "from": "auth.1",
+      "to": "reg.1",
+      "conditions": [
+        "active policy in force"
+      ],
+      "evidenceRefs": [
+        "evidence.1"
+      ]
+    },
+    {
+      "id": "e2",
+      "type": "registers",
+      "from": "reg.1",
+      "to": "issuer.1"
+    },
+    {
+      "id": "e3",
+      "type": "defines",
+      "from": "auth.1",
+      "to": "profile.1"
+    },
+    {
+      "id": "e4",
+      "type": "substantiates",
+      "from": "bundle.1",
+      "to": "issuer.1"
+    },
+    {
+      "id": "e5",
+      "type": "informs",
+      "from": "bundle.1",
+      "to": "decision.1"
+    },
+    {
+      "id": "e6",
+      "type": "produces",
+      "from": "decision.1",
+      "to": "effect.1"
+    },
+    {
+      "id": "e7",
+      "type": "reliesOn",
+      "from": "rp.1",
+      "to": "decision.1"
+    }
+  ],
+  "metadata": {
+    "bindingRef": "bindings/trqp/tsmm-trqp-binding.json",
+    "validationProfileRef": "validation/conformance/tsmm-validation-profile.json"
+  }
+}

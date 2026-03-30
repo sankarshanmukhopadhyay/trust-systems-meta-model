@@ -131,3 +131,17 @@ That makes OASF useful as a transport layer for assurance-addressable TSMM conce
 - DCAS can emit evaluation outputs that stay traceable to the described subject.
 
 See `docs/bindings/oasf-binding.md` and `docs/crosswalks/oasf-crosswalk.md`.
+
+## 10. Machine-readable assurance properties
+
+This extension now includes a compact machine-readable assurance property model so key expectations can be attached consistently across TSMM elements.
+
+- Property model: `extensions/assurance/assurance-properties.yaml`
+- Schema: `schemas/tsmm-assurance-properties.schema.json`
+
+The property model records four reusable expectations:
+
+- `evidence_required`
+- `verification_method`
+- `auditability`
+- `revocation_traceability`

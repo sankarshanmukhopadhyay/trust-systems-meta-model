@@ -7,19 +7,19 @@ title: Trust Systems Meta Model
 
 Welcome to the GitHub Pages site for **Trust Systems Meta Model (TSMM)**.
 
-TSMM is a portable reference model for designing, comparing, and implementing trust systems. It gives architects, standards authors, and assurance teams a common grammar for reasoning about roles, authority, policy, evidence, trust decisions, and operational effects.
+TSMM is a portable reference model for designing, comparing, and implementing trust systems. It gives architects, standards authors, and assurance teams a common grammar for reasoning about roles, authority, policy, evidence, trust decisions, and operational effects. The current main branch also includes machine-readable authority, lifecycle, assurance, interoperability, and example-system artifacts so the model can be used more directly.
 
 ## Start here
 
 - [Documentation home](docs/index.md)
 - [Core model](docs/core-model.md)
 - [Canonical meta-model schema](docs/model/tsmm-meta-model-schema.md)
-- [Entity model](docs/model/tsmm-entities.md)
-- [Relationship model](docs/model/tsmm-relationships.md)
+- [Authority graph](docs/model/authority-graph.md)
+- [Delegation patterns](docs/model/delegation-patterns.md)
 - [Lifecycle model](docs/model/tsmm-lifecycle.md)
-- [Graph model](docs/model/tsmm-graph-model.md)
-- [Effect evaluation model](docs/evaluation/effect-evaluation-model.md)
-- [Threat model](docs/security/trust-system-threat-model.md)
+- [Interoperability layer](docs/interop/interoperability.md)
+- [System examples](docs/examples/system-examples.md)
+- [Validation and testability](docs/conformance/validation-and-testability.md)
 - [Latest tagged release notes](releases/v0.14.0.md)
 
 ## At a glance

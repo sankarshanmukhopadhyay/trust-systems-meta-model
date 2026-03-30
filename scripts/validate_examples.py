@@ -29,6 +29,9 @@ PAIRS = [
     ("profiles/agent-governance-network.json", "tsmm-graph.schema.json"),
     ("profiles/trust-registry-federation.json", "tsmm-graph.schema.json"),
     ("profiles/dpi-trust-layer.json", "tsmm-graph.schema.json"),
+    ("systems/trqp-registry-system.json", "tsmm-graph.schema.json"),
+    ("systems/openid-federation-system.json", "tsmm-graph.schema.json"),
+    ("systems/decentralized-directory-system.json", "tsmm-graph.schema.json"),
     ("registries/tsmm-registry-example.json", "tsmm-registry.schema.json"),
 ]
 

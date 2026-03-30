@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-assurance-properties.schema.json",
+  "title": "TSMM Assurance Properties Model",
+  "description": "Assurance-oriented properties that can be attached to TSMM elements so evidence, auditability, and traceability expectations remain machine-readable.",
+  "type": "object",
+  "required": ["profileId", "label", "assuranceProperties", "elementMappings"],
+  "properties": {
+    "profileId": {"$ref": "#/$defs/idString"},
+    "label": {"type": "string"},
+    "assuranceProperties": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"$ref": "#/$defs/property"}
+    },
+    "elementMappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/elementMapping"}
+    }
+  },
+  "$defs": {
+    "idString": {"type": "string", "pattern": "^[A-Za-z0-9._:-]+$"},
+    "property": {
+      "type": "object",
+      "required": ["name", "description", "expectedValueType"],
+      "properties": {
+        "name": {"type": "string", "enum": ["evidence_required", "verification_method", "auditability", "revocation_traceability"]},
+        "description": {"type": "string"},
+        "expectedValueType": {"type": "string", "enum": ["string", "array", "object"]}
+      },
+      "additionalProperties": false
+    },
+    "elementMapping": {
+      "type": "object",
+      "required": ["tsmmElement", "propertyRefs", "implementationNotes"],
+      "properties": {
+        "tsmmElement": {"type": "string"},
+        "propertyRefs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "implementationNotes": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

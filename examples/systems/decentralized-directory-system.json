@@ -1,0 +1,103 @@
+{
+  "graphId": "system.decentralized.directory.v1",
+  "label": "Decentralized directory trust system",
+  "description": "A concrete TSMM graph instance for a decentralized directory with governed publication and verification paths.",
+  "profile": "Decentralized Directory",
+  "contexts": [
+    "directory",
+    "discovery"
+  ],
+  "nodes": [
+    {
+      "id": "dom.1",
+      "type": "TrustDomain",
+      "label": "Directory trust domain",
+      "attributes": {
+        "exampleClass": "system-model"
+      }
+    },
+    {
+      "id": "auth.1",
+      "type": "GovernanceAuthority",
+      "label": "Directory governance authority"
+    },
+    {
+      "id": "reg.1",
+      "type": "TrustRegistry",
+      "label": "Directory publication service"
+    },
+    {
+      "id": "agent.1",
+      "type": "Agent",
+      "label": "Participant agent"
+    },
+    {
+      "id": "cred.1",
+      "type": "Credential",
+      "label": "Membership credential"
+    },
+    {
+      "id": "verifier.1",
+      "type": "Verifier",
+      "label": "Directory verifier"
+    },
+    {
+      "id": "decision.1",
+      "type": "TrustDecision",
+      "label": "Accept participant entry"
+    },
+    {
+      "id": "effect.1",
+      "type": "Effect",
+      "label": "Surface entry for discovery"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "type": "governs",
+      "from": "auth.1",
+      "to": "reg.1",
+      "conditions": [
+        "active policy in force"
+      ],
+      "evidenceRefs": [
+        "evidence.1"
+      ]
+    },
+    {
+      "id": "e2",
+      "type": "asserts",
+      "from": "cred.1",
+      "to": "agent.1"
+    },
+    {
+      "id": "e3",
+      "type": "registers",
+      "from": "reg.1",
+      "to": "agent.1"
+    },
+    {
+      "id": "e4",
+      "type": "verifies",
+      "from": "verifier.1",
+      "to": "cred.1"
+    },
+    {
+      "id": "e5",
+      "type": "informs",
+      "from": "cred.1",
+      "to": "decision.1"
+    },
+    {
+      "id": "e6",
+      "type": "produces",
+      "from": "decision.1",
+      "to": "effect.1"
+    }
+  ],
+  "metadata": {
+    "validationProfileRef": "validation/conformance/tsmm-validation-profile.json",
+    "comparisonRef": "interop/interoperability-matrix.yaml"
+  }
+}

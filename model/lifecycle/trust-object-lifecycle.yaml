@@ -1,0 +1,59 @@
+modelId: tsmm.lifecycle.trust-objects.v1
+label: Trust object lifecycle model
+appliesTo:
+  - authority records
+  - credentials
+  - trust registry entries
+  - assurance decisions
+states:
+  - id: state.issued
+    name: issued
+    description: Object has been created but is not yet available for downstream effect.
+    entryEvidence: Issuance or onboarding record
+  - id: state.active
+    name: active
+    description: Object can be relied on for decisioning subject to policy.
+    entryEvidence: Activation confirmation or publication record
+  - id: state.suspended
+    name: suspended
+    description: Object is temporarily blocked pending review or remediation.
+    entryEvidence: Incident or review trigger
+  - id: state.revoked
+    name: revoked
+    description: Object is no longer valid and must not produce new effect.
+    entryEvidence: Revocation order or policy action
+  - id: state.expired
+    name: expired
+    description: Object has aged out under explicit time bounds.
+    entryEvidence: Expiry timestamp or retention rule
+transitions:
+  - id: transition.issue-activate
+    from: issued
+    to: active
+    trigger: Publication or approval completed
+    actor: Governance authority or designated operator
+    evidenceRequirement: Active publication state and bound authority source
+  - id: transition.active-suspend
+    from: active
+    to: suspended
+    trigger: Incident, anomaly, or unresolved review finding
+    actor: Governance authority or oversight operator
+    evidenceRequirement: Review ticket, incident reference, or policy breach finding
+  - id: transition.suspend-active
+    from: suspended
+    to: active
+    trigger: Remediation closure and positive reassessment
+    actor: Governance authority or independent assessor
+    evidenceRequirement: Remediation closure record and fresh verification output
+  - id: transition.active-revoke
+    from: active
+    to: revoked
+    trigger: Revocation decision or material breach
+    actor: Governance authority
+    evidenceRequirement: Revocation order and downstream propagation record
+  - id: transition.active-expire
+    from: active
+    to: expired
+    trigger: Time bound reached without renewal
+    actor: Time policy or lifecycle operator
+    evidenceRequirement: Timestamp validation and retention log

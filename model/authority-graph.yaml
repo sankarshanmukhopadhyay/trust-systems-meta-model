@@ -1,0 +1,79 @@
+graphId: tsmm.authority.graph.core
+label: Canonical TSMM authority graph
+description: >-
+  Canonical authority graph showing how authority originates, is delegated under
+  scope constraints, is published through a registry surface, and can be
+  revoked with defined downstream effect.
+nodes:
+  - id: authority.root
+    type: AuthoritySource
+    label: Governance authority
+    scope: Defines issuance and delegation rules
+    authorityOrigin: charter
+    evidenceRef: evidence.charter
+  - id: registry.main
+    type: Registry
+    label: Registry publication surface
+    scope: Publishes active authority state
+    authorityOrigin: delegated mandate
+  - id: issuer.service
+    type: DelegatedActor
+    label: Trusted service issuer
+    scope: Issue credentials under profile AL2
+    authorityOrigin: delegated-from-authority
+    evidenceRef: evidence.onboarding
+  - id: verifier.party
+    type: Verifier
+    label: Relying verifier
+    scope: Consume status and evidence before effect
+    authorityOrigin: relying-policy
+  - id: policy.delegate
+    type: Policy
+    label: Delegation policy
+    scope: Max depth 1 and finance claims only
+    authorityOrigin: governance-policy
+edges:
+  - id: edge.1
+    type: delegates
+    from: authority.root
+    to: issuer.service
+    scopeConstraint: finance claims only
+    revocationSemantics: immediate cascade to active delegations
+  - id: edge.2
+    type: constrains
+    from: policy.delegate
+    to: issuer.service
+    scopeConstraint: max-depth-1
+    revocationSemantics: policy supersedes standing delegation
+  - id: edge.3
+    type: publishes
+    from: authority.root
+    to: registry.main
+    scopeConstraint: status and evidence references only
+    revocationSemantics: publication state must change before next relying decision
+  - id: edge.4
+    type: verifies
+    from: verifier.party
+    to: registry.main
+    scopeConstraint: verify authority source and revocation state
+    revocationSemantics: stop effect if registry returns revoked
+  - id: edge.5
+    type: revokes
+    from: authority.root
+    to: issuer.service
+    scopeConstraint: on incident or non-conformance finding
+    revocationSemantics: invalidate active delegated authority
+delegationChains:
+  - id: chain.issuer
+    steps:
+      - authority.root
+      - issuer.service
+    maxDepth: 1
+    terminationCondition: Revocation or expiry of the delegation record
+revocationRules:
+  - id: revoke.1
+    trigger: Independent finding of non-conformance
+    effect: Registry status changes to revoked and verifier must deny new effect
+    propagation: immediate
+notes:
+  - Authority remains bounded by policy, not by actor self-description.

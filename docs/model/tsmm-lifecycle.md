@@ -63,3 +63,9 @@ Issue artifact -> delegate authority -> verify state -> allow effect
         v                |
    detect defect -> remediate -> reassess -> restore bounded effect
 ```
+
+
+## 6. Machine-readable artifact
+
+- Lifecycle model: `model/lifecycle/trust-object-lifecycle.yaml`
+- Schema: `schemas/tsmm-lifecycle.schema.json`

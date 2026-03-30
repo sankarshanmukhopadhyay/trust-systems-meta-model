@@ -1,0 +1,103 @@
+{
+  "graphId": "system.openid.federation.v1",
+  "label": "OpenID Federation system",
+  "description": "A concrete TSMM graph instance for authority anchoring and metadata trust in an OpenID Federation deployment.",
+  "profile": "OpenID Federation",
+  "contexts": [
+    "federation",
+    "policy-anchoring"
+  ],
+  "nodes": [
+    {
+      "id": "dom.1",
+      "type": "TrustDomain",
+      "label": "Federation domain",
+      "attributes": {
+        "exampleClass": "system-model"
+      }
+    },
+    {
+      "id": "anchor.1",
+      "type": "GovernanceAuthority",
+      "label": "Federation trust anchor"
+    },
+    {
+      "id": "reg.1",
+      "type": "RegistryService",
+      "label": "Metadata publication service"
+    },
+    {
+      "id": "issuer.1",
+      "type": "Issuer",
+      "label": "OpenID provider"
+    },
+    {
+      "id": "verifier.1",
+      "type": "Verifier",
+      "label": "Relying federation verifier"
+    },
+    {
+      "id": "policy.1",
+      "type": "Policy",
+      "label": "Metadata policy"
+    },
+    {
+      "id": "decision.1",
+      "type": "TrustDecision",
+      "label": "Accept provider metadata"
+    },
+    {
+      "id": "effect.1",
+      "type": "Effect",
+      "label": "Allow token trust path"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "type": "anchors",
+      "from": "anchor.1",
+      "to": "issuer.1",
+      "conditions": [
+        "active policy in force"
+      ],
+      "evidenceRefs": [
+        "evidence.1"
+      ]
+    },
+    {
+      "id": "e2",
+      "type": "defines",
+      "from": "anchor.1",
+      "to": "policy.1"
+    },
+    {
+      "id": "e3",
+      "type": "publishes",
+      "from": "reg.1",
+      "to": "issuer.1"
+    },
+    {
+      "id": "e4",
+      "type": "constrains",
+      "from": "policy.1",
+      "to": "decision.1"
+    },
+    {
+      "id": "e5",
+      "type": "verifies",
+      "from": "verifier.1",
+      "to": "issuer.1"
+    },
+    {
+      "id": "e6",
+      "type": "produces",
+      "from": "decision.1",
+      "to": "effect.1"
+    }
+  ],
+  "metadata": {
+    "bindingRef": "bindings/openid-federation/tsmm-openid-federation-binding.json",
+    "validationProfileRef": "validation/conformance/tsmm-validation-profile.json"
+  }
+}

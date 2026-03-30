@@ -1,0 +1,33 @@
+profileId: tsmm.assurance.properties.v1
+label: Assurance properties for TSMM elements
+assuranceProperties:
+  - name: evidence_required
+    description: Minimum evidence needed before the element can support a trust or assurance decision.
+    expectedValueType: array
+  - name: verification_method
+    description: Method used to evaluate the relevant element or evidence.
+    expectedValueType: string
+  - name: auditability
+    description: Expected reviewability and replay characteristics.
+    expectedValueType: string
+  - name: revocation_traceability
+    description: Ability to trace status change and downstream propagation after revocation.
+    expectedValueType: object
+elementMappings:
+  - tsmmElement: TrustRelationship
+    propertyRefs:
+      - evidence_required
+      - verification_method
+      - auditability
+    implementationNotes: A trust relationship should not be accepted without evidence and a replayable decision path.
+  - tsmmElement: Delegation
+    propertyRefs:
+      - evidence_required
+      - verification_method
+      - revocation_traceability
+    implementationNotes: Delegation needs chain validation and a traceable status-change path.
+  - tsmmElement: VerificationProcess
+    propertyRefs:
+      - verification_method
+      - auditability
+    implementationNotes: Verification must be inspectable rather than implied by reputation alone.

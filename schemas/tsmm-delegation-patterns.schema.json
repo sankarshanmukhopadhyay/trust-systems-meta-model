@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-delegation-patterns.schema.json",
+  "title": "TSMM Delegation Pattern Catalog",
+  "description": "Canonical delegation patterns used to compare bounded authority transfer across trust systems.",
+  "type": "object",
+  "required": ["catalogId", "label", "patterns"],
+  "properties": {
+    "catalogId": {"$ref": "#/$defs/idString"},
+    "label": {"type": "string"},
+    "patterns": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"$ref": "#/$defs/pattern"},
+      "allOf": [
+        {"contains": {"type": "object", "properties": {"type": {"const": "direct"}}, "required": ["type"]}},
+        {"contains": {"type": "object", "properties": {"type": {"const": "delegated"}}, "required": ["type"]}},
+        {"contains": {"type": "object", "properties": {"type": {"const": "federated"}}, "required": ["type"]}},
+        {"contains": {"type": "object", "properties": {"type": {"const": "conditional"}}, "required": ["type"]}}
+      ]
+    }
+  },
+  "$defs": {
+    "idString": {"type": "string", "pattern": "^[A-Za-z0-9._:-]+$"},
+    "pattern": {
+      "type": "object",
+      "required": ["id", "type", "label", "authorityOrigin", "scopeModel", "revocationModel", "verificationExpectation"],
+      "properties": {
+        "id": {"$ref": "#/$defs/idString"},
+        "type": {"type": "string", "enum": ["direct", "delegated", "federated", "conditional"]},
+        "label": {"type": "string"},
+        "authorityOrigin": {"type": "string"},
+        "scopeModel": {"type": "string"},
+        "revocationModel": {"type": "string"},
+        "verificationExpectation": {"type": "string"},
+        "exampleContexts": {"type": "array", "items": {"type": "string"}},
+        "failureModes": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

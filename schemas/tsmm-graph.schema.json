@@ -11,27 +11,47 @@
     "edges"
   ],
   "properties": {
-    "graphId": {"$ref": "#/$defs/idString"},
-    "label": {"type": "string"},
-    "description": {"type": "string"},
-    "profile": {"type": "string"},
+    "graphId": {
+      "$ref": "#/$defs/idString"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "string"
+    },
     "contexts": {
       "type": "array",
-      "items": {"type": "string"}
+      "items": {
+        "type": "string"
+      }
     },
     "nodes": {
       "type": "array",
       "minItems": 2,
-      "items": {"$ref": "#/$defs/node"}
+      "items": {
+        "$ref": "#/$defs/node"
+      }
     },
     "edges": {
       "type": "array",
       "minItems": 1,
-      "items": {"$ref": "#/$defs/edge"}
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
     },
     "metadata": {
       "type": "object",
-      "additionalProperties": {"type": ["string", "number", "boolean"]}
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      }
     }
   },
   "$defs": {
@@ -78,21 +98,40 @@
         "informs",
         "produces",
         "reliesOn",
-        "anchors"
+        "anchors",
+        "publishes"
       ]
     },
     "node": {
       "type": "object",
-      "required": ["id", "type", "label"],
+      "required": [
+        "id",
+        "type",
+        "label"
+      ],
       "properties": {
-        "id": {"$ref": "#/$defs/idString"},
-        "type": {"$ref": "#/$defs/nodeType"},
-        "label": {"type": "string"},
-        "description": {"type": "string"},
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "$ref": "#/$defs/nodeType"
+        },
+        "label": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
         "attributes": {
           "type": "object",
           "additionalProperties": {
-            "type": ["string", "number", "boolean", "array", "object"]
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "array",
+              "object"
+            ]
           }
         }
       },
@@ -100,20 +139,39 @@
     },
     "edge": {
       "type": "object",
-      "required": ["id", "type", "from", "to"],
+      "required": [
+        "id",
+        "type",
+        "from",
+        "to"
+      ],
       "properties": {
-        "id": {"$ref": "#/$defs/idString"},
-        "type": {"$ref": "#/$defs/relationType"},
-        "from": {"$ref": "#/$defs/idString"},
-        "to": {"$ref": "#/$defs/idString"},
-        "description": {"type": "string"},
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "$ref": "#/$defs/relationType"
+        },
+        "from": {
+          "$ref": "#/$defs/idString"
+        },
+        "to": {
+          "$ref": "#/$defs/idString"
+        },
+        "description": {
+          "type": "string"
+        },
         "conditions": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         },
         "evidenceRefs": {
           "type": "array",
-          "items": {"$ref": "#/$defs/idString"}
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
         }
       },
       "additionalProperties": false
