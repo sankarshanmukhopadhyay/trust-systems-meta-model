@@ -1,0 +1,127 @@
+{
+  "bindingId": "tsmm.binding.havid.v1",
+  "label": "TSMM to HAVID experimental binding",
+  "description": "Experimental binding that maps High Assurance Verifiable Identifier (HAVID) concepts into TSMM so composite identifier structures, assurance composition, lifecycle coordination, and revocation-aware verifier behavior can be compared without treating the current HAVID specification as a complete trust meta model.",
+  "targetEcosystem": "HAVID",
+  "version": "0.1.0",
+  "sources": [
+    "docs/crosswalks/havid-crosswalk.md",
+    "docs/bindings/havid-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "HAVID composite identifier",
+      "tsmmType": "Credential",
+      "bindingStrength": "composite",
+      "description": "Machine-verifiable composite trust artifact formed from cross-endorsed identifier surfaces whose validation result informs a relying decision."
+    },
+    {
+      "externalConcept": "Identifier class taxonomy (DID, DNS domain, X.509 certificate, LEI / organizational identifier)",
+      "tsmmType": "Subject",
+      "bindingStrength": "approximate",
+      "description": "Identifier classes are modeled as subject-bound identifier surfaces that contribute distinct assurance properties and should remain analytically separate even when cross-endorsed."
+    },
+    {
+      "externalConcept": "Cross-endorsement",
+      "tsmmType": "Assessment",
+      "bindingStrength": "composite",
+      "description": "Bi-directional machine-readable linkage checked through native resolution mechanisms and used as the primary validation path for composite identifier trust."
+    },
+    {
+      "externalConcept": "Assurance composition",
+      "tsmmType": "AssuranceProfile",
+      "bindingStrength": "approximate",
+      "description": "Verifier-side interpretation of the combined assurance contributed by each identifier class, bounded by each identifier's native trust framework and integrity properties."
+    },
+    {
+      "externalConcept": "Validation state",
+      "tsmmType": "Assessment",
+      "bindingStrength": "exact",
+      "description": "Structured verifier outcome describing whether the HAVID is fully validated, degraded, or invalid under current evidence and policy."
+    },
+    {
+      "externalConcept": "Lifecycle coordination",
+      "tsmmType": "Policy",
+      "bindingStrength": "approximate",
+      "description": "Operational rules governing renewal, update, synchronized key handling, expiry, and continued cross-endorsement maintenance across linked identifiers."
+    },
+    {
+      "externalConcept": "Revocation / deactivation / expiry impact",
+      "tsmmType": "Effect",
+      "bindingStrength": "approximate",
+      "description": "Reliance-changing operational consequence whereby a revoked, expired, or deactivated linked identifier invalidates the composite HAVID for verifier use."
+    }
+  ],
+  "notes": [
+    "This is an experimental binding because the HAVID specification is still evolving and the TSMM mapping should be treated as provisional rather than canonical.",
+    "HAVID contributes a compositional identifier-assurance model. It does not replace verifier policy, delegated authority semantics, or broader trust-governance structures.",
+    "The binding is designed to keep identifier class, assurance contribution, lifecycle state, and revocation impact separable so downstream systems do not inflate cross-endorsement into blanket trust."
+  ],
+  "metadata": {
+    "maintainer": "maintainers",
+    "status": "experimental"
+  },
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "HAVID",
+    "bindingVersion": "0.1.0",
+    "guarantees": [
+      {
+        "name": "identifier-class-separation",
+        "status": "supported",
+        "description": "Distinct identifier classes and their native assurance contributions can be modeled without collapsing them into one undifferentiated identifier claim."
+      },
+      {
+        "name": "lifecycle-visible-composition",
+        "status": "supported",
+        "description": "Renewal, revocation, expiry, and re-establishment obligations can be represented as lifecycle-relevant policy and effect structures in TSMM."
+      },
+      {
+        "name": "verifier-state-comparison",
+        "status": "supported",
+        "description": "HAVID validation states can be treated as assessment outputs that inform relying-party trust decisions."
+      },
+      {
+        "name": "governance-completeness",
+        "status": "partial",
+        "description": "HAVID contributes high-assurance identifier composition, but broader authority, delegation, and ecosystem governance semantics remain outside the current specification."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "no-native-authority-model",
+        "impact": "A validated HAVID does not by itself describe what an identified party may do, under what mandate, or with what bounded authority.",
+        "mitigation": "Compose HAVID-derived identity assurance with explicit delegation, authorization, and policy surfaces when consequential actions are in scope."
+      },
+      {
+        "name": "assurance-not-transferable",
+        "impact": "Cross-endorsement does not cause one identifier class to inherit the native assurance of another identifier class.",
+        "mitigation": "Keep per-identifier-class assurance contributions explicit in downstream profiles, evidence, and verifier logic."
+      },
+      {
+        "name": "spec-evolution-risk",
+        "impact": "The HAVID specification is still under active development, so mapping details may need refresh as validation states, pairings, or extension rules evolve.",
+        "mitigation": "Treat this binding as experimental and review it whenever the upstream HAVID specification changes materially."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "verifier interpretation",
+        "expectation": "Verifiers treat HAVID as a composite identifier-assurance input that must still be interpreted under local policy and risk context.",
+        "sourceRefs": [
+          "docs/bindings/havid-binding.md",
+          "docs/crosswalks/havid-crosswalk.md"
+        ]
+      },
+      {
+        "behavior": "lifecycle maintenance",
+        "expectation": "Identifier controllers preserve or re-establish cross-endorsement links when linked identifiers are renewed, updated, or rotated, and verifiers downgrade reliance when linked state becomes stale, revoked, or expired.",
+        "sourceRefs": [
+          "docs/bindings/havid-binding.md",
+          "docs/crosswalks/havid-crosswalk.md"
+        ]
+      }
+    ],
+    "constraintSetRef": "bindings/havid/constraints.json"
+  }
+}

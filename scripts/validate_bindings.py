@@ -13,6 +13,7 @@ BINDINGS = [
     ROOT / "bindings" / "dcas" / "tsmm-dcas-binding.json",
     ROOT / "bindings" / "vtc" / "tsmm-vtc-binding.json",
     ROOT / "bindings" / "ais1" / "tsmm-ais1-binding.json",
+    ROOT / "bindings" / "havid" / "tsmm-havid-binding.json",
 ]
 BINDING_SCHEMA = ROOT / "schemas" / "tsmm-binding.schema.json"
 CONSTRAINT_SCHEMA = ROOT / "validation" / "schemas" / "tsmm-binding-constraints.schema.json"

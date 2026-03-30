@@ -32,6 +32,7 @@ Once the system is modeled, connect it to a real ecosystem surface.
   - `bindings/openid-federation/tsmm-openid-federation-binding.json`
   - `bindings/dcas/tsmm-dcas-binding.json`
   - `bindings/vtc/tsmm-vtc-binding.json`
+  - `bindings/havid/tsmm-havid-binding.json`
 
 Use the binding layer when you want to state what TSMM can preserve, what gets lost, and what behavior a translation is expected to uphold.
 

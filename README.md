@@ -110,7 +110,9 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - A2A binding: `docs/bindings/a2a-binding.md`
 - OASF binding: `docs/bindings/oasf-binding.md`
 - AIS-1 binding: `docs/bindings/ais1-binding.md`
+- HAVID binding: `docs/bindings/havid-binding.md`
 - AIS-1 crosswalk: `docs/crosswalks/ais1-crosswalk.md`
+- HAVID crosswalk: `docs/crosswalks/havid-crosswalk.md`
 - OASF crosswalk: `docs/crosswalks/oasf-crosswalk.md`
 
 ## Ecosystem positioning
@@ -128,6 +130,10 @@ That separation matters because it keeps TSMM from collapsing into a schema dump
 ## AIS-1 integration on main
 
 The current main branch adds an AIS-1 binding and comparison surface so bonded agent identity can be normalized without overstating what it proves. The repo now treats AIS-1 as a **bonded identity and accountability substrate** that contributes durable agent identity, sponsor context, tiered trust signals, and revocation-aware lifecycle state. It does **not** treat AIS-1 bond state as a substitute for delegation semantics, runtime authorization, or content provenance.
+
+## HAVID experimental binding on main
+
+The current main branch also adds an experimental HAVID binding so high-assurance composite identifier structures can be normalized into TSMM without overstating what cross-endorsement proves. The repo treats HAVID as a **composite identifier assurance pattern** that contributes identifier-class-aware assurance composition, lifecycle coordination duties, verifier-visible validation states, and revocation-aware reliance effects. It does **not** treat HAVID validation as a substitute for delegation semantics, runtime authorization, or full trust-governance structure.
 
 ## Design principles
 
@@ -180,7 +186,9 @@ It adds:
 - `examples/agent-interaction-a2a-binding-instance.json` — full worked example exercising all 10 abstractions
 - `docs/crosswalks/a2a-crosswalk.md` — A2A protocol concept-level alignment
 - `docs/bindings/a2a-binding.md` — A2A binding prose
+- `docs/bindings/havid-binding.md` — HAVID experimental binding prose
 - `bindings/a2a/tsmm-a2a-binding.json` — machine-readable A2A binding
+- `bindings/havid/tsmm-havid-binding.json` — machine-readable HAVID experimental binding
 - Three new terms added to `docs/glossary.md`
 - Conformance checklist extended with AI-15 through AI-21
 - `docs/bindings/index.md` updated with A2A entry
@@ -196,6 +204,9 @@ trust-systems-meta-model/
 ├── bindings/
 │   ├── a2a/
 │   │   └── tsmm-a2a-binding.json
+│   ├── havid/
+│   │   ├── constraints.json
+│   │   └── tsmm-havid-binding.json
 │   ├── dcas/
 │   │   └── tsmm-dcas-binding.json
 │   ├── openid-federation/
@@ -207,6 +218,7 @@ trust-systems-meta-model/
 ├── docs/
 │   ├── bindings/
 │   │   ├── a2a-binding.md
+│   │   ├── havid-binding.md
 │   │   ├── dcas-binding.md
 │   │   ├── index.md
 │   │   ├── openid-federation-binding.md

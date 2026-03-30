@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-25
+last_reviewed: 2026-03-30
 applicable_version: v0.14.0
 tier: 1
 ---
@@ -18,6 +18,7 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 - [A2A Protocol binding](a2a-binding.md) *(v0.14.0)*
 - [OASF binding](oasf-binding.md) *(integration increment)*
 - [AIS-1 binding](ais1-binding.md) *(bonded identity substrate profile)*
+- [HAVID binding](havid-binding.md) *(experimental composite identifier assurance binding)*
 
 ## Contract model
 
@@ -37,6 +38,8 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 - `bindings/oasf/tsmm-oasf-binding.json`
 - `bindings/ais1/tsmm-ais1-binding.json`
 - `bindings/ais1/constraints.json`
+- `bindings/havid/tsmm-havid-binding.json`
+- `bindings/havid/constraints.json`
 
 ## Publication note
 

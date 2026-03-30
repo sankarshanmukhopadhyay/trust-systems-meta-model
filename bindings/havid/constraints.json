@@ -1,0 +1,27 @@
+{
+  "constraintSetId": "tsmm.binding.constraints.havid.v1",
+  "bindingId": "tsmm.binding.havid.v1",
+  "targetEcosystem": "HAVID",
+  "assumptions": [
+    "HAVID is modeled as a composite high-assurance identifier structure built from cross-endorsed identifier classes that retain their native trust semantics.",
+    "Verifier outcomes depend on current resolution, integrity checks, lifecycle state, and local policy rather than on cross-endorsement alone.",
+    "The current binding is experimental because the upstream HAVID specification is still evolving."
+  ],
+  "prohibitedInferences": [
+    "Do not infer delegated authority or action permission from HAVID validation alone.",
+    "Do not treat assurance contributed by one identifier class as automatically transferred to another identifier class.",
+    "Do not interpret a composite HAVID as valid when one linked identifier is expired, revoked, deactivated, or integrity-unverified."
+  ],
+  "requiredArtifacts": [
+    "bindings/havid/tsmm-havid-binding.json",
+    "docs/bindings/havid-binding.md",
+    "docs/crosswalks/havid-crosswalk.md"
+  ],
+  "comparisonNotes": [
+    "Use this binding when you need to compare composite identifier assurance across trust systems without overstating what cross-endorsement proves."
+  ],
+  "validationHints": [
+    "Check that downstream mappings keep identifier class, assurance contribution, lifecycle obligation, and revocation consequence distinct.",
+    "Reject any translation that upgrades HAVID validation into blanket trust, governance equivalence, or protocol interoperability."
+  ]
+}

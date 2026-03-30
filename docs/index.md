@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-29
+last_reviewed: 2026-03-30
 applicable_version: v0.14.0
 tier: 0
 ---
@@ -103,10 +103,12 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [DCAS binding](bindings/dcas-binding.md)
 - [Verifiable Trust Communities binding](bindings/vtc-binding.md)
 - [AIS-1 binding](bindings/ais1-binding.md)
+- [HAVID binding](bindings/havid-binding.md)
 - `bindings/trqp/tsmm-trqp-binding.json`
 - `bindings/openid-federation/tsmm-openid-federation-binding.json`
 - `bindings/dcas/tsmm-dcas-binding.json`
 - `bindings/vtc/tsmm-vtc-binding.json`
+- `bindings/havid/tsmm-havid-binding.json`
 
 ## Executable graph layer
 
