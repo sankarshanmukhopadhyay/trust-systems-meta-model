@@ -63,3 +63,9 @@ All ten abstractions of the Agent Interaction Extension are now delivered. The A
 ## OASF integration follow-through
 
 A completed next increment is to move from semantic OASF binding to profile-level publication guidance so TSMM profiles, ANAB control publication, and DCAS evaluation outputs can travel through a shared OASF-facing surface without losing traceability.
+
+## AIS-1 normalization follow-through
+
+- deepen the AIS-1 comparison surface from binding and example graph into reusable authority and lifecycle patterns
+- evaluate whether bonded identity and sponsor-backed status need a reusable extension abstraction beyond this initial binding
+- keep verifier guidance explicit so future profiles do not mistake bonded identity for delegated authority

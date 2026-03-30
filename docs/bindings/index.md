@@ -17,6 +17,7 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 - [Verifiable Trust Communities binding](vtc-binding.md)
 - [A2A Protocol binding](a2a-binding.md) *(v0.14.0)*
 - [OASF binding](oasf-binding.md) *(integration increment)*
+- [AIS-1 binding](ais1-binding.md) *(bonded identity substrate profile)*
 
 ## Contract model
 
@@ -34,6 +35,8 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 - `bindings/vtc/constraints.json`
 - `bindings/a2a/tsmm-a2a-binding.json`
 - `bindings/oasf/tsmm-oasf-binding.json`
+- `bindings/ais1/tsmm-ais1-binding.json`
+- `bindings/ais1/constraints.json`
 
 ## Publication note
 

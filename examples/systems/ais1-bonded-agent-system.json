@@ -1,0 +1,128 @@
+{
+  "graphId": "system.ais1.bonded.agent.v1",
+  "label": "AIS-1 bonded agent system",
+  "description": "TSMM graph instance for an AIS-1-style bonded agent identity surface with sponsor accountability, verifier lookup, and revocation-aware relying-party interpretation.",
+  "profile": "AIS-1",
+  "contexts": [
+    "bonded-identity",
+    "verification",
+    "reliance"
+  ],
+  "nodes": [
+    {
+      "id": "dom.ais1",
+      "type": "TrustDomain",
+      "label": "AIS-1 trust domain",
+      "attributes": {
+        "exampleClass": "system-model"
+      }
+    },
+    {
+      "id": "auth.ais1",
+      "type": "GovernanceAuthority",
+      "label": "AIS-1 governance authority"
+    },
+    {
+      "id": "issuer.ais1",
+      "type": "Issuer",
+      "label": "AIS-1 issuer or bond authority"
+    },
+    {
+      "id": "agent.ais1",
+      "type": "Agent",
+      "label": "Bonded software agent"
+    },
+    {
+      "id": "policy.ais1",
+      "type": "Policy",
+      "label": "Reliance policy for bonded identity"
+    },
+    {
+      "id": "profile.ais1",
+      "type": "AssuranceProfile",
+      "label": "AIS-1 tier profile"
+    },
+    {
+      "id": "evidence.ais1",
+      "type": "EvidenceBundle",
+      "label": "Bond status and verifier evidence"
+    },
+    {
+      "id": "assessment.ais1",
+      "type": "Assessment",
+      "label": "AIS-1 bond verification assessment"
+    },
+    {
+      "id": "decision.ais1",
+      "type": "TrustDecision",
+      "label": "Accept bonded identity for low-risk interaction"
+    },
+    {
+      "id": "effect.ais1",
+      "type": "Effect",
+      "label": "Enable bounded reliance or downgrade on revocation"
+    },
+    {
+      "id": "rp.ais1",
+      "type": "RelyingParty",
+      "label": "Downstream verifier or client"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "type": "governs",
+      "from": "auth.ais1",
+      "to": "dom.ais1"
+    },
+    {
+      "id": "e2",
+      "type": "issues",
+      "from": "issuer.ais1",
+      "to": "agent.ais1"
+    },
+    {
+      "id": "e3",
+      "type": "defines",
+      "from": "auth.ais1",
+      "to": "policy.ais1"
+    },
+    {
+      "id": "e4",
+      "type": "profiles",
+      "from": "profile.ais1",
+      "to": "agent.ais1"
+    },
+    {
+      "id": "e5",
+      "type": "substantiates",
+      "from": "evidence.ais1",
+      "to": "assessment.ais1"
+    },
+    {
+      "id": "e6",
+      "type": "informs",
+      "from": "assessment.ais1",
+      "to": "decision.ais1",
+      "evidenceRefs": [
+        "evidence.ais1"
+      ]
+    },
+    {
+      "id": "e7",
+      "type": "produces",
+      "from": "decision.ais1",
+      "to": "effect.ais1"
+    },
+    {
+      "id": "e8",
+      "type": "reliesOn",
+      "from": "rp.ais1",
+      "to": "decision.ais1"
+    }
+  ],
+  "metadata": {
+    "comparisonRef": "interop/interoperability-matrix.yaml",
+    "bindingRef": "bindings/ais1/tsmm-ais1-binding.json"
+  }
+}

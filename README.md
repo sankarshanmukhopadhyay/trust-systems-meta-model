@@ -109,6 +109,8 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - A2A crosswalk: `docs/crosswalks/a2a-crosswalk.md`
 - A2A binding: `docs/bindings/a2a-binding.md`
 - OASF binding: `docs/bindings/oasf-binding.md`
+- AIS-1 binding: `docs/bindings/ais1-binding.md`
+- AIS-1 crosswalk: `docs/crosswalks/ais1-crosswalk.md`
 - OASF crosswalk: `docs/crosswalks/oasf-crosswalk.md`
 
 ## Ecosystem positioning
@@ -122,6 +124,10 @@ TSMM sits above protocol and schema repositories. It should be read as the conce
 - **OASF** can act as a publication and extension surface so TSMM-described subjects become assurance-addressable in agent ecosystems
 
 That separation matters because it keeps TSMM from collapsing into a schema dump wearing a philosophy hat.
+
+## AIS-1 integration on main
+
+The current main branch adds an AIS-1 binding and comparison surface so bonded agent identity can be normalized without overstating what it proves. The repo now treats AIS-1 as a **bonded identity and accountability substrate** that contributes durable agent identity, sponsor context, tiered trust signals, and revocation-aware lifecycle state. It does **not** treat AIS-1 bond state as a substitute for delegation semantics, runtime authorization, or content provenance.
 
 ## Design principles
 

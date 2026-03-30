@@ -1,0 +1,26 @@
+{
+  "constraintSetId": "tsmm.binding.constraints.ais1.v1",
+  "bindingId": "tsmm.binding.ais1.v1",
+  "targetEcosystem": "AIS-1",
+  "assumptions": [
+    "AIS-1 bonded identity can be modeled as an accountable agent identity surface with sponsor-backed status.",
+    "Delegation, runtime authorization, and provenance remain out of scope for the current AIS-1 substrate and must be composed separately."
+  ],
+  "prohibitedInferences": [
+    "Do not infer action-level delegation from bonded identity alone.",
+    "Do not treat tier labels as protocol-independent proof of operational trustworthiness.",
+    "Do not collapse sponsor accountability into a full relying-party authorization grant."
+  ],
+  "requiredArtifacts": [
+    "docs/bindings/ais1-binding.md",
+    "docs/crosswalks/ais1-crosswalk.md",
+    "examples/systems/ais1-bonded-agent-system.json"
+  ],
+  "comparisonNotes": [
+    "Use this binding to compare AIS-1 with other trust systems without inflating what tier or bond state prove."
+  ],
+  "validationHints": [
+    "Check that downstream uses preserve sponsor visibility, tier meaning, and revocation-aware state.",
+    "Reject any mapping that upgrades bond existence into blanket delegated authority."
+  ]
+}

@@ -102,6 +102,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [OpenID Federation binding](bindings/openid-federation-binding.md)
 - [DCAS binding](bindings/dcas-binding.md)
 - [Verifiable Trust Communities binding](bindings/vtc-binding.md)
+- [AIS-1 binding](bindings/ais1-binding.md)
 - `bindings/trqp/tsmm-trqp-binding.json`
 - `bindings/openid-federation/tsmm-openid-federation-binding.json`
 - `bindings/dcas/tsmm-dcas-binding.json`
@@ -141,6 +142,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - `examples/systems/decentralized-directory-system.json`
 - `examples/systems/content-authenticity-workflow.json`
 - `examples/systems/verifiable-trust-community-system.json`
+- `examples/systems/ais1-bonded-agent-system.json`
 
 ## Registry publication
 

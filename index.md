@@ -40,6 +40,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Extensions](docs/extensions/index.md)
 - [Crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md)
 - [Bindings](docs/bindings/index.md)
+- [AIS-1 binding](docs/bindings/ais1-binding.md)
 - [Validation and testability](docs/conformance/validation-and-testability.md)
 - [Registry format](docs/registry/tsmm-registry-format.md)
 - [Assurance extension](docs/extensions/assurance-extension.md)

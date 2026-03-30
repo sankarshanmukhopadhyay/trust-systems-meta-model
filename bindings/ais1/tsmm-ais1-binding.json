@@ -1,0 +1,122 @@
+{
+  "bindingId": "tsmm.binding.ais1.v1",
+  "label": "TSMM to AIS-1 binding",
+  "description": "Maps AIS-1 bonded agent identity concepts into TSMM abstractions so AIS-1 can be compared with other trust systems without treating bonded identity as a complete delegation or assurance stack.",
+  "targetEcosystem": "AIS-1",
+  "version": "1.0.0",
+  "sources": [
+    "docs/crosswalks/ais1-crosswalk.md",
+    "docs/bindings/ais1-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "AIS-1 Agent Card",
+      "tsmmType": "Agent",
+      "bindingStrength": "approximate",
+      "description": "Public bonded-agent identity surface describing the software agent that participates in downstream interactions."
+    },
+    {
+      "externalConcept": "AIS-1 Sponsor Card",
+      "tsmmType": "GovernanceAuthority",
+      "bindingStrength": "approximate",
+      "description": "Accountable sponsoring party that stands behind the agent and supplies the governance anchor for the bond."
+    },
+    {
+      "externalConcept": "AIS-1 bond",
+      "tsmmType": "TrustDecision",
+      "bindingStrength": "composite",
+      "description": "Persistent accountability linkage interpreted as a governed trust state that an agent is sponsor-backed under stated terms.",
+      "conditions": [
+        "The bond does not by itself prove action-level delegation or authority to perform consequential operations."
+      ],
+      "relatedDocs": [
+        "docs/crosswalks/ais1-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "did:ais1 identifier",
+      "tsmmType": "Agent",
+      "bindingStrength": "approximate",
+      "description": "Durable agent identifier that roots the bonded identity surface and can be referenced across verifiers, registries, and policy decisions."
+    },
+    {
+      "externalConcept": "AIS-1 tier (Basic, Verified, Sovereign)",
+      "tsmmType": "AssuranceProfile",
+      "bindingStrength": "approximate",
+      "description": "Tiered claim about the strength of the published agent identity and sponsor backing, interpreted as a profile-governed trust input rather than as an unconditional authority grant."
+    },
+    {
+      "externalConcept": "AIS-1 verifier result",
+      "tsmmType": "Assessment",
+      "bindingStrength": "approximate",
+      "description": "Verifier-side evaluation outcome produced from bond lookup, status checks, and policy interpretation."
+    },
+    {
+      "externalConcept": "AIS-1 suspension / revocation",
+      "tsmmType": "Effect",
+      "bindingStrength": "approximate",
+      "description": "Lifecycle-affecting state transition that should downgrade or terminate reliance on the bonded identity surface."
+    }
+  ],
+  "notes": [
+    "AIS-1 fits TSMM best as a bonded agent identity and accountability surface.",
+    "AIS-1 bond state is modeled as trust-relevant status, not as a substitute for delegation semantics, runtime authorization, or full provenance guarantees.",
+    "The binding is intended to support cross-repo normalization across TSMM, trust-infrastructure-schemas, and ANAB."
+  ],
+  "metadata": {
+    "maintainer": "maintainers",
+    "status": "draft"
+  },
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "AIS-1",
+    "bindingVersion": "1.0.0",
+    "guarantees": [
+      {
+        "name": "bonded-identity-modeling",
+        "status": "supported",
+        "description": "AIS-1 agent, sponsor, tier, and bond constructs can be represented through TSMM agent, governance, profile, assessment, and effect abstractions."
+      },
+      {
+        "name": "lifecycle-visibility",
+        "status": "supported",
+        "description": "Bond verification, suspension, and revocation events can be represented as trust-relevant lifecycle changes in TSMM."
+      },
+      {
+        "name": "delegation-completeness",
+        "status": "partial",
+        "description": "AIS-1 can contribute identity and accountability context, but action-scoped delegation and runtime authorization remain outside the current substrate."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "no-native-delegation-object",
+        "impact": "TSMM can describe what AIS-1 does not yet formalize: mandate objects, invocation constraints, and delegated authority chains.",
+        "mitigation": "Pair AIS-1 identifiers with a delegation profile or external authorization surface when consequential actions are involved."
+      },
+      {
+        "name": "provenance-scope-gap",
+        "impact": "Bond verification does not by itself provide message-level authenticity or end-to-end provenance.",
+        "mitigation": "Compose AIS-1 with protocol-level integrity and evidence-bearing artifacts where transport or content trust matters."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "relying-party interpretation",
+        "expectation": "Verifiers treat AIS-1 tier and bond state as identity-and-accountability signals, not as blanket authority to act.",
+        "sourceRefs": [
+          "docs/bindings/ais1-binding.md",
+          "docs/crosswalks/ais1-crosswalk.md"
+        ]
+      },
+      {
+        "behavior": "cross-repo normalization",
+        "expectation": "Downstream repos preserve issuer, sponsor, bond-status, and evidence references so AIS-1 artifacts can be reused without local semantic drift.",
+        "sourceRefs": [
+          "docs/crosswalks/ais1-crosswalk.md"
+        ]
+      }
+    ],
+    "constraintSetRef": "bindings/ais1/constraints.json"
+  }
+}
