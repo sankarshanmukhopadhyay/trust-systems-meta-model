@@ -36,7 +36,7 @@ TSMM is intentionally **effect-centered**. The key question is not only who an a
 
 That framing makes TSMM usable across trust registries, verifiable credential ecosystems, delegated-agent systems, trust signal consumers, conformance suites, assurance frameworks, and modular domain extensions. In practice, TSMM is not meant to be a product or a protocol. It is a way to make trust systems more legible so they can be studied with more clarity and built with more rigor.
 
-On the current main branch, Workstream 1 of the meta-model hardening plan is now implemented. TSMM has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples.
+On the current main branch, TSMM now has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples. The current increment extends that foundation with explicit binding contracts, per-ecosystem constraint sets, and a lightweight validation suite for representative valid and invalid cases.
 
 ## Documentation site
 
@@ -113,7 +113,7 @@ That separation matters because it keeps TSMM from collapsing into a schema dump
 ## Design principles
 
 ### 1. Minimal but useful
-TSMM aims to define the smallest practical abstraction layer that remains operationally meaningful. Workstream 1 makes that abstraction layer machine-addressable rather than leaving it as prose alone.
+TSMM aims to define the smallest practical abstraction layer that remains operationally meaningful. The current main-branch increments make that abstraction layer machine-addressable rather than leaving it as prose alone.
 
 ### 2. Effect-centered
 The core question is not merely *who are you?* but *should this action, artifact, or signal produce an effect right now under bounded authority and policy?*
@@ -129,17 +129,10 @@ Many real systems implement trust through profiles, requirements, and assessment
 
 ## Current main-branch increment
 
-The current non-release increment completes **Workstream 1 — Meta-Model Core Formalization**.
+The current non-release increment strengthens two areas that make TSMM resemble a meta-model more robustly:
 
-It adds:
-
-- `schemas/tsmm.schema.json` — canonical schema for the TSMM primitive catalog
-- `examples/tsmm-meta-model-instance.json` — worked example of the primitive catalog
-- `docs/model/tsmm-meta-model-schema.md` — documentation for the canonical schema and required fields
-- validation and coverage checks updated to include the new schema/example pair
-- refreshed `schemas/tsmm-core.schema.json` description so the instance-layer schema is clearly distinguished from the canonical meta-model schema
-
-This is intentionally a main-branch documentation-and-schema increment. It does not cut a new release.
+- **binding contracts** for TRQP, OpenID Federation, DCAS, and Verifiable Trust Communities, each with guarantees, limitations, behavioral expectations, and explicit constraint sets
+- **validation and testability** through a dedicated `validation/` tree, representative valid and invalid test vectors, and scripts that check the binding catalog as a first-class artifact
 
 ## What changed in v0.14.0
 

@@ -32,3 +32,7 @@ The binding maps the main VTC abstractions into TSMM:
 ## Notes
 
 The VTC binding is useful both for comparison across ecosystems and for publication through the TSMM registry format where extension-specific artifacts need first-class indexing.
+
+## Contract and constraints
+
+This binding now includes an explicit contract section in `bindings/vtc/tsmm-vtc-binding.json` and a paired constraint set at `bindings/vtc/constraints.json`. Together they record what the mapping preserves, where it becomes approximate, and what should not be inferred without the target ecosystem's own rules.

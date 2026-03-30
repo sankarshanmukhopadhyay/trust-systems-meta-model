@@ -1,0 +1,24 @@
+{
+  "constraintSetId": "tsmm.binding.constraints.openid-federation.v1",
+  "bindingId": "tsmm.binding.openid-federation.v1",
+  "targetEcosystem": "OpenID Federation",
+  "assumptions": [
+    "Signed entity statements can be treated as credential-like artifacts for comparison purposes.",
+    "Federation topology is represented as a governance and publication graph inside TSMM."
+  ],
+  "prohibitedInferences": [
+    "Do not infer OpenID Provider interoperability solely from TSMM conformance.",
+    "Do not collapse federation authority, publication, and verification into one undifferentiated TSMM role when comparing systems."
+  ],
+  "requiredArtifacts": [
+    "bindings/openid-federation/tsmm-openid-federation-binding.json",
+    "docs/bindings/openid-federation-binding.md",
+    "docs/crosswalks/openid-federation-crosswalk.md"
+  ],
+  "comparisonNotes": [
+    "OpenID Federation bundles governance and publication more tightly than TRQP, so several mappings remain approximate."
+  ],
+  "validationHints": [
+    "Check that entity statement examples retain signature verification and policy context in the TSMM translation."
+  ]
+}

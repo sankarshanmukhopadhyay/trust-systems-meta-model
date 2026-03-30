@@ -1,0 +1,21 @@
+{
+  "profileId": "tsmm.validation.profile.main",
+  "label": "TSMM validation profile for main-branch increments",
+  "requiredChecks": [
+    "schema/example validation",
+    "schema coverage validation",
+    "binding catalog validation",
+    "validation test vector execution",
+    "markdown link and version checks"
+  ],
+  "requiredArtifacts": [
+    "scripts/validate_examples.py",
+    "scripts/check_schema_coverage.py",
+    "scripts/validate_bindings.py",
+    "scripts/validate_test_vectors.py",
+    "scripts/check_docs.py"
+  ],
+  "notes": [
+    "This profile is lightweight. It verifies structural integrity and representative examples without claiming external certification."
+  ]
+}

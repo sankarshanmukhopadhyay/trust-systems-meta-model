@@ -11,7 +11,7 @@ tier: 1
 
 This document defines the machine-readable canonical schema for the TSMM primitive catalog.
 
-TSMM already had concrete instance schemas such as `schemas/tsmm-core.schema.json` and the extension schemas. Those are useful for validating worked examples. They do not, by themselves, formalize the meta-model as a portable object that other systems can parse, compare, and bind against. Workstream 1 closes that gap.
+TSMM already had concrete instance schemas such as `schemas/tsmm-core.schema.json` and the extension schemas. Those are useful for validating worked examples. They do not, by themselves, formalize the meta-model as a portable object that other systems can parse, compare, and bind against. The canonical primitive catalog closes that gap.
 
 The new canonical schema lives at `schemas/tsmm.schema.json`.
 
@@ -40,7 +40,7 @@ That separation matters. The primitive catalog is the meta-model layer. `schemas
 
 ## 3. Canonical required fields
 
-Workstream 1 introduces four canonical field names that make the primitive catalog computable across implementations:
+The canonical primitive catalog introduces four field names that make the primitive layer computable across implementations:
 
 | Canonical field | Meaning |
 |---|---|

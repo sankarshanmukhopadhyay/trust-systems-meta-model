@@ -50,5 +50,52 @@
   "metadata": {
     "maintainer": "maintainers",
     "status": "draft"
+  },
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "DCAS",
+    "bindingVersion": "1.1.0",
+    "guarantees": [
+      {
+        "name": "assurance-alignment",
+        "status": "supported",
+        "description": "DCAS evidence, assessment, and assurance concepts map directly into TSMM assurance surfaces."
+      },
+      {
+        "name": "evaluation-traceability",
+        "status": "supported",
+        "description": "Assessment activities and evidence bundles can be represented as traceable TSMM objects."
+      },
+      {
+        "name": "control-catalog-preservation",
+        "status": "partial",
+        "description": "Control objectives map to TSMM policy abstractions, but fine-grained control taxonomies remain ecosystem-specific."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "assessment procedure specificity",
+        "impact": "TSMM does not substitute for DCAS assessment method definitions or scoring logic.",
+        "mitigation": "Pair TSMM with DCAS-specific procedures when conducting formal evaluation."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "assurance evaluation",
+        "expectation": "Assessments preserve linkage among control objectives, evidence, and resulting trust decisions.",
+        "sourceRefs": [
+          "docs/bindings/dcas-binding.md",
+          "docs/patterns/assurance-evidence-pattern.md"
+        ]
+      },
+      {
+        "behavior": "profile selection",
+        "expectation": "Assurance profiles remain explicit inputs to decisioning rather than background documentation.",
+        "sourceRefs": [
+          "docs/crosswalks/dcas-crosswalk.md"
+        ]
+      }
+    ],
+    "constraintSetRef": "bindings/dcas/constraints.json"
   }
 }

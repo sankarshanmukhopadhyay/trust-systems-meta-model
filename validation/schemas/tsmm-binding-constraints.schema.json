@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/validation/schemas/tsmm-binding-constraints.schema.json",
+  "title": "TSMM Binding Constraints Schema",
+  "description": "Constraint set for a TSMM ecosystem binding. Captures assumptions, prohibited inferences, required supporting artifacts, and comparison notes.",
+  "type": "object",
+  "required": [
+    "constraintSetId",
+    "bindingId",
+    "targetEcosystem",
+    "assumptions",
+    "prohibitedInferences",
+    "requiredArtifacts"
+  ],
+  "properties": {
+    "constraintSetId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "bindingId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "targetEcosystem": {
+      "type": "string"
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "prohibitedInferences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredArtifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "comparisonNotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validationHints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

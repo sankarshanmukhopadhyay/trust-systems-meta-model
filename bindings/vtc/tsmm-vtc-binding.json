@@ -47,5 +47,51 @@
   "metadata": {
     "maintainer": "maintainers",
     "status": "draft"
+  },
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "Verifiable Trust Communities",
+    "bindingVersion": "1.1.0",
+    "guarantees": [
+      {
+        "name": "community-governance-modeling",
+        "status": "supported",
+        "description": "Community governance, membership, and standing can be modeled through TSMM trust domain and credential abstractions."
+      },
+      {
+        "name": "membership-state-comparison",
+        "status": "supported",
+        "description": "Community status transitions can be compared with TSMM lifecycle and trust-state concepts."
+      },
+      {
+        "name": "registry-parity",
+        "status": "partial",
+        "description": "Community registries can be represented as registry-like objects, but operational member management remains extension-specific."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "community-specific sanctions",
+        "impact": "TSMM does not prescribe sanction logic or remediation procedures for every community.",
+        "mitigation": "Preserve community-specific governance text alongside TSMM publication artifacts."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "membership verification",
+        "expectation": "Membership credentials are interpreted with standing, sanction, and remediation context intact.",
+        "sourceRefs": [
+          "docs/bindings/vtc-binding.md"
+        ]
+      },
+      {
+        "behavior": "recognition across communities",
+        "expectation": "Cross-community recognition remains explicit and revocable in the mapped TSMM graph.",
+        "sourceRefs": [
+          "docs/extensions/verifiable-trust-communities-extension.md"
+        ]
+      }
+    ],
+    "constraintSetRef": "bindings/vtc/constraints.json"
   }
 }

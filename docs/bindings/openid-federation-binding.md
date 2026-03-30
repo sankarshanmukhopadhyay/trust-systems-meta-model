@@ -26,3 +26,7 @@ TSMM can describe the governance topology that sits underneath federation artifa
 - `bindings/openid-federation/tsmm-openid-federation-binding.json`
 - `docs/crosswalks/openid-federation-crosswalk.md`
 - `docs/model/tsmm-graph-model.md`
+
+## Contract and constraints
+
+This binding now includes an explicit contract section in `bindings/openid-federation/tsmm-openid-federation-binding.json` and a paired constraint set at `bindings/openid-federation/constraints.json`. Together they record what the mapping preserves, where it becomes approximate, and what should not be inferred without the target ecosystem's own rules.

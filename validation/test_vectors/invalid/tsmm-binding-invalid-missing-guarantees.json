@@ -64,23 +64,6 @@
     "sourceModel": "TSMM",
     "targetSystem": "TRQP",
     "bindingVersion": "1.1.0",
-    "guarantees": [
-      {
-        "name": "authority-resolution",
-        "status": "supported",
-        "description": "TRQP governance and publication roles can be modeled through TSMM authority and registry abstractions."
-      },
-      {
-        "name": "evidence-portability",
-        "status": "supported",
-        "description": "Conformance and assurance evidence can travel as TSMM evidence-bearing objects."
-      },
-      {
-        "name": "revocation-propagation",
-        "status": "partial",
-        "description": "Revocation can be represented, but ecosystem-specific propagation timing remains outside TSMM."
-      }
-    ],
     "limitations": [
       {
         "name": "protocol-specific query semantics",

@@ -53,5 +53,51 @@
   "metadata": {
     "maintainer": "maintainers",
     "status": "draft"
+  },
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "OpenID Federation",
+    "bindingVersion": "1.1.0",
+    "guarantees": [
+      {
+        "name": "topology-comparison",
+        "status": "supported",
+        "description": "Federation roles and signed statements can be compared with TSMM governance and credential abstractions."
+      },
+      {
+        "name": "signed-metadata-modeling",
+        "status": "supported",
+        "description": "Entity statements can be represented as credential-like TSMM artifacts under policy."
+      },
+      {
+        "name": "delegation-fidelity",
+        "status": "partial",
+        "description": "Federation authority chains are comparable, but TSMM does not copy every federation processing rule."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "statement-processing rules",
+        "impact": "TSMM does not encode the full OpenID Federation processing algorithm.",
+        "mitigation": "Use federation normative texts for trust chain evaluation logic."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "signed metadata consumption",
+        "expectation": "Consumers model entity statements as governed trust artifacts, not merely as static metadata blobs.",
+        "sourceRefs": [
+          "docs/bindings/openid-federation-binding.md"
+        ]
+      },
+      {
+        "behavior": "authority interpretation",
+        "expectation": "Federation operators and authorities are separated analytically even when operational deployments combine them.",
+        "sourceRefs": [
+          "docs/crosswalks/openid-federation-crosswalk.md"
+        ]
+      }
+    ],
+    "constraintSetRef": "bindings/openid-federation/constraints.json"
   }
 }

@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "tsmm-main-workstream-1",
+  "schemaVersion": "tsmm-main-meta-model-core",
   "modelId": "tsmm.meta-model.core",
   "label": "TSMM canonical primitive catalog",
-  "description": "Canonical primitive catalog for the TSMM core meta-model formalization completed on the main branch without a tagged release.",
+  "description": "Canonical primitive catalog for the TSMM core meta-model formalization maintained on the main branch without requiring a tagged release.",
   "primitiveDefinitions": [
     {
       "identifier": "primitive.actor",

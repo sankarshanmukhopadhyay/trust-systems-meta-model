@@ -28,7 +28,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - **Core abstractions:** entities, roles, authority, artifacts, claims, policy, controls, evidence, assessment, verification, trust decisions, and effects
 - **Profiles and patterns:** reusable guidance for shaping implementations without collapsing into one domain-specific standard
 - **Extensions:** modular specialization for Agentic AI, Verifiable Trust Communities, and assurance architectures
-- **Operational hygiene:** documentation governance, freshness audit, graph validation, registry validation, and schema/example validation workflow
+- **Operational hygiene:** documentation governance, freshness audit, graph validation, registry validation, schema/example validation, and representative valid/invalid test-vector checks
 - **Bindings and publication:** ecosystem bindings, registry publication format, agentic instance indexing, graph rendering utility, and a clear handoff to the canonical trust artifact schema layer
 
 ## Explore by path
@@ -38,6 +38,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Extensions](docs/extensions/index.md)
 - [Crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md)
 - [Bindings](docs/bindings/index.md)
+- [Validation and testability](docs/conformance/validation-and-testability.md)
 - [Registry format](docs/registry/tsmm-registry-format.md)
 - [Assurance extension](docs/extensions/assurance-extension.md)
 - [Glossary](docs/glossary.md)

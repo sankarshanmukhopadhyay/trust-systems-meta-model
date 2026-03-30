@@ -16,9 +16,10 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = ROOT / "schemas"
 EXAMPLES = ROOT / "examples"
+VALIDATION = ROOT / "validation" / "test_vectors" / "valid"
 
-# Maps each example to the schema it exercises.
-# Extend this list when new examples or schemas are added.
+# Maps each example or validation vector to the schema it exercises.
+# The first value may be a path relative to the repo root.
 COVERAGE_PAIRS: list[tuple[str, str]] = [
     ("tsmm-meta-model-instance.json", "tsmm.schema.json"),
     ("minimal-trust-registry-instance.json", "tsmm-core.schema.json"),
@@ -31,6 +32,8 @@ COVERAGE_PAIRS: list[tuple[str, str]] = [
     ("evidence-artifact-instance.json", "tsmm-evidence-artifact-extension.schema.json"),
     ("agent-interaction-extension-instance.json", "tsmm-agent-interaction-extension.schema.json"),
     ("agent-interaction-a2a-binding-instance.json", "tsmm-agent-interaction-extension.schema.json"),
+    ("validation/test_vectors/valid/tsmm-binding-valid.json", "tsmm-binding.schema.json"),
+    ("validation/test_vectors/valid/tsmm-binding-constraints-valid.json", "validation/schemas/tsmm-binding-constraints.schema.json"),
 ]
 
 # Properties that are intentionally optional and acceptable to omit from examples.
@@ -157,8 +160,8 @@ def collect_instance_keys(obj: Any, found: set[str] | None = None) -> set[str]:
 
 
 def check_coverage(example_name: str, schema_name: str) -> list[str]:
-    schema_path = SCHEMAS / schema_name
-    example_path = EXAMPLES / example_name
+    schema_path = ROOT / schema_name if "/" in schema_name else SCHEMAS / schema_name
+    example_path = ROOT / example_name if "/" in example_name else EXAMPLES / example_name
 
     schema = load_json(schema_path)
     instance = load_json(example_path)
@@ -181,8 +184,8 @@ def main() -> None:
     all_gaps: list[str] = []
 
     for example_name, schema_name in COVERAGE_PAIRS:
-        example_path = EXAMPLES / example_name
-        schema_path = SCHEMAS / schema_name
+        example_path = ROOT / example_name if "/" in example_name else EXAMPLES / example_name
+        schema_path = ROOT / schema_name if "/" in schema_name else SCHEMAS / schema_name
 
         if not example_path.exists():
             print(f"SKIP (example not found): {example_name}")

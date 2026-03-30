@@ -32,3 +32,7 @@ The binding maps the assurance-heavy surfaces of DCAS into TSMM:
 ## Notes
 
 This binding is semantic rather than normative. It improves interoperability and publication consistency without attempting to rewrite DCAS language or governance intent.
+
+## Contract and constraints
+
+This binding now includes an explicit contract section in `bindings/dcas/tsmm-dcas-binding.json` and a paired constraint set at `bindings/dcas/constraints.json`. Together they record what the mapping preserves, where it becomes approximate, and what should not be inferred without the target ecosystem's own rules.

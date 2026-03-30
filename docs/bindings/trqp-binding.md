@@ -28,3 +28,7 @@ The TRQP family already carries the ingredients TSMM cares about: policy, public
 - `docs/crosswalks/trqp-tspp-crosswalk.md`
 - `docs/patterns/trust-registry-pattern.md`
 - `trust-infrastructure-schemas` for concrete artifact schemas aligned to this binding
+
+## Contract and constraints
+
+This binding now includes an explicit contract section in `bindings/trqp/tsmm-trqp-binding.json` and a paired constraint set at `bindings/trqp/constraints.json`. Together they record what the mapping preserves, where it becomes approximate, and what should not be inferred without the target ecosystem's own rules.

@@ -21,6 +21,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - modular **extensions** for application domains such as Agentic AI, Agent Interaction (A2A-class ecosystems), Verifiable Trust Communities, and assurance-oriented architectures
 - practical **crosswalks** to related repositories and implementations
 - a machine-readable **graph model** for executable trust topology design
+- an explicit **binding contract and validation layer** so ecosystem mappings can be tested rather than merely described
 
 ## Read this first
 
@@ -87,6 +88,8 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 
 ## Ecosystem bindings
 
+- [Binding contract model](bindings/binding-contract.md)
+
 - [Bindings overview](bindings/index.md)
 - [TRQP binding](bindings/trqp-binding.md)
 - [OpenID Federation binding](bindings/openid-federation-binding.md)
@@ -114,6 +117,15 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - `schemas/tsmm-registry.schema.json`
 - `examples/registries/tsmm-registry-example.json`
 
+## Validation and testability
+
+- [Validation and testability guide](conformance/validation-and-testability.md)
+- `validation/conformance/tsmm-validation-profile.json`
+- `validation/test_vectors/valid/tsmm-binding-valid.json`
+- `validation/test_vectors/invalid/tsmm-binding-invalid-missing-guarantees.json`
+- `validation/test_vectors/valid/tsmm-binding-constraints-valid.json`
+- `validation/test_vectors/invalid/tsmm-binding-constraints-invalid-empty-prohibited-inferences.json`
+
 ## Operational docs
 
 - [Documentation governance](documentation-governance.md)
@@ -128,4 +140,4 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Current documentation snapshot
 
-This documentation set remains aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main-branch increment adds a canonical primitive catalog at `schemas/tsmm.schema.json`, with validation coverage for `examples/tsmm-meta-model-instance.json`, so the reference model can now describe itself as a machine-readable contract rather than only through prose and instance examples.
+This documentation set remains aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main-branch increment now includes a canonical primitive catalog, explicit binding contracts with constraint sets, and a lightweight validation suite so the reference model can describe itself, translate across ecosystems, and test representative cases as machine-readable artifacts.

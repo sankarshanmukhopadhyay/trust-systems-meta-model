@@ -1,0 +1,21 @@
+{
+  "constraintSetId": "tsmm.binding.constraints.trqp.v1",
+  "bindingId": "tsmm.binding.trqp.v1",
+  "targetEcosystem": "TRQP",
+  "assumptions": [
+    "TRQP publication objects can be interpreted as TSMM trust objects with explicit authority and evidence context.",
+    "Registry-mediated discovery is modeled semantically, not as a replacement for TRQP protocol operations."
+  ],
+  "prohibitedInferences": [],
+  "requiredArtifacts": [
+    "bindings/trqp/tsmm-trqp-binding.json",
+    "docs/bindings/trqp-binding.md",
+    "docs/crosswalks/trqp-tspp-crosswalk.md"
+  ],
+  "comparisonNotes": [
+    "TRQP maps strongly to registry, evidence, and relying-party abstractions in TSMM."
+  ],
+  "validationHints": [
+    "Verify that every mapped TRQP concept preserves authority and evidence semantics when instantiated as TSMM objects."
+  ]
+}

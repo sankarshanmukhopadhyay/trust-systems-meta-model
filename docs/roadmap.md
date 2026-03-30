@@ -9,10 +9,11 @@ tier: 1
 
 This file records plausible next steps for TSMM after v0.14.0. It is directional. It is not a schedule.
 
-## Workstream status
+## Current main-branch status
 
-- **Completed on main branch (no release):** Workstream 1 — Meta-Model Core Formalization
-- **Next logical focus:** Workstream 2 — Binding Layer formalization
+- **Completed on main branch (no release):** canonical primitive catalog formalization for the meta-model core
+- **Completed on main branch (no release):** explicit ecosystem binding contracts and validation/test-vector scaffolding
+- **Next logical focus:** deepen authority, delegation, lifecycle, and interoperability semantics
 
 ## 1. Agent role and control semantics
 

@@ -1,0 +1,24 @@
+{
+  "constraintSetId": "tsmm.binding.constraints.dcas.v1",
+  "bindingId": "tsmm.binding.dcas.v1",
+  "targetEcosystem": "DCAS",
+  "assumptions": [
+    "DCAS profiles, evidence bundles, and assessments can be modeled as TSMM assurance objects.",
+    "Control objectives can be compared through TSMM policy abstractions without claiming identical wording."
+  ],
+  "prohibitedInferences": [
+    "Do not infer DCAS assessor accreditation from a TSMM mapping.",
+    "Do not treat a mapped policy object as proof that DCAS control procedures were executed."
+  ],
+  "requiredArtifacts": [
+    "bindings/dcas/tsmm-dcas-binding.json",
+    "docs/bindings/dcas-binding.md",
+    "docs/crosswalks/dcas-crosswalk.md"
+  ],
+  "comparisonNotes": [
+    "DCAS is the strongest fit for TSMM assurance, evidence, and assessment structures."
+  ],
+  "validationHints": [
+    "Verify that each assessment output references evidence and an assurance profile when expressed in TSMM form."
+  ]
+}

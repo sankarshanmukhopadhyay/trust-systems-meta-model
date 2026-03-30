@@ -1,0 +1,24 @@
+{
+  "constraintSetId": "tsmm.binding.constraints.vtc.v1",
+  "bindingId": "tsmm.binding.vtc.v1",
+  "targetEcosystem": "Verifiable Trust Communities",
+  "assumptions": [
+    "The VTC extension is a specialization of a TSMM trust domain.",
+    "Membership standing and sanction state travel with the credential or registry state used in comparison."
+  ],
+  "prohibitedInferences": [
+    "Do not assume all community registries expose identical publication interfaces.",
+    "Do not treat a membership credential as sufficient evidence of good standing without status context."
+  ],
+  "requiredArtifacts": [
+    "bindings/vtc/tsmm-vtc-binding.json",
+    "docs/bindings/vtc-binding.md",
+    "docs/extensions/verifiable-trust-communities-extension.md"
+  ],
+  "comparisonNotes": [
+    "VTC bindings preserve community governance semantics while allowing cross-system comparison."
+  ],
+  "validationHints": [
+    "Check that standing state, sanctions, and recognition relationships are preserved in translated examples."
+  ]
+}
