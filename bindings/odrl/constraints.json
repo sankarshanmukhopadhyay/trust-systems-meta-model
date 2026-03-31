@@ -1,0 +1,29 @@
+{
+  "constraintSetId": "tsmm.binding.odrl.constraints.v1",
+  "bindingId": "tsmm.binding.odrl.v1",
+  "targetEcosystem": "ODRL",
+  "assumptions": [
+    "ODRL artifacts are available as machine-readable policy objects or references to them.",
+    "The consuming system can distinguish policy publication from policy evaluation and policy enforcement.",
+    "Ecosystem-specific ODRL profiles disclose any custom actions, constraints, or party functions needed for interpretation."
+  ],
+  "prohibitedInferences": [
+    "Do not infer runtime enforcement merely because an ODRL policy is published.",
+    "Do not infer that ODRL permission statements create delegated authority across agents unless a separate delegation mechanism says so.",
+    "Do not infer that all TSMM trust objects are reducible to ODRL asset usage semantics."
+  ],
+  "requiredArtifacts": [
+    "An ODRL policy object or stable reference",
+    "A profile or vocabulary reference when non-core terms are used",
+    "Supporting evidence or evaluator output when policy enforcement claims are material"
+  ],
+  "comparisonNotes": [
+    "ODRL is strongest when used as the policy-expression layer for content, services, disclosure, and access constraints.",
+    "TSMM remains the broader semantic layer for governance, assurance, evidence, assessment, and trust effects."
+  ],
+  "validationHints": [
+    "Check that profile references and target identifiers are stable and resolvable.",
+    "Check that policy targets, parties, and duties map cleanly to the modeled trust surface.",
+    "Check that downstream repos do not silently equate policy references with enforcement proof."
+  ]
+}

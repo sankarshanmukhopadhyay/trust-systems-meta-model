@@ -1,0 +1,144 @@
+{
+  "bindingId": "tsmm.binding.odrl.v1",
+  "label": "TSMM to ODRL experimental binding",
+  "description": "Maps ODRL policy-expression concepts into TSMM abstractions so policy artifacts can be compared and carried across trust-system implementations without treating ODRL as the complete trust-governance model.",
+  "targetEcosystem": "ODRL",
+  "version": "1.0.0",
+  "sources": [
+    "docs/crosswalks/odrl-crosswalk.md",
+    "docs/bindings/odrl-binding.md"
+  ],
+  "mappings": [
+    {
+      "externalConcept": "ODRL Policy",
+      "tsmmType": "Policy",
+      "bindingStrength": "exact",
+      "description": "Machine-readable policy object that groups rules governing what may, must, or must not happen for a target asset or service."
+    },
+    {
+      "externalConcept": "ODRL Permission",
+      "tsmmType": "Policy",
+      "bindingStrength": "approximate",
+      "description": "Allowed action statement interpreted as a policy rule that can support a downstream trust decision when combined with identity, authority, and evidence."
+    },
+    {
+      "externalConcept": "ODRL Prohibition",
+      "tsmmType": "Policy",
+      "bindingStrength": "approximate",
+      "description": "Disallowed action statement interpreted as a policy rule limiting acceptable behavior or permitted effects."
+    },
+    {
+      "externalConcept": "ODRL Duty",
+      "tsmmType": "Policy",
+      "bindingStrength": "approximate",
+      "description": "Required action or pre-condition attached to permission or obligation semantics."
+    },
+    {
+      "externalConcept": "ODRL Party / assignee / assigner",
+      "tsmmType": "Subject",
+      "bindingStrength": "approximate",
+      "description": "Actors referenced by policy rules. In TSMM these remain role-bearing trust participants whose authority still needs contextual interpretation."
+    },
+    {
+      "externalConcept": "ODRL Asset / target",
+      "tsmmType": "Credential",
+      "bindingStrength": "composite",
+      "description": "Policy target or governed resource. Depending on context, TSMM may model the governed object as an artifact, service, credential, or other trust-bearing asset.",
+      "conditions": [
+        "ODRL target does not force a single TSMM class. The correct TSMM interpretation depends on what is being governed."
+      ],
+      "relatedDocs": [
+        "docs/crosswalks/odrl-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "ODRL Constraint",
+      "tsmmType": "Policy",
+      "bindingStrength": "exact",
+      "description": "Boolean or logical expression that refines when a rule applies."
+    },
+    {
+      "externalConcept": "ODRL Profile",
+      "tsmmType": "AssuranceProfile",
+      "bindingStrength": "approximate",
+      "description": "Community-specific extension and interpretation surface that constrains policy semantics for a bounded ecosystem."
+    }
+  ],
+  "notes": [
+    "ODRL is valuable in TSMM as a policy-expression surface, not as a replacement for governance, assurance, delegation, or lifecycle semantics.",
+    "This binding is intentionally experimental because policy publication and policy enforcement remain separate concerns.",
+    "The binding helps TSMM compare policy-bearing ecosystems while preserving the distinction between machine-readable rules and trustworthy execution."
+  ],
+  "metadata": {
+    "maintainer": "maintainers",
+    "reviewStatus": "experimental",
+    "status": "draft"
+  },
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "ODRL",
+    "bindingVersion": "1.0.0",
+    "guarantees": [
+      {
+        "name": "policy-object-modeling",
+        "status": "supported",
+        "description": "ODRL Policy, Rule, Action, Party, Asset, and Constraint concepts can be represented through TSMM policy-facing abstractions."
+      },
+      {
+        "name": "profile-aware-comparison",
+        "status": "supported",
+        "description": "ODRL profiles can be compared as bounded ecosystem interpretations instead of ad hoc local policy vocabularies."
+      },
+      {
+        "name": "runtime-governance-completeness",
+        "status": "partial",
+        "description": "ODRL contributes policy expression, but not the full runtime authority, evidence, assessment, revocation, and trust-effect semantics carried by TSMM."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "publication-enforcement-gap",
+        "impact": "Publishing an ODRL policy does not prove that the policy is evaluated or enforced during operation.",
+        "mitigation": "Pair ODRL policy artifacts with evidence, verifier outputs, logs, and domain-specific control systems where execution trust matters."
+      },
+      {
+        "name": "delegation-scope-gap",
+        "impact": "ODRL can describe permissions and duties but does not by itself model bounded delegated authority chains for agentic systems.",
+        "mitigation": "Use TSMM delegation, authority-graph, and lifecycle surfaces alongside ODRL policy objects."
+      },
+      {
+        "name": "asset-model-overreach",
+        "impact": "Not every trust-relevant object in TSMM naturally reduces to ODRL asset usage semantics.",
+        "mitigation": "Treat ODRL as a bounded policy carrier for selected artifact and service surfaces rather than the universal abstraction for the entire stack."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "policy interpretation",
+        "expectation": "Implementers treat ODRL as the machine-readable policy layer and avoid inferring broader governance legitimacy, assurance strength, or delegated authority solely from ODRL publication.",
+        "sourceRefs": [
+          "docs/bindings/odrl-binding.md",
+          "docs/crosswalks/odrl-crosswalk.md"
+        ]
+      },
+      {
+        "behavior": "cross-repo reuse",
+        "expectation": "Downstream schema and baseline repos preserve policy references, target identifiers, party roles, and profile references so ODRL artifacts remain portable without semantic drift.",
+        "sourceRefs": [
+          "docs/crosswalks/odrl-crosswalk.md"
+        ]
+      }
+    ],
+    "constraintSetRef": "bindings/odrl/constraints.json"
+  },
+  "maturity": {
+    "status": "experimental",
+    "stability": "draft",
+    "productionRecommendation": "conditional",
+    "notes": [
+      "Suitable for comparative modelling and for bounded policy-carrier use.",
+      "Not a replacement for TSMM delegation, evidence, assessment, or lifecycle semantics.",
+      "Policy publication MUST NOT be treated as equivalent to policy enforcement."
+    ]
+  }
+}

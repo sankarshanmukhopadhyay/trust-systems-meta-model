@@ -176,3 +176,5 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 ## Current documentation snapshot
 
 This documentation set remains aligned to **v0.14.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main branch now places the graph layer at the center of the repo, expands concrete system coverage, and tightens the contributor path around model, bind, validate, and compare.
+
+- ODRL binding *(experimental)*: `bindings/odrl-binding.md`

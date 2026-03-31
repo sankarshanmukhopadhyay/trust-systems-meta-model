@@ -1,19 +1,19 @@
 ---
 owner: maintainers
 last_reviewed: 2026-03-29
-applicable_version: v0.14.0
+applicable_version: v0.15.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.14.0-blue)](releases/v0.14.0.md)
+[![Release](https://img.shields.io/badge/release-v0.15.0-blue)](releases/v0.15.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.14.0  
+**Version:** v0.15.0  
 **Status:** Draft reference model with machine-readable modeling and comparison artifacts  
 **License:** CC BY-SA 4.0
 
@@ -36,7 +36,7 @@ TSMM is intentionally **effect-centered**. The key question is not only who an a
 
 That framing makes TSMM usable across trust registries, verifiable credential ecosystems, delegated-agent systems, trust signal consumers, conformance suites, assurance frameworks, and modular domain extensions. In practice, TSMM is not meant to be a product or a protocol. It is a way to make trust systems more legible so they can be studied with more clarity and built with more rigor.
 
-On the current main branch, TSMM now has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples. The current increment extends that foundation with explicit binding contracts, per-ecosystem constraint sets, authority and delegation models, a lifecycle state model, assurance properties, an interoperability matrix, and concrete system examples.
+On the current main branch, TSMM now has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples. The current increment extends that foundation with explicit binding contracts, per-ecosystem constraint sets, authority and delegation models, a lifecycle state model, assurance properties, an interoperability matrix, concrete system examples, and an experimental ODRL policy-expression binding for standards-based policy modeling.
 
 ## Use TSMM by task
 
@@ -115,6 +115,7 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - A2A crosswalk: `docs/crosswalks/a2a-crosswalk.md`
 - A2A binding: `docs/bindings/a2a-binding.md`
 - OASF binding: `docs/bindings/oasf-binding.md`
+- ODRL binding *(experimental)*: `docs/bindings/odrl-binding.md`
 - AIS-1 binding: `docs/bindings/ais1-binding.md`
 - HAVID binding: `docs/bindings/havid-binding.md`
 - AIS-1 crosswalk: `docs/crosswalks/ais1-crosswalk.md`

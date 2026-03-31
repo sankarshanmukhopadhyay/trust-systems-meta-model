@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-30
-applicable_version: v0.14.0
+last_reviewed: 2026-03-31
+applicable_version: v0.15.0
 tier: 1
 ---
 
@@ -21,4 +21,5 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 | [OASF binding](oasf-binding.md) | Open assurance signal publication surface | Supported | Profile and publication comparison surface |
 | [AIS-1 binding](ais1-binding.md) | Bonded agent identity and accountability substrate | Experimental | Included for comparative modelling, not as a mature or complete trust-stack profile |
 | [HAVID binding](havid-binding.md) | Composite identifier assurance pattern | Experimental | Useful for comparison while upstream semantics continue to mature |
+| [ODRL binding](odrl-binding.md) | Policy expression and rule-carrier surface | Experimental | Useful for bounded policy modeling without replacing the wider trust meta model |
 
