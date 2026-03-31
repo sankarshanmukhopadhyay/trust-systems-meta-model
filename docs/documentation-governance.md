@@ -55,6 +55,18 @@ Documents that map adjacent concepts onto TSMM without introducing new core prim
 The `experimental` status is a governance signal, not a quality signal. It means: the intellectual mapping has been done carefully, the framing rationale is documented, and promotion to core is deferred pending implementation experience. Experimental documents are production-quality and suitable for implementer use.
 
 A document carrying `status: experimental` should always reference its framing document in `status_note`. Documents without a `status` field are considered stable.
+
+## Repo-wide maturity taxonomy
+
+TSMM uses a shared maturity taxonomy for bindings, crosswalks, and other comparison surfaces. See [TSMM maturity model](maturity-model.md).
+
+- `experimental` → modeled for analysis, comparison, and early testing
+- `candidate` → structurally coherent and ready for broader ecosystem review
+- `supported` → stable enough for normal TSMM comparison use
+- `deprecated` → retained for reference, not recommended for new work
+
+This taxonomy separates **modeled** from **recommended**. Inclusion in TSMM means a system is structurally analyzable within the meta-model. It does not by itself imply production readiness, normative endorsement, or cross-ecosystem maturity.
+
 ## Review cadence
 
 - Tier 0: every 30 days or at each release

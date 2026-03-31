@@ -1,7 +1,7 @@
 {
   "bindingId": "tsmm.binding.ais1.v1",
-  "label": "TSMM to AIS-1 binding",
-  "description": "Maps AIS-1 bonded agent identity concepts into TSMM abstractions so AIS-1 can be compared with other trust systems without treating bonded identity as a complete delegation or assurance stack.",
+  "label": "TSMM to AIS-1 experimental binding",
+  "description": "Maps AIS-1 bonded agent identity concepts into TSMM abstractions so AIS-1 can be compared with other trust systems without treating bonded identity as a complete delegation or assurance stack. This binding is experimental and should be read as a comparative modeling surface, not as a maturity or endorsement signal.",
   "targetEcosystem": "AIS-1",
   "version": "1.0.0",
   "sources": [
@@ -61,10 +61,12 @@
   "notes": [
     "AIS-1 fits TSMM best as a bonded agent identity and accountability surface.",
     "AIS-1 bond state is modeled as trust-relevant status, not as a substitute for delegation semantics, runtime authorization, or full provenance guarantees.",
+    "This experimental binding keeps AIS-1 inside the comparison surface while making its current maturity boundary explicit.",
     "The binding is intended to support cross-repo normalization across TSMM, trust-infrastructure-schemas, and ANAB."
   ],
   "metadata": {
     "maintainer": "maintainers",
+    "reviewStatus": "experimental",
     "status": "draft"
   },
   "bindingContract": {
@@ -98,6 +100,11 @@
         "name": "provenance-scope-gap",
         "impact": "Bond verification does not by itself provide message-level authenticity or end-to-end provenance.",
         "mitigation": "Compose AIS-1 with protocol-level integrity and evidence-bearing artifacts where transport or content trust matters."
+      },
+      {
+        "name": "experimental-maturity-boundary",
+        "impact": "TSMM models AIS-1 for comparison without treating the current binding as a mature or complete trust-stack profile.",
+        "mitigation": "Use the maturity taxonomy in docs/maturity-model.md and pair AIS-1 with separate delegation, policy, and provenance mechanisms for consequential use."
       }
     ],
     "behavioralExpectations": [
@@ -118,5 +125,15 @@
       }
     ],
     "constraintSetRef": "bindings/ais1/constraints.json"
+  },
+  "maturity": {
+    "status": "experimental",
+    "stability": "draft",
+    "productionRecommendation": "not-yet",
+    "notes": [
+      "AIS-1 is included for comparative modelling and architectural evaluation.",
+      "This binding does not imply broad interoperability maturity or production endorsement.",
+      "Delegation, runtime authorization, and provenance remain out of scope for this binding."
+    ]
   }
 }

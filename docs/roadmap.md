@@ -14,7 +14,7 @@ This file records plausible next steps for TSMM after v0.14.0. It is directional
 - **Completed on main branch (no release):** canonical primitive catalog formalization for the meta-model core
 - **Completed on main branch (no release):** explicit ecosystem binding contracts and validation/test-vector scaffolding
 - **Completed on main branch (no release):** authority, delegation, lifecycle, assurance portability, and interoperability artifacts
-- **Current main-branch direction:** make the graph layer the default entry point, expand concrete example coverage, and keep the contributor path clear around model, bind, validate, and compare
+- **Current main-branch direction:** make the graph layer the default entry point, expand concrete example coverage, keep the contributor path clear around model, bind, validate, and compare, and use a consistent maturity taxonomy for experimental comparison surfaces
 
 ## Newly completed modeling surfaces on main branch
 
@@ -64,8 +64,9 @@ All ten abstractions of the Agent Interaction Extension are now delivered. The A
 
 A completed next increment is to move from semantic OASF binding to profile-level publication guidance so TSMM profiles, ANAB control publication, and DCAS evaluation outputs can travel through a shared OASF-facing surface without losing traceability.
 
-## AIS-1 normalization follow-through
+## AIS-1 experimental follow-through
 
-- deepen the AIS-1 comparison surface from binding and example graph into reusable authority and lifecycle patterns
+- refine the AIS-1 experimental binding semantics without promoting it prematurely
+- test the crosswalk more directly against delegation and provenance gaps
 - evaluate whether bonded identity and sponsor-backed status need a reusable extension abstraction beyond this initial binding
-- keep verifier guidance explicit so future profiles do not mistake bonded identity for delegated authority
+- decide later whether AIS-1 merits promotion from `experimental` to `candidate` status

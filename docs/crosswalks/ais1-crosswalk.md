@@ -3,6 +3,8 @@ owner: maintainers
 last_reviewed: 2026-03-30
 applicable_version: v0.14.0
 tier: 1
+status: experimental
+status_note: Included for comparative modelling; see ../maturity-model.md
 ---
 
 # AIS-1 Crosswalk
@@ -19,6 +21,19 @@ This crosswalk records how AIS-1 should be interpreted across the current trust-
 | `did:ais1` | Agent identifier | Reuse as the canonical identifier in schema profiles and conformance notes |
 | Tier | AssuranceProfile | Keep as a verifier input, not a blanket proof of safe operation |
 | Suspension / Revocation | Effect / lifecycle state | Trigger downgrade or denial of reliance where policy requires it |
+
+
+## Structural assessment
+
+| Dimension | Current reading in TSMM |
+| --- | --- |
+| Agent and sponsor identity linkage | Strong |
+| Issuer and accountability semantics | Partial |
+| Delegation semantics | Weak or incomplete |
+| Message provenance | Weak |
+| Standalone trust-execution completeness | Not yet sufficient |
+
+This is why the AIS-1 crosswalk is experimental. TSMM can model the identity and accountability value cleanly, but it should not let that modeling surface collapse into an implied claim of mature delegation, provenance, or execution-layer completeness.
 
 ## Cross-repo reading
 

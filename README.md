@@ -45,6 +45,12 @@ On the current main branch, TSMM now has a canonical primitive catalog at `schem
 - **Validate a system** with `scripts/validate_examples.py`, `scripts/validate_tsmm_graph.py`, `scripts/validate_bindings.py`, `scripts/validate_test_vectors.py`, and `scripts/validate_yaml_models.py`.
 - **Compare systems** with the [interoperability layer](docs/interop/interoperability.md), [crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md), ecosystem bindings, and the concrete graph examples under `examples/systems/`.
 
+## Maturity and modeling status
+
+TSMM can model systems that are incomplete, emerging, or experimental. Inclusion in TSMM means a system is structurally analyzable within the meta-model. It does **not** by itself imply production readiness, normative endorsement, or cross-ecosystem maturity.
+
+See [TSMM maturity model](docs/maturity-model.md) for the repo-wide status taxonomy used for bindings, crosswalks, and other comparison surfaces.
+
 ## Documentation site
 
 This repository is structured to publish cleanly with **GitHub Pages via GitHub Actions**.
@@ -127,9 +133,11 @@ TSMM sits above protocol and schema repositories. It should be read as the conce
 
 That separation matters because it keeps TSMM from collapsing into a schema dump wearing a philosophy hat.
 
-## AIS-1 integration on main
+## AIS-1 experimental binding on main
 
-The current main branch adds an AIS-1 binding and comparison surface so bonded agent identity can be normalized without overstating what it proves. The repo now treats AIS-1 as a **bonded identity and accountability substrate** that contributes durable agent identity, sponsor context, tiered trust signals, and revocation-aware lifecycle state. It does **not** treat AIS-1 bond state as a substitute for delegation semantics, runtime authorization, or content provenance.
+The current main branch adds an **experimental** AIS-1 binding and comparison surface so bonded agent identity can be normalized without overstating what it proves. The repo treats AIS-1 as a **bonded identity and accountability substrate** that contributes durable agent identity, sponsor context, tiered trust signals, and revocation-aware lifecycle state. It does **not** treat AIS-1 bond state as a substitute for delegation semantics, runtime authorization, or content provenance.
+
+Experimental here is a governance signal, not a quality signal. AIS-1 is included because it is useful to model and compare, not because TSMM is claiming that AIS-1 is already a mature or complete trust-stack profile.
 
 ## HAVID experimental binding on main
 

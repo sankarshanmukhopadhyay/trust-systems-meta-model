@@ -59,6 +59,50 @@
           "boolean"
         ]
       }
+    },
+    "maturity": {
+      "type": "object",
+      "required": [
+        "status",
+        "stability",
+        "productionRecommendation"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "experimental",
+            "candidate",
+            "supported",
+            "deprecated"
+          ]
+        },
+        "stability": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "review",
+            "stable",
+            "sunset"
+          ]
+        },
+        "productionRecommendation": {
+          "type": "string",
+          "enum": [
+            "not-yet",
+            "conditional",
+            "yes",
+            "no-new-adoption"
+          ]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
     }
   },
   "$defs": {

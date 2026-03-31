@@ -7,6 +7,8 @@ tier: 0
 
 # TSMM Binding: AIS-1
 
+> **Experimental binding:** included for comparative modelling, not as a mature or complete trust-stack profile. See the [TSMM maturity model](../maturity-model.md).
+
 AIS-1 is best understood as a **bonded agent identity and accountability substrate**. It gives a software agent a durable identifier, links that agent to a sponsor through a persistent bond, and surfaces a tiered trust signal that a verifier can check.
 
 That makes AIS-1 relevant to TSMM, but the fit is specific. AIS-1 does not replace delegation protocols, runtime authorization, or full provenance-bearing transport. It contributes the lower layer that answers a narrower question: **who stands behind the agent, under what published bond state, and with what coarse assurance tier?**

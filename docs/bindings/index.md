@@ -7,40 +7,18 @@ tier: 1
 
 # TSMM Ecosystem Bindings
 
-Bindings package semantic alignments between TSMM and adjacent ecosystems into machine-readable JSON artifacts paired with brief human-readable explanation documents. Each binding now includes a contract section and a per-ecosystem constraint set so the mapping can be reviewed as a bounded translation surface rather than as free-floating prose.
+Bindings package semantic alignments between TSMM and adjacent ecosystems into machine-readable JSON artifacts paired with brief human-readable explanation documents. Each binding now includes a contract section and a per-ecosystem constraint set so the mapping can be reviewed as a bounded translation surface rather than as free-floating prose. Binding status values follow the repo-wide [maturity model](../maturity-model.md).
 
 ## Available bindings
 
-- [TRQP binding](trqp-binding.md)
-- [OpenID Federation binding](openid-federation-binding.md)
-- [DCAS binding](dcas-binding.md)
-- [Verifiable Trust Communities binding](vtc-binding.md)
-- [A2A Protocol binding](a2a-binding.md) *(v0.14.0)*
-- [OASF binding](oasf-binding.md) *(integration increment)*
-- [AIS-1 binding](ais1-binding.md) *(bonded identity substrate profile)*
-- [HAVID binding](havid-binding.md) *(experimental composite identifier assurance binding)*
+| Binding | Scope | Status | Notes |
+| --- | --- | --- | --- |
+| [TRQP binding](trqp-binding.md) | Trust registry query and publication surface | Supported | Stable comparison surface for registry and directory workflows |
+| [OpenID Federation binding](openid-federation-binding.md) | Federation metadata and policy distribution surface | Supported | Stable federation comparison surface |
+| [DCAS binding](dcas-binding.md) | Conformance and assurance evaluation surface | Supported | Suitable for assured-system comparison and evidence portability |
+| [VTC binding](vtc-binding.md) | Verifiable trust community profile surface | Supported | Available for normal comparison use |
+| [A2A binding](a2a-binding.md) | Agent interaction protocol surface | Supported | Aligned to the delivered Agent Interaction Extension |
+| [OASF binding](oasf-binding.md) | Open assurance signal publication surface | Supported | Profile and publication comparison surface |
+| [AIS-1 binding](ais1-binding.md) | Bonded agent identity and accountability substrate | Experimental | Included for comparative modelling, not as a mature or complete trust-stack profile |
+| [HAVID binding](havid-binding.md) | Composite identifier assurance pattern | Experimental | Useful for comparison while upstream semantics continue to mature |
 
-## Contract model
-
-- [Binding contract model](binding-contract.md)
-
-## Machine-readable artifacts
-
-- `bindings/trqp/tsmm-trqp-binding.json`
-- `bindings/openid-federation/tsmm-openid-federation-binding.json`
-- `bindings/dcas/tsmm-dcas-binding.json`
-- `bindings/vtc/tsmm-vtc-binding.json`
-- `bindings/trqp/constraints.json`
-- `bindings/openid-federation/constraints.json`
-- `bindings/dcas/constraints.json`
-- `bindings/vtc/constraints.json`
-- `bindings/a2a/tsmm-a2a-binding.json`
-- `bindings/oasf/tsmm-oasf-binding.json`
-- `bindings/ais1/tsmm-ais1-binding.json`
-- `bindings/ais1/constraints.json`
-- `bindings/havid/tsmm-havid-binding.json`
-- `bindings/havid/constraints.json`
-
-## Publication note
-
-As of v0.11.0, bindings are intended to be indexable through the TSMM registry format so graphs, profiles, bindings, and extension instances can travel together as publishable infrastructure.
