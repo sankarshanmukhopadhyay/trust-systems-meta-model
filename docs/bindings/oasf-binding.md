@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-25
-applicable_version: v0.14.0
+last_reviewed: 2026-04-08
+applicable_version: v0.16.0
 tier: 1
 ---
 
@@ -35,6 +35,10 @@ TSMM becomes assurance-addressable when an OASF record, module, or evaluation ar
 | OASF evaluation_report | Assessment | exact | Lets evaluation output be interpreted as a structured assessment artifact. |
 | OASF referred_evaluation | EvidenceArtifact | exact | Preserves references to reusable evidence for later review and contestability. |
 
+## Publication guidance relationship
+
+This binding is paired with [OASF publication guidance](../profiles/oasf-publication-guidance.md). The binding defines semantic equivalence and expected behavior. The publication guide shows how to package those semantics so a published profile stays useful to downstream evaluators, trust registries, or procurement review workflows.
+
 ## What this binding does not do
 
 This binding does not redefine OASF terminology, and it does not require OASF to adopt TSMM classes directly in its core schema. The goal is narrower and more useful: **make OASF-described agents and evaluations portable into assurance workflows without semantic drift**.
@@ -53,6 +57,16 @@ That pattern keeps the stack clean:
 - TSMM is the semantic spine.
 - ANAB is the domain baseline.
 - DCAS is the evaluation method.
+
+## Publication minimums
+
+A TSMM-aware OASF publication should expose enough information to recover the following questions without bespoke interpretation:
+
+- who is accountable for the publication surface
+- what is being described or evaluated
+- which trust profile, policy bundle, or baseline applies
+- where the evidence or referred evaluation artifacts live
+- how consumers discover revocation, expiry, or status change semantics
 
 ## Machine-readable artifact
 

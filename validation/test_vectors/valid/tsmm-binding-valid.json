@@ -106,5 +106,13 @@
       }
     ],
     "constraintSetRef": "bindings/trqp/constraints.json"
+  },
+  "maturity": {
+    "status": "candidate",
+    "stability": "review",
+    "productionRecommendation": "conditional",
+    "notes": [
+      "Validation vector exercises binding maturity coverage without asserting full production readiness."
+    ]
   }
 }

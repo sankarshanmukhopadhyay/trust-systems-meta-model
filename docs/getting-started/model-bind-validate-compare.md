@@ -1,11 +1,11 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-30
-applicable_version: v0.14.0
+last_reviewed: 2026-04-08
+applicable_version: v0.16.0
 tier: 1
 ---
 
-# Model, Bind, Validate, Compare
+# Model, Bind, Validate, Compare, Publish
 
 This page is the shortest path through the repository if you want to use TSMM as infrastructure rather than read it as theory.
 
@@ -33,6 +33,7 @@ Once the system is modeled, connect it to a real ecosystem surface.
   - `bindings/dcas/tsmm-dcas-binding.json`
   - `bindings/vtc/tsmm-vtc-binding.json`
   - `bindings/havid/tsmm-havid-binding.json`
+  - `bindings/oasf/tsmm-oasf-binding.json`
 
 Use the binding layer when you want to state what TSMM can preserve, what gets lost, and what behavior a translation is expected to uphold.
 
@@ -45,6 +46,7 @@ The repo now supports validation at four practical layers.
 - binding validation: `python scripts/validate_bindings.py`
 - YAML model validation: `python scripts/validate_yaml_models.py`
 - test vectors: `python scripts/validate_test_vectors.py`
+- schema coverage: `python scripts/check_schema_coverage.py`
 - documentation and link checks: `python scripts/check_docs.py`
 
 The validation surface is deliberately lightweight. The aim is to make representative artifacts testable without requiring a large external harness.
@@ -60,6 +62,17 @@ Comparison becomes easier once systems share a graph vocabulary and binding cont
 
 Use this layer when you need to explain whether two systems align structurally, semantically, or behaviorally.
 
+## 5. Publish
+
+Once the model and binding are stable, publish the system in a way that preserves operator accountability, control references, evidence pointers, and evaluation traceability.
+
+- publication guidance: [OASF publication guidance](../profiles/oasf-publication-guidance.md)
+- publication binding: [TSMM to OASF Binding](../bindings/oasf-binding.md)
+- publication crosswalk: [TSMM ↔ OASF Crosswalk](../crosswalks/oasf-crosswalk.md)
+- worked example: `examples/profiles/oasf-publication-profile.json`
+
+Use this layer when you need TSMM-described systems to become assurance-addressable without flattening trust semantics into a transport-specific schema.
+
 ## A practical sequence
 
 1. Start from `model/graph/tsmm.graph.json`.
@@ -68,3 +81,4 @@ Use this layer when you need to explain whether two systems align structurally, 
 4. Add the most relevant binding from `bindings/`.
 5. Run the validators.
 6. Use the interoperability matrix and crosswalks to compare your model with adjacent systems.
+7. Publish the resulting profile through the OASF-oriented publication guidance if the system needs downstream discovery, assessment, or assurance reuse.

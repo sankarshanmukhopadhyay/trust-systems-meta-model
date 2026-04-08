@@ -1,0 +1,139 @@
+{
+  "graphId": "graph.profile.oasf-publication",
+  "label": "OASF Publication Profile",
+  "description": "TSMM graph profile showing a publication-oriented agent surface with explicit publisher accountability, policy linkage, evidence references, and assessment traceability.",
+  "profile": "operational",
+  "contexts": [
+    "publication",
+    "oasf",
+    "assurance-addressable"
+  ],
+  "nodes": [
+    {
+      "id": "ga.pub",
+      "type": "GovernanceAuthority",
+      "label": "Publication Governance Authority"
+    },
+    {
+      "id": "issuer.pub",
+      "type": "Issuer",
+      "label": "Profile Publisher"
+    },
+    {
+      "id": "agent.pub",
+      "type": "Agent",
+      "label": "Published Service Agent"
+    },
+    {
+      "id": "policy.pub",
+      "type": "Policy",
+      "label": "Publication and Control Policy"
+    },
+    {
+      "id": "profile.pub",
+      "type": "AssuranceProfile",
+      "label": "Published Assurance Profile"
+    },
+    {
+      "id": "evidence.pub",
+      "type": "EvidenceBundle",
+      "label": "Evidence Bundle Reference Set"
+    },
+    {
+      "id": "assessment.pub",
+      "type": "Assessment",
+      "label": "Published Evaluation Report"
+    },
+    {
+      "id": "decision.pub",
+      "type": "TrustDecision",
+      "label": "Publication Review Decision"
+    },
+    {
+      "id": "effect.pub",
+      "type": "Effect",
+      "label": "Assurance-Addressable Publication"
+    },
+    {
+      "id": "rp.pub",
+      "type": "RelyingParty",
+      "label": "Downstream Consumer"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.pub.1",
+      "type": "defines",
+      "from": "ga.pub",
+      "to": "policy.pub"
+    },
+    {
+      "id": "edge.pub.2",
+      "type": "defines",
+      "from": "ga.pub",
+      "to": "profile.pub"
+    },
+    {
+      "id": "edge.pub.3",
+      "type": "authorizes",
+      "from": "ga.pub",
+      "to": "issuer.pub"
+    },
+    {
+      "id": "edge.pub.4",
+      "type": "constrains",
+      "from": "policy.pub",
+      "to": "issuer.pub"
+    },
+    {
+      "id": "edge.pub.5",
+      "type": "constrains",
+      "from": "policy.pub",
+      "to": "agent.pub"
+    },
+    {
+      "id": "edge.pub.6",
+      "type": "substantiates",
+      "from": "evidence.pub",
+      "to": "assessment.pub"
+    },
+    {
+      "id": "edge.pub.7",
+      "type": "assesses",
+      "from": "assessment.pub",
+      "to": "agent.pub",
+      "evidenceRefs": [
+        "evidence.pub"
+      ]
+    },
+    {
+      "id": "edge.pub.8",
+      "type": "informs",
+      "from": "assessment.pub",
+      "to": "decision.pub"
+    },
+    {
+      "id": "edge.pub.9",
+      "type": "informs",
+      "from": "profile.pub",
+      "to": "decision.pub"
+    },
+    {
+      "id": "edge.pub.10",
+      "type": "produces",
+      "from": "decision.pub",
+      "to": "effect.pub"
+    },
+    {
+      "id": "edge.pub.11",
+      "type": "reliesOn",
+      "from": "rp.pub",
+      "to": "decision.pub"
+    }
+  ],
+  "metadata": {
+    "publicationSurface": "oasf",
+    "status": "draft",
+    "reviewFocus": "operator-accountability-and-evidence-traceability"
+  }
+}

@@ -7,7 +7,7 @@ title: Trust Systems Meta Model
 
 Welcome to the GitHub Pages site for **Trust Systems Meta Model (TSMM)**.
 
-TSMM is a portable reference model for designing, comparing, and implementing trust systems. It gives architects, standards authors, and assurance teams a common grammar for reasoning about roles, authority, policy, evidence, trust decisions, and operational effects. The current main branch also includes machine-readable authority, lifecycle, assurance, interoperability, and example-system artifacts so the model can be used more directly.
+TSMM is a portable reference model for designing, comparing, and implementing trust systems. It gives architects, standards authors, and assurance teams a common grammar for reasoning about roles, authority, policy, evidence, trust decisions, and operational effects. The current main branch also includes machine-readable authority, lifecycle, assurance, interoperability, example-system artifacts, and publication-oriented OASF guidance so the model can be used more directly.
 
 ## Start here
 
@@ -22,7 +22,8 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [Interoperability layer](docs/interop/interoperability.md)
 - [System examples](docs/examples/system-examples.md)
 - [Validation and testability](docs/conformance/validation-and-testability.md)
-- [Latest tagged release notes](releases/v0.14.0.md)
+- [OASF publication guidance](docs/profiles/oasf-publication-guidance.md)
+- [Latest tagged release notes](releases/v0.16.0.md)
 
 ## At a glance
 
@@ -31,7 +32,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - **Profiles and patterns:** reusable guidance for shaping implementations without collapsing into one domain-specific standard
 - **Extensions:** modular specialization for Agentic AI, Verifiable Trust Communities, and assurance architectures
 - **Operational hygiene:** documentation governance, freshness audit, graph validation, registry validation, schema/example validation, representative valid/invalid test-vector checks, and metadata reference checks across graph examples
-- **Bindings and publication:** ecosystem bindings, registry publication format, agentic instance indexing, graph rendering utility, and a clear handoff to the canonical trust artifact schema layer
+- **Bindings and publication:** ecosystem bindings, registry publication format, OASF profile publication guidance, agentic instance indexing, graph rendering utility, and a clear handoff to the canonical trust artifact schema layer
 
 ## Explore by path
 
@@ -43,6 +44,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [AIS-1 binding](docs/bindings/ais1-binding.md) *(experimental)*
 - [HAVID binding](docs/bindings/havid-binding.md)
 - [Validation and testability](docs/conformance/validation-and-testability.md)
+- [OASF publication guidance](docs/profiles/oasf-publication-guidance.md)
 - [Registry format](docs/registry/tsmm-registry-format.md)
 - [Assurance extension](docs/extensions/assurance-extension.md)
 - [Glossary](docs/glossary.md)

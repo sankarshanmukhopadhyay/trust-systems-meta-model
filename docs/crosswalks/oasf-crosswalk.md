@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-03-25
-applicable_version: v0.14.0
+last_reviewed: 2026-04-08
+applicable_version: v0.16.0
 tier: 2
 ---
 
@@ -23,6 +23,10 @@ Without this crosswalk, an assurance system can ingest an OASF record but still 
 | `evaluation_report` | `Assessment` | Carries structured evaluation output that can be reviewed or reused. |
 | `referred_evaluation` | `EvidenceArtifact` | Lets an assessment cite external evidence rather than flattening it into prose. |
 | module / extension attachment | `ExtensionContract` | Attaches bounded ecosystem-specific semantics such as ANAB control publication requirements. |
+
+## Publication-oriented interpretation
+
+Use the crosswalk together with [OASF publication guidance](../profiles/oasf-publication-guidance.md) when the objective is not just comparison but discoverable publication. In that mode, the crosswalk helps ensure that published records still expose operator accountability, policy or profile references, evidence pointers, and status semantics.
 
 ## Practical use across this repo set
 
