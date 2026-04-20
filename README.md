@@ -1,19 +1,19 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-08
-applicable_version: v0.16.0
+last_reviewed: 2026-04-20
+applicable_version: v0.17.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.16.0-blue)](releases/v0.16.0.md)
+[![Release](https://img.shields.io/badge/release-v0.17.0-blue)](releases/v0.17.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.16.0  
+**Version:** v0.17.0  
 **Status:** Draft reference model with machine-readable modeling and comparison artifacts  
 **License:** CC BY-SA 4.0
 
@@ -98,6 +98,9 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Attention governance model: `docs/model/attention-governance.md`
 - Effect evaluation model: `docs/evaluation/effect-evaluation-model.md`
 - Threat model: `docs/security/trust-system-threat-model.md`
+- Trust boundary *(experimental)*: `docs/model/trust-boundary.md`
+- Pre-effect governance pattern *(experimental)*: `docs/patterns/pre-effect-governance-pattern.md`
+- Agent Governance Toolkit crosswalk *(experimental)*: `docs/crosswalks/agent-governance-toolkit-crosswalk.md`
 - Implementer guide: `docs/getting-started-implementer-guide.md`
 - Roadmap: `docs/roadmap.md`
 

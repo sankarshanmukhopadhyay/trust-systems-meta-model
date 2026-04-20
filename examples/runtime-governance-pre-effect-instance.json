@@ -1,0 +1,227 @@
+{
+  "governanceContexts": [
+    {
+      "id": "context.runtime-pre-effect",
+      "name": "Runtime pre-effect governance context",
+      "description": "Illustrative pre-effect evaluation for a delegated agent invoking a side-effecting tool."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "profile.runtime-enforcement",
+      "name": "Runtime enforcement profile",
+      "contextRef": "context.runtime-pre-effect",
+      "requirementRefs": [
+        "req.fresh-status",
+        "req.side-effect-gate"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "req.fresh-status",
+      "statement": "revocation and status must be fresh at decision time",
+      "level": "baseline"
+    },
+    {
+      "id": "req.side-effect-gate",
+      "statement": "high-risk tool actions require explicit policy admission before execution",
+      "level": "baseline"
+    }
+  ],
+  "entities": [
+    {
+      "id": "entity.supervisor",
+      "type": "organization",
+      "name": "Example Operations Authority",
+      "roles": [
+        {
+          "id": "role.supervisor",
+          "type": "governance-authority",
+          "authorities": []
+        }
+      ]
+    },
+    {
+      "id": "entity.agent",
+      "type": "software-agent",
+      "name": "Invoice Adjustment Agent",
+      "roles": [
+        {
+          "id": "role.delegate",
+          "type": "delegate",
+          "authorities": [
+            {
+              "id": "auth.adjust-invoice",
+              "scope": "propose and submit bounded invoice adjustments under approved threshold",
+              "source": "signed delegation artifact",
+              "conditions": [
+                "threshold <= 5000",
+                "fresh status required",
+                "high-risk actions logged"
+              ],
+              "revocationStatus": "active",
+              "timeBounds": "request-time",
+              "obligations": [
+                "record trust decision inputs",
+                "deny if revocation status stale"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "entity.tool",
+      "type": "service",
+      "name": "Accounts Adjustment API",
+      "roles": [
+        {
+          "id": "role.tool-service",
+          "type": "service-provider",
+          "authorities": []
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "artifact.delegation",
+      "type": "delegation-artifact",
+      "claims": [
+        {
+          "id": "claim.bounded-adjustment",
+          "statement": "the agent may submit invoice adjustments below the approved threshold",
+          "subjectRef": "entity.agent"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy.pre-effect",
+      "name": "Pre-effect execution admission policy",
+      "decisionMode": "mixed",
+      "profileRef": "profile.runtime-enforcement",
+      "rules": [
+        "deny if revocation freshness check fails",
+        "review if threshold context is ambiguous",
+        "allow only if delegation and policy conditions hold"
+      ],
+      "contextRef": "context.runtime-pre-effect"
+    }
+  ],
+  "controls": [
+    {
+      "id": "control.pre-effect-check",
+      "type": "runtime-policy-intercept",
+      "mitigatesThreatRefs": [
+        "threat.stale-authority",
+        "threat.unguarded-tool-call"
+      ]
+    }
+  ],
+  "threats": [
+    {
+      "id": "threat.stale-authority",
+      "type": "stale-status",
+      "description": "The agent acts using authority whose status is no longer fresh enough for the requested effect."
+    },
+    {
+      "id": "threat.unguarded-tool-call",
+      "type": "unguarded-side-effect",
+      "description": "The agent invokes a state-changing tool before policy admission is completed."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence.status-snapshot",
+      "type": "status-proof",
+      "supportsRefs": [
+        "req.fresh-status",
+        "control.pre-effect-check"
+      ]
+    },
+    {
+      "id": "evidence.runtime-receipt",
+      "type": "decision-receipt",
+      "supportsRefs": [
+        "req.side-effect-gate",
+        "claim.bounded-adjustment",
+        "control.pre-effect-check"
+      ]
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assessment.runtime-check",
+      "method": "pre-effect governance review",
+      "result": "pass",
+      "requirementRefs": [
+        "req.fresh-status",
+        "req.side-effect-gate"
+      ],
+      "evidenceRefs": [
+        "evidence.status-snapshot",
+        "evidence.runtime-receipt"
+      ]
+    }
+  ],
+  "verifications": [
+    {
+      "id": "verification.runtime-admission",
+      "method": "decision-time policy evaluation",
+      "result": "pass",
+      "inputRefs": [
+        "artifact.delegation",
+        "evidence.status-snapshot",
+        "evidence.runtime-receipt"
+      ]
+    }
+  ],
+  "trustDecisions": [
+    {
+      "id": "decision.allow-adjustment",
+      "outcome": "allow",
+      "policyRef": "policy.pre-effect",
+      "assessmentRefs": [
+        "assessment.runtime-check"
+      ],
+      "verificationRefs": [
+        "verification.runtime-admission"
+      ],
+      "effectRefs": [
+        "effect.adjustment-submitted"
+      ],
+      "contextRef": "context.runtime-pre-effect",
+      "authorityRefs": [
+        "auth.adjust-invoice"
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "id": "effect.adjustment-submitted",
+      "class": "transactional",
+      "action": "submit bounded invoice adjustment after pre-effect admission",
+      "status": "executed"
+    }
+  ],
+  "lifecycleEvents": [
+    {
+      "id": "event.runtime-receipt-recorded",
+      "type": "decision-log-entry",
+      "targetRef": "decision.allow-adjustment"
+    }
+  ],
+  "levelFrameworks": [
+    {
+      "id": "levels.runtime-governance",
+      "name": "Runtime governance rigor",
+      "levels": [
+        "baseline",
+        "reviewed"
+      ]
+    }
+  ]
+}

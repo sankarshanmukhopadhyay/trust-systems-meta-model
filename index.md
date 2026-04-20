@@ -23,7 +23,7 @@ TSMM is a portable reference model for designing, comparing, and implementing tr
 - [System examples](docs/examples/system-examples.md)
 - [Validation and testability](docs/conformance/validation-and-testability.md)
 - [OASF publication guidance](docs/profiles/oasf-publication-guidance.md)
-- [Latest tagged release notes](releases/v0.16.0.md)
+- [Latest tagged release notes](releases/v0.17.0.md)
 
 ## At a glance
 

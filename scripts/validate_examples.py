@@ -16,6 +16,7 @@ PAIRS = [
     ("minimal-trust-registry-instance.json", "tsmm-core.schema.json"),
     ("consumer-policy-instance.json", "tsmm-core.schema.json"),
     ("delegated-agent-instance.json", "tsmm-core.schema.json"),
+    ("runtime-governance-pre-effect-instance.json", "tsmm-core.schema.json"),
     ("agentic-ai-extension-instance.json", "tsmm-agentic-extension.schema.json"),
     ("verifiable-trust-community-instance.json", "tsmm-vtc-extension.schema.json"),
     ("assurance-extension-instance.json", "tsmm-assurance-extension.schema.json"),

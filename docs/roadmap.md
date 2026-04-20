@@ -70,3 +70,11 @@ A completed next increment is to move from semantic OASF binding to profile-leve
 - test the crosswalk more directly against delegation and provenance gaps
 - evaluate whether bonded identity and sponsor-backed status need a reusable extension abstraction beyond this initial binding
 - decide later whether AIS-1 merits promotion from `experimental` to `candidate` status
+
+
+## v0.17.0 runtime-governance experimental increment
+
+- Added an experimental TrustBoundary abstraction to make execution edges easier to model.
+- Added a pre-effect governance pattern for decision-time admission before runtime effects occur.
+- Added an experimental crosswalk to the Microsoft Agent Governance Toolkit as an upstream runtime-governance reference.
+- Added a worked runtime pre-effect example without changing the stable TSMM core schema surface.
