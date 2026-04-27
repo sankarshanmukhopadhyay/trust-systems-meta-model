@@ -1,0 +1,199 @@
+{
+  "governanceContexts": [
+    {
+      "id": "context.revocation-propagation",
+      "name": "Revocation propagation governance context",
+      "description": "Runtime governance context for blocking a delegated side effect after revocation or stale authority status."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "profile.runtime-revocation-assurance",
+      "name": "Runtime revocation assurance profile",
+      "contextRef": "context.revocation-propagation",
+      "requirementRefs": [
+        "req.revocation-before-effect",
+        "req.receipt-on-denial"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "req.revocation-before-effect",
+      "statement": "Delegated effects must be checked against current revocation state before execution.",
+      "level": "agentic"
+    },
+    {
+      "id": "req.receipt-on-denial",
+      "statement": "Denied or suspended effects must produce a decision receipt with authority, policy, evidence, and revocation status.",
+      "level": "assured"
+    }
+  ],
+  "entities": [
+    {
+      "id": "entity.supervisor",
+      "type": "organization",
+      "name": "Example Operations Authority",
+      "roles": [
+        {
+          "id": "role.supervisor",
+          "type": "governance-authority",
+          "authorities": []
+        }
+      ]
+    },
+    {
+      "id": "entity.agent",
+      "type": "software-agent",
+      "name": "Invoice Adjustment Agent",
+      "roles": [
+        {
+          "id": "role.delegate",
+          "type": "delegate",
+          "authorities": [
+            {
+              "id": "auth.adjust-invoice",
+              "scope": "submit bounded invoice adjustments",
+              "source": "signed delegation artifact",
+              "conditions": [
+                "fresh revocation state required"
+              ],
+              "revocationStatus": "revoked",
+              "timeBounds": "request-time",
+              "obligations": [
+                "deny if authority revoked",
+                "emit decision receipt"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "entity.tool",
+      "type": "service",
+      "name": "Accounts Adjustment API",
+      "roles": [
+        {
+          "id": "role.tool-service",
+          "type": "effect-target",
+          "authorities": []
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "artifact.delegation.invoice-adjustment",
+      "type": "delegation-instrument",
+      "claims": [
+        {
+          "id": "claim.delegation.scope",
+          "statement": "entity.agent was previously delegated bounded invoice-adjustment authority",
+          "subjectRef": "entity.agent"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy.pre-effect-financial-tool-use",
+      "name": "Pre-effect financial tool use policy",
+      "decisionMode": "deny",
+      "profileRef": "profile.runtime-revocation-assurance",
+      "rules": [
+        "deny when delegated authority is revoked, suspended, expired, stale, or unavailable",
+        "require decision receipt for denied financial side effects"
+      ],
+      "contextRef": "context.revocation-propagation"
+    }
+  ],
+  "controls": [
+    {
+      "id": "control.revocation-gate",
+      "type": "pre-effect-revocation-check",
+      "mitigatesThreatRefs": [
+        "threat.revocation-lag"
+      ],
+      "requirementRefs": [
+        "req.revocation-before-effect"
+      ]
+    }
+  ],
+  "threats": [
+    {
+      "id": "threat.revocation-lag",
+      "type": "revocation-lag-gradient",
+      "description": "A delegated actor attempts to exploit delay between revocation and runtime enforcement."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence.revocation-status-revoked",
+      "type": "authority-status-response",
+      "supportsRefs": [
+        "auth.adjust-invoice",
+        "decision.block-adjustment"
+      ]
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assessment.revocation-status",
+      "method": "registry status lookup",
+      "result": "authority revoked",
+      "requirementRefs": [
+        "req.revocation-before-effect"
+      ],
+      "evidenceRefs": [
+        "evidence.revocation-status-revoked"
+      ]
+    }
+  ],
+  "verifications": [
+    {
+      "id": "verification.delegation-status",
+      "method": "signed status response verification",
+      "result": "valid response; status revoked",
+      "inputRefs": [
+        "artifact.delegation.invoice-adjustment",
+        "evidence.revocation-status-revoked"
+      ]
+    }
+  ],
+  "trustDecisions": [
+    {
+      "id": "decision.block-adjustment",
+      "outcome": "deny",
+      "policyRef": "policy.pre-effect-financial-tool-use",
+      "assessmentRefs": [
+        "assessment.revocation-status"
+      ],
+      "verificationRefs": [
+        "verification.delegation-status"
+      ],
+      "effectRefs": [
+        "effect.block-adjustment"
+      ],
+      "contextRef": "context.revocation-propagation",
+      "authorityRefs": [
+        "auth.adjust-invoice"
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "id": "effect.block-adjustment",
+      "class": "financial-side-effect",
+      "action": "block invoice adjustment submission",
+      "status": "blocked"
+    }
+  ],
+  "lifecycleEvents": [
+    {
+      "id": "event.revocation-recorded",
+      "type": "revocation",
+      "targetRef": "auth.adjust-invoice"
+    }
+  ]
+}

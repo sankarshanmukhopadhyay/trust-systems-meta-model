@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-runtime-governance.schema.json",
+  "title": "TSMM Runtime Governance Envelope Schema",
+  "description": "A pre-effect runtime governance envelope for evaluating authority, delegation, policy, revocation freshness, evidence, and effect admission before a system action is executed.",
+  "type": "object",
+  "required": [
+    "envelopeId",
+    "actor",
+    "requestedEffect",
+    "trustBoundary",
+    "authorityBasis",
+    "policyRefs",
+    "evidenceRefs",
+    "revocationCheck",
+    "decision",
+    "receiptExpectation"
+  ],
+  "properties": {
+    "envelopeId": {
+      "$ref": "#/$defs/idString"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor": {
+      "$ref": "#/$defs/actor"
+    },
+    "requestedEffect": {
+      "$ref": "#/$defs/requestedEffect"
+    },
+    "trustBoundary": {
+      "$ref": "#/$defs/trustBoundary"
+    },
+    "authorityBasis": {
+      "$ref": "#/$defs/authorityBasis"
+    },
+    "delegationChain": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/delegationLink"
+      }
+    },
+    "policyRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/idString"
+      },
+      "minItems": 1
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/idString"
+      },
+      "minItems": 1
+    },
+    "revocationCheck": {
+      "$ref": "#/$defs/revocationCheck"
+    },
+    "decision": {
+      "$ref": "#/$defs/decision"
+    },
+    "receiptExpectation": {
+      "$ref": "#/$defs/receiptExpectation"
+    },
+    "audit": {
+      "$ref": "#/$defs/audit"
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "actor": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "roleRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "requestedEffect": {
+      "type": "object",
+      "required": [
+        "id",
+        "class",
+        "action",
+        "targetRef"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "class": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "targetRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "riskClass": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "trustBoundary": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "sourceZone",
+        "targetZone"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "type": {
+          "type": "string"
+        },
+        "sourceZone": {
+          "type": "string"
+        },
+        "targetZone": {
+          "type": "string"
+        },
+        "crossingReason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "authorityBasis": {
+      "type": "object",
+      "required": [
+        "authorityRef",
+        "source",
+        "scope",
+        "status"
+      ],
+      "properties": {
+        "authorityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "source": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "revoked",
+            "suspended",
+            "expired"
+          ]
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "delegationLink": {
+      "type": "object",
+      "required": [
+        "fromRef",
+        "toRef",
+        "authorityRef"
+      ],
+      "properties": {
+        "fromRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "toRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "authorityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "instrumentRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "revocationCheck": {
+      "type": "object",
+      "required": [
+        "status",
+        "checkedAt",
+        "freshnessWindowSeconds",
+        "sourceRef"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "fresh-active",
+            "fresh-revoked",
+            "stale",
+            "unavailable"
+          ]
+        },
+        "checkedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "freshnessWindowSeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "outcome",
+        "effectAdmission"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "deny",
+            "warn",
+            "review",
+            "downgrade",
+            "suspend"
+          ]
+        },
+        "effectAdmission": {
+          "type": "string",
+          "enum": [
+            "permitted",
+            "blocked",
+            "queued-for-review",
+            "restricted"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "decisionRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "receiptExpectation": {
+      "type": "object",
+      "required": [
+        "required",
+        "schemaRef"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "schemaRef": {
+          "type": "string"
+        },
+        "retentionClass": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "audit": {
+      "type": "object",
+      "properties": {
+        "correlationId": {
+          "$ref": "#/$defs/idString"
+        },
+        "reviewPath": {
+          "type": "string"
+        },
+        "logRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,73 @@
+{
+  "envelopeId": "rge.invoice-adjustment.001",
+  "timestamp": "2026-04-27T09:00:00Z",
+  "actor": {
+    "id": "entity.agent",
+    "type": "software-agent",
+    "roleRef": "role.delegate"
+  },
+  "requestedEffect": {
+    "id": "effect.adjust-invoice",
+    "class": "financial-side-effect",
+    "action": "submit invoice adjustment below approved threshold",
+    "targetRef": "entity.tool",
+    "riskClass": "high"
+  },
+  "trustBoundary": {
+    "id": "boundary.agent-to-accounts-api",
+    "type": "agent-to-tool",
+    "sourceZone": "delegated-agent-runtime",
+    "targetZone": "financial-system-of-record",
+    "crossingReason": "side-effecting tool invocation"
+  },
+  "authorityBasis": {
+    "authorityRef": "auth.adjust-invoice",
+    "source": "signed delegation artifact",
+    "scope": "bounded invoice adjustments under 5000",
+    "status": "active",
+    "constraints": [
+      "threshold <= 5000",
+      "fresh revocation state required",
+      "decision receipt required"
+    ]
+  },
+  "delegationChain": [
+    {
+      "fromRef": "entity.supervisor",
+      "toRef": "entity.agent",
+      "authorityRef": "auth.adjust-invoice",
+      "instrumentRef": "artifact.delegation.invoice-adjustment"
+    }
+  ],
+  "policyRefs": [
+    "policy.pre-effect-financial-tool-use"
+  ],
+  "evidenceRefs": [
+    "evidence.delegation-signature",
+    "evidence.revocation-status-fresh"
+  ],
+  "revocationCheck": {
+    "status": "fresh-active",
+    "checkedAt": "2026-04-27T09:00:00Z",
+    "freshnessWindowSeconds": 300,
+    "sourceRef": "registry.authority-status"
+  },
+  "decision": {
+    "outcome": "allow",
+    "effectAdmission": "permitted",
+    "reason": "authority active, policy constraints satisfied, revocation state fresh",
+    "decisionRef": "decision.invoice-adjustment.001"
+  },
+  "receiptExpectation": {
+    "required": true,
+    "schemaRef": "schemas/tsmm-decision-receipt.schema.json",
+    "retentionClass": "assurance-audit"
+  },
+  "audit": {
+    "correlationId": "corr.invoice-adjustment.001",
+    "reviewPath": "finance-ops/governance-review",
+    "logRefs": [
+      "log.runtime-evaluation.001"
+    ]
+  }
+}

@@ -11,12 +11,18 @@ VALID = ROOT / 'validation' / 'test_vectors' / 'valid'
 INVALID = ROOT / 'validation' / 'test_vectors' / 'invalid'
 BINDING_SCHEMA = ROOT / 'schemas' / 'tsmm-binding.schema.json'
 CONSTRAINT_SCHEMA = ROOT / 'validation' / 'schemas' / 'tsmm-binding-constraints.schema.json'
+RUNTIME_SCHEMA = ROOT / 'schemas' / 'tsmm-runtime-governance.schema.json'
+RECEIPT_SCHEMA = ROOT / 'schemas' / 'tsmm-decision-receipt.schema.json'
 
 CASES = [
     (VALID / 'tsmm-binding-valid.json', BINDING_SCHEMA, True),
     (INVALID / 'tsmm-binding-invalid-missing-guarantees.json', BINDING_SCHEMA, False),
     (VALID / 'tsmm-binding-constraints-valid.json', CONSTRAINT_SCHEMA, True),
     (INVALID / 'tsmm-binding-constraints-invalid-empty-prohibited-inferences.json', CONSTRAINT_SCHEMA, False),
+    (VALID / 'runtime-governance-envelope-valid.json', RUNTIME_SCHEMA, True),
+    (INVALID / 'runtime-governance-envelope-missing-policy.json', RUNTIME_SCHEMA, False),
+    (VALID / 'decision-receipt-valid.json', RECEIPT_SCHEMA, True),
+    (INVALID / 'decision-receipt-missing-policy.json', RECEIPT_SCHEMA, False),
 ]
 
 
@@ -27,7 +33,7 @@ def load_json(path: Path):
 
 def build_registry() -> Registry:
     registry = Registry()
-    for path in [BINDING_SCHEMA, CONSTRAINT_SCHEMA]:
+    for path in [BINDING_SCHEMA, CONSTRAINT_SCHEMA, RUNTIME_SCHEMA, RECEIPT_SCHEMA]:
         schema = load_json(path)
         if '$id' in schema:
             registry = registry.with_resource(schema['$id'], Resource.from_contents(schema))

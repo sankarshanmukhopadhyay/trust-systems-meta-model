@@ -1,19 +1,19 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-20
-applicable_version: v0.17.0
+last_reviewed: 2026-04-27
+applicable_version: v0.18.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.17.0-blue)](releases/v0.17.0.md)
+[![Release](https://img.shields.io/badge/release-v0.18.0-blue)](releases/v0.18.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.17.0  
+**Version:** v0.18.0  
 **Status:** Draft reference model with machine-readable modeling and comparison artifacts  
 **License:** CC BY-SA 4.0
 
@@ -36,7 +36,7 @@ TSMM is intentionally **effect-centered**. The key question is not only who an a
 
 That framing makes TSMM usable across trust registries, verifiable credential ecosystems, delegated-agent systems, trust signal consumers, conformance suites, assurance frameworks, and modular domain extensions. In practice, TSMM is not meant to be a product or a protocol. It is a way to make trust systems more legible so they can be studied with more clarity and built with more rigor.
 
-On the current main branch, TSMM now has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples. The current increment extends that foundation with explicit binding contracts, per-ecosystem constraint sets, authority and delegation models, a lifecycle state model, assurance properties, an interoperability matrix, concrete system examples, a publication-oriented OASF profile guide, and an experimental ODRL policy-expression binding for standards-based policy modeling.
+On the current main branch, TSMM now has a canonical primitive catalog at `schemas/tsmm.schema.json`, with a worked example at `examples/tsmm-meta-model-instance.json`. That addition separates the meta-model contract from the instance-layer schemas used to validate concrete trust-system examples. The current increment extends that foundation with runtime assurance artifacts: a Runtime Governance Envelope, a Decision Receipt schema, revocation-propagation examples, test vectors for policy-boundary failures, and refreshed documentation currency metadata. TSMM now treats authority, delegation, revocation freshness, evidence, and effect admission as surfaces that can be modeled, validated, and audited.
 
 ## Use TSMM by task
 
@@ -45,6 +45,20 @@ On the current main branch, TSMM now has a canonical primitive catalog at `schem
 - **Validate a system** with `scripts/validate_examples.py`, `scripts/validate_tsmm_graph.py`, `scripts/validate_bindings.py`, `scripts/validate_test_vectors.py`, and `scripts/validate_yaml_models.py`.
 - **Compare systems** with the [interoperability layer](docs/interop/interoperability.md), [crosswalks](docs/crosswalks/trqp-tspp-crosswalk.md), ecosystem bindings, and the concrete graph examples under `examples/systems/`.
 - **Publish a profile** with the [OASF publication guidance](docs/profiles/oasf-publication-guidance.md), [OASF binding](docs/bindings/oasf-binding.md), and [OASF crosswalk](docs/crosswalks/oasf-crosswalk.md).
+
+
+## Runtime assurance in v0.18.0
+
+TSMM v0.18.0 adds a release-ready runtime assurance layer for systems where trust decisions produce operational effects. The new artifacts are intentionally small and composable:
+
+- `schemas/tsmm-runtime-governance.schema.json` defines the Runtime Governance Envelope used to evaluate an attempted effect before execution.
+- `schemas/tsmm-decision-receipt.schema.json` defines the auditable receipt emitted for an allow, deny, warn, review, downgrade, or suspend decision.
+- `examples/runtime-governance-boundary-instance.json` shows an allow decision with fresh revocation state and bounded authority.
+- `examples/decision-receipt-runtime-example.json` shows the evidence trail for a runtime decision.
+- `examples/systems/revocation-propagation-system.json` shows stale or revoked delegation being blocked before a side effect occurs.
+- `docs/model/runtime-governance-envelope.md`, `docs/model/decision-receipt.md`, and `docs/conformance/runtime-governance-test-profile.md` describe how to implement the model surface.
+
+The design goal is direct: trust decisions should become reviewable governance events, not opaque runtime logs.
 
 ## Maturity and modeling status
 
@@ -100,6 +114,9 @@ TSMM extracts those recurring invariants into an abstract model so that other pr
 - Threat model: `docs/security/trust-system-threat-model.md`
 - Trust boundary *(experimental)*: `docs/model/trust-boundary.md`
 - Pre-effect governance pattern *(experimental)*: `docs/patterns/pre-effect-governance-pattern.md`
+- Runtime governance envelope: `docs/model/runtime-governance-envelope.md`
+- Decision receipt: `docs/model/decision-receipt.md`
+- Runtime governance test profile: `docs/conformance/runtime-governance-test-profile.md`
 - Agent Governance Toolkit crosswalk *(experimental)*: `docs/crosswalks/agent-governance-toolkit-crosswalk.md`
 - Implementer guide: `docs/getting-started-implementer-guide.md`
 - Roadmap: `docs/roadmap.md`

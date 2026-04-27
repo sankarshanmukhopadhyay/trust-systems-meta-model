@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-20
-applicable_version: v0.17.0
+last_reviewed: 2026-04-27
+applicable_version: v0.18.0
 tier: 0
 ---
 
@@ -176,6 +176,19 @@ TSMM is effect-centered. The core governance question is not merely whether an i
 
 ## Current documentation snapshot
 
-This documentation set remains aligned to **v0.17.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main branch now places the graph layer at the center of the repo, expands concrete system coverage, and tightens the contributor path around model, bind, validate, and compare.
+This documentation set remains aligned to **v0.18.0** and is intended to remain usable both on GitHub and through GitHub Pages. The current main branch now places the graph layer at the center of the repo, expands concrete system coverage, and tightens the contributor path around model, bind, validate, and compare.
 
 - ODRL binding *(experimental)*: `bindings/odrl-binding.md`
+
+## Runtime assurance layer *(v0.18.0)*
+
+- [Runtime Governance Envelope](model/runtime-governance-envelope.md)
+- [Decision Receipt](model/decision-receipt.md)
+- [Runtime Governance Test Profile](conformance/runtime-governance-test-profile.md)
+- [Implementation Paths](getting-started/implementation-paths.md)
+- [Runtime Governance Walkthrough](examples/runtime-governance-walkthrough.md)
+- Schema: `schemas/tsmm-runtime-governance.schema.json`
+- Schema: `schemas/tsmm-decision-receipt.schema.json`
+- Example: `examples/runtime-governance-boundary-instance.json`
+- Example: `examples/decision-receipt-runtime-example.json`
+- System example: `examples/systems/revocation-propagation-system.json`

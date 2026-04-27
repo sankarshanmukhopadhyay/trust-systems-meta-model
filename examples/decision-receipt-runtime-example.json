@@ -1,0 +1,36 @@
+{
+  "decisionId": "decision.invoice-adjustment.001",
+  "timestamp": "2026-04-27T09:00:01Z",
+  "subjectRef": "effect.adjust-invoice",
+  "requestingActorRef": "entity.agent",
+  "authorityBasis": {
+    "authorityRef": "auth.adjust-invoice",
+    "status": "active",
+    "source": "signed delegation artifact",
+    "scope": "bounded invoice adjustments under 5000"
+  },
+  "policyRefs": [
+    "policy.pre-effect-financial-tool-use"
+  ],
+  "evidenceRefs": [
+    "evidence.delegation-signature",
+    "evidence.revocation-status-fresh"
+  ],
+  "boundaryRef": "boundary.agent-to-accounts-api",
+  "decision": {
+    "outcome": "allow",
+    "reason": "policy, authority scope, delegation chain, and revocation freshness checks passed before effect execution"
+  },
+  "effect": {
+    "effectRef": "effect.adjust-invoice",
+    "admission": "permitted"
+  },
+  "revocationStateChecked": {
+    "status": "fresh-active",
+    "checkedAt": "2026-04-27T09:00:00Z",
+    "sourceRef": "registry.authority-status"
+  },
+  "assuranceLevel": "agentic",
+  "reviewPath": "finance-ops/governance-review",
+  "relatedEnvelopeRef": "rge.invoice-adjustment.001"
+}

@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-decision-receipt.schema.json",
+  "title": "TSMM Decision Receipt Schema",
+  "description": "Auditable record of a TSMM trust decision, including authority, policy, evidence, revocation state, boundary crossing, decision outcome, and admitted or blocked effect.",
+  "type": "object",
+  "required": [
+    "decisionId",
+    "timestamp",
+    "subjectRef",
+    "requestingActorRef",
+    "authorityBasis",
+    "policyRefs",
+    "evidenceRefs",
+    "boundaryRef",
+    "decision",
+    "effect",
+    "revocationStateChecked",
+    "assuranceLevel",
+    "reviewPath"
+  ],
+  "properties": {
+    "decisionId": {
+      "$ref": "#/$defs/idString"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "subjectRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "requestingActorRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "authorityBasis": {
+      "type": "object",
+      "required": [
+        "authorityRef",
+        "status",
+        "source"
+      ],
+      "properties": {
+        "authorityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "revoked",
+            "suspended",
+            "expired"
+          ]
+        },
+        "source": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "policyRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/idString"
+      },
+      "minItems": 1
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/idString"
+      },
+      "minItems": 1
+    },
+    "boundaryRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "outcome",
+        "reason"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "deny",
+            "warn",
+            "review",
+            "downgrade",
+            "suspend"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "effect": {
+      "type": "object",
+      "required": [
+        "effectRef",
+        "admission"
+      ],
+      "properties": {
+        "effectRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "admission": {
+          "type": "string",
+          "enum": [
+            "permitted",
+            "blocked",
+            "queued-for-review",
+            "restricted"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "revocationStateChecked": {
+      "type": "object",
+      "required": [
+        "status",
+        "checkedAt",
+        "sourceRef"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "fresh-active",
+            "fresh-revoked",
+            "stale",
+            "unavailable"
+          ]
+        },
+        "checkedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "assuranceLevel": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "operational",
+        "assured",
+        "agentic"
+      ]
+    },
+    "reviewPath": {
+      "type": "string"
+    },
+    "relatedEnvelopeRef": {
+      "$ref": "#/$defs/idString"
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    }
+  },
+  "additionalProperties": false
+}

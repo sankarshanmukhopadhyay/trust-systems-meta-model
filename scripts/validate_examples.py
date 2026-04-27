@@ -17,6 +17,8 @@ PAIRS = [
     ("consumer-policy-instance.json", "tsmm-core.schema.json"),
     ("delegated-agent-instance.json", "tsmm-core.schema.json"),
     ("runtime-governance-pre-effect-instance.json", "tsmm-core.schema.json"),
+    ("runtime-governance-boundary-instance.json", "tsmm-runtime-governance.schema.json"),
+    ("decision-receipt-runtime-example.json", "tsmm-decision-receipt.schema.json"),
     ("agentic-ai-extension-instance.json", "tsmm-agentic-extension.schema.json"),
     ("verifiable-trust-community-instance.json", "tsmm-vtc-extension.schema.json"),
     ("assurance-extension-instance.json", "tsmm-assurance-extension.schema.json"),
@@ -36,6 +38,7 @@ PAIRS = [
     ("systems/decentralized-directory-system.json", "tsmm-graph.schema.json"),
     ("systems/content-authenticity-workflow.json", "tsmm-graph.schema.json"),
     ("systems/verifiable-trust-community-system.json", "tsmm-graph.schema.json"),
+    ("systems/revocation-propagation-system.json", "tsmm-core.schema.json"),
     ("registries/tsmm-registry-example.json", "tsmm-registry.schema.json"),
 ]
 
