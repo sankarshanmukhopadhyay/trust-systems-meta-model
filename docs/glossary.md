@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 1
 ---
 
@@ -120,3 +120,26 @@ The evaluated outcome produced under policy, evidence, verification, and context
 
 ## Verification
 A process that checks validity, conformance, integrity, or other required conditions.
+
+
+## v0.19.0 agent interaction governance terms
+
+### Discovery Governance
+
+A TSMM model surface for describing how descriptors are discovered, who mediates them, what access policy applies, how freshness is evaluated, what integrity controls are required, and what happens when discovery fails.
+
+### Capability Negotiation
+
+A TSMM model surface for determining whether an advertised capability becomes discoverable, negotiated, authorized, executed, and evidenced under policy.
+
+### Task Evidence Lifecycle
+
+A TSMM model surface for treating task state transitions as governance-relevant events that require evidence, receipts, artifacts, or review triggers.
+
+### Authenticated Extended Descriptor
+
+A descriptor whose fuller contents are disclosed only after authentication or authorization. Generalizes the A2A authenticated extended Agent Card pattern.
+
+### Required Extension Failure
+
+A negotiation condition where a requester requires an extension that the provider does not support or cannot authorize. In TSMM, this must lead to rejection or review rather than silent downgrade.

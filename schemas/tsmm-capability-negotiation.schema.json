@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-capability-negotiation.schema.json",
+  "title": "TSMM Capability Negotiation Model v0.19.0",
+  "description": "Schema for evaluating whether an advertised capability becomes discoverable, negotiated, authorized, executable, and evidenced.",
+  "type": "object",
+  "required": [
+    "negotiationId",
+    "requesterRef",
+    "providerRef",
+    "skillRef",
+    "requestedInputModes",
+    "acceptedInputModes",
+    "requestedOutputModes",
+    "acceptedOutputModes",
+    "requestedExtensions",
+    "acceptedExtensions",
+    "rejectedExtensions",
+    "requiredExtensionsMissing",
+    "authorizationScopeRef",
+    "policyDecisionRef",
+    "negotiationOutcome",
+    "evidenceRefs"
+  ],
+  "properties": {
+    "negotiationId": {
+      "$ref": "#/$defs/idString"
+    },
+    "requesterRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "providerRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "skillRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "description": {
+      "type": "string"
+    },
+    "requestedInputModes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "acceptedInputModes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requestedOutputModes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "acceptedOutputModes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requestedExtensions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/extensionRequest"
+      }
+    },
+    "acceptedExtensions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/extensionDecision"
+      }
+    },
+    "rejectedExtensions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/extensionDecision"
+      }
+    },
+    "requiredExtensionsMissing": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authorizationScopeRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "policyDecisionRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "negotiationOutcome": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "accepted-with-constraints",
+        "rejected",
+        "review-required"
+      ]
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/idString"
+      },
+      "minItems": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "requiredExtensionsMissing": {
+            "minItems": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "negotiationOutcome": {
+            "enum": [
+              "rejected",
+              "review-required"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:/-]+$"
+    },
+    "extensionRequest": {
+      "type": "object",
+      "required": [
+        "uri",
+        "required"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "version": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "extensionDecision": {
+      "type": "object",
+      "required": [
+        "uri",
+        "decision"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "version": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "rejected"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

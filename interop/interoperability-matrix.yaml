@@ -1,43 +1,69 @@
 matrixId: tsmm.interop.matrix.v1
 label: TSMM interoperability comparison matrix
 modes:
-  - structural
-  - semantic
-  - behavioral
+- structural
+- semantic
+- behavioral
 comparisons:
-  - target: TRQP
-    modeFindings:
-      - mode: structural
-        status: supported
-        notes: Registry, evidence, assurance, and relying-party concepts map directly into TSMM graph and core abstractions.
-      - mode: semantic
-        status: supported
-        notes: Authority, status, and evidence semantics are preserved at the model layer.
-      - mode: behavioral
-        status: partial
-        notes: Query and propagation timing remain ecosystem-specific.
-    portabilitySummary: Strong portability for registry semantics and evidence-backed decisioning.
-  - target: OpenID Federation
-    modeFindings:
-      - mode: structural
-        status: supported
-        notes: Federation entities, policy anchors, and trust chains fit TSMM relationship structures.
-      - mode: semantic
-        status: partial
-        notes: Semantics align well, but some federation-specific policy processing remains external.
-      - mode: behavioral
-        status: partial
-        notes: Resolution and metadata processing rules require binding-specific behavior notes.
-    portabilitySummary: Good comparability with bounded loss around protocol-specific processing.
-  - target: KERI
-    modeFindings:
-      - mode: structural
-        status: partial
-        notes: Event logs and witnesses require graph mapping rather than direct object equivalence.
-      - mode: semantic
-        status: supported
-        notes: Key state, verification, and audit trail concepts align strongly with TSMM trust and evidence abstractions.
-      - mode: behavioral
-        status: partial
-        notes: Witnessing and event sequencing remain ecosystem-specific runtime behavior.
-    portabilitySummary: High semantic portability with moderate structural translation effort.
+- target: TRQP
+  modeFindings:
+  - mode: structural
+    status: supported
+    notes: Registry, evidence, assurance, and relying-party concepts map directly
+      into TSMM graph and core abstractions.
+  - mode: semantic
+    status: supported
+    notes: Authority, status, and evidence semantics are preserved at the model layer.
+  - mode: behavioral
+    status: partial
+    notes: Query and propagation timing remain ecosystem-specific.
+  portabilitySummary: Strong portability for registry semantics and evidence-backed
+    decisioning.
+- target: OpenID Federation
+  modeFindings:
+  - mode: structural
+    status: supported
+    notes: Federation entities, policy anchors, and trust chains fit TSMM relationship
+      structures.
+  - mode: semantic
+    status: partial
+    notes: Semantics align well, but some federation-specific policy processing remains
+      external.
+  - mode: behavioral
+    status: partial
+    notes: Resolution and metadata processing rules require binding-specific behavior
+      notes.
+  portabilitySummary: Good comparability with bounded loss around protocol-specific
+    processing.
+- target: KERI
+  modeFindings:
+  - mode: structural
+    status: partial
+    notes: Event logs and witnesses require graph mapping rather than direct object
+      equivalence.
+  - mode: semantic
+    status: supported
+    notes: Key state, verification, and audit trail concepts align strongly with TSMM
+      trust and evidence abstractions.
+  - mode: behavioral
+    status: partial
+    notes: Witnessing and event sequencing remain ecosystem-specific runtime behavior.
+  portabilitySummary: High semantic portability with moderate structural translation
+    effort.
+- target: A2A-class agent interaction
+  modeFindings:
+  - mode: structural
+    status: supported
+    notes: Agent Card, Skill, Task, Extension, and delivery-mode constructs map to
+      TSMM service descriptor, skill contract, task, extension contract, observability,
+      and v0.19.0 governance schemas.
+  - mode: semantic
+    status: supported
+    notes: Discovery, capability negotiation, task evidence, opacity, and authorization
+      checkpoint semantics are preserved as TSMM governance surfaces.
+  - mode: behavioral
+    status: partial
+    notes: Wire-level protocol behavior remains external; TSMM captures governance
+      obligations and evidence expectations.
+  portabilitySummary: Strong portability for governance analysis, assurance design,
+    and cross-protocol comparison without treating TSMM as an agent wire protocol.

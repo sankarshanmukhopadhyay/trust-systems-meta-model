@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-discovery-governance.schema.json",
+  "title": "TSMM Discovery Governance Model v0.19.0",
+  "description": "Governance schema for descriptor discovery, integrity, freshness, access policy, and trust basis across A2A-class agent systems and registry-mediated trust systems.",
+  "type": "object",
+  "required": [
+    "discoveryModelId",
+    "subjectRef",
+    "descriptorRef",
+    "discoveryMode",
+    "discoverySourceRef",
+    "accessPolicyRef",
+    "freshnessPolicy",
+    "integrityRequirements",
+    "trustBasis",
+    "failureBehavior",
+    "evidenceRefs"
+  ],
+  "properties": {
+    "discoveryModelId": {
+      "$ref": "#/$defs/idString"
+    },
+    "subjectRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "descriptorRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "description": {
+      "type": "string"
+    },
+    "discoveryMode": {
+      "type": "string",
+      "enum": [
+        "well-known-uri",
+        "curated-registry",
+        "direct-configuration",
+        "authenticated-extended",
+        "restricted-catalog"
+      ]
+    },
+    "discoverySourceRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "accessPolicyRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "freshnessPolicy": {
+      "$ref": "#/$defs/freshnessPolicy"
+    },
+    "integrityRequirements": {
+      "$ref": "#/$defs/integrityRequirements"
+    },
+    "trustBasis": {
+      "type": "string",
+      "enum": [
+        "domain-control",
+        "registry-listing",
+        "credential-presentation",
+        "contractual-onboarding",
+        "manual-configuration"
+      ]
+    },
+    "failureBehavior": {
+      "type": "string",
+      "enum": [
+        "deny",
+        "warn",
+        "require-review",
+        "use-cached-with-warning"
+      ]
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/idString"
+      },
+      "minItems": 1
+    },
+    "riskNotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "discoveryMode": {
+            "const": "authenticated-extended"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "integrityRequirements": {
+            "required": [
+              "signatureRequired",
+              "canonicalizationRequired",
+              "verificationMethodRef"
+            ],
+            "properties": {
+              "signatureRequired": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "freshnessPolicy": {
+      "type": "object",
+      "required": [
+        "cacheTtl",
+        "etagRequired",
+        "lastVerifiedAt",
+        "revalidationRequired"
+      ],
+      "properties": {
+        "cacheTtl": {
+          "type": "string"
+        },
+        "etagRequired": {
+          "type": "boolean"
+        },
+        "lastVerifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "revalidationRequired": {
+          "type": "boolean"
+        },
+        "maxStalenessSeconds": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "integrityRequirements": {
+      "type": "object",
+      "required": [
+        "signatureRequired",
+        "canonicalizationRequired"
+      ],
+      "properties": {
+        "signatureRequired": {
+          "type": "boolean"
+        },
+        "canonicalizationRequired": {
+          "type": "boolean"
+        },
+        "verificationMethodRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "descriptorDigest": {
+          "type": "string"
+        },
+        "signedByRef": {
+          "$ref": "#/$defs/idString"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

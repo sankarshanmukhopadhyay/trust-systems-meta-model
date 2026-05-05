@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 1
 ---
 
@@ -206,3 +206,16 @@ Use this section when TSMM governs delegated or agentic action. This overlay may
 - [ ] Risk tiers are documented with rationale
 - [ ] Trace records preserve action, context, and resulting effect references
 - [ ] Multi-agent coordination boundaries are documented where relevant
+
+## v0.19.0 agent interaction conformance checklist
+
+An implementation claiming alignment with the v0.19.0 agent interaction surfaces SHOULD demonstrate:
+
+- descriptor discovery mode and source are identified;
+- authenticated or restricted descriptors have access policy and integrity controls;
+- descriptor freshness and failure behavior are explicit;
+- capability negotiation records requested and accepted modes;
+- required extension failures cause rejection or review;
+- capability acceptance is linked to an authorization scope and policy decision;
+- task transitions to `auth-required`, `completed`, `failed`, `canceled`, and `rejected` produce the required evidence;
+- evidence references are suitable for audit or replay.

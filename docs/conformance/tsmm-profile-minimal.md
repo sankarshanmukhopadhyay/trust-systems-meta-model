@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 1
 ---
 
@@ -31,9 +31,9 @@ The Minimal Profile defines the smallest TSMM implementation that still counts a
 
 The Minimal Profile does not require formal assessment, explicit evidence packaging, or threat modeling. It is intentionally lean.
 
-## v0.18.0 runtime governance obligation
+## v0.19.0 runtime governance obligation
 
-This profile now recognizes the runtime assurance layer introduced in TSMM v0.18.0. Implementations that evaluate operational effects should use the Runtime Governance Envelope and Decision Receipt artifacts where applicable.
+This profile now recognizes the runtime assurance layer introduced in TSMM v0.19.0. Implementations that evaluate operational effects should use the Runtime Governance Envelope and Decision Receipt artifacts where applicable.
 
 Minimum expectation by profile maturity:
 

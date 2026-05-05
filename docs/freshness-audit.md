@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 2
 ---
 
@@ -81,15 +81,15 @@ The release adds the Agent Interaction Extension with seven new trust-semantic a
 
 The release completes the Agent Interaction Extension with three deferred abstractions and delivers the A2A binding. New Tier 1 documents: `docs/model/interaction-task.md`, `docs/model/content-provenance-policy.md`, `docs/model/observability-mode.md`. New binding documents: `docs/bindings/a2a-binding.md`, `docs/crosswalks/a2a-crosswalk.md`. Machine-readable binding: `bindings/a2a/tsmm-a2a-binding.json`. Extended example: `examples/agent-interaction-a2a-binding-instance.json`. Freshness checks should confirm that all ten Agent Interaction Extension model documents, the schema, both examples, the glossary (ten terms total), the conformance checklist (AI-1 through AI-21), the bindings index, and the A2A binding and crosswalk are mutually consistent. The A2A binding notes that it covers the protocol as of March 2026 and should be refreshed if the A2A specification changes materially.
 
-## v0.18.0 additions
+## v0.19.0 additions
 
 The release operationalizes runtime assurance and documentation integrity. New machine-readable artifacts include `schemas/tsmm-runtime-governance.schema.json`, `schemas/tsmm-decision-receipt.schema.json`, `examples/runtime-governance-boundary-instance.json`, `examples/decision-receipt-runtime-example.json`, and `examples/systems/revocation-propagation-system.json`. New documentation includes `docs/model/runtime-governance-envelope.md`, `docs/model/decision-receipt.md`, `docs/conformance/runtime-governance-test-profile.md`, `docs/getting-started/implementation-paths.md`, and `docs/examples/runtime-governance-walkthrough.md`.
 
-Freshness review outcome for v0.18.0:
+Freshness review outcome for v0.19.0:
 
-- repository `VERSION` updated to `v0.18.0`
-- markdown frontmatter refreshed to `last_reviewed: 2026-04-27`
-- stale `applicable_version: v0.16.0` and `v0.17.0` markers normalized to `v0.18.0`
+- repository `VERSION` updated to `v0.19.0`
+- markdown frontmatter refreshed to `last_reviewed: 2026-05-05`
+- stale `applicable_version: v0.16.0` and `v0.17.0` markers normalized to `v0.19.0`
 - README release badge and current-version statement updated
 - docs index updated with runtime governance entry points
 - conformance profile set updated with runtime governance obligations

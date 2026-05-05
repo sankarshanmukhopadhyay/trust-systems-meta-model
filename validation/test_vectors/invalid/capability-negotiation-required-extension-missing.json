@@ -1,0 +1,62 @@
+{
+  "negotiationId": "neg.claim-review.20260505",
+  "requesterRef": "client.agent.procurement",
+  "providerRef": "agent.contract-review",
+  "skillRef": "skill.contract-risk-review",
+  "description": "Client requests a contract-risk review skill with traceability extension support.",
+  "requestedInputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "acceptedInputModes": [
+    "application/json"
+  ],
+  "requestedOutputModes": [
+    "application/json"
+  ],
+  "acceptedOutputModes": [
+    "application/json"
+  ],
+  "requestedExtensions": [
+    {
+      "uri": "https://a2a-protocol.org/extensions/traceability/v1",
+      "version": "1.0.0",
+      "required": true
+    },
+    {
+      "uri": "https://example.org/extensions/explainability/v1",
+      "version": "1.0.0",
+      "required": false
+    }
+  ],
+  "acceptedExtensions": [
+    {
+      "uri": "https://a2a-protocol.org/extensions/traceability/v1",
+      "version": "1.0.0",
+      "decision": "accepted",
+      "reason": "Supported for enterprise profile."
+    }
+  ],
+  "rejectedExtensions": [
+    {
+      "uri": "https://example.org/extensions/explainability/v1",
+      "version": "1.0.0",
+      "decision": "rejected",
+      "reason": "Not advertised by provider."
+    }
+  ],
+  "requiredExtensionsMissing": [
+    "https://a2a-protocol.org/extensions/traceability/v1"
+  ],
+  "authorizationScopeRef": "scope.contract-review.enterprise",
+  "policyDecisionRef": "receipt.capability-negotiation.allow.20260505",
+  "negotiationOutcome": "accepted",
+  "constraints": [
+    "Only structured contract metadata may be processed.",
+    "Human review required before external submission."
+  ],
+  "evidenceRefs": [
+    "evidence.agent-card.v3",
+    "evidence.extension-negotiation.20260505"
+  ]
+}

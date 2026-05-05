@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 2
 ---
 
@@ -103,3 +103,9 @@ The v0.13.0 release adds the Agent Interaction Extension. Seven new model docume
 ## v0.14.0 note
 
 The v0.14.0 release completes the Agent Interaction Extension and adds the A2A binding. Three additional Tier 1 model documents are added: `interaction-task.md`, `content-provenance-policy.md`, `observability-mode.md`. The A2A binding JSON and binding/crosswalk prose documents are Tier 0 artifacts (released at each version). The A2A binding carries an implicit currency note — it reflects the A2A protocol as of March 2026 and should be reviewed if the A2A specification changes. The complete Agent Interaction Extension now comprises ten abstractions across two schema releases; any future changes to the extension schema must propagate to all ten model documents, both worked examples, the glossary, the conformance checklist (AI-1 through AI-21), and the A2A binding.
+
+## v0.19.0 documentation governance obligations
+
+The v0.19.0 release adds candidate governance surfaces for discovery, capability negotiation, and task evidence lifecycle. Documentation updates for these surfaces MUST include: schema link, example link, valid/invalid test-vector links, maturity status, and validation command coverage.
+
+A documentation change that references A2A-class concepts SHOULD distinguish protocol mechanics from generalized TSMM semantics. TSMM documentation MUST NOT imply that use of A2A or any other protocol automatically creates authority, assurance, or runtime legitimacy.

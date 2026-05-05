@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 1
 ---
 
@@ -13,7 +13,7 @@ The receipt is not merely a log entry. It is a governance artifact. It records w
 
 ## Why this exists
 
-Runtime governance becomes difficult to audit when the decision trail is distributed across logs, policy engines, registries, tool calls, and human review notes. TSMM v0.18.0 introduces a compact receipt object so that runtime decisions can produce machine-verifiable evidence.
+Runtime governance becomes difficult to audit when the decision trail is distributed across logs, policy engines, registries, tool calls, and human review notes. TSMM v0.19.0 introduces a compact receipt object so that runtime decisions can produce machine-verifiable evidence.
 
 A receipt makes the following claims explicit:
 

@@ -1,51 +1,51 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 0
 ---
 
-# TSMM Binding: A2A Protocol
 
-The Agent2Agent (A2A) protocol enables communication and interoperability between
-opaque agentic applications. Its foundational invariants — structured discovery,
-capability negotiation, stateful task execution, and agent opacity — map cleanly onto
-TSMM's agent interaction extension, introduced in v0.13.0 and completed in v0.14.0.
+# A2A Binding
 
-## Primary mappings
+This binding maps A2A-class protocol concepts into TSMM governance abstractions. It does not restate the A2A protocol. It identifies the trust-system semantics that TSMM can model, validate, and compare.
 
-- **Agent Card (public)** → `ServiceDescriptor` (`disclosurePolicy: public`)
-- **Agent Card (authenticated extended)** → `ServiceDescriptor` (`disclosurePolicy: authenticated`)
-- **Skill** → `SkillContract` — `inputModes`, `outputModes`, `tags` map directly; `authorizationScope` is the governance layer TSMM adds
-- **contextId** → `InteractionContext.id` — TSMM adds inherited authority, evidence, and re-authorization policy to the governance envelope A2A's contextId implies
-- **Task** → `InteractionTask` — status transitions carry explicit governance significance in TSMM
-- **input-required / auth-required task states** → `InteractionTask` + `AuthorizationCheckpoint` — TSMM treats these as governance checkpoints, not delivery states
-- **Extensions** → `ExtensionContract` — negotiation record with requiredness, negotiated status, and failure handling
-- **Agent opacity invariant** → `OpacityBoundary` — TSMM makes the governance consequence of A2A's foundational opacity principle explicit
-- **Peer interaction model** → `PeerTrustRelation` — TSMM formalizes trust basis and scope for lateral agent relationships
-- **Message/Artifact/Part** → `ContentProvenancePolicy` — governance obligations by modality, not wire payload structure
-- **SSE streaming / push notifications** → `ObservabilityMode` — governance consequences of delivery model
+## Binding posture
 
-## Why the mapping is not 1:1
+| A2A pattern | TSMM abstraction | v0.19.0 treatment |
+| --- | --- | --- |
+| Public Agent Card | Service Descriptor | Public descriptor disclosure |
+| Authenticated extended Agent Card | Service Descriptor + Discovery Governance | Conditional disclosure, integrity, access, freshness |
+| Agent Skill | Skill Contract + Capability Negotiation | Capability is negotiated before execution |
+| Extension declaration | Extension Contract + Capability Negotiation | URI, version, requiredness, opt-in, failure behavior |
+| Task | Interaction Task + Task Evidence Lifecycle | State transitions produce evidence obligations |
+| `auth-required` state | Authorization Checkpoint | Authority boundary requiring explicit evidence |
+| Message/artifact separation | Content Provenance Policy + Evidence Artifact | Communication is not evidence unless captured and referenced |
+| Streaming/async/push | Observability Mode | Delivery mode affects replay, auditability, and user awareness |
+| Agent opacity | Opacity Boundary | Hidden internals require compensating evidence |
 
-TSMM operates one layer below protocol mechanics. It models the trust-semantic invariants
-that A2A's protocol elements instantiate. Three patterns characterise the non-1:1 mapping:
+## Generalized TSMM artifacts
 
-**TSMM adds governance structure A2A implies but does not formalize.** A2A's contextId
-exists; TSMM's InteractionContext adds the governance record of what authority and evidence
-carry within that context. A2A's security schemes are declared; TSMM models how they resolve
-to AuthorizationCheckpoints at runtime.
+- `docs/model/discovery-governance.md`
+- `docs/model/capability-negotiation.md`
+- `docs/model/task-evidence-lifecycle.md`
+- `schemas/tsmm-discovery-governance.schema.json`
+- `schemas/tsmm-capability-negotiation.schema.json`
+- `schemas/tsmm-task-evidence-lifecycle.schema.json`
 
-**TSMM does not replicate wire mechanics.** JSON-RPC method names, SSE framing details, and
-retry semantics belong to A2A. ObservabilityMode captures the governance consequence of
-those mechanics — not the mechanics themselves.
+## Binding requirements
 
-**TSMM makes A2A design principles machine-readable.** Agent opacity and peer interaction
-are A2A's foundational design principles. They have no explicit schema counterpart in A2A.
-OpacityBoundary and PeerTrustRelation give them machine-readable governance representation.
+An A2A-class implementation mapped into TSMM SHOULD produce evidence for:
 
-## Related artifacts
+1. descriptor discovery and freshness;
+2. descriptor integrity or explicit integrity waiver;
+3. authenticated extended descriptor access decision;
+4. capability negotiation outcome;
+5. required extension compatibility;
+6. authorization checkpoint for privileged task continuation;
+7. task completion artifact binding;
+8. streaming or push observability obligations where applicable.
 
-- Machine-readable binding: `bindings/a2a/tsmm-a2a-binding.json`
-- Crosswalk: `docs/crosswalks/a2a-crosswalk.md`
-- A2A protocol repository: `https://github.com/a2aproject/A2A`
+## Maturity status
+
+This binding is **candidate** in v0.19.0. It is suitable for modeling, validation experiments, enterprise architecture review, and assurance design. It should not be treated as a conformance claim against the A2A protocol itself.

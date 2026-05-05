@@ -1,7 +1,7 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 1
 ---
 
@@ -13,7 +13,7 @@ The envelope is deliberately pre-effect. It is not an after-the-fact log. It is 
 
 ## Why this exists
 
-Many trust systems can describe credentials, registries, policies, and roles. Fewer can show how those elements are evaluated at runtime when a concrete action is about to happen. TSMM v0.18.0 adds the envelope so that runtime governance can be modeled and tested as a first-class trust-system surface.
+Many trust systems can describe credentials, registries, policies, and roles. Fewer can show how those elements are evaluated at runtime when a concrete action is about to happen. TSMM v0.19.0 adds the envelope so that runtime governance can be modeled and tested as a first-class trust-system surface.
 
 The envelope answers seven questions:
 

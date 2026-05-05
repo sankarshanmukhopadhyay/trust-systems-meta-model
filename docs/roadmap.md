@@ -1,80 +1,66 @@
 ---
 owner: maintainers
-last_reviewed: 2026-04-27
-applicable_version: v0.18.0
+last_reviewed: 2026-05-05
+applicable_version: v0.19.0
 tier: 1
 ---
 
+
 # TSMM Roadmap
 
-This file records plausible next steps for TSMM after v0.14.0. It is directional. It is not a schedule.
+This roadmap is directional. It is not a delivery schedule. TSMM evolves through additive, testable model surfaces that can be adopted independently and promoted based on evidence.
 
-## Current main-branch status
+## Current release line
 
-- **Completed on main branch (no release):** canonical primitive catalog formalization for the meta-model core
-- **Completed on main branch (no release):** explicit ecosystem binding contracts and validation/test-vector scaffolding
-- **Completed on main branch (no release):** authority, delegation, lifecycle, assurance portability, and interoperability artifacts
-- **Current main-branch direction:** make the graph layer the default entry point, expand concrete example coverage, keep the contributor path clear around model, bind, validate, and compare, and use a consistent maturity taxonomy for experimental comparison surfaces
+**v0.19.0 — Agent Discovery, Capability Negotiation, and Task Evidence Readiness** is the current release line. It adds candidate governance surfaces for:
 
-## Newly completed modeling surfaces on main branch
+- discovery governance
+- descriptor integrity and freshness
+- authenticated extended descriptor disclosure
+- capability and extension negotiation
+- task state evidence lifecycle
+- A2A-class binding refresh
+- validation and documentation staleness hardening
 
-- canonical authority graph and delegation pattern catalog
-- machine-readable lifecycle state model
-- compact assurance property model for evidence, verification, auditability, and revocation traceability
-- interoperability matrix covering structural, semantic, and behavioral comparison modes
-- canonical graph instance at `model/graph/tsmm.graph.json`
-- concrete system examples for TRQP-style registry, OpenID Federation, decentralized directory, content authenticity, and verifiable trust community patterns
-- graph-level semantic validation for metadata file references and expanded relation coverage
+## Candidate near-term increments
 
-## 1. Agent role and control semantics
+1. **Descriptor signing and registry publication profile**
+   - Define a stronger descriptor-integrity publication profile.
+   - Add examples for signed descriptor bundles and registry-mediated descriptor attestations.
 
-- determine whether agent class should remain an extension concept or be promoted into a more reusable cross-domain actor taxonomy
-- deepen control-mode semantics so side-car, staged, and review-bound execution patterns can be compared more precisely
-- add stronger examples for identity-proxy, execution, predictive, and coordination agents
+2. **Human review and redress hooks**
+   - Bind task lifecycle transitions to review, challenge, appeal, or rollback events.
+   - Extend decision receipts with contestability metadata where appropriate.
 
-## 2. Attention governance and signal routing
+3. **Cross-protocol agent registry comparison**
+   - Compare A2A-class discovery with OpenID Federation, TRQP registry discovery, and enterprise catalog patterns.
+   - Add portability notes for registry-mediated agent ecosystems.
 
-- expand attention-policy examples beyond single-agent screening into digital twin and unified-feed patterns
-- connect interruption and routing logic more directly to trust decisions, evidence, and remediation
-- explore how sender reputation, urgency scoring, and delivery pricing can be represented without overfitting TSMM to one product model
+4. **Evidence bundle packaging**
+   - Define a lightweight packaging model for discovery, negotiation, runtime decision, and task lifecycle evidence.
+   - Align with downstream assurance and conformance suites where available.
 
-## 3. Registry and publication tooling
+## Experimental surfaces
 
-- expand registry validation and discovery behaviors
-- add stronger artifact integrity and packaging guidance
-- improve rendered graph outputs for assurance and review workflows
+- Agent role taxonomy
+- Attention governance
+- ODRL policy expression alignment
+- AIS-1 and bonded agent identity concepts
+- HAVID high-assurance identifier binding
+- Agent Governance Toolkit crosswalk
 
-## 4. Agent governance operations
+## Promotion criteria
 
-- deepen agent trace verification patterns
-- improve delegated-action governance examples
-- connect multi-agent coordination more tightly to review and remediation processes
+A TSMM surface should move toward stable status only when it has:
 
-## 5. Agent Interaction Extension *(completed in v0.14.0)*
+- documentation
+- JSON/YAML schema where applicable
+- at least one valid example
+- at least one invalid conformance vector where applicable
+- validation coverage
+- binding or crosswalk notes when derived from an external ecosystem
+- freshness metadata aligned to the current release
 
-All ten abstractions of the Agent Interaction Extension are now delivered. The A2A binding and crosswalk are published. The extension is available for implementer use and protocol-specific profiling.
+## Out of scope
 
-## 6. Binding and crosswalk coverage
-
-- add further machine-readable bindings for adjacent governance and assurance ecosystems
-- improve comparison guidance across bindings so the catalog becomes easier to operationalize
-- continue crosswalk work where external models expose missing but reusable TSMM structure
-
-## OASF integration follow-through
-
-A completed next increment is to move from semantic OASF binding to profile-level publication guidance so TSMM profiles, ANAB control publication, and DCAS evaluation outputs can travel through a shared OASF-facing surface without losing traceability.
-
-## AIS-1 experimental follow-through
-
-- refine the AIS-1 experimental binding semantics without promoting it prematurely
-- test the crosswalk more directly against delegation and provenance gaps
-- evaluate whether bonded identity and sponsor-backed status need a reusable extension abstraction beyond this initial binding
-- decide later whether AIS-1 merits promotion from `experimental` to `candidate` status
-
-
-## v0.17.0 runtime-governance experimental increment
-
-- Added an experimental TrustBoundary abstraction to make execution edges easier to model.
-- Added a pre-effect governance pattern for decision-time admission before runtime effects occur.
-- Added an experimental crosswalk to the Microsoft Agent Governance Toolkit as an upstream runtime-governance reference.
-- Added a worked runtime pre-effect example without changing the stable TSMM core schema surface.
+TSMM does not define an agent wire protocol, a wallet protocol, a registry API, a credential format, or an implementation runtime. It defines the governance semantics and model surfaces needed to compare, bind, and assure those systems.

@@ -1,0 +1,23 @@
+{
+  "systemId": "system.a2a-governed-agent-network",
+  "label": "A2A-class governed agent network",
+  "description": "Reference example linking descriptor discovery, capability negotiation, runtime authorization and task evidence lifecycle.",
+  "components": [
+    "agent.client.procurement",
+    "agent.contract-review",
+    "registry.enterprise-agents",
+    "policy.agent-card.extended.access"
+  ],
+  "governanceSurfaces": [
+    "discovery-governance",
+    "capability-negotiation",
+    "task-evidence-lifecycle",
+    "decision-receipt",
+    "runtime-governance-envelope"
+  ],
+  "artifactRefs": [
+    "examples/agent-discovery-governance-instance.json",
+    "examples/capability-negotiation-instance.json",
+    "examples/task-evidence-lifecycle-instance.json"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "discoveryModelId": "disc.a2a.support-agent.v1",
+  "subjectRef": "agent.support.primary",
+  "descriptorRef": "descriptor.agent-card.public.v3",
+  "description": "Governed discovery of a support agent using authenticated extended descriptor semantics.",
+  "discoveryMode": "authenticated-extended",
+  "discoverySourceRef": "source.registry.enterprise-agents",
+  "accessPolicyRef": "policy.agent-card.extended.access",
+  "freshnessPolicy": {
+    "cacheTtl": "PT15M",
+    "etagRequired": true,
+    "lastVerifiedAt": "2026-05-05T00:00:00Z",
+    "revalidationRequired": true,
+    "maxStalenessSeconds": 900
+  },
+  "integrityRequirements": {
+    "signatureRequired": true,
+    "canonicalizationRequired": true,
+    "verificationMethodRef": "did:web:agents.example:key-1",
+    "descriptorDigest": "sha256:4d967f...",
+    "signedByRef": "issuer.enterprise-agent-registry"
+  },
+  "trustBasis": "registry-listing",
+  "failureBehavior": "deny",
+  "evidenceRefs": [
+    "evidence.descriptor-fetch.20260505",
+    "evidence.signature.verify.20260505"
+  ],
+  "riskNotes": [
+    "Extended descriptor is scoped to authenticated enterprise clients."
+  ]
+}

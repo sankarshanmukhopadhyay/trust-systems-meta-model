@@ -36,6 +36,9 @@ COVERAGE_PAIRS: list[tuple[str, str]] = [
     ("evidence-artifact-instance.json", "tsmm-evidence-artifact-extension.schema.json"),
     ("agent-interaction-extension-instance.json", "tsmm-agent-interaction-extension.schema.json"),
     ("agent-interaction-a2a-binding-instance.json", "tsmm-agent-interaction-extension.schema.json"),
+    ("agent-discovery-governance-instance.json", "tsmm-discovery-governance.schema.json"),
+    ("capability-negotiation-instance.json", "tsmm-capability-negotiation.schema.json"),
+    ("task-evidence-lifecycle-instance.json", "tsmm-task-evidence-lifecycle.schema.json"),
     ("systems/trqp-registry-system.json", "tsmm-graph.schema.json"),
     ("systems/openid-federation-system.json", "tsmm-graph.schema.json"),
     ("systems/decentralized-directory-system.json", "tsmm-graph.schema.json"),
@@ -136,6 +139,11 @@ ACCEPTABLE_OMISSIONS: set[str] = {
     "delegationChain",
     "audit",
     "relatedEnvelopeRef",
+    # Task evidence lifecycle: failureReason and cancellationAuthorityRef are branch-specific
+    # transition fields. They are exercised by invalid vectors and by schema conditionals, but
+    # the canonical happy-path lifecycle example completes successfully.
+    "failureReason",
+    "cancellationAuthorityRef",
 }
 
 

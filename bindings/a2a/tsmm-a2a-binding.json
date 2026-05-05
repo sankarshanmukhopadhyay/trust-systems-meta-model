@@ -1,9 +1,9 @@
 {
   "bindingId": "tsmm.binding.a2a.v1",
   "label": "TSMM to A2A Protocol binding",
-  "description": "Maps A2A protocol concepts to TSMM agent interaction extension abstractions for cross-ecosystem reasoning and governance analysis. A2A and TSMM operate at different layers: A2A specifies wire formats and interaction mechanics; TSMM models the trust-semantic invariants those mechanics instantiate.",
+  "description": "Maps A2A protocol concepts to TSMM agent interaction and v0.19.0 discovery, capability negotiation, task evidence, observability, and opacity governance abstractions.",
   "targetEcosystem": "Agent2Agent (A2A) Protocol",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "sources": [
     "docs/crosswalks/a2a-crosswalk.md",
     "docs/bindings/a2a-binding.md"
@@ -42,7 +42,7 @@
       "externalConcept": "contextId",
       "tsmmType": "InteractionContext",
       "bindingStrength": "approximate",
-      "description": "A2A contextId groups tasks and messages. TSMM InteractionContext adds inheritedAuthorityRefs, inheritedEvidenceRefs, and reAuthorizationPolicy — the governance semantics contextId implies but does not formalize.",
+      "description": "A2A contextId groups tasks and messages. TSMM InteractionContext adds inheritedAuthorityRefs, inheritedEvidenceRefs, and reAuthorizationPolicy \u2014 the governance semantics contextId implies but does not formalize.",
       "mappedFields": {
         "contextId": "id"
       }
@@ -92,13 +92,13 @@
       "externalConcept": "Agent opacity invariant",
       "tsmmType": "OpacityBoundary",
       "bindingStrength": "new",
-      "description": "A2A's foundational design principle — agents collaborate without exposing internal state, memory, or tools — is not a protocol element in A2A but has direct governance consequences. TSMM models it as a structural governance constraint with explicit evidenceGap and trustScopeConstraint."
+      "description": "A2A's foundational design principle \u2014 agents collaborate without exposing internal state, memory, or tools \u2014 is not a protocol element in A2A but has direct governance consequences. TSMM models it as a structural governance constraint with explicit evidenceGap and trustScopeConstraint."
     },
     {
       "externalConcept": "Agent-to-agent peer interaction",
       "tsmmType": "PeerTrustRelation",
       "bindingStrength": "new",
-      "description": "A2A assumes agents interact as peers with no hierarchical relationship. TSMM formalizes this as PeerTrustRelation with explicit trustBasis and trustScope — governance structure A2A implies but does not model."
+      "description": "A2A assumes agents interact as peers with no hierarchical relationship. TSMM formalizes this as PeerTrustRelation with explicit trustBasis and trustScope \u2014 governance structure A2A implies but does not model."
     },
     {
       "externalConcept": "Message / Artifact / Part (content exchange)",
@@ -132,12 +132,56 @@
       "tsmmType": "ServiceDescriptor + SkillContract + AuthorizationCheckpoint",
       "bindingStrength": "composite",
       "description": "A2A security schemes declared in the Agent Card map to a two-layer TSMM model: declared posture in ServiceDescriptor.authenticityBinding, runtime enforcement through SkillContract.authorizationScope, and checkpoint-raising via AuthorizationCheckpoint when authentication requirements are unmet."
+    },
+    {
+      "externalConcept": "Agent Card discovery mode",
+      "tsmmType": "DiscoveryGovernance",
+      "bindingStrength": "approximate",
+      "description": "Well-known URI, curated registry, direct configuration, authenticated extended card, and restricted catalog discovery map to TSMM discoveryMode values."
+    },
+    {
+      "externalConcept": "Agent Card caching and versioning",
+      "tsmmType": "DiscoveryGovernance.freshnessPolicy",
+      "bindingStrength": "approximate",
+      "description": "Descriptor freshness, cache TTL, ETag expectation, revalidation, and failure behavior are explicit TSMM governance properties."
+    },
+    {
+      "externalConcept": "Authenticated extended Agent Card access control",
+      "tsmmType": "DiscoveryGovernance + ServiceDescriptor",
+      "bindingStrength": "composite",
+      "description": "TSMM treats extended-card access as a governed disclosure decision requiring access policy, integrity, and evidence references."
+    },
+    {
+      "externalConcept": "Required extension unsupported",
+      "tsmmType": "CapabilityNegotiation.requiredExtensionsMissing",
+      "bindingStrength": "direct",
+      "description": "Missing required extensions must cause rejection or review in the TSMM capability negotiation model."
+    },
+    {
+      "externalConcept": "Task lifecycle evidence",
+      "tsmmType": "TaskEvidenceLifecycle",
+      "bindingStrength": "composite",
+      "description": "TSMM maps task state transitions to evidence obligations for authorization, completion, rejection, failure, and cancellation."
+    },
+    {
+      "externalConcept": "Streaming / async / push delivery",
+      "tsmmType": "ObservabilityMode",
+      "bindingStrength": "approximate",
+      "description": "Delivery models are mapped to auditability, replay risk, user awareness, and compensating control expectations."
     }
   ],
   "notes": [
-    "A2A and TSMM operate at different layers. This binding maps trust-semantic invariants, not wire-format fields.",
-    "Three A2A concepts — agent opacity, peer interaction, and security scheme enforcement — are modeled in TSMM but have no explicit schema counterpart in A2A. These are marked bindingStrength: new.",
-    "Message/Artifact/Part and delivery models are mapped at the governance-semantics level only. Wire-level fields are not represented in TSMM.",
-    "This binding covers A2A protocol as of a2aproject/A2A main branch, March 2026."
-  ]
+    "TSMM generalizes A2A mechanics into governance semantics; this is not an A2A conformance claim.",
+    "v0.19.0 adds descriptor discovery, capability negotiation, and task lifecycle evidence surfaces."
+  ],
+  "validationArtifacts": [
+    "schemas/tsmm-discovery-governance.schema.json",
+    "schemas/tsmm-capability-negotiation.schema.json",
+    "schemas/tsmm-task-evidence-lifecycle.schema.json",
+    "examples/agent-discovery-governance-instance.json",
+    "examples/capability-negotiation-instance.json",
+    "examples/task-evidence-lifecycle-instance.json"
+  ],
+  "maturity": "candidate",
+  "lastReviewed": "2026-05-05"
 }

@@ -1,0 +1,22 @@
+{
+  "taskLifecycleId": "tasklife.contract-review.20260505",
+  "taskRef": "task.contract-review.001",
+  "contextRef": "ctx.procurement.001",
+  "providerRef": "agent.contract-review",
+  "description": "Evidence lifecycle for a governed contract review task.",
+  "currentState": "completed",
+  "transitions": [
+    {
+      "fromState": "working",
+      "toState": "completed",
+      "occurredAt": "2026-05-05T00:02:00Z",
+      "governanceSignificance": "Completion without artifact should fail.",
+      "artifactRefs": [],
+      "evidenceRefs": [
+        "evidence.output"
+      ]
+    }
+  ],
+  "evidencePolicyRef": "policy.task-evidence.enterprise-agent",
+  "auditOutcome": "complete"
+}

@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tsmm/schemas/tsmm-task-evidence-lifecycle.schema.json",
+  "title": "TSMM Task Evidence Lifecycle Model v0.19.0",
+  "description": "Schema for representing task lifecycle state transitions as governance-relevant evidence events.",
+  "type": "object",
+  "required": [
+    "taskLifecycleId",
+    "taskRef",
+    "contextRef",
+    "providerRef",
+    "currentState",
+    "transitions",
+    "evidencePolicyRef",
+    "auditOutcome"
+  ],
+  "properties": {
+    "taskLifecycleId": {
+      "$ref": "#/$defs/idString"
+    },
+    "taskRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "contextRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "providerRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "description": {
+      "type": "string"
+    },
+    "currentState": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "working",
+        "input-required",
+        "auth-required",
+        "completed",
+        "failed",
+        "canceled",
+        "rejected"
+      ]
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/transition"
+      },
+      "minItems": 1
+    },
+    "evidencePolicyRef": {
+      "$ref": "#/$defs/idString"
+    },
+    "auditOutcome": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "incomplete",
+        "non-conformant",
+        "review-required"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "transition": {
+      "type": "object",
+      "required": [
+        "fromState",
+        "toState",
+        "occurredAt",
+        "governanceSignificance",
+        "evidenceRefs"
+      ],
+      "properties": {
+        "fromState": {
+          "type": "string",
+          "enum": [
+            "submitted",
+            "working",
+            "input-required",
+            "auth-required",
+            "completed",
+            "failed",
+            "canceled",
+            "rejected"
+          ]
+        },
+        "toState": {
+          "type": "string",
+          "enum": [
+            "submitted",
+            "working",
+            "input-required",
+            "auth-required",
+            "completed",
+            "failed",
+            "canceled",
+            "rejected"
+          ]
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "governanceSignificance": {
+          "type": "string"
+        },
+        "authorizationCheckpointRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "decisionReceiptRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "artifactRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        },
+        "failureReason": {
+          "type": "string"
+        },
+        "cancellationAuthorityRef": {
+          "$ref": "#/$defs/idString"
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/idString"
+          },
+          "minItems": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "toState": {
+                "const": "auth-required"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "authorizationCheckpointRef"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "toState": {
+                "const": "completed"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "artifactRefs"
+            ],
+            "properties": {
+              "artifactRefs": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "toState": {
+                "const": "rejected"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "decisionReceiptRef"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "toState": {
+                "const": "failed"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "failureReason"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "toState": {
+                "const": "canceled"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "cancellationAuthorityRef"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

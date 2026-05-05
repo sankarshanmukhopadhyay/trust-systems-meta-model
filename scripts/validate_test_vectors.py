@@ -13,6 +13,9 @@ BINDING_SCHEMA = ROOT / 'schemas' / 'tsmm-binding.schema.json'
 CONSTRAINT_SCHEMA = ROOT / 'validation' / 'schemas' / 'tsmm-binding-constraints.schema.json'
 RUNTIME_SCHEMA = ROOT / 'schemas' / 'tsmm-runtime-governance.schema.json'
 RECEIPT_SCHEMA = ROOT / 'schemas' / 'tsmm-decision-receipt.schema.json'
+DISCOVERY_SCHEMA = ROOT / 'schemas' / 'tsmm-discovery-governance.schema.json'
+CAPABILITY_SCHEMA = ROOT / 'schemas' / 'tsmm-capability-negotiation.schema.json'
+TASK_LIFECYCLE_SCHEMA = ROOT / 'schemas' / 'tsmm-task-evidence-lifecycle.schema.json'
 
 CASES = [
     (VALID / 'tsmm-binding-valid.json', BINDING_SCHEMA, True),
@@ -23,6 +26,13 @@ CASES = [
     (INVALID / 'runtime-governance-envelope-missing-policy.json', RUNTIME_SCHEMA, False),
     (VALID / 'decision-receipt-valid.json', RECEIPT_SCHEMA, True),
     (INVALID / 'decision-receipt-missing-policy.json', RECEIPT_SCHEMA, False),
+    (VALID / 'discovery-governance-valid.json', DISCOVERY_SCHEMA, True),
+    (INVALID / 'discovery-governance-missing-integrity.json', DISCOVERY_SCHEMA, False),
+    (VALID / 'capability-negotiation-valid.json', CAPABILITY_SCHEMA, True),
+    (INVALID / 'capability-negotiation-required-extension-missing.json', CAPABILITY_SCHEMA, False),
+    (VALID / 'task-evidence-lifecycle-valid.json', TASK_LIFECYCLE_SCHEMA, True),
+    (INVALID / 'task-evidence-lifecycle-missing-receipt.json', TASK_LIFECYCLE_SCHEMA, False),
+    (INVALID / 'task-evidence-lifecycle-invalid-transition.json', TASK_LIFECYCLE_SCHEMA, False),
 ]
 
 
@@ -33,7 +43,7 @@ def load_json(path: Path):
 
 def build_registry() -> Registry:
     registry = Registry()
-    for path in [BINDING_SCHEMA, CONSTRAINT_SCHEMA, RUNTIME_SCHEMA, RECEIPT_SCHEMA]:
+    for path in list((ROOT / 'schemas').glob('*.json')) + [CONSTRAINT_SCHEMA]:
         schema = load_json(path)
         if '$id' in schema:
             registry = registry.with_resource(schema['$id'], Resource.from_contents(schema))
