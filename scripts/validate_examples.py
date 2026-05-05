@@ -41,6 +41,8 @@ PAIRS = [
     ("systems/decentralized-directory-system.json", "tsmm-graph.schema.json"),
     ("systems/content-authenticity-workflow.json", "tsmm-graph.schema.json"),
     ("systems/verifiable-trust-community-system.json", "tsmm-graph.schema.json"),
+    ("systems/gtr-grid-dia-system.json", "tsmm-graph.schema.json"),
+    ("gtr/gtr-dia-verification-decision-receipt.json", "tsmm-decision-receipt.schema.json"),
     ("systems/revocation-propagation-system.json", "tsmm-core.schema.json"),
     ("registries/tsmm-registry-example.json", "tsmm-registry.schema.json"),
 ]

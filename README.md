@@ -59,6 +59,23 @@ Key artifacts:
 - A2A binding: `docs/bindings/a2a-binding.md`
 - A2A crosswalk: `docs/crosswalks/a2a-crosswalk.md`
 
+
+## GTR / GRID / DIA modeling
+
+This archive includes an experimental TSMM binding for the Global Trust Registry, Global Registrar Information Directory, and Digital Identity Anchor architecture. The binding treats GTR as a discovery, verification, lifecycle, and reliance system rather than as a static directory.
+
+Key artifacts:
+
+- GTR binding: `docs/bindings/gtr-binding.md`
+- GTR crosswalk: `docs/crosswalks/gtr-grid-dia-crosswalk.md`
+- Machine-readable binding: `bindings/gtr/tsmm-gtr-binding.json`
+- Authority graph: `examples/gtr/gtr-authority-graph-example.json`
+- DIA decision receipt: `examples/gtr/gtr-dia-verification-decision-receipt.json`
+- Registrar lifecycle model: `examples/gtr/gtr-registrar-lifecycle-event.json`
+- System graph: `examples/systems/gtr-grid-dia-system.json`
+
+The binding is suitable for architectural analysis, assurance design, documentation alignment, and future conformance-profile development. It does not claim GTR certification or production conformance.
+
 ## Repository map
 
 | Path | Purpose |

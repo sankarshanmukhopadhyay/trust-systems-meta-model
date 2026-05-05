@@ -1,0 +1,169 @@
+{
+  "graphId": "authority.gtr.grid-dia.v1",
+  "label": "GTR GRID/DIA authority graph",
+  "description": "Authority graph showing how GTR governance, national registrar authority, GRID publication, DIA issuance, and relying-party verification are bounded by scope and revocation semantics.",
+  "nodes": [
+    {
+      "id": "authority.grid-governance",
+      "type": "AuthoritySource",
+      "label": "GRID governance authority",
+      "scope": "Defines participation, eligibility, technical standards, and suspension pathways",
+      "authorityOrigin": "GTR governance charter or administering-body mandate",
+      "evidenceRef": "evidence.gtr-governance-policy"
+    },
+    {
+      "id": "authority.member-state",
+      "type": "AuthoritySource",
+      "label": "Member State or competent national authority",
+      "scope": "Recognizes or identifies the registrar responsible for a domestic register",
+      "authorityOrigin": "national law, regulation, official designation, or equivalent legal instrument",
+      "evidenceRef": "evidence.national-mandate"
+    },
+    {
+      "id": "actor.authoritative-registrar",
+      "type": "DelegatedActor",
+      "label": "Authoritative Registrar",
+      "scope": "Maintain the named register, publish GRID metadata, and issue DIA within declared register scope",
+      "authorityOrigin": "delegated or recognized by national authority",
+      "evidenceRef": "evidence.registrar-application"
+    },
+    {
+      "id": "registry.grid",
+      "type": "Registry",
+      "label": "Global Registrar Information Directory",
+      "scope": "Publish registrar discovery metadata, verification material, lifecycle state, and release history",
+      "authorityOrigin": "operated under GRID governance authority"
+    },
+    {
+      "id": "actor.technical-operator",
+      "type": "DelegatedActor",
+      "label": "GRID technical operator and harvester",
+      "scope": "Validate, harvest, publish, monitor, and archive GRID records under operating rules",
+      "authorityOrigin": "delegated service mandate"
+    },
+    {
+      "id": "artifact.dia",
+      "type": "Artifact",
+      "label": "Digital Identity Anchor",
+      "scope": "Credential artifact issued by the registrar to a registered entity",
+      "authorityOrigin": "issued within registrar mandate and DIA issuance policy"
+    },
+    {
+      "id": "policy.gtr-eligibility",
+      "type": "Policy",
+      "label": "GRID eligibility and reliance policy",
+      "scope": "Constrains admission, metadata, keys, lifecycle status, and relying-party acceptance"
+    },
+    {
+      "id": "verifier.relying-party",
+      "type": "Verifier",
+      "label": "Verifier and relying party",
+      "scope": "Verify DIA and GRID evidence before admitting an operational effect",
+      "authorityOrigin": "relying-party acceptance policy"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.grid-policy-originates",
+      "type": "originates",
+      "from": "authority.grid-governance",
+      "to": "policy.gtr-eligibility",
+      "scopeConstraint": "policy covers GRID admission, publication, suspension, and release behavior",
+      "revocationSemantics": "policy supersession changes future admission and relying decisions"
+    },
+    {
+      "id": "edge.national-authority-delegates",
+      "type": "delegates",
+      "from": "authority.member-state",
+      "to": "actor.authoritative-registrar",
+      "scopeConstraint": "jurisdiction and register type only",
+      "revocationSemantics": "loss of national mandate requires registrar suspension or revocation in GRID"
+    },
+    {
+      "id": "edge.policy-constrains-registrar",
+      "type": "constrains",
+      "from": "policy.gtr-eligibility",
+      "to": "actor.authoritative-registrar",
+      "scopeConstraint": "must provide authority evidence, metadata, contact, lifecycle state, and verification material where applicable",
+      "revocationSemantics": "eligibility failure can suspend or revoke GRID participation"
+    },
+    {
+      "id": "edge.operator-publishes-grid",
+      "type": "publishes",
+      "from": "actor.technical-operator",
+      "to": "registry.grid",
+      "scopeConstraint": "publication limited to approved registrar metadata and release artifacts",
+      "revocationSemantics": "compromised metadata must be removed, superseded, or flagged before new reliance"
+    },
+    {
+      "id": "edge.registrar-publishes-grid-record",
+      "type": "publishes",
+      "from": "actor.authoritative-registrar",
+      "to": "registry.grid",
+      "scopeConstraint": "metadata, keys, endpoints, status, and supported capabilities only",
+      "revocationSemantics": "stale or withdrawn metadata must not admit high-impact new effects"
+    },
+    {
+      "id": "edge.registrar-issues-dia",
+      "type": "delegates",
+      "from": "actor.authoritative-registrar",
+      "to": "artifact.dia",
+      "scopeConstraint": "DIA claims must be covered by registrar mandate and register scope",
+      "revocationSemantics": "issuer suspension changes future DIA verification outcomes"
+    },
+    {
+      "id": "edge.verifier-checks-grid",
+      "type": "verifies",
+      "from": "verifier.relying-party",
+      "to": "registry.grid",
+      "scopeConstraint": "verifier checks issuer discoverability, lifecycle state, scope, key, freshness, and revocation",
+      "revocationSemantics": "revoked or unavailable status blocks, downgrades, or routes reliance to review"
+    }
+  ],
+  "delegationChains": [
+    {
+      "id": "chain.registrar-authority",
+      "steps": [
+        "authority.member-state",
+        "actor.authoritative-registrar"
+      ],
+      "maxDepth": 1,
+      "terminationCondition": "withdrawal of legal mandate, expiry, suspension, or GRID eligibility failure"
+    },
+    {
+      "id": "chain.grid-publication",
+      "steps": [
+        "authority.grid-governance",
+        "actor.technical-operator",
+        "registry.grid"
+      ],
+      "maxDepth": 2,
+      "terminationCondition": "operator mandate revoked, release process suspended, or integrity incident"
+    }
+  ],
+  "revocationRules": [
+    {
+      "id": "revoke.lost-legal-mandate",
+      "trigger": "Registrar legal authority is withdrawn or superseded",
+      "effect": "Registrar GRID status changes to revoked and new DIA reliance is blocked or routed to review",
+      "propagation": "bounded-delay"
+    },
+    {
+      "id": "revoke.key-compromise",
+      "trigger": "Registrar signing key or metadata publication key is compromised",
+      "effect": "Affected key is suspended, GRID record is updated, and new verification must reject or review affected DIAs",
+      "propagation": "immediate"
+    },
+    {
+      "id": "revoke.metadata-staleness",
+      "trigger": "GRID record exceeds freshness policy or required status source becomes unavailable",
+      "effect": "High-impact reliance is downgraded, warned, or routed to manual review",
+      "propagation": "manual-review"
+    }
+  ],
+  "notes": [
+    "Authority is not inferred from self-description. It is evidenced and scoped.",
+    "GRID publication improves discovery but does not replace domestic legal authority.",
+    "The verifier is responsible for converting evidence into a relying-party effect under policy."
+  ]
+}

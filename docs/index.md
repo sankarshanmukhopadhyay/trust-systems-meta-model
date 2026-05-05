@@ -31,6 +31,8 @@ TSMM is a portable reference model for designing, comparing, implementing, and a
 - [Governed A2A-Class Discovery Walkthrough](examples/a2a-governed-discovery-walkthrough.md)
 - [A2A Binding](bindings/a2a-binding.md)
 - [A2A Crosswalk](crosswalks/a2a-crosswalk.md)
+- [GTR GRID/DIA Binding](bindings/gtr-binding.md)
+- [GTR GRID/DIA Crosswalk](crosswalks/gtr-grid-dia-crosswalk.md)
 
 ## Conformance profiles
 

@@ -1,0 +1,196 @@
+{
+  "graphId": "system.gtr.grid-dia.v1",
+  "label": "GTR GRID/DIA trust system",
+  "description": "TSMM graph instance for a GTR-style flow where GRID discovery and DIA verification produce a relying-party trust decision and operational effect.",
+  "profile": "GTR-GRID-DIA",
+  "contexts": [
+    "registrar-discovery",
+    "dia-verification",
+    "supply-chain-reliance",
+    "evidence-and-lifecycle-governance"
+  ],
+  "nodes": [
+    {
+      "id": "dom.gtr",
+      "type": "TrustDomain",
+      "label": "GTR GRID/DIA ecosystem",
+      "description": "Trust domain for global registrar discovery and Digital Identity Anchor verification.",
+      "attributes": {
+        "exampleClass": "system-model",
+        "bindingRef": "bindings/gtr/tsmm-gtr-binding.json"
+      }
+    },
+    {
+      "id": "auth.grid-board",
+      "type": "GovernanceAuthority",
+      "label": "GRID governance authority",
+      "description": "Governing body or administering authority that defines eligibility criteria, standards, and approval pathways."
+    },
+    {
+      "id": "reg.grid",
+      "type": "TrustRegistry",
+      "label": "Global Registrar Information Directory",
+      "description": "Curated discovery layer for registrar metadata, verification material, and lifecycle state."
+    },
+    {
+      "id": "svc.harvester",
+      "type": "RegistryService",
+      "label": "GRID harvester and publication service",
+      "description": "Technical service that validates, harvests, publishes, and archives GRID records."
+    },
+    {
+      "id": "issuer.registrar-x",
+      "type": "Issuer",
+      "label": "Authoritative Registrar X",
+      "description": "Registrar with bounded legal authority for a specific jurisdiction and register type."
+    },
+    {
+      "id": "subject.entity-y",
+      "type": "Subject",
+      "label": "Registered Entity Y",
+      "description": "Entity represented by a registrar-issued Digital Identity Anchor."
+    },
+    {
+      "id": "cred.dia-y",
+      "type": "Credential",
+      "label": "Digital Identity Anchor for Entity Y",
+      "description": "DIA carrying legal identity assertions and subject DID binding."
+    },
+    {
+      "id": "policy.gtr-eligibility",
+      "type": "Policy",
+      "label": "GRID eligibility and scope policy",
+      "description": "Policy defining registrar admission, scope, lifecycle, and evidence requirements."
+    },
+    {
+      "id": "evidence.grid-release-2026-05",
+      "type": "EvidenceBundle",
+      "label": "GRID release and registrar evidence bundle",
+      "description": "Versioned GRID record, registrar mandate evidence, issuer key status, and freshness metadata."
+    },
+    {
+      "id": "rp.supply-chain-platform",
+      "type": "RelyingParty",
+      "label": "Supply-chain onboarding platform",
+      "description": "Relying party evaluating whether the DIA is sufficient for supplier onboarding."
+    },
+    {
+      "id": "verifier.platform-verifier",
+      "type": "Verifier",
+      "label": "Platform verifier",
+      "description": "Verification component that checks DIA signature, GRID discovery, authority scope, and status."
+    },
+    {
+      "id": "decision.onboarding-001",
+      "type": "TrustDecision",
+      "label": "DIA verification trust decision",
+      "description": "Decision produced by applying policy and evidence to the DIA verification request."
+    },
+    {
+      "id": "effect.allow-low-risk-onboarding",
+      "type": "Effect",
+      "label": "Allow low-risk supplier onboarding",
+      "description": "Operational effect admitted after successful verification."
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.governance-defines-policy",
+      "type": "defines",
+      "from": "auth.grid-board",
+      "to": "policy.gtr-eligibility",
+      "description": "Governance authority defines eligibility, scope, and lifecycle rules."
+    },
+    {
+      "id": "edge.governance-governs-grid",
+      "type": "governs",
+      "from": "auth.grid-board",
+      "to": "reg.grid",
+      "description": "Governance authority constrains the directory service and publication process."
+    },
+    {
+      "id": "edge.service-operates-grid",
+      "type": "operates",
+      "from": "svc.harvester",
+      "to": "reg.grid",
+      "description": "Technical operator runs harvesting, validation, release, and archive functions."
+    },
+    {
+      "id": "edge.policy-authorizes-registrar",
+      "type": "authorizes",
+      "from": "policy.gtr-eligibility",
+      "to": "issuer.registrar-x",
+      "description": "Registrar is authorized only within declared legal mandate and register scope.",
+      "conditions": [
+        "legal mandate evidence present",
+        "jurisdiction and register scope declared",
+        "lifecycle status active"
+      ],
+      "evidenceRefs": [
+        "evidence.grid-release-2026-05"
+      ]
+    },
+    {
+      "id": "edge.grid-registers-registrar",
+      "type": "registers",
+      "from": "reg.grid",
+      "to": "issuer.registrar-x",
+      "description": "GRID lists registrar metadata, verification material, and status."
+    },
+    {
+      "id": "edge.registrar-issues-dia",
+      "type": "issues",
+      "from": "issuer.registrar-x",
+      "to": "cred.dia-y",
+      "description": "Registrar issues DIA for the registered entity."
+    },
+    {
+      "id": "edge.dia-asserts-subject",
+      "type": "asserts",
+      "from": "cred.dia-y",
+      "to": "subject.entity-y",
+      "description": "DIA asserts registration and DID binding claims about the subject."
+    },
+    {
+      "id": "edge.evidence-substantiates-registrar",
+      "type": "substantiates",
+      "from": "evidence.grid-release-2026-05",
+      "to": "issuer.registrar-x",
+      "description": "Evidence bundle substantiates authority, key, lifecycle, and freshness state."
+    },
+    {
+      "id": "edge.verifier-checks-dia",
+      "type": "verifies",
+      "from": "verifier.platform-verifier",
+      "to": "cred.dia-y",
+      "description": "Verifier checks DIA signature, GRID discovery, status, scope, and revocation state."
+    },
+    {
+      "id": "edge.evidence-informs-decision",
+      "type": "informs",
+      "from": "evidence.grid-release-2026-05",
+      "to": "decision.onboarding-001",
+      "description": "Evidence bundle informs the relying-party trust decision."
+    },
+    {
+      "id": "edge.rp-relies-on-decision",
+      "type": "reliesOn",
+      "from": "rp.supply-chain-platform",
+      "to": "decision.onboarding-001",
+      "description": "Relying party consumes the decision rather than the credential alone."
+    },
+    {
+      "id": "edge.decision-produces-effect",
+      "type": "produces",
+      "from": "decision.onboarding-001",
+      "to": "effect.allow-low-risk-onboarding",
+      "description": "Decision admits the bounded onboarding effect."
+    }
+  ],
+  "metadata": {
+    "bindingRef": "bindings/gtr/tsmm-gtr-binding.json",
+    "crosswalkRef": "docs/crosswalks/gtr-grid-dia-crosswalk.md",
+    "decisionReceiptRef": "examples/gtr/gtr-dia-verification-decision-receipt.json",
+    "authorityGraphRef": "examples/gtr/gtr-authority-graph-example.json"
+  }
+}

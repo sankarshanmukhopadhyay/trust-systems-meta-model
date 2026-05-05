@@ -1,0 +1,68 @@
+{
+  "gridRecordId": "grid.record.registrar-x.company-register.v2026-05",
+  "recordType": "authoritative-registrar-discovery-record",
+  "lifecycleState": "active",
+  "releaseRef": "grid.release.2026-05",
+  "registrar": {
+    "id": "registrar-x",
+    "name": "Authoritative Registrar X",
+    "jurisdiction": "jurisdiction-x",
+    "registerTypes": [
+      "company-register"
+    ],
+    "participationLevel": "level-c-dia-issuance",
+    "pointOfContactRef": "contact.registrar-x.grid-metadata"
+  },
+  "authority": {
+    "authorityRef": "authority.registrar-x.company-register",
+    "source": "national-law-or-official-designation",
+    "scope": "company registration identifiers and related legal-entity registration claims",
+    "evidenceRefs": [
+      "evidence.registrar-x.legal-mandate",
+      "evidence.registrar-x.grid-application-approval"
+    ]
+  },
+  "verificationMaterial": [
+    {
+      "id": "key.registrar-x.grid-metadata.2026",
+      "purpose": "grid-metadata-signature",
+      "status": "active",
+      "validFrom": "2026-05-01T00:00:00Z",
+      "validUntil": "2027-05-01T00:00:00Z"
+    },
+    {
+      "id": "did.registrar-x.issuer",
+      "purpose": "dia-issuance",
+      "status": "active",
+      "validFrom": "2026-05-01T00:00:00Z",
+      "validUntil": "2027-05-01T00:00:00Z"
+    }
+  ],
+  "serviceEndpoints": [
+    {
+      "id": "endpoint.registrar-x.status",
+      "purpose": "credential-status-check",
+      "availabilityExpectation": "operational-hours-or-better",
+      "failureBehavior": "route-high-impact-decisions-to-review"
+    },
+    {
+      "id": "endpoint.registrar-x.metadata",
+      "purpose": "signed-metadata-publication",
+      "availabilityExpectation": "release-cycle-publication",
+      "failureBehavior": "retain-last-known-good-release-with-staleness-warning"
+    }
+  ],
+  "freshnessPolicy": {
+    "lastReviewed": "2026-05-05T00:00:00Z",
+    "maximumAgeDays": 90,
+    "onStale": "warn-or-review-based-on-effect-risk"
+  },
+  "integrity": {
+    "signedBy": "key.registrar-x.grid-metadata.2026",
+    "signatureEvidenceRef": "evidence.grid-record.registrar-x.signature.2026-05"
+  },
+  "assuranceNotes": [
+    "GRID record supports discovery and verification. It does not by itself certify every downstream claim about every registered entity.",
+    "Relying parties must bind this record to credential, status, revocation, scope, and policy checks before admitting operational effects."
+  ]
+}

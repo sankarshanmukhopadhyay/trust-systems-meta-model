@@ -1,0 +1,40 @@
+{
+  "decisionId": "decision.gtr-dia.onboarding.001",
+  "timestamp": "2026-05-05T00:00:00Z",
+  "subjectRef": "subject.entity-y",
+  "requestingActorRef": "rp.supply-chain-platform",
+  "authorityBasis": {
+    "authorityRef": "authority.registrar-x.company-register",
+    "status": "active",
+    "source": "GRID release 2026-05 and national legal mandate evidence",
+    "scope": "company registration claims for jurisdiction X"
+  },
+  "policyRefs": [
+    "policy.gtr-dia-verification",
+    "policy.relying-party.low-risk-supplier-onboarding"
+  ],
+  "evidenceRefs": [
+    "evidence.grid-record.registrar-x.2026-05",
+    "evidence.registrar-x.legal-mandate",
+    "evidence.registrar-x.issuer-key.active",
+    "evidence.dia-y.signature-check",
+    "evidence.dia-y.credential-status",
+    "evidence.dia-y.subject-did-binding"
+  ],
+  "boundaryRef": "boundary.cross-border-supply-chain-onboarding",
+  "decision": {
+    "outcome": "allow",
+    "reason": "Issuer is discoverable in GRID, registrar authority is active and in scope, DIA signature verifies against active issuer key, credential status is active, and relying-party policy permits the low-risk onboarding effect."
+  },
+  "effect": {
+    "effectRef": "effect.allow-low-risk-supplier-onboarding",
+    "admission": "permitted"
+  },
+  "revocationStateChecked": {
+    "status": "fresh-active",
+    "checkedAt": "2026-05-05T00:00:00Z",
+    "sourceRef": "evidence.grid-record.registrar-x.2026-05"
+  },
+  "assuranceLevel": "operational",
+  "reviewPath": "If any authority, key, freshness, or credential-status check becomes unavailable, route to compliance-review.gtr-dia.manual-review."
+}

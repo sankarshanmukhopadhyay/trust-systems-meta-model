@@ -1,0 +1,98 @@
+{
+  "modelId": "lifecycle.gtr-registrar.v1",
+  "label": "GTR registrar lifecycle and revocation model",
+  "appliesTo": [
+    "Authoritative Registrar",
+    "GRID Record",
+    "Registrar verification material",
+    "DIA issuer authority"
+  ],
+  "states": [
+    {
+      "id": "state.issued",
+      "name": "issued",
+      "description": "Registrar admission or metadata update has been submitted or approved but is not yet active in a published GRID release.",
+      "entryEvidence": "GRID application, Data Maintenance Request, or approved metadata submission"
+    },
+    {
+      "id": "state.active",
+      "name": "active",
+      "description": "Registrar is discoverable in GRID and may be relied on within declared scope subject to verifier policy.",
+      "entryEvidence": "Published GRID release with active lifecycle status and authority evidence"
+    },
+    {
+      "id": "state.suspended",
+      "name": "suspended",
+      "description": "Registrar or verification material is temporarily restricted because of evidence gaps, metadata staleness, incident review, key compromise, or governance action.",
+      "entryEvidence": "Suspension notice, incident record, stale metadata finding, or governance review record"
+    },
+    {
+      "id": "state.revoked",
+      "name": "revoked",
+      "description": "Registrar authority, GRID participation, or verification material has been withdrawn and should not support new automated reliance.",
+      "entryEvidence": "Revocation notice, withdrawal record, supersession record, or legal mandate withdrawal evidence"
+    },
+    {
+      "id": "state.expired",
+      "name": "expired",
+      "description": "Registrar metadata, key material, or credential status has exceeded its declared validity period or freshness requirement.",
+      "entryEvidence": "Expiry timestamp, stale freshness check, or status source result"
+    }
+  ],
+  "transitions": [
+    {
+      "id": "transition.submit-to-active",
+      "from": "issued",
+      "to": "active",
+      "trigger": "GRID admission approved and release published",
+      "actor": "GRID governance authority or delegated publication service",
+      "evidenceRequirement": "approved registrar application, authority evidence, scope declaration, verified metadata, and release record",
+      "notes": "Active status should remain scoped to the declared jurisdiction, register type, and capabilities."
+    },
+    {
+      "id": "transition.active-to-suspended-key-compromise",
+      "from": "active",
+      "to": "suspended",
+      "trigger": "Registrar signing key, DID, endpoint, or metadata publication channel is suspected compromised",
+      "actor": "Registrar, GRID technical operator, or governance authority",
+      "evidenceRequirement": "incident notice, affected key identifier, timestamp, and interim relying-party behavior",
+      "notes": "New DIA verification should deny, warn, or route to review until replacement material is published."
+    },
+    {
+      "id": "transition.active-to-expired-freshness",
+      "from": "active",
+      "to": "expired",
+      "trigger": "GRID record or key material exceeds freshness or validity policy",
+      "actor": "GRID harvester or verifier freshness check",
+      "evidenceRequirement": "freshness timestamp, policy threshold, release version, and verifier check result",
+      "notes": "Low-impact effects may warn while high-impact effects should require review."
+    },
+    {
+      "id": "transition.suspended-to-active-remediation",
+      "from": "suspended",
+      "to": "active",
+      "trigger": "Registrar remediates evidence gap, rotates keys, or resolves governance finding",
+      "actor": "Registrar and GRID governance authority",
+      "evidenceRequirement": "remediation record, replacement key or metadata, approval record, and updated GRID release",
+      "notes": "Decision receipts should reference the post-remediation release."
+    },
+    {
+      "id": "transition.active-to-revoked-mandate-withdrawn",
+      "from": "active",
+      "to": "revoked",
+      "trigger": "Legal mandate withdrawn, registrar superseded, participant withdraws, or eligibility is revoked",
+      "actor": "Member State, competent authority, or GRID governance authority",
+      "evidenceRequirement": "withdrawal notice, mandate change, revocation decision, and archived GRID release record",
+      "notes": "New automated reliance should be blocked unless a profile defines a special transition or successor authority path."
+    },
+    {
+      "id": "transition.expired-to-active-refresh",
+      "from": "expired",
+      "to": "active",
+      "trigger": "Fresh metadata, status, or key material is published and accepted into a GRID release",
+      "actor": "Registrar and GRID publication service",
+      "evidenceRequirement": "updated metadata, signature validation result, release record, and lifecycle status update",
+      "notes": "Verifier caches should revalidate before admitting new effects."
+    }
+  ]
+}

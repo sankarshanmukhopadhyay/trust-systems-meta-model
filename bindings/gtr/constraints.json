@@ -1,0 +1,35 @@
+{
+  "constraintSetId": "tsmm.binding.gtr-grid-dia.constraints.v1",
+  "bindingId": "tsmm.binding.gtr-grid-dia.v1",
+  "targetEcosystem": "GTR GRID/DIA",
+  "assumptions": [
+    "GRID is modeled as a discovery and reference service for authoritative registrar metadata, not as a centralized copy of national register data.",
+    "DIA is modeled as a registrar-issued credential artifact whose relying value depends on issuer authority, GRID discoverability, key state, credential status, and policy scope.",
+    "A registrar's authority is bounded by jurisdiction, register type, legal mandate, lifecycle state, and published eligibility requirements.",
+    "Relying parties remain responsible for deciding whether a verified DIA is sufficient for their specific business, legal, or compliance effect."
+  ],
+  "prohibitedInferences": [
+    "Do not infer that a GRID listing certifies, endorses, or validates the legal status of every registered entity.",
+    "Do not infer that cryptographic signature validation alone is sufficient for reliance without checking issuer authority, scope, lifecycle state, and revocation state.",
+    "Do not infer that the GRID operator controls national registry data or replaces the legal authority of national registrars.",
+    "Do not infer that a DIA changes the underlying legal status of the subject under domestic law."
+  ],
+  "requiredArtifacts": [
+    "docs/bindings/gtr-binding.md",
+    "docs/crosswalks/gtr-grid-dia-crosswalk.md",
+    "examples/systems/gtr-grid-dia-system.json",
+    "examples/gtr/gtr-authority-graph-example.json",
+    "examples/gtr/gtr-dia-verification-decision-receipt.json",
+    "examples/gtr/gtr-registrar-lifecycle-event.json"
+  ],
+  "comparisonNotes": [
+    "The GTR binding is closest to the TSMM trust-registry, credential-verification, evidence, lifecycle, and effect-centered decision surfaces.",
+    "The model separates discovery from reliance: GRID can make the registrar findable, while relying-party policy determines the permitted effect.",
+    "The model separates infrastructure operation from legal authority: a technical operator may operate harvesting and publication services without becoming the authoritative registrar."
+  ],
+  "validationHints": [
+    "Check that every registrar admission record includes authority evidence, jurisdiction, register scope, lifecycle status, and point-of-contact or publication responsibility.",
+    "Check that every DIA verification receipt records GRID entry version, issuer key state, credential status, revocation state, policy references, outcome, and admitted or blocked effect.",
+    "Check that suspension, withdrawal, key compromise, and metadata staleness produce defined failure behavior for new relying-party decisions."
+  ]
+}

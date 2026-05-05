@@ -1,0 +1,164 @@
+{
+  "bindingId": "tsmm.binding.gtr-grid-dia.v1",
+  "label": "TSMM to GTR GRID/DIA binding",
+  "description": "Maps Global Trust Registry, Global Registrar Information Directory, and Digital Identity Anchor concepts to TSMM trust-system primitives for authority, discovery, evidence, lifecycle, verification, decision receipts, and operational effects.",
+  "targetEcosystem": "GTR GRID/DIA",
+  "version": "0.1.0",
+  "sources": [
+    "docs/bindings/gtr-binding.md",
+    "docs/crosswalks/gtr-grid-dia-crosswalk.md",
+    "examples/systems/gtr-grid-dia-system.json",
+    "examples/gtr/gtr-authority-graph-example.json",
+    "examples/gtr/gtr-dia-verification-decision-receipt.json",
+    "examples/gtr/gtr-registrar-lifecycle-event.json"
+  ],
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "GTR GRID/DIA",
+    "bindingVersion": "0.1.0",
+    "guarantees": [
+      {
+        "name": "bounded-authority-mapping",
+        "status": "supported",
+        "description": "Authoritative Registrars, GRID governance actors, and relying parties are mapped as TSMM actors with explicit scope, policy, and evidence obligations."
+      },
+      {
+        "name": "discovery-to-decision-continuity",
+        "status": "supported",
+        "description": "GRID discovery artifacts can be carried forward into DIA verification and relying-party decision receipts."
+      },
+      {
+        "name": "lifecycle-and-revocation-surfacing",
+        "status": "partial",
+        "description": "Registrar, GRID record, key, endpoint, and DIA state changes are represented as lifecycle events. Ecosystem-specific propagation timing remains a profile obligation."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "not-a-gtr-conformance-claim",
+        "impact": "This binding does not certify that a GRID or DIA implementation satisfies GTR operating requirements.",
+        "mitigation": "Use this binding as a modeling and assurance scaffold, then attach GTR-specific conformance tests and policy references."
+      },
+      {
+        "name": "legal-authority-is-evidence-backed-not-inferred",
+        "impact": "A listed GRID record cannot by itself prove legal authority unless supporting mandate evidence is present and in scope.",
+        "mitigation": "Require authority evidence references in registrar admission, metadata publication, and relying-party verification receipts."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "registrar-admission",
+        "expectation": "Admission into GRID should produce an auditable authority, scope, evidence, and lifecycle record, not merely a directory entry.",
+        "sourceRefs": [
+          "docs/crosswalks/gtr-grid-dia-crosswalk.md"
+        ]
+      },
+      {
+        "behavior": "dia-verification",
+        "expectation": "A verifier should bind signature validation to GRID discovery, registrar scope, lifecycle state, key state, revocation state, and relying-party policy before allowing an operational effect.",
+        "sourceRefs": [
+          "examples/gtr/gtr-dia-verification-decision-receipt.json"
+        ]
+      },
+      {
+        "behavior": "withdrawal-or-suspension",
+        "expectation": "Withdrawal, suspension, key compromise, or revoked registrar authority should alter downstream discovery and relying decisions before new effects are admitted.",
+        "sourceRefs": [
+          "examples/gtr/gtr-registrar-lifecycle-event.json"
+        ]
+      }
+    ],
+    "constraintSetRef": "bindings/gtr/constraints.json"
+  },
+  "mappings": [
+    {
+      "externalConcept": "Global Trust Registry initiative",
+      "tsmmType": "TrustDomain",
+      "bindingStrength": "approximate",
+      "description": "Models the overall institutional and technical trust domain for authoritative registrar discovery and DIA-based verification."
+    },
+    {
+      "externalConcept": "Global Registrar Information Directory (GRID)",
+      "tsmmType": "TrustRegistry",
+      "bindingStrength": "approximate",
+      "description": "GRID maps to a curated trust-registry and discovery surface for registrar metadata, verification material, and lifecycle status."
+    },
+    {
+      "externalConcept": "GRID Board or administering UN body",
+      "tsmmType": "GovernanceAuthority",
+      "bindingStrength": "approximate",
+      "description": "Governance body that defines eligibility, technical standards, operating rules, and approval or suspension pathways."
+    },
+    {
+      "externalConcept": "Technical Operator / GRID Harvester",
+      "tsmmType": "RegistryService",
+      "bindingStrength": "approximate",
+      "description": "Operational component that harvests, validates, publishes, and preserves registrar metadata under governance constraints."
+    },
+    {
+      "externalConcept": "Authoritative Registrar",
+      "tsmmType": "Issuer",
+      "bindingStrength": "composite",
+      "description": "A registrar is an issuer only within a bounded legal mandate, register scope, jurisdiction, lifecycle state, and GRID eligibility policy."
+    },
+    {
+      "externalConcept": "Registered Entity / DIA holder",
+      "tsmmType": "Subject",
+      "bindingStrength": "approximate",
+      "description": "Entity whose legal registration claims and DID binding are represented by a DIA."
+    },
+    {
+      "externalConcept": "Digital Identity Anchor (DIA)",
+      "tsmmType": "Credential",
+      "bindingStrength": "approximate",
+      "description": "DIA maps to a credential artifact carrying registrar-issued identity claims and DID binding evidence."
+    },
+    {
+      "externalConcept": "Registrar legal mandate and eligibility criteria",
+      "tsmmType": "Policy",
+      "bindingStrength": "composite",
+      "description": "Legal basis, eligibility criteria, participation level, and permitted register scope constrain what GRID recognition and DIA issuance can mean."
+    },
+    {
+      "externalConcept": "GRID record, signed metadata, public key, DID document, status response",
+      "tsmmType": "EvidenceBundle",
+      "bindingStrength": "composite",
+      "description": "Discovery and verification materials are evidence artifacts that support authority, key control, endpoint integrity, freshness, and lifecycle checks."
+    },
+    {
+      "externalConcept": "Verifier / relying party",
+      "tsmmType": "RelyingParty",
+      "bindingStrength": "approximate",
+      "description": "Actor that consumes GRID and DIA evidence to decide whether a business, compliance, or supply-chain effect should be admitted."
+    },
+    {
+      "externalConcept": "DIA verification result",
+      "tsmmType": "TrustDecision",
+      "bindingStrength": "approximate",
+      "description": "The output of applying relying-party and GTR policies to the DIA, GRID entry, authority scope, key state, revocation state, and evidence set."
+    },
+    {
+      "externalConcept": "Supplier onboarding, transaction approval, warning, downgrade, rejection, or manual review",
+      "tsmmType": "Effect",
+      "bindingStrength": "approximate",
+      "description": "Operational consequence admitted or blocked after the trust decision."
+    }
+  ],
+  "notes": [
+    "This binding treats GRID recognition as a discovery and transparency signal, not as a certification of national legal status.",
+    "The binding is intentionally effect-centered: a verifier should evaluate whether the discovered and verified material is sufficient for a specific relying-party effect.",
+    "Participation maturity can be profiled from baseline listing through signed harvested data to DIA issuance and status automation."
+  ],
+  "metadata": {
+    "createdFor": "TSMM v0.19.0 post-release documentation increment",
+    "lastReviewed": "2026-05-05"
+  },
+  "maturity": {
+    "status": "experimental",
+    "stability": "draft",
+    "productionRecommendation": "conditional",
+    "notes": [
+      "Use for modeling, crosswalk, and assurance-design work while GTR implementation and operating rules continue to mature."
+    ]
+  }
+}
