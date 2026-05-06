@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/tsmm/schemas/tsmm-core.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-core.schema.json",
   "title": "TSMM Core Instance Schema",
   "description": "Machine-readable representation of a concrete TSMM trust-system instance. This schema remains the instance-layer companion to the canonical primitive catalog defined in schemas/tsmm.schema.json.",
   "type": "object",

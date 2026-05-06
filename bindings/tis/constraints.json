@@ -1,0 +1,32 @@
+{
+  "constraintSetId": "tsmm-tis-constraints-v0.20.0",
+  "bindingId": "tsmm-tis-v0.20.0",
+  "targetEcosystem": "trust-infrastructure-schemas",
+  "assumptions": [
+    "TSMM remains the semantic model and TIS remains the executable artifact contract layer.",
+    "TIS AL1-AL4 values are canonical for assurance rigor claims.",
+    "TSMM graph references can be preserved in TIS artifact metadata or semantic_bindings."
+  ],
+  "prohibitedInferences": [
+    "Registry discovery is runtime authorization.",
+    "Agentic TSMM posture is equivalent to AL4 assurance.",
+    "A schema-valid TIS artifact by itself proves legitimate control.",
+    "A decision receipt can omit policy, authority, evidence, or timestamp context."
+  ],
+  "requiredArtifacts": [
+    "docs/cross-repo/trust-infrastructure-schemas-alignment.md",
+    "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md",
+    "docs/crosswalks/tis-decision-receipt-crosswalk.md",
+    "docs/crosswalks/tis-assurance-level-crosswalk.md",
+    "examples/cross-repo/tis-decision-receipt-mapping-example.json"
+  ],
+  "comparisonNotes": [
+    "Authority graphs and authority boundaries are complementary but not equivalent.",
+    "EvidenceArtifact captures meaning; evidence bundle manifest captures packaging.",
+    "Registry entry publication is discoverability, not delegation."
+  ],
+  "validationHints": [
+    "Validate binding with scripts/validate_bindings.py.",
+    "Validate examples with scripts/validate_examples.py and downstream TIS validation."
+  ]
+}

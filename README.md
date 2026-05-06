@@ -1,20 +1,20 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.19.0
+applicable_version: v0.20.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.19.0-blue)](releases/v0.19.0.md)
+[![Release](https://img.shields.io/badge/release-v0.20.0-blue)](releases/v0.20.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.19.0  
-**Status:** Draft reference model with machine-readable modeling, validation, comparison, and runtime-governance artifacts  
+**Version:** v0.20.0  
+**Status:** Draft reference model with machine-readable modeling, validation, comparison, runtime-governance, and executable-artifact binding artifacts  
 **License:** CC BY-SA 4.0
 
 ## What TSMM is
@@ -23,9 +23,9 @@ Trust Systems Meta Model (TSMM) is a portable abstract reference model for desig
 
 TSMM is intentionally **effect-centered**. The core question is not only whether an identity exists or a credential verifies. The core question is whether a bounded authority, evaluated under policy and evidence, should be allowed to produce a defined effect.
 
-## What v0.19.0 adds
+## What v0.20.0 adds
 
-TSMM v0.19.0 delivers **Agent Discovery, Capability Negotiation, and Task Evidence Readiness**. It generalizes reusable A2A-class patterns into TSMM without copying protocol mechanics into the core model.
+TSMM v0.20.0 delivers **Cross-Repo Artifact Alignment and Executable Governance Binding**. It harmonizes TSMM semantics with Trust Infrastructure Schemas (TIS) so model-level concepts can be projected into executable authority, evidence, decision, and registry artifacts without collapsing the model layer into a schema catalog.
 
 New release surfaces:
 
@@ -35,6 +35,28 @@ New release surfaces:
 - **A2A binding refresh** covering discovery modes, descriptor integrity, extension requiredness, task lifecycle evidence, streaming/async observability, and opacity boundaries.
 - **Documentation refresh** across README, docs index, roadmap, freshness audit, documentation governance, conformance guidance, and GitHub Pages entry points.
 - **Validation hardening** with schemas, examples, and valid/invalid test vectors for the new governance surfaces.
+
+
+## TSMM and Trust Infrastructure Schemas
+
+TSMM now includes a dedicated binding to `trust-infrastructure-schemas` (TIS). The intended architecture is:
+
+```text
+TSMM = semantic model and cross-ecosystem grammar
+TIS  = canonical executable artifact contracts
+```
+
+Use TSMM to model trust-system meaning, authority topology, delegation structure, evidence semantics, and runtime effects. Use TIS to package those claims as machine-validatable authority boundaries, evidence bundle manifests, evaluation envelopes, decision receipts, and registry entries.
+
+Key artifacts:
+
+- TIS binding: `docs/bindings/tis-binding.md`
+- Cross-repo alignment: `docs/cross-repo/trust-infrastructure-schemas-alignment.md`
+- Crosswalk index: `docs/crosswalks/trust-infrastructure-schemas-crosswalk.md`
+- Decision receipt crosswalk: `docs/crosswalks/tis-decision-receipt-crosswalk.md`
+- Assurance level crosswalk: `docs/crosswalks/tis-assurance-level-crosswalk.md`
+- Executable artifact walkthrough: `docs/examples/tis-executable-artifact-walkthrough.md`
+- Machine-readable binding: `bindings/tis/tsmm-tis-binding.json`
 
 ## Use TSMM in five workflows
 
@@ -114,11 +136,11 @@ python scripts/check_schema_coverage.py
 - Roadmap: `docs/roadmap.md`
 - Freshness audit: `docs/freshness-audit.md`
 - Documentation governance: `docs/documentation-governance.md`
-- Release notes: `releases/v0.19.0.md`
+- Release notes: `releases/v0.20.0.md`
 
 ## Current release posture
 
-TSMM v0.19.0 is additive. It does not introduce breaking changes to the stable core model. New schemas and examples are introduced as candidate governance surfaces that can be adopted independently by implementers and promoted based on conformance evidence.
+TSMM v0.20.0 is additive. It does not introduce breaking changes to the stable core model. New schemas and examples are introduced as candidate governance surfaces that can be adopted independently by implementers and promoted based on conformance evidence.
 
 ## Contributing
 

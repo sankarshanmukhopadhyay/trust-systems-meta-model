@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.19.0
+applicable_version: v0.20.0
 tier: 0
 ---
 
@@ -60,3 +60,10 @@ TSMM is a portable reference model for designing, comparing, implementing, and a
 - [Roadmap](roadmap.md)
 - [Glossary](glossary.md)
 - [Release v0.19.0](../releases/v0.19.0.md)
+
+## Cross-repo executable artifact alignment
+
+- [Trust Infrastructure Schemas alignment](cross-repo/trust-infrastructure-schemas-alignment.md)
+- [TIS crosswalk](crosswalks/trust-infrastructure-schemas-crosswalk.md)
+- [TIS binding](bindings/tis-binding.md)
+- [TIS executable artifact walkthrough](examples/tis-executable-artifact-walkthrough.md)

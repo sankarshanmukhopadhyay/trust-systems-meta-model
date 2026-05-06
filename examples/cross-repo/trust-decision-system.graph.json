@@ -1,0 +1,89 @@
+{
+  "system_id": "tsmm-tis-agent-reliance-system",
+  "version": "v0.20.0",
+  "description": "Cross-repo example showing how TSMM semantics project into TIS executable artifacts.",
+  "nodes": [
+    {
+      "id": "agent-beta",
+      "type": "Agent",
+      "label": "Example Agent Beta"
+    },
+    {
+      "id": "sponsor-authority",
+      "type": "GovernanceAuthority",
+      "label": "Example Sponsor Authority"
+    },
+    {
+      "id": "relying-party-verifier",
+      "type": "Verifier",
+      "label": "Example Relying Party Verifier"
+    },
+    {
+      "id": "agent-trust-registry",
+      "type": "TrustRegistry",
+      "label": "Example Agent Trust Registry"
+    },
+    {
+      "id": "runtime-policy",
+      "type": "Policy",
+      "label": "Runtime reliance policy"
+    },
+    {
+      "id": "evidence-bundle",
+      "type": "EvidenceBundle",
+      "label": "TIS evidence bundle manifest"
+    },
+    {
+      "id": "decision-receipt",
+      "type": "TrustDecision",
+      "label": "TIS decision receipt"
+    }
+  ],
+  "edges": [
+    {
+      "id": "sponsor-to-agent-beta",
+      "type": "delegates_identity_scope",
+      "from": "sponsor-authority",
+      "to": "agent-beta",
+      "scope": [
+        "identity-state",
+        "registry-discovery"
+      ],
+      "revocation_required": true
+    },
+    {
+      "id": "verifier-evaluates-agent",
+      "type": "evaluates",
+      "from": "relying-party-verifier",
+      "to": "agent-beta",
+      "policy_ref": "runtime-policy"
+    },
+    {
+      "id": "registry-publishes-entry",
+      "type": "publishes_state",
+      "from": "agent-trust-registry",
+      "to": "agent-beta",
+      "non_authorization_notice": "Publication does not grant runtime delegation."
+    },
+    {
+      "id": "decision-produces-effect",
+      "type": "admits_effect",
+      "from": "decision-receipt",
+      "to": "agent-beta",
+      "allowed_effects": [
+        "submit-status-update"
+      ],
+      "prohibited_effects": [
+        "initiate-payment",
+        "modify-registry-entry"
+      ]
+    }
+  ],
+  "tis_artifact_refs": [
+    "examples/composition/tsmm-aligned/01-authority-boundary.example.json",
+    "examples/composition/tsmm-aligned/02-evidence-bundle-manifest.example.json",
+    "examples/composition/tsmm-aligned/03-evaluation-envelope.example.json",
+    "examples/composition/tsmm-aligned/04-decision-receipt.example.json",
+    "examples/composition/tsmm-aligned/05-registry-entry.example.json"
+  ]
+}

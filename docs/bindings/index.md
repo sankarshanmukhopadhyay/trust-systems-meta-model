@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.19.0
+applicable_version: v0.20.0
 tier: 1
 ---
 
@@ -24,3 +24,7 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 | [ODRL binding](odrl-binding.md) | Policy expression and rule-carrier surface | Experimental | Useful for bounded policy modeling without replacing the wider trust meta model |
 | [GTR GRID/DIA binding](gtr-binding.md) | Global registrar discovery and Digital Identity Anchor verification surface | Experimental | Models GRID discovery, registrar authority, DIA verification, lifecycle, revocation, and relying-party effects |
 
+
+## Executable artifact bindings
+
+- [Trust Infrastructure Schemas binding](tis-binding.md) — maps TSMM semantics into executable authority, evidence, decision, and registry artifacts.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/tsmm/schemas/tsmm-capability-negotiation.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-capability-negotiation.schema.json",
   "title": "TSMM Capability Negotiation Model v0.19.0",
   "description": "Schema for evaluating whether an advertised capability becomes discoverable, negotiated, authorized, executable, and evidenced.",
   "type": "object",

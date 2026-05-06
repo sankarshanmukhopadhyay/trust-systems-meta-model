@@ -1,0 +1,14 @@
+{
+  "mapping_id": "tsmm-authority-graph-to-tis-boundary-001",
+  "tsmm_authority_graph_ref": "examples/cross-repo/trust-decision-system.graph.json#authority.sponsor-to-agent-beta",
+  "tis_authority_boundary_ref": "governance/examples/tsmm-derived-authority-boundary.example.json",
+  "projection_rule": "A TIS authority boundary constrains reliance on one authority edge or delegation chain from the TSMM authority graph.",
+  "preserved_controls": [
+    "authoritative party",
+    "delegation chain",
+    "scope",
+    "revocation check",
+    "relying-party constraints",
+    "evidence references"
+  ]
+}

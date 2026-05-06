@@ -1,0 +1,87 @@
+{
+  "mapping_id": "tsmm-tis-decision-receipt-map-001",
+  "tsmm_decision_receipt": {
+    "decisionId": "tsmm-decision-agent-beta-runtime-001",
+    "timestamp": "2026-05-05T00:20:00Z",
+    "subjectRef": "did:web:example.invalid:agents:beta",
+    "requestingActorRef": "did:web:example.invalid:client:field-app",
+    "authorityBasis": "tsmm-authority-edge:sponsor-to-agent-beta",
+    "policyRefs": [
+      "policy.example.agent-beta.runtime-reliance.v1"
+    ],
+    "evidenceRefs": [
+      "tis:evidence-bundle:example-agent-beta-evidence-bundle-001",
+      "tis:evaluation:dcas-eval-example-agent-beta-001"
+    ],
+    "boundaryRef": "tis:authority-boundary:example-agent-beta-runtime-boundary",
+    "decision": {
+      "outcome": "allow",
+      "reason": "Agent identity posture and bounded runtime delegation satisfied relying-party policy."
+    },
+    "effect": {
+      "effectType": "task-admission",
+      "admission": "conditional",
+      "allowed": [
+        "submit-status-update"
+      ],
+      "prohibited": [
+        "initiate-payment",
+        "modify-registry-entry"
+      ]
+    },
+    "revocationStateChecked": true,
+    "assuranceLevel": "assured",
+    "reviewPath": "escalate-to-human-review-if-evidence-stale-or-scope-expanded"
+  },
+  "tis_decision_receipt_projection": "decision/examples/tsmm-mapped-decision-receipt.example.json",
+  "field_mapping": [
+    {
+      "tsmm": "decisionId",
+      "tis": "receipt_id"
+    },
+    {
+      "tsmm": "timestamp",
+      "tis": "timestamps.decided_at"
+    },
+    {
+      "tsmm": "subjectRef",
+      "tis": "subject.subject_id"
+    },
+    {
+      "tsmm": "requestingActorRef",
+      "tis": "evaluated_artifacts[].notes or decision context"
+    },
+    {
+      "tsmm": "authorityBasis",
+      "tis": "authority_boundary"
+    },
+    {
+      "tsmm": "policyRefs[]",
+      "tis": "policy_reference"
+    },
+    {
+      "tsmm": "evidenceRefs[]",
+      "tis": "evaluated_artifacts[] and evidence[]"
+    },
+    {
+      "tsmm": "decision.outcome",
+      "tis": "decision_type and result.status"
+    },
+    {
+      "tsmm": "effect",
+      "tis": "result.allowed_actions, result.prohibited_actions, result.conditions"
+    },
+    {
+      "tsmm": "revocationStateChecked",
+      "tis": "authority_boundary.revocation.status_check_required"
+    },
+    {
+      "tsmm": "assuranceLevel",
+      "tis": "assurance.assurance_level"
+    },
+    {
+      "tsmm": "reviewPath",
+      "tis": "result.conditions"
+    }
+  ]
+}

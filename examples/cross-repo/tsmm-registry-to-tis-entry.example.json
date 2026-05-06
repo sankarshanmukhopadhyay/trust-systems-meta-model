@@ -1,0 +1,7 @@
+{
+  "mapping_id": "tsmm-registry-to-tis-entry-001",
+  "tsmm_registry_ref": "examples/cross-repo/trust-decision-system.graph.json#registry.agent-trust-registry",
+  "tis_registry_entry_ref": "examples/composition/tsmm-aligned/05-registry-entry.example.json",
+  "rule": "TSMM registry describes governance semantics; TIS registry entry publishes executable discoverable state.",
+  "non_authorization_notice": "Registry publication does not authorize runtime action."
+}

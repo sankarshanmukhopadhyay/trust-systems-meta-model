@@ -1,0 +1,11 @@
+{
+  "mapping_id": "tsmm-evidence-artifact-to-tis-bundle-001",
+  "tsmm_evidence_artifacts": [
+    "agent-card-publication",
+    "sponsor-delegation-record",
+    "revocation-status-check",
+    "evaluation-envelope"
+  ],
+  "tis_evidence_bundle_ref": "examples/composition/tsmm-aligned/02-evidence-bundle-manifest.example.json",
+  "rule": "TSMM EvidenceArtifact captures semantic role; TIS evidence bundle manifest packages artifacts for validation, replay, and audit."
+}

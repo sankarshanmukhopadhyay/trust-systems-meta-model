@@ -1,48 +1,99 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/tsmm/schemas/tsmm-interoperability.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-interoperability.schema.json",
   "title": "TSMM Interoperability Comparison Model",
   "description": "Machine-readable comparison model for structural, semantic, and behavioral interoperability across trust ecosystems.",
   "type": "object",
-  "required": ["matrixId", "label", "modes", "comparisons"],
+  "required": [
+    "matrixId",
+    "label",
+    "modes",
+    "comparisons"
+  ],
   "properties": {
-    "matrixId": {"$ref": "#/$defs/idString"},
-    "label": {"type": "string"},
+    "matrixId": {
+      "$ref": "#/$defs/idString"
+    },
+    "label": {
+      "type": "string"
+    },
     "modes": {
       "type": "array",
       "minItems": 3,
-      "items": {"type": "string", "enum": ["structural", "semantic", "behavioral"]},
+      "items": {
+        "type": "string",
+        "enum": [
+          "structural",
+          "semantic",
+          "behavioral"
+        ]
+      },
       "uniqueItems": true
     },
     "comparisons": {
       "type": "array",
       "minItems": 3,
-      "items": {"$ref": "#/$defs/comparison"}
+      "items": {
+        "$ref": "#/$defs/comparison"
+      }
     }
   },
   "$defs": {
-    "idString": {"type": "string", "pattern": "^[A-Za-z0-9._:-]+$"},
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
     "comparison": {
       "type": "object",
-      "required": ["target", "modeFindings", "portabilitySummary"],
+      "required": [
+        "target",
+        "modeFindings",
+        "portabilitySummary"
+      ],
       "properties": {
-        "target": {"type": "string"},
+        "target": {
+          "type": "string"
+        },
         "modeFindings": {
           "type": "array",
           "minItems": 1,
-          "items": {"$ref": "#/$defs/modeFinding"}
+          "items": {
+            "$ref": "#/$defs/modeFinding"
+          }
         },
-        "portabilitySummary": {"type": "string"}
+        "portabilitySummary": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
     "modeFinding": {
       "type": "object",
-      "required": ["mode", "status", "notes"],
+      "required": [
+        "mode",
+        "status",
+        "notes"
+      ],
       "properties": {
-        "mode": {"type": "string", "enum": ["structural", "semantic", "behavioral"]},
-        "status": {"type": "string", "enum": ["supported", "partial", "not-supported"]},
-        "notes": {"type": "string"}
+        "mode": {
+          "type": "string",
+          "enum": [
+            "structural",
+            "semantic",
+            "behavioral"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "supported",
+            "partial",
+            "not-supported"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     }

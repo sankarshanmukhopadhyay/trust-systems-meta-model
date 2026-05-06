@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/tsmm/schemas/tsmm-agent-interaction-extension.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-agent-interaction-extension.schema.json",
   "title": "TSMM Agent Interaction Extension Instance v0.14.0",
   "description": "Extension schema for modeling trust-relevant aspects of agent-to-agent interaction: service disclosure, capability contracts, session continuity, runtime authorization checkpoints, extension negotiation, opacity constraints, and lateral peer trust.",
   "type": "object",
@@ -484,7 +484,7 @@
     },
     "interactionTask": {
       "type": "object",
-      "description": "A durable, stateful work unit with governance-significant state transitions, artifact accumulation, and cancellation/continuation semantics. Distinct from ExecutionContext (which models single-evaluation operational parameters) and from InteractionContext (which models session-level governance state). InteractionTask models the bounded piece of work in progress \u2014 its status, what it has produced, and how it was resolved or terminated.",
+      "description": "A durable, stateful work unit with governance-significant state transitions, artifact accumulation, and cancellation/continuation semantics. Distinct from ExecutionContext (which models single-evaluation operational parameters) and from InteractionContext (which models session-level governance state). InteractionTask models the bounded piece of work in progress — its status, what it has produced, and how it was resolved or terminated.",
       "required": [
         "id",
         "contextRef",
@@ -544,7 +544,7 @@
     },
     "contentProvenancePolicy": {
       "type": "object",
-      "description": "A policy governing the trust-relevant properties of interaction payload content: provenance requirements, sanitization obligations, redaction rules, and evidence capture obligations, differentiated by content modality. This is not a wire-level content type registry \u2014 it is the governance envelope specifying what must be known and verified about payload content before it can be acted upon, stored, or forwarded.",
+      "description": "A policy governing the trust-relevant properties of interaction payload content: provenance requirements, sanitization obligations, redaction rules, and evidence capture obligations, differentiated by content modality. This is not a wire-level content type registry — it is the governance envelope specifying what must be known and verified about payload content before it can be acted upon, stored, or forwarded.",
       "required": [
         "id",
         "applicableModalities",
@@ -592,7 +592,7 @@
     },
     "observabilityMode": {
       "type": "object",
-      "description": "The governance observability properties of an interaction delivery channel \u2014 what can be known about delivery, timing, and progress given the channel's delivery model. Models the governance coverage that is or is not possible, and what compensating controls are required. Not the channel type itself, but its governance implications.",
+      "description": "The governance observability properties of an interaction delivery channel — what can be known about delivery, timing, and progress given the channel's delivery model. Models the governance coverage that is or is not possible, and what compensating controls are required. Not the channel type itself, but its governance implications.",
       "required": [
         "id",
         "deliveryModel",

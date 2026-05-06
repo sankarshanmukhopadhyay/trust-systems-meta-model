@@ -1,49 +1,110 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/tsmm/schemas/tsmm-lifecycle.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-lifecycle.schema.json",
   "title": "TSMM Lifecycle State Model",
   "description": "Machine-readable lifecycle states and transitions for trust-relevant objects in TSMM.",
   "type": "object",
-  "required": ["modelId", "label", "states", "transitions"],
+  "required": [
+    "modelId",
+    "label",
+    "states",
+    "transitions"
+  ],
   "properties": {
-    "modelId": {"$ref": "#/$defs/idString"},
-    "label": {"type": "string"},
-    "appliesTo": {"type": "array", "items": {"type": "string"}},
+    "modelId": {
+      "$ref": "#/$defs/idString"
+    },
+    "label": {
+      "type": "string"
+    },
+    "appliesTo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "states": {
       "type": "array",
       "minItems": 5,
-      "items": {"$ref": "#/$defs/state"}
+      "items": {
+        "$ref": "#/$defs/state"
+      }
     },
     "transitions": {
       "type": "array",
       "minItems": 4,
-      "items": {"$ref": "#/$defs/transition"}
+      "items": {
+        "$ref": "#/$defs/transition"
+      }
     }
   },
   "$defs": {
-    "idString": {"type": "string", "pattern": "^[A-Za-z0-9._:-]+$"},
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
     "state": {
       "type": "object",
-      "required": ["id", "name", "description"],
+      "required": [
+        "id",
+        "name",
+        "description"
+      ],
       "properties": {
-        "id": {"$ref": "#/$defs/idString"},
-        "name": {"type": "string", "enum": ["issued", "active", "suspended", "revoked", "expired"]},
-        "description": {"type": "string"},
-        "entryEvidence": {"type": "string"}
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "issued",
+            "active",
+            "suspended",
+            "revoked",
+            "expired"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "entryEvidence": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
     "transition": {
       "type": "object",
-      "required": ["id", "from", "to", "trigger", "actor", "evidenceRequirement"],
+      "required": [
+        "id",
+        "from",
+        "to",
+        "trigger",
+        "actor",
+        "evidenceRequirement"
+      ],
       "properties": {
-        "id": {"$ref": "#/$defs/idString"},
-        "from": {"type": "string"},
-        "to": {"type": "string"},
-        "trigger": {"type": "string"},
-        "actor": {"type": "string"},
-        "evidenceRequirement": {"type": "string"},
-        "notes": {"type": "string"}
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "trigger": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "evidenceRequirement": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     }

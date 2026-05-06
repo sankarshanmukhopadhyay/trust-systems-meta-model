@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/tsmm/schemas/tsmm.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm.schema.json",
   "title": "TSMM Canonical Meta-Model Schema",
   "description": "Machine-readable canonical schema for the TSMM primitive catalog. This schema defines the first-class abstractions and their required fields so the meta-model itself can be parsed, compared, and validated independently of any concrete TSMM instance.",
   "type": "object",

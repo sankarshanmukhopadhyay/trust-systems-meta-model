@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.19.0
+applicable_version: v0.20.0
 tier: 1
 status: experimental
 status_note: Included for comparative modelling; see ../maturity-model.md

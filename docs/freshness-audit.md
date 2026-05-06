@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.19.0
+applicable_version: v0.20.0
 tier: 2
 ---
 
@@ -101,3 +101,13 @@ Release gate outcome:
 - no markdown frontmatter retains `applicable_version: v0.16.0`
 - new schemas are covered by examples and validation vectors
 - runtime assurance artifacts are linked from documentation navigation
+
+## v0.20.0 harmonization review
+
+Freshness review outcome for v0.20.0:
+
+- repository `VERSION` updated to `v0.20.0`;
+- TSMM schema `$id` values moved away from placeholder `example.org` identifiers to release-pinned repository URLs;
+- Trust Infrastructure Schemas alignment docs, binding, constraints, crosswalks, and cross-repo examples added;
+- assurance terminology clarified so TSMM profile posture is not conflated with TIS AL1-AL4 assurance rigor;
+- documentation index and binding index refreshed for GitHub Pages navigation.

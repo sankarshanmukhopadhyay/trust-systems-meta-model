@@ -1,0 +1,161 @@
+{
+  "bindingId": "tsmm-tis-v0.20.0",
+  "label": "Trust Infrastructure Schemas Binding",
+  "description": "Binds TSMM semantic concepts to executable Trust Infrastructure Schemas artifacts for authority, evidence, evaluation, decision, registry, assurance, and artifact references.",
+  "targetEcosystem": "trust-infrastructure-schemas",
+  "version": "v0.8.0",
+  "sources": [
+    "docs/cross-repo/trust-infrastructure-schemas-alignment.md",
+    "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md",
+    "docs/bindings/tis-binding.md"
+  ],
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "trust-infrastructure-schemas",
+    "bindingVersion": "v0.8.0",
+    "guarantees": [
+      {
+        "name": "layer-boundary",
+        "status": "supported",
+        "description": "TSMM concepts are projected into TIS artifacts without transferring semantic ownership of the core model."
+      },
+      {
+        "name": "decision-interoperability",
+        "status": "supported",
+        "description": "TSMM runtime decisions can be represented as TIS decision receipts with explicit authority, policy, evidence, result, and timestamp fields."
+      },
+      {
+        "name": "assurance-crosswalk",
+        "status": "partial",
+        "description": "TSMM profile postures map to TIS AL1-AL4 as guidance. Agentic is a risk context, not an assurance level."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "not-a-conformance-claim",
+        "impact": "Binding use does not certify an implementation as conformant to either repository.",
+        "mitigation": "Use repo validation scripts and release-specific conformance declarations."
+      },
+      {
+        "name": "lossless-transform-not-guaranteed",
+        "impact": "Some TSMM graph semantics may require references or extensions when projected into a flat artifact.",
+        "mitigation": "Preserve TSMM node and edge references in TIS semantic_bindings or artifact metadata."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "artifact-projection",
+        "expectation": "A TIS artifact SHOULD cite the TSMM concept, node, edge, or receipt from which it was derived.",
+        "sourceRefs": [
+          "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+        ]
+      },
+      {
+        "behavior": "authority-evaluation",
+        "expectation": "Discovery or publication MUST NOT be interpreted as runtime authorization.",
+        "sourceRefs": [
+          "docs/cross-repo/trust-infrastructure-schemas-alignment.md"
+        ]
+      },
+      {
+        "behavior": "revocation",
+        "expectation": "Runtime reliance SHOULD record revocation status checks in decision receipts or authority boundaries.",
+        "sourceRefs": [
+          "docs/crosswalks/tis-decision-receipt-crosswalk.md"
+        ]
+      }
+    ],
+    "constraintSetRef": "bindings/tis/constraints.json"
+  },
+  "mappings": [
+    {
+      "externalConcept": "authority boundary authoritative_party",
+      "tsmmType": "GovernanceAuthority",
+      "bindingStrength": "exact",
+      "description": "A TIS authority boundary is an artifact-level projection of a TSMM authority node or edge.",
+      "relatedDocs": [
+        "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "evidence bundle manifest",
+      "tsmmType": "EvidenceBundle",
+      "bindingStrength": "exact",
+      "description": "TIS packages TSMM EvidenceArtifact references for validation and audit.",
+      "relatedDocs": [
+        "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "OASF evaluation envelope",
+      "tsmmType": "Assessment",
+      "bindingStrength": "approximate",
+      "description": "Evaluation envelopes capture verifier assessment evidence and assurance result.",
+      "relatedDocs": [
+        "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "decision receipt",
+      "tsmmType": "TrustDecision",
+      "bindingStrength": "exact",
+      "description": "TIS decision receipts are executable records of TSMM trust decisions and operational effects.",
+      "relatedDocs": [
+        "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "registry entry",
+      "tsmmType": "TrustRegistry",
+      "bindingStrength": "approximate",
+      "description": "TIS registry entries publish discoverable trust state but do not authorize runtime effects.",
+      "relatedDocs": [
+        "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "AL1-AL4 assurance object",
+      "tsmmType": "AssuranceProfile",
+      "bindingStrength": "approximate",
+      "description": "TSMM profile language is contextual; TIS AL values express assurance rigor.",
+      "relatedDocs": [
+        "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "policy_reference / ODRL policy reference",
+      "tsmmType": "Policy",
+      "bindingStrength": "approximate",
+      "description": "Policy references bind a decision to external rules without embedding all policy logic.",
+      "relatedDocs": [
+        "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+      ]
+    },
+    {
+      "externalConcept": "result.allowed_actions / prohibited_actions / conditions",
+      "tsmmType": "Effect",
+      "bindingStrength": "exact",
+      "description": "TIS result constraints represent the operational effect of a trust decision.",
+      "relatedDocs": [
+        "docs/crosswalks/trust-infrastructure-schemas-crosswalk.md"
+      ]
+    }
+  ],
+  "notes": [
+    "This binding is intentionally additive and does not replace existing TRQP, OASF, ODRL, A2A, or GTR bindings.",
+    "TIS schemas provide executable artifact contracts; TSMM provides semantic interpretation and graph-level interoperability."
+  ],
+  "maturity": {
+    "status": "candidate",
+    "stability": "review",
+    "productionRecommendation": "conditional",
+    "notes": [
+      "Use with validation scripts and explicit profile declarations."
+    ]
+  },
+  "metadata": {
+    "tsmmVersion": "v0.20.0",
+    "tisVersion": "v0.8.0",
+    "alignmentRelease": "cross-repo-artifact-harmonization"
+  }
+}
