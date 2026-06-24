@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-assurance-properties.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-assurance-properties.schema.json",
   "title": "TSMM Assurance Properties Model",
   "description": "Assurance-oriented properties that can be attached to TSMM elements so evidence, auditability, and traceability expectations remain machine-readable.",
   "type": "object",

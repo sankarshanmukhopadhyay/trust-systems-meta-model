@@ -5,7 +5,8 @@
   "assumptions": [
     "ODRL artifacts are available as machine-readable policy objects or references to them.",
     "The consuming system can distinguish policy publication from policy evaluation and policy enforcement.",
-    "Ecosystem-specific ODRL profiles disclose any custom actions, constraints, or party functions needed for interpretation."
+    "Ecosystem-specific ODRL profiles disclose any custom actions, constraints, or party functions needed for interpretation.",
+    "An ODRL policy object or stable reference, a profile or vocabulary reference for non-core terms, and supporting evaluator output are available when policy enforcement claims are material."
   ],
   "prohibitedInferences": [
     "Do not infer runtime enforcement merely because an ODRL policy is published.",
@@ -13,9 +14,9 @@
     "Do not infer that all TSMM trust objects are reducible to ODRL asset usage semantics."
   ],
   "requiredArtifacts": [
-    "An ODRL policy object or stable reference",
-    "A profile or vocabulary reference when non-core terms are used",
-    "Supporting evidence or evaluator output when policy enforcement claims are material"
+    "docs/bindings/odrl-binding.md",
+    "docs/crosswalks/odrl-crosswalk.md",
+    "examples/consumer-policy-instance.json"
   ],
   "comparisonNotes": [
     "ODRL is strongest when used as the policy-expression layer for content, services, disclosure, and access constraints.",

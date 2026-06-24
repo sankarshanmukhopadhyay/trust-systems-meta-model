@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 1
 ---
 
@@ -12,7 +12,14 @@ This roadmap is directional. It is not a delivery schedule. TSMM evolves through
 
 ## Current release line
 
-**v0.19.0 — Agent Discovery, Capability Negotiation, and Task Evidence Readiness** is the current release line. It adds candidate governance surfaces for:
+**v0.21.0 — Executable Binding Assurance and Catalog Completeness** is the current release line. It makes the published binding and graph catalog an enforceable assurance surface through:
+
+- complete machine-readable binding contracts
+- binding maturity and publication-status alignment
+- catalog-wide binding and graph validation
+- reproducible local validation dependencies
+
+The v0.19.0 agent-interaction release added candidate governance surfaces for:
 
 - discovery governance
 - descriptor integrity and freshness

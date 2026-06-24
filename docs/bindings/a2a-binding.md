@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 0
 ---
 
@@ -48,4 +48,4 @@ An A2A-class implementation mapped into TSMM SHOULD produce evidence for:
 
 ## Maturity status
 
-This binding is **candidate** in v0.19.0. It is suitable for modeling, validation experiments, enterprise architecture review, and assurance design. It should not be treated as a conformance claim against the A2A protocol itself.
+This binding is **candidate** in v0.21.0. It is suitable for modeling, validation experiments, enterprise architecture review, and assurance design. Its machine-readable contract and constraint set prohibit treating descriptor discovery, protocol reachability, or task completion as a conformance claim against the A2A protocol or as standing authority to produce an effect.

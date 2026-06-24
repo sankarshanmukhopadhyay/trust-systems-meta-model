@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-multi-agent-extension.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-multi-agent-extension.schema.json",
   "title": "TSMM Multi-Agent Coordination Extension Instance v0.9.0",
   "description": "Extension schema for representing chained delegation and multi-agent coordination layered on top of the TSMM agentic extension.",
   "type": "object",

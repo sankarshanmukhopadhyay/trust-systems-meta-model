@@ -1,0 +1,27 @@
+{
+  "constraintSetId": "tsmm.binding.constraints.a2a.v1",
+  "bindingId": "tsmm.binding.a2a.v1",
+  "targetEcosystem": "Agent2Agent (A2A) Protocol",
+  "assumptions": [
+    "A2A discovery and task semantics are composed with external authority, policy, and evidence systems.",
+    "An agent descriptor is a claim about a service surface, not a standing authorization grant."
+  ],
+  "prohibitedInferences": [
+    "Do not infer trusted authority from Agent Card discovery or transport reachability.",
+    "Do not treat advertised capability, extension negotiation, or task completion as proof that an effect was authorized.",
+    "Do not treat an opaque agent implementation as exempt from evidence and redress obligations."
+  ],
+  "requiredArtifacts": [
+    "docs/bindings/a2a-binding.md",
+    "docs/crosswalks/a2a-crosswalk.md",
+    "examples/agent-discovery-governance-instance.json",
+    "examples/capability-negotiation-instance.json",
+    "examples/task-evidence-lifecycle-instance.json"
+  ],
+  "comparisonNotes": [
+    "A2A supplies interaction mechanics; TSMM models the governance conditions under which those mechanics may produce effects."
+  ],
+  "validationHints": [
+    "Validate discovery integrity, required extension negotiation, and task evidence before treating an A2A interaction as assurance evidence."
+  ]
+}

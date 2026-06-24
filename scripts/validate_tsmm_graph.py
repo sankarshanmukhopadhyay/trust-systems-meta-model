@@ -10,20 +10,20 @@ from referencing import Registry, Resource
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "schemas" / "tsmm-graph.schema.json"
-DEFAULT_TARGETS = [
-    ROOT / "examples" / "tsmm-ecosystem-example.json",
-    ROOT / "model" / "graph" / "tsmm.graph.json",
-    ROOT / "examples" / "profiles" / "ssi-ecosystem.json",
-    ROOT / "examples" / "profiles" / "agent-trust-network.json",
-    ROOT / "examples" / "profiles" / "agent-governance-network.json",
-    ROOT / "examples" / "profiles" / "trust-registry-federation.json",
-    ROOT / "examples" / "profiles" / "dpi-trust-layer.json",
-    ROOT / "examples" / "systems" / "trqp-registry-system.json",
-    ROOT / "examples" / "systems" / "openid-federation-system.json",
-    ROOT / "examples" / "systems" / "decentralized-directory-system.json",
-    ROOT / "examples" / "systems" / "content-authenticity-workflow.json",
-    ROOT / "examples" / "systems" / "verifiable-trust-community-system.json",
-]
+def discover_graph_targets() -> list[Path]:
+    candidates = [ROOT / "model" / "graph" / "tsmm.graph.json", *sorted((ROOT / "examples").rglob("*.json"))]
+    permitted_node_types = {node_type for pairs in ALLOWED_RELATIONS.values() for pair in pairs for node_type in pair}
+    targets: list[Path] = []
+    for path in candidates:
+        data = load_json(path)
+        if (
+            isinstance(data.get("graphId"), str)
+            and isinstance(data.get("nodes"), list)
+            and isinstance(data.get("edges"), list)
+            and all(node.get("type") in permitted_node_types for node in data["nodes"])
+        ):
+            targets.append(path)
+    return targets
 
 ALLOWED_RELATIONS: dict[str, set[tuple[str, str]]] = {
     "governs": {
@@ -174,7 +174,9 @@ def validate_graph(path: Path) -> None:
 
 
 def main(argv: list[str]) -> None:
-    targets = [Path(arg).resolve() for arg in argv] if argv else DEFAULT_TARGETS
+    targets = [Path(arg).resolve() for arg in argv] if argv else discover_graph_targets()
+    if not targets:
+        raise SystemExit("FAILED no graph artifacts found")
     for target in targets:
         validate_graph(target)
     print("All TSMM graph validations passed.")

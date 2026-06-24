@@ -7,16 +7,7 @@ from referencing import Registry, Resource
 from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
-BINDINGS = [
-    ROOT / "bindings" / "trqp" / "tsmm-trqp-binding.json",
-    ROOT / "bindings" / "openid-federation" / "tsmm-openid-federation-binding.json",
-    ROOT / "bindings" / "dcas" / "tsmm-dcas-binding.json",
-    ROOT / "bindings" / "vtc" / "tsmm-vtc-binding.json",
-    ROOT / "bindings" / "ais1" / "tsmm-ais1-binding.json",
-    ROOT / "bindings" / "havid" / "tsmm-havid-binding.json",
-    ROOT / "bindings" / "gtr" / "tsmm-gtr-binding.json",
-    ROOT / "bindings" / "tis" / "tsmm-tis-binding.json",
-]
+BINDINGS = sorted((ROOT / "bindings").glob("*/tsmm-*-binding.json"))
 BINDING_SCHEMA = ROOT / "schemas" / "tsmm-binding.schema.json"
 CONSTRAINT_SCHEMA = ROOT / "validation" / "schemas" / "tsmm-binding-constraints.schema.json"
 
@@ -74,7 +65,16 @@ def validate_binding(path: Path) -> None:
     if constraint_data['targetEcosystem'] != data['targetEcosystem']:
         raise SystemExit(f"FAILED constraint targetEcosystem mismatch: {constraint_path.relative_to(ROOT)}")
 
-    referenced_files = set(data.get('sources', [])) | set(constraint_data.get('requiredArtifacts', []))
+    referenced_files = (
+        set(data.get('sources', []))
+        | set(data.get('validationArtifacts', []))
+        | set(constraint_data.get('requiredArtifacts', []))
+        | {
+            ref
+            for expectation in contract['behavioralExpectations']
+            for ref in expectation.get('sourceRefs', [])
+        }
+    )
     for ref in referenced_files:
         ref_path = ROOT / ref
         if not ref_path.exists():
@@ -85,6 +85,8 @@ def validate_binding(path: Path) -> None:
 
 
 def main() -> None:
+    if not BINDINGS:
+        raise SystemExit("FAILED no binding artifacts found")
     for path in BINDINGS:
         validate_binding(path)
     print('All binding validations passed.')

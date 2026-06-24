@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-vtc-extension.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-vtc-extension.schema.json",
   "title": "TSMM Verifiable Trust Communities Extension Instance v0.9.0",
   "description": "Extension schema for representing verifiable trust community concepts layered on top of the TSMM core.",
   "type": "object",

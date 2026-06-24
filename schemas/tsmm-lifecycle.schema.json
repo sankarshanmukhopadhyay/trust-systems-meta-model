@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-lifecycle.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-lifecycle.schema.json",
   "title": "TSMM Lifecycle State Model",
   "description": "Machine-readable lifecycle states and transitions for trust-relevant objects in TSMM.",
   "type": "object",

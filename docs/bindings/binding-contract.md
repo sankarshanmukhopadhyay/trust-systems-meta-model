@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 1
 ---
 
@@ -32,11 +32,6 @@ A binding is useful only if readers know what *not* to conclude from it. Each `c
 
 ## Current catalog
 
-The current main-branch catalog includes contract-backed bindings for:
-
-- TRQP
-- OpenID Federation
-- DCAS
-- Verifiable Trust Communities
+The current catalog requires every published binding to carry a contract, constraint set, and machine-readable maturity declaration. This includes protocol, registry, assurance, identity, policy, agent-interaction, and publication bindings.
 
 These bindings are intentionally semantic. They make systems comparable without pretending to replace each ecosystem's protocol rules, processing logic, or governance text.

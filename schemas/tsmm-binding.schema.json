@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-binding.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-binding.schema.json",
   "title": "TSMM Ecosystem Binding Schema",
   "description": "Machine-readable contract for aligning an external ecosystem vocabulary with TSMM abstractions, including mapping strength, behavioral expectations, and known limits.",
   "type": "object",
@@ -10,7 +10,8 @@
     "targetEcosystem",
     "version",
     "bindingContract",
-    "mappings"
+    "mappings",
+    "maturity"
   ],
   "properties": {
     "bindingId": {
@@ -45,6 +46,12 @@
       }
     },
     "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validationArtifacts": {
       "type": "array",
       "items": {
         "type": "string"
@@ -111,8 +118,9 @@
       "pattern": "^[A-Za-z0-9._:-]+$"
     },
     "tsmmType": {
-      "type": "string",
-      "enum": [
+      "oneOf": [
+        {
+          "enum": [
         "TrustDomain",
         "GovernanceAuthority",
         "TrustRegistry",
@@ -128,7 +136,32 @@
         "Assessment",
         "TrustDecision",
         "Effect",
-        "RelyingParty"
+            "RelyingParty",
+            "ServiceDescriptor",
+            "SkillContract",
+            "InteractionContext",
+            "InteractionTask",
+            "AuthorizationCheckpoint",
+            "ExtensionContract",
+            "ContentProvenancePolicy",
+            "ObservabilityMode",
+            "OpacityBoundary",
+            "PeerTrustRelation",
+            "DiscoveryGovernance",
+            "CapabilityNegotiation",
+            "TaskEvidenceLifecycle",
+            "EvidenceArtifact",
+            "Operator"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9]*(?:\\.[A-Za-z][A-Za-z0-9]*)+$"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9]*(?:\\s\\+\\s[A-Za-z][A-Za-z0-9]*)+$"
+        }
       ]
     },
     "guarantee": {
@@ -265,7 +298,10 @@
           "enum": [
             "exact",
             "approximate",
-            "composite"
+            "composite",
+            "direct",
+            "abstract",
+            "new"
           ]
         },
         "description": {
@@ -281,6 +317,19 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        }
+        ,
+        "mappedFields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "tsmmProperties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["string", "number", "boolean"]
           }
         }
       },

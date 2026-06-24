@@ -1,14 +1,14 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 0
 ---
 
 
 # Trust Systems Meta Model Documentation
 
-TSMM is a portable reference model for designing, comparing, implementing, and assuring trust systems. The v0.19.0 documentation is organized around implementer tasks rather than release history.
+TSMM is a portable reference model for designing, comparing, implementing, and assuring trust systems. The v0.21.0 documentation is organized around implementer tasks rather than release history.
 
 ## Start by task
 
@@ -23,7 +23,7 @@ TSMM is a portable reference model for designing, comparing, implementing, and a
 | Bind ecosystems | [Bindings overview](bindings/index.md), [Binding contract](bindings/binding-contract.md) | `bindings/*/*.json` |
 | Validate conformance | [Validation and testability](conformance/validation-and-testability.md) | `validation/test_vectors/` |
 
-## v0.19.0 agent interaction release surfaces
+## Agent interaction release surfaces
 
 - [Discovery Governance Model](model/discovery-governance.md)
 - [Capability Negotiation Model](model/capability-negotiation.md)
@@ -59,7 +59,7 @@ TSMM is a portable reference model for designing, comparing, implementing, and a
 - [Documentation governance](documentation-governance.md)
 - [Roadmap](roadmap.md)
 - [Glossary](glossary.md)
-- [Release v0.19.0](../releases/v0.19.0.md)
+- [Release v0.21.0](../releases/v0.21.0.md)
 
 ## Cross-repo executable artifact alignment
 

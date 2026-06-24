@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 1
 ---
 
@@ -71,3 +71,7 @@ A TSMM-aware OASF publication should expose enough information to recover the fo
 ## Machine-readable artifact
 
 See `bindings/oasf/tsmm-oasf-binding.json`.
+
+## Maturity status
+
+This binding is **candidate** in v0.21.0. It supports bounded comparison of publication and evaluation artifacts. Publication remains distinct from runtime authorization: implementers must compose authority, policy, freshness, revocation, decision evidence, and redress controls where an OASF-described service may produce an operational effect.

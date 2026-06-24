@@ -182,6 +182,51 @@
     "examples/capability-negotiation-instance.json",
     "examples/task-evidence-lifecycle-instance.json"
   ],
-  "maturity": "candidate",
-  "lastReviewed": "2026-05-05"
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "Agent2Agent (A2A) Protocol",
+    "bindingVersion": "1.1.0",
+    "guarantees": [
+      {
+        "name": "governed-discovery-and-negotiation",
+        "status": "supported",
+        "description": "A2A discovery, capability negotiation, and task-lifecycle events can be represented as TSMM governance artifacts."
+      },
+      {
+        "name": "runtime-authority-completeness",
+        "status": "partial",
+        "description": "TSMM can record runtime authorization checkpoints, but A2A transport conformance alone does not establish the authority, policy, or evidence required for a permitted effect."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "protocol-conformance-separation",
+        "impact": "This semantic binding does not certify A2A protocol conformance or the legitimacy of a discovered agent.",
+        "mitigation": "Validate A2A behavior separately and bind discovery, policy, authority, and evidence to each trust decision."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "descriptor-reliance",
+        "expectation": "Consumers MUST evaluate descriptor integrity, freshness, and disclosure policy before relying on advertised capabilities.",
+        "sourceRefs": ["docs/bindings/a2a-binding.md", "docs/model/discovery-governance.md"]
+      },
+      {
+        "behavior": "privileged-continuation",
+        "expectation": "A privileged task continuation SHOULD produce an authorization checkpoint and decision evidence before an operational effect occurs.",
+        "sourceRefs": ["docs/model/authorization-checkpoint.md", "docs/model/task-evidence-lifecycle.md"]
+      }
+    ],
+    "constraintSetRef": "bindings/a2a/constraints.json"
+  },
+  "maturity": {
+    "status": "candidate",
+    "stability": "review",
+    "productionRecommendation": "conditional",
+    "notes": ["Suitable for architecture, validation, and assurance design; not an A2A conformance claim."]
+  },
+  "metadata": {
+    "maintainer": "maintainers",
+    "lastReviewed": "2026-06-23"
+  }
 }

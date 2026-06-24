@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-interoperability.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-interoperability.schema.json",
   "title": "TSMM Interoperability Comparison Model",
   "description": "Machine-readable comparison model for structural, semantic, and behavioral interoperability across trust ecosystems.",
   "type": "object",

@@ -1,20 +1,20 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 0
 ---
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.20.0-blue)](releases/v0.20.0.md)
+[![Release](https://img.shields.io/badge/release-v0.21.0-blue)](releases/v0.21.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.20.0  
-**Status:** Draft reference model with machine-readable modeling, validation, comparison, runtime-governance, and executable-artifact binding artifacts  
+**Version:** v0.21.0  
+**Status:** Draft reference model with machine-readable modeling, validation, comparison, runtime-governance, and executable binding assurance artifacts  
 **License:** CC BY-SA 4.0
 
 ## What TSMM is
@@ -23,18 +23,17 @@ Trust Systems Meta Model (TSMM) is a portable abstract reference model for desig
 
 TSMM is intentionally **effect-centered**. The core question is not only whether an identity exists or a credential verifies. The core question is whether a bounded authority, evaluated under policy and evidence, should be allowed to produce a defined effect.
 
-## What v0.20.0 adds
+## What v0.21.0 adds
 
-TSMM v0.20.0 delivers **Cross-Repo Artifact Alignment and Executable Governance Binding**. It harmonizes TSMM semantics with Trust Infrastructure Schemas (TIS) so model-level concepts can be projected into executable authority, evidence, decision, and registry artifacts without collapsing the model layer into a schema catalog.
+TSMM v0.21.0 delivers **Executable Binding Assurance and Catalog Completeness**. It makes the published binding catalog enforceable: every binding now carries an explicit governance contract, declared maturity, constraint set, and catalog validation path. It also validates all published graph artifacts and provides a reproducible local validation environment.
 
 New release surfaces:
 
-- **Discovery Governance Model** for public descriptors, authenticated extended descriptors, curated registries, direct configuration, restricted catalogs, freshness policy, integrity requirements, and failure behavior.
-- **Capability Negotiation Model** for advertised, discoverable, negotiated, authorized, executed, and evidenced capabilities.
-- **Task Evidence Lifecycle Model** for treating task state transitions as governance-relevant evidence events.
-- **A2A binding refresh** covering discovery modes, descriptor integrity, extension requiredness, task lifecycle evidence, streaming/async observability, and opacity boundaries.
-- **Documentation refresh** across README, docs index, roadmap, freshness audit, documentation governance, conformance guidance, and GitHub Pages entry points.
-- **Validation hardening** with schemas, examples, and valid/invalid test vectors for the new governance surfaces.
+- **Complete binding contracts** for A2A and OASF, including bounded guarantees, limitations, behavioral expectations, and prohibited inferences.
+- **Binding schema expansion** for TSMM extension-layer types and governance mapping semantics.
+- **Catalog-wide validation** that discovers every published binding and graph artifact rather than relying on incomplete hand-maintained lists.
+- **Negative conformance vectors** for binding contract completeness and mapping vocabulary.
+- **Reproducible validation** through a repository-owned dependency manifest used by CI and local implementers.
 
 
 ## TSMM and Trust Infrastructure Schemas
@@ -119,6 +118,7 @@ The binding is suitable for architectural analysis, assurance design, documentat
 Run the full validation set from the repository root:
 
 ```bash
+python -m pip install -r requirements-dev.txt
 python scripts/validate_examples.py
 python scripts/validate_bindings.py
 python scripts/validate_test_vectors.py
@@ -136,11 +136,11 @@ python scripts/check_schema_coverage.py
 - Roadmap: `docs/roadmap.md`
 - Freshness audit: `docs/freshness-audit.md`
 - Documentation governance: `docs/documentation-governance.md`
-- Release notes: `releases/v0.20.0.md`
+- Release notes: `releases/v0.21.0.md`
 
 ## Current release posture
 
-TSMM v0.20.0 is additive. It does not introduce breaking changes to the stable core model. New schemas and examples are introduced as candidate governance surfaces that can be adopted independently by implementers and promoted based on conformance evidence.
+TSMM v0.21.0 is additive. It does not introduce breaking changes to the stable core model. It strengthens the enforceability of published bindings and examples, so implementers can rely on a clearer assurance boundary when they compare or adopt TSMM-aligned systems.
 
 ## Contributing
 

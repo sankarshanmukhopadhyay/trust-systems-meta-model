@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/validation/schemas/tsmm-binding-constraints.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/validation/schemas/tsmm-binding-constraints.schema.json",
   "title": "TSMM Binding Constraints Schema",
   "description": "Constraint set for a TSMM ecosystem binding. Captures assumptions, prohibited inferences, required supporting artifacts, and comparison notes.",
   "type": "object",

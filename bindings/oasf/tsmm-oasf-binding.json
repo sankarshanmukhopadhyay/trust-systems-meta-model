@@ -50,8 +50,40 @@
     "The binding is intentionally lightweight. It lets TSMM point to OASF-described subjects and evaluation artifacts without turning OASF into a trust semantics replacement.",
     "Assurance-addressable means TSMM entities can be referenced by OASF-aware control catalogs, evidence bundles, and evaluation outputs."
   ],
+  "bindingContract": {
+    "sourceModel": "TSMM",
+    "targetSystem": "OASF",
+    "bindingVersion": "1.0.0",
+    "guarantees": [
+      {
+        "name": "publication-and-evaluation-addressability",
+        "status": "supported",
+        "description": "OASF publication and evaluation artifacts can be associated with TSMM service, accountability, assessment, and evidence semantics."
+      }
+    ],
+    "limitations": [
+      {
+        "name": "publication-enforcement-gap",
+        "impact": "A published OASF record or evaluation reference does not establish runtime authorization, control effectiveness, or revocation processing.",
+        "mitigation": "Pair publication artifacts with authority, policy, evidence, decision, and status records appropriate to the effect being considered."
+      }
+    ],
+    "behavioralExpectations": [
+      {
+        "behavior": "accountable-publication",
+        "expectation": "A TSMM-aware OASF publication SHOULD identify the accountable operator, applicable policy or profile, and evidence or evaluation references.",
+        "sourceRefs": ["docs/bindings/oasf-binding.md", "docs/profiles/oasf-publication-guidance.md"]
+      }
+    ],
+    "constraintSetRef": "bindings/oasf/constraints.json"
+  },
+  "maturity": {
+    "status": "candidate",
+    "stability": "review",
+    "productionRecommendation": "conditional",
+    "notes": ["Suitable for bounded publication and evaluation comparison; runtime governance must be composed separately."]
+  },
   "metadata": {
-    "maintainer": "maintainers",
-    "status": "draft"
+    "maintainer": "maintainers"
   }
 }

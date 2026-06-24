@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-delegation-patterns.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-delegation-patterns.schema.json",
   "title": "TSMM Delegation Pattern Catalog",
   "description": "Canonical delegation patterns used to compare bounded authority transfer across trust systems.",
   "type": "object",

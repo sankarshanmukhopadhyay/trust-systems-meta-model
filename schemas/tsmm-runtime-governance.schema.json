@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-runtime-governance.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-runtime-governance.schema.json",
   "title": "TSMM Runtime Governance Envelope Schema",
   "description": "A pre-effect runtime governance envelope for evaluating authority, delegation, policy, revocation freshness, evidence, and effect admission before a system action is executed.",
   "type": "object",

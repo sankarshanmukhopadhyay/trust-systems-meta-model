@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 1
 ---
 
@@ -17,8 +17,8 @@ Bindings package semantic alignments between TSMM and adjacent ecosystems into m
 | [OpenID Federation binding](openid-federation-binding.md) | Federation metadata and policy distribution surface | Supported | Stable federation comparison surface |
 | [DCAS binding](dcas-binding.md) | Conformance and assurance evaluation surface | Supported | Suitable for assured-system comparison and evidence portability |
 | [VTC binding](vtc-binding.md) | Verifiable trust community profile surface | Supported | Available for normal comparison use |
-| [A2A binding](a2a-binding.md) | Agent interaction protocol surface | Supported | Aligned to the delivered Agent Interaction Extension |
-| [OASF binding](oasf-binding.md) | Open assurance signal publication surface | Supported | Profile and publication comparison surface |
+| [A2A binding](a2a-binding.md) | Agent interaction protocol surface | Candidate | Suitable for governed discovery, negotiation, and task-evidence comparison; not an A2A conformance claim |
+| [OASF binding](oasf-binding.md) | Open assurance signal publication surface | Candidate | Suitable for bounded publication and evaluation comparison; runtime governance must be composed separately |
 | [AIS-1 binding](ais1-binding.md) | Bonded agent identity and accountability substrate | Experimental | Included for comparative modelling, not as a mature or complete trust-stack profile |
 | [HAVID binding](havid-binding.md) | Composite identifier assurance pattern | Experimental | Useful for comparison while upstream semantics continue to mature |
 | [ODRL binding](odrl-binding.md) | Policy expression and rule-carrier surface | Experimental | Useful for bounded policy modeling without replacing the wider trust meta model |

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.20.0/schemas/tsmm-agentic-extension.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-agentic-extension.schema.json",
   "title": "TSMM Agentic AI Extension Instance v0.12.0",
   "description": "Extension schema for representing agentic AI concepts layered on top of the TSMM core, including agent classification and attention-governance objects.",
   "type": "object",

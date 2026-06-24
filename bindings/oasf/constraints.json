@@ -1,0 +1,26 @@
+{
+  "constraintSetId": "tsmm.binding.constraints.oasf.v1",
+  "bindingId": "tsmm.binding.oasf.v1",
+  "targetEcosystem": "OASF",
+  "assumptions": [
+    "OASF is used as a publication and evaluation-reference surface rather than a complete runtime governance system.",
+    "Published records can carry stable references to accountable operators, policies, profiles, and evidence."
+  ],
+  "prohibitedInferences": [
+    "Do not infer runtime authority or permitted effect from publication alone.",
+    "Do not treat an evaluation report reference as current proof without checking its scope, freshness, and status.",
+    "Do not treat an OASF record as a substitute for revocation, audit, redress, or delegated-authority semantics."
+  ],
+  "requiredArtifacts": [
+    "docs/bindings/oasf-binding.md",
+    "docs/crosswalks/oasf-crosswalk.md",
+    "docs/profiles/oasf-publication-guidance.md",
+    "examples/profiles/oasf-publication-profile.json"
+  ],
+  "comparisonNotes": [
+    "OASF makes descriptions and evaluations portable; TSMM provides the authority, evidence, and effect semantics needed to assess reliance."
+  ],
+  "validationHints": [
+    "Validate accountability, policy, evidence references, and status semantics before relying on an OASF publication."
+  ]
+}

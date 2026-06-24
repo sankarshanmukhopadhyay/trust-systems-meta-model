@@ -1,11 +1,19 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 2
 ---
 
 # Contributing
+
+## Validation environment
+
+Install the repository-pinned validation dependencies before running the conformance checks:
+
+```bash
+python -m pip install -r requirements-dev.txt
+```
 
 ## Scope
 

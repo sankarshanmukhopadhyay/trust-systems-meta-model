@@ -1,11 +1,15 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.20.0
+applicable_version: v0.21.0
 tier: 1
 ---
 
 # Validation and Testability
+
+## Catalog completeness
+
+Binding and graph validation discover published artifacts from the repository catalog rather than relying on a hand-maintained target list. A new binding under `bindings/*/tsmm-*-binding.json`, or a graph-shaped JSON artifact under `examples/`, therefore enters the validation boundary automatically. Every binding must declare its contract, maturity, constraint set, and referenced supporting artifacts.
 
 TSMM should be testable as a model, not only readable as documentation. The current validation layer is intentionally lightweight, but it is designed to catch structural drift before it turns into interpretive drift.
 
