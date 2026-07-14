@@ -1,0 +1,51 @@
+{
+  "instanceId": "example.delegation-lineage.procurement",
+  "patternRef": "pattern.chained-delegation",
+  "originatingPrincipalRef": "entity.principal.acme",
+  "transactionRef": "txn.procurement.2026-0714",
+  "originalIntentRef": "intent.purchase-laptop-fleet",
+  "hops": [
+    {
+      "hopId": "hop.1",
+      "delegatorRef": "entity.principal.acme",
+      "actorRef": "agent.procurement",
+      "scope": [
+        "vendor-discovery",
+        "quote-request"
+      ],
+      "trustDomainRef": "domain.acme",
+      "status": "active"
+    },
+    {
+      "hopId": "hop.2",
+      "parentHopRef": "hop.1",
+      "delegatorRef": "agent.procurement",
+      "actorRef": "agent.vendor-specialist",
+      "scope": [
+        "quote-request"
+      ],
+      "trustDomainRef": "domain.acme",
+      "status": "active"
+    },
+    {
+      "hopId": "hop.3",
+      "parentHopRef": "hop.2",
+      "delegatorRef": "agent.vendor-specialist",
+      "actorRef": "service.vendor-api",
+      "scope": [
+        "quote-request"
+      ],
+      "trustDomainRef": "domain.vendor",
+      "status": "active"
+    }
+  ],
+  "attenuationResult": "pass",
+  "domainTransitions": [
+    {
+      "from": "domain.acme",
+      "to": "domain.vendor",
+      "mappingEvidenceRef": "evidence.scope-map.acme-vendor"
+    }
+  ],
+  "verificationResult": "pass"
+}

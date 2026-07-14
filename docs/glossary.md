@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.21.0
+applicable_version: v0.22.0
 tier: 1
 ---
 
@@ -143,3 +143,15 @@ A descriptor whose fuller contents are disclosed only after authentication or au
 ### Required Extension Failure
 
 A negotiation condition where a requester requires an extension that the provider does not support or cannot authorize. In TSMM, this must lead to rejection or review rather than silent downgrade.
+
+### Delegation lineage
+
+The ordered, verifiable path by which authority exercised by a current actor resolves through immediate delegators to an originating principal and original mandate.
+
+### Aggregation amplification
+
+A failure mode in which individually valid and attenuated delegation branches converge to produce an effect broader than the parent mandate permits.
+
+### Monotonic attenuation
+
+The invariant that delegated authority may remain constant or narrow at each hop but may never expand.

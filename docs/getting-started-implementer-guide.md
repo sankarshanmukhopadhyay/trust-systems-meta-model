@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.21.0
+applicable_version: v0.22.0
 tier: 1
 ---
 
@@ -126,3 +126,13 @@ If your system needs the Agentic AI extension, the Verifiable Trust Communities 
 | Assess conformance | `docs/conformance/tsmm-conformance-checklist.md` |
 | Map to an adjacent specification | `docs/crosswalks/` |
 | Validate a JSON instance | Run `scripts/validate_examples.py` |
+
+## Implement chained delegation
+
+1. Select `pattern.chained-delegation` or `pattern.fanout-delegation` from `model/delegation-patterns.yaml`.
+2. Preserve an immutable originating-principal and transaction reference across the workflow.
+3. Record every delegation hop and prove that scope is equal to or narrower than its parent.
+4. Record trust-domain transitions and the mapping evidence used to preserve scope.
+5. Re-check status before effect admission and produce a verification result that can be bound to a TIS delegation-lineage verification artifact.
+
+Start with `examples/delegation-lineage-instance.json` and `examples/fanout-delegation-instance.json`.

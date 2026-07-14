@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.21.0
+applicable_version: v0.22.0
 tier: 1
 ---
 
@@ -59,3 +59,9 @@ Verification usually checks whether a thing is valid or conforms. Assessment is 
 
 ### Decision and effect
 A trust system is operational only when evaluation outcomes are tied to real effects.
+
+## Delegation lineage and topology
+
+TSMM distinguishes a local delegated edge from the lineage of authority that makes a downstream action legitimate. `pattern.chained-delegation` represents ordered parent-child authority transfer. `pattern.fanout-delegation` represents concurrent branches and requires an aggregate-authority check when branches converge.
+
+A conforming implementation should preserve the originating principal, immediate delegator, parent delegation reference, transaction and intent references, scope at each hop, trust-domain transitions, and current lifecycle state. Local credential validity is insufficient when the chain as a whole is broken or amplified.

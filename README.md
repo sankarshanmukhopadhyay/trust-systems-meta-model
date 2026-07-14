@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.21.0
+applicable_version: v0.22.0
 tier: 0
 ---
 
@@ -145,3 +145,7 @@ TSMM v0.21.0 is additive. It does not introduce breaking changes to the stable c
 ## Contributing
 
 Contributions should preserve TSMM's core discipline: keep concepts abstract enough to travel across ecosystems, but concrete enough to validate. New model surfaces should include documentation, schema, example, test vectors, and validation coverage.
+
+## Delegation lineage in v0.22.0
+
+TSMM now models chained and fan-out delegation, including monotonic scope attenuation, originating-principal continuity, trust-domain transitions, convergence checks, and revocation propagation. See the [implementer guide](docs/getting-started-implementer-guide.md#implement-chained-delegation) and [v0.22.0 release notes](releases/v0.22.0.md).

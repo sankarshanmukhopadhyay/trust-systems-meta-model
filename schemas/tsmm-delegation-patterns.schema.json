@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.21.0/schemas/tsmm-delegation-patterns.schema.json",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.22.0/schemas/tsmm-delegation-patterns.schema.json",
   "title": "TSMM Delegation Pattern Catalog",
   "description": "Canonical delegation patterns used to compare bounded authority transfer across trust systems.",
   "type": "object",
@@ -18,7 +18,7 @@
     },
     "patterns": {
       "type": "array",
-      "minItems": 4,
+      "minItems": 6,
       "items": {
         "$ref": "#/$defs/pattern"
       },
@@ -74,6 +74,58 @@
               "type"
             ]
           }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "chained"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "fanout"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "chained"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "fanout"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
         }
       ]
     }
@@ -104,7 +156,9 @@
             "direct",
             "delegated",
             "federated",
-            "conditional"
+            "conditional",
+            "chained",
+            "fanout"
           ]
         },
         "label": {

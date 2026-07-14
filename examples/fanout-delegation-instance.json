@@ -1,0 +1,25 @@
+{
+  "instanceId": "example.fanout-delegation.claim-review",
+  "patternRef": "pattern.fanout-delegation",
+  "originatingPrincipalRef": "entity.claimant.001",
+  "transactionRef": "txn.claim.001",
+  "branches": [
+    {
+      "branchId": "branch.coverage",
+      "scope": [
+        "read-policy"
+      ]
+    },
+    {
+      "branchId": "branch.damage",
+      "scope": [
+        "read-assessment"
+      ]
+    }
+  ],
+  "convergence": {
+    "effect": "recommend-settlement",
+    "aggregateAuthorityCheck": "pass"
+  },
+  "verificationResult": "pass"
+}

@@ -16,13 +16,25 @@
       "description": "Registry-mediated publication and lookup function.",
       "relatedDocs": [
         "docs/patterns/trust-registry-pattern.md"
-      ]
+      ],
+      "mappedFields": {
+        "external_id": "id"
+      },
+      "tsmmProperties": {
+        "authorityAware": true
+      }
     },
     {
       "externalConcept": "Trust Framework Authority",
       "tsmmType": "GovernanceAuthority",
       "bindingStrength": "exact",
-      "description": "Authority defining operating rules, publication criteria, and acceptable evidence."
+      "description": "Authority defining operating rules, publication criteria, and acceptable evidence.",
+      "mappedFields": {
+        "external_id": "id"
+      },
+      "tsmmProperties": {
+        "authorityAware": true
+      }
     },
     {
       "externalConcept": "Trusted Service Provider",
@@ -31,25 +43,49 @@
       "description": "The published ecosystem participant whose assertions and status are evaluated.",
       "conditions": [
         "May be modeled as Agent where service acts autonomously."
-      ]
+      ],
+      "mappedFields": {
+        "external_id": "id"
+      },
+      "tsmmProperties": {
+        "authorityAware": true
+      }
     },
     {
       "externalConcept": "Conformance Evidence",
       "tsmmType": "EvidenceBundle",
       "bindingStrength": "exact",
-      "description": "Evidence submitted to substantiate conformance or operational trust posture."
+      "description": "Evidence submitted to substantiate conformance or operational trust posture.",
+      "mappedFields": {
+        "external_id": "id"
+      },
+      "tsmmProperties": {
+        "authorityAware": true
+      }
     },
     {
       "externalConcept": "Assurance Profile",
       "tsmmType": "AssuranceProfile",
       "bindingStrength": "exact",
-      "description": "Profile determining required controls and evidence depth."
+      "description": "Profile determining required controls and evidence depth.",
+      "mappedFields": {
+        "external_id": "id"
+      },
+      "tsmmProperties": {
+        "authorityAware": true
+      }
     },
     {
       "externalConcept": "Relying ecosystem consumer",
       "tsmmType": "RelyingParty",
       "bindingStrength": "exact",
-      "description": "Actor depending on registry-mediated trust decisions downstream."
+      "description": "Actor depending on registry-mediated trust decisions downstream.",
+      "mappedFields": {
+        "external_id": "id"
+      },
+      "tsmmProperties": {
+        "authorityAware": true
+      }
     }
   ],
   "notes": [
@@ -114,5 +150,8 @@
     "notes": [
       "Validation vector exercises binding maturity coverage without asserting full production readiness."
     ]
-  }
+  },
+  "validationArtifacts": [
+    "validation/test_vectors/valid/tsmm-binding-valid.json"
+  ]
 }
