@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "relationships": [
+    {
+      "source_repository": "trust-systems-meta-model",
+      "target_repository": "trust-infrastructure-schemas",
+      "relationship_type": "projects-to",
+      "authority_direction": "declared",
+      "artifact_mapping": "documented in docs/interoperability.md",
+      "compatibility_range": "explicitly reviewed versions only",
+      "maturity": "provisional",
+      "validation": "scripts/validate_portfolio_relationships.py",
+      "known_limitations": [
+        "cross-repository source archives are validated structurally; remote state is not fetched"
+      ],
+      "supersession": "explicit declaration required"
+    },
+    {
+      "source_repository": "trust-systems-meta-model",
+      "target_repository": "trust-graph-artifacts",
+      "relationship_type": "governs-semantics-for",
+      "authority_direction": "declared",
+      "artifact_mapping": "documented in docs/interoperability.md",
+      "compatibility_range": "explicitly reviewed versions only",
+      "maturity": "provisional",
+      "validation": "scripts/validate_portfolio_relationships.py",
+      "known_limitations": [
+        "cross-repository source archives are validated structurally; remote state is not fetched"
+      ],
+      "supersession": "explicit declaration required"
+    }
+  ]
+}

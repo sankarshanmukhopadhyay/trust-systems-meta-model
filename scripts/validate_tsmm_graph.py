@@ -49,6 +49,8 @@ ALLOWED_RELATIONS: dict[str, set[tuple[str, str]]] = {
         ("GovernanceAuthority", "Verifier"),
         ("GovernanceAuthority", "Agent"),
         ("Policy", "Agent"),
+        ("Policy", "Issuer"),
+        ("Policy", "Verifier"),
     },
     "issues": {("Issuer", "Credential")},
     "verifies": {

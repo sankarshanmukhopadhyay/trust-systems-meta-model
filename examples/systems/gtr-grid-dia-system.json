@@ -111,9 +111,9 @@
     {
       "id": "edge.service-operates-grid",
       "type": "operates",
-      "from": "svc.harvester",
-      "to": "reg.grid",
-      "description": "Technical operator runs harvesting, validation, release, and archive functions."
+      "from": "reg.grid",
+      "to": "svc.harvester",
+      "description": "The GRID trust registry operates the registry service."
     },
     {
       "id": "edge.policy-authorizes-registrar",

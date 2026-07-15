@@ -123,5 +123,13 @@
       }
     ],
     "constraintSetRef": "bindings/havid/constraints.json"
+  },
+  "maturity": {
+    "status": "candidate",
+    "stability": "review",
+    "productionRecommendation": "conditional",
+    "notes": [
+      "Binding remains subject to ecosystem-specific review and does not establish certification."
+    ]
   }
 }

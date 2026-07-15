@@ -1,0 +1,30 @@
+schema_version: "1.0"
+repository: trust-systems-meta-model
+portfolio_tier: flagship
+lifecycle: active
+role: canonical-semantic-model
+stability: provisional
+current_version: "v0.22.0"
+authority:
+  owns:
+    - canonical-concepts
+    - semantic-relationships
+    - graph-model
+    - semantic-conformance
+    - binding-contracts
+  does_not_own:
+    - portable-wire-contracts
+    - implementation-specific-governance-packages
+    - external-certification
+dependencies:
+  - repository: trust-infrastructure-schemas
+    relationship: projects-to
+    role: portable-contract-layer
+  - repository: trust-graph-artifacts
+    relationship: governs-semantics-for
+    role: implementation-layer
+version_policy:
+  compatibility: additive changes preserve declared contracts unless migration guidance states otherwise
+  unverified_later_versions: require explicit review before compatibility is claimed
+supersession_policy: newer authoritative artifacts supersede earlier artifacts only when explicitly declared
+revocation_or_withdrawal_policy: unsafe or misleading artifacts may be withdrawn by maintainers with an auditable rationale

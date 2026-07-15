@@ -7,13 +7,21 @@ tier: 0
 
 # Trust Systems Meta Model (TSMM)
 
-[![Release](https://img.shields.io/badge/release-v0.21.0-blue)](releases/v0.21.0.md)
+> **Flagship repository**  
+> **Role:** `canonical-semantic-model`  
+> **Current version:** `v0.22.0`  
+> **Canonical validation:** `make validate`  
+> **Authority:** [`governance/repository-authority.yaml`](governance/repository-authority.yaml)  
+> **Start here:** [`docs/adoption.md`](docs/adoption.md)
+
+
+[![Release](https://img.shields.io/badge/release-v0.22.0-blue)](releases/v0.22.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.21.0  
+**Version:** v0.22.0  
 **Status:** Draft reference model with machine-readable modeling, validation, comparison, runtime-governance, and executable binding assurance artifacts  
 **License:** CC BY-SA 4.0
 
@@ -23,9 +31,9 @@ Trust Systems Meta Model (TSMM) is a portable abstract reference model for desig
 
 TSMM is intentionally **effect-centered**. The core question is not only whether an identity exists or a credential verifies. The core question is whether a bounded authority, evaluated under policy and evidence, should be allowed to produce a defined effect.
 
-## What v0.21.0 adds
+## What v0.22.0 consolidates
 
-TSMM v0.21.0 delivers **Executable Binding Assurance and Catalog Completeness**. It makes the published binding catalog enforceable: every binding now carries an explicit governance contract, declared maturity, constraint set, and catalog validation path. It also validates all published graph artifacts and provides a reproducible local validation environment.
+TSMM v0.22.0 consolidates **Executable Binding Assurance and Catalog Completeness**. It makes the published binding catalog enforceable: every binding now carries an explicit governance contract, declared maturity, constraint set, and catalog validation path. It also validates all published graph artifacts and provides a reproducible local validation environment.
 
 New release surfaces:
 

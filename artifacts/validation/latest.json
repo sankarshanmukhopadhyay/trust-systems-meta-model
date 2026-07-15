@@ -1,0 +1,67 @@
+{
+  "repository": "trust-systems-meta-model",
+  "repositoryVersion": "v0.22.0",
+  "commit": "working-tree",
+  "validationProfile": "repository-full",
+  "executedAt": "2026-07-15T06:03:22.368862+00:00",
+  "checks": [
+    {
+      "id": "examples",
+      "status": "pass",
+      "detail": "nt-trust-network.json against tsmm-graph.schema.json\nOK: profiles/agent-governance-network.json against tsmm-graph.schema.json\nOK: profiles/trust-registry-federation.json against tsmm-graph.schema.json\nOK: profiles/dpi-trust-layer.json against tsmm-graph.schema.json\nOK: systems/trqp-registry-system.json against tsmm-graph.schema.json\nOK: systems/openid-federation-system.json against tsmm-graph.schema.json\nOK: systems/decentralized-directory-system.json against tsmm-graph.schema.json\nOK: systems/content-authenticity-workflow.json against tsmm-graph.schema.json\nOK: systems/verifiable-trust-community-system.json against tsmm-graph.schema.json\nOK: systems/gtr-grid-dia-system.json against tsmm-graph.schema.json\nOK: gtr/gtr-dia-verification-decision-receipt.json against tsmm-decision-receipt.schema.json\nOK: systems/revocation-propagation-system.json against tsmm-core.schema.json\nOK: registries/tsmm-registry-example.json against tsmm-registry.schema.json\nAll schema/example validations passed."
+    },
+    {
+      "id": "bindings",
+      "status": "pass",
+      "detail": "OK: bindings/a2a/tsmm-a2a-binding.json\nOK: bindings/a2a/constraints.json\nOK: bindings/ais1/tsmm-ais1-binding.json\nOK: bindings/ais1/constraints.json\nOK: bindings/dcas/tsmm-dcas-binding.json\nOK: bindings/dcas/constraints.json\nOK: bindings/gtr/tsmm-gtr-binding.json\nOK: bindings/gtr/constraints.json\nOK: bindings/havid/tsmm-havid-binding.json\nOK: bindings/havid/constraints.json\nOK: bindings/oasf/tsmm-oasf-binding.json\nOK: bindings/oasf/constraints.json\nOK: bindings/odrl/tsmm-odrl-binding.json\nOK: bindings/odrl/constraints.json\nOK: bindings/openid-federation/tsmm-openid-federation-binding.json\nOK: bindings/openid-federation/constraints.json\nOK: bindings/tis/tsmm-tis-binding.json\nOK: bindings/tis/constraints.json\nOK: bindings/trqp/tsmm-trqp-binding.json\nOK: bindings/trqp/constraints.json\nOK: bindings/vtc/tsmm-vtc-binding.json\nOK: bindings/vtc/constraints.json\nAll binding validations passed."
+    },
+    {
+      "id": "test-vectors",
+      "status": "pass",
+      "detail": "traints-valid.json\nOK: validation/test_vectors/invalid/tsmm-binding-constraints-invalid-empty-prohibited-inferences.json\nOK: validation/test_vectors/valid/runtime-governance-envelope-valid.json\nOK: validation/test_vectors/invalid/runtime-governance-envelope-missing-policy.json\nOK: validation/test_vectors/valid/decision-receipt-valid.json\nOK: validation/test_vectors/invalid/decision-receipt-missing-policy.json\nOK: validation/test_vectors/valid/discovery-governance-valid.json\nOK: validation/test_vectors/invalid/discovery-governance-missing-integrity.json\nOK: validation/test_vectors/valid/capability-negotiation-valid.json\nOK: validation/test_vectors/invalid/capability-negotiation-required-extension-missing.json\nOK: validation/test_vectors/valid/task-evidence-lifecycle-valid.json\nOK: validation/test_vectors/invalid/task-evidence-lifecycle-missing-receipt.json\nOK: validation/test_vectors/invalid/task-evidence-lifecycle-invalid-transition.json\nAll validation test vectors behaved as expected."
+    },
+    {
+      "id": "yaml-models",
+      "status": "pass",
+      "detail": "OK: model/authority-graph.yaml against tsmm-authority-graph.schema.json\nOK: model/delegation-patterns.yaml against tsmm-delegation-patterns.schema.json\nOK: model/lifecycle/trust-object-lifecycle.yaml against tsmm-lifecycle.schema.json\nOK: extensions/assurance/assurance-properties.yaml against tsmm-assurance-properties.schema.json\nOK: interop/interoperability-matrix.yaml against tsmm-interoperability.schema.json\nAll YAML model validations passed."
+    },
+    {
+      "id": "graphs",
+      "status": "pass",
+      "detail": "OK: model/graph/tsmm.graph.json\nOK: examples/profiles/agent-governance-network.json\nOK: examples/profiles/agent-trust-network.json\nOK: examples/profiles/dpi-trust-layer.json\nOK: examples/profiles/oasf-publication-profile.json\nOK: examples/profiles/ssi-ecosystem.json\nOK: examples/profiles/trust-registry-federation.json\nOK: examples/systems/ais1-bonded-agent-system.json\nOK: examples/systems/content-authenticity-workflow.json\nOK: examples/systems/decentralized-directory-system.json\nOK: examples/systems/gtr-grid-dia-system.json\nOK: examples/systems/openid-federation-system.json\nOK: examples/systems/trqp-registry-system.json\nOK: examples/systems/verifiable-trust-community-system.json\nOK: examples/tsmm-ecosystem-example.json\nAll TSMM graph validations passed."
+    },
+    {
+      "id": "registry",
+      "status": "pass",
+      "detail": "OK: examples/registries/tsmm-registry-example.json\nAll TSMM registry validations passed."
+    },
+    {
+      "id": "docs",
+      "status": "pass",
+      "detail": "Checked 139 markdown files: links and applicable_version metadata passed."
+    },
+    {
+      "id": "coverage",
+      "status": "pass",
+      "detail": "ties\nOK: systems/decentralized-directory-system.json exercises all tracked schema properties\nOK: systems/content-authenticity-workflow.json exercises all tracked schema properties\nOK: systems/verifiable-trust-community-system.json exercises all tracked schema properties\nOK: model/graph/tsmm.graph.json exercises all tracked schema properties\nOK: model/authority-graph.yaml exercises all tracked schema properties\nOK: model/delegation-patterns.yaml exercises all tracked schema properties\nOK: model/lifecycle/trust-object-lifecycle.yaml exercises all tracked schema properties\nOK: extensions/assurance/assurance-properties.yaml exercises all tracked schema properties\nOK: interop/interoperability-matrix.yaml exercises all tracked schema properties\nOK: validation/test_vectors/valid/tsmm-binding-valid.json exercises all tracked schema properties\nOK: validation/test_vectors/valid/tsmm-binding-constraints-valid.json exercises all tracked schema properties\n\nAll schema/example coverage checks passed."
+    },
+    {
+      "id": "governance",
+      "status": "pass",
+      "detail": "Repository governance declaration: PASS"
+    },
+    {
+      "id": "relationships",
+      "status": "pass",
+      "detail": "Portfolio relationships: PASS (2 declarations)"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0
+  },
+  "limitations": [
+    "Repository validation is not external certification."
+  ]
+}

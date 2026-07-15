@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/schemas/validation-evidence.schema.json",
+  "title": "Repository Validation Evidence",
+  "type": "object",
+  "required": [
+    "repository",
+    "repositoryVersion",
+    "validationProfile",
+    "executedAt",
+    "checks",
+    "summary",
+    "limitations"
+  ],
+  "properties": {
+    "repository": {
+      "type": "string"
+    },
+    "repositoryVersion": {
+      "type": "string"
+    },
+    "commit": {
+      "type": "string"
+    },
+    "validationProfile": {
+      "type": "string"
+    },
+    "executedAt": {
+      "type": "string"
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "fail",
+              "skip"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "passed",
+        "failed",
+        "skipped"
+      ],
+      "properties": {
+        "passed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skipped": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

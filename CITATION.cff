@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+title: "Trust Systems Meta Model"
+message: "Please cite this repository by title, version, and repository URL."
+type: software
+version: "0.22.0"
+license: CC-BY-SA-4.0
+repository-code: "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model"

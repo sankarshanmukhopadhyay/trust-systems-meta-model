@@ -77,9 +77,10 @@
     },
     {
       "id": "e2",
-      "type": "issues",
+      "type": "delegates",
       "from": "issuer.ais1",
-      "to": "agent.ais1"
+      "to": "agent.ais1",
+      "description": "The issuer or bond authority delegates bounded bonded-agent authority to the agent."
     },
     {
       "id": "e3",
@@ -89,9 +90,10 @@
     },
     {
       "id": "e4",
-      "type": "profiles",
+      "type": "informs",
       "from": "profile.ais1",
-      "to": "agent.ais1"
+      "to": "decision.ais1",
+      "description": "The AIS-1 assurance profile informs the bounded reliance decision."
     },
     {
       "id": "e5",

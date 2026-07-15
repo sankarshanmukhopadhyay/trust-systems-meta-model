@@ -97,5 +97,13 @@
       }
     ],
     "constraintSetRef": "bindings/dcas/constraints.json"
+  },
+  "maturity": {
+    "status": "candidate",
+    "stability": "review",
+    "productionRecommendation": "conditional",
+    "notes": [
+      "Use for semantic alignment and assurance design; DCAS-specific assessment procedures remain authoritative."
+    ]
   }
 }
