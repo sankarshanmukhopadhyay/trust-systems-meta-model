@@ -1,0 +1,21 @@
+schema_version: "1.0"
+project:
+  name: trust-systems-meta-model
+  maturity: candidate
+  lifecycle: active
+  operational_status: active-validation
+  specification_status: candidate-specification
+  intended_use: [architectural-modeling, semantic-alignment, implementation-design, conformance-profile-development]
+  not_asserted: [external-certification, production-system-assurance, authority-over-external-specifications]
+authority:
+  normative_scope: [canonical-trust-system-semantics, graph-model, binding-contracts]
+  does_not_own: [portable-schema-serialization, external-protocols, implementation-releases, certification]
+  delegation: Normative changes require maintainer approval under GOVERNANCE.md; scoped editorial and validation work may be delegated through reviewed pull requests.
+  revocation_or_supersession: Releases and status claims are superseded by a versioned release, changelog entry, and updated status contract; compromised artifacts are withdrawn through SECURITY.md.
+evidence:
+  validation_commands: [make validate, make candidate-check]
+  evidence_outputs: [artifacts/validation/latest.json, artifacts/candidate/candidate-readiness.json]
+  known_limitations: [independent interoperability testing is incomplete, candidate status is not certification]
+review:
+  last_review: "2026-07-20"
+  next_review: "2026-10-01"

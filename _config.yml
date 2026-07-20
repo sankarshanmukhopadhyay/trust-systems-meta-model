@@ -1,16 +1,26 @@
 title: Trust Systems Meta Model
-markdown: kramdown
-theme: minima
 description: Canonical semantic and graph model for governed trust systems
-show_downloads: false
+url: https://sankarshanmukhopadhyay.github.io
+baseurl: /trust-systems-meta-model
+remote_theme: just-the-docs/just-the-docs@v0.10.1
+markdown: kramdown
+search_enabled: true
+heading_anchors: true
+color_scheme: light
+aux_links:
+  "View on GitHub":
+    - "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model"
 plugins:
-  - jekyll-feed
-header_pages:
-  - index.md
-  - docs/index.md
-  - docs/architecture.md
-  - docs/adoption.md
-  - docs/assurance.md
-  - docs/interoperability.md
-  - docs/repository-status.md
-  - releases/v0.22.0.md
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+exclude:
+  - node_modules/
+  - vendor/
+  - tools/
+  - scripts/
+  - tests/
+  - validation/
+  - artifacts/
+  - .github/
+  - Gemfile
+  - Gemfile.lock

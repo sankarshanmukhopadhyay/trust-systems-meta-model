@@ -2,7 +2,7 @@
 layout: default
 title: Trust Systems Meta Model
 last_reviewed: 2026-05-05
-applicable_version: v0.22.0
+applicable_version: 0.23.0
 ---
 
 # Trust Systems Meta Model

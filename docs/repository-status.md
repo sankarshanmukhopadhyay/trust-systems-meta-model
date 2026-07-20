@@ -8,7 +8,7 @@ title: Repository status
 | Portfolio tier | Flagship |
 | Lifecycle | Active |
 | Role | `canonical-semantic-model` |
-| Current version | `v0.22.0` |
+| Current version | `v0.23.0` |
 | Stability | Provisional, under active governance |
 | Primary artifact | Canonical semantic model, graph vocabulary, bindings, and conformance profiles |
 | Validation | `make validate` |

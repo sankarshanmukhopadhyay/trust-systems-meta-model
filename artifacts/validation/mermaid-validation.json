@@ -1,0 +1,29 @@
+{
+  "diagram_count": 4,
+  "results": [
+    {
+      "file": "docs/architecture.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart TD"
+    },
+    {
+      "file": "docs/delegated-authority-assurance-flow.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart TD"
+    },
+    {
+      "file": "docs/portfolio-relationships.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
+    },
+    {
+      "file": "docs/effect-centered-trust-decision-model.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: v0.22.0
+applicable_version: 0.23.0
 tier: 1
 ---
 
@@ -63,3 +63,20 @@ Examples:
 ## 6. Design implication
 
 This is why TSMM centers effect rather than identity. Identity, claims, and controls are inputs. The governance-critical output is whether a defined effect should happen.
+
+## Effect-admission flow
+
+```mermaid
+flowchart LR
+  R[Requested effect] --> A{Authority valid?}
+  A -- no --> X[Deny]
+  A -- yes --> D{Delegation in scope?}
+  D -- no --> X
+  D -- yes --> P[Policy evaluation]
+  P --> E[Evidence evaluation]
+  E --> Q{Assurance threshold met?}
+  Q -- yes --> Y[Admit effect]
+  Q -- no --> Z[Escalate or deny]
+  Y --> C[Decision receipt]
+  Z --> C
+```

@@ -1,9 +1,9 @@
 {
   "repository": "trust-systems-meta-model",
-  "repositoryVersion": "v0.22.0",
+  "repositoryVersion": "0.23.0",
   "commit": "working-tree",
   "validationProfile": "repository-full",
-  "executedAt": "2026-07-15T06:03:22.368862+00:00",
+  "executedAt": "2026-07-20T04:59:33.136207+00:00",
   "checks": [
     {
       "id": "examples",
@@ -38,7 +38,7 @@
     {
       "id": "docs",
       "status": "pass",
-      "detail": "Checked 139 markdown files: links and applicable_version metadata passed."
+      "detail": "Checked 140 markdown files: links and applicable_version metadata passed."
     },
     {
       "id": "coverage",

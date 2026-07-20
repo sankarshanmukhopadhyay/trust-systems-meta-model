@@ -22,3 +22,20 @@ This walkthrough demonstrates the portfolio control path without claiming produc
 ## Evidence
 
 The evidence chain must identify the semantic requirement, schema contract, implementation pattern, validation result, and assurance limitation.
+
+## Delegation lineage and revocation
+
+```mermaid
+flowchart TD
+  P[Originating principal] -->|delegates bounded scope| A[Delegate A]
+  A -->|attenuates scope| B[Delegate B]
+  A -->|parallel branch| C[Delegate C]
+  B --> E[Requested effect]
+  C --> E
+  R[Revocation event] -. invalidates lineage .-> A
+  R -. propagates .-> B
+  R -. propagates .-> C
+  E --> V{Lineage, scope and freshness valid?}
+  V -- yes --> OK[Effect admitted]
+  V -- no --> NO[Denied and evidenced]
+```

@@ -13,3 +13,15 @@ TSMM is the canonical semantic layer of the flagship stack. It defines trust-sys
 4. **Graphs and profiles:** machine-verifiable system representations and conformance expectations.
 
 TIS projects these semantics into portable contracts. TGA uses TSMM semantics in executable governance packages and implementation guidance.
+
+## Model architecture
+
+```mermaid
+flowchart TD
+  G[Governance and authority] --> E[Entities and relationships]
+  E --> D[Delegation and policy]
+  D --> V[Evidence and evaluation]
+  V --> C[Decision and effect]
+  C --> L[Lifecycle, revocation and assurance]
+  L -. feedback .-> G
+```

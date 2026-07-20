@@ -1,0 +1,13 @@
+{
+  "repository": "trust-systems-meta-model",
+  "version": "0.23.0",
+  "maturity": "candidate",
+  "generated_at": "2026-07-20T04:59:35.547136+00:00",
+  "environment": "Linux-4.4.0-x86_64-with-glibc2.41",
+  "validation_command": "make candidate-check",
+  "status": "pass",
+  "limitations": [
+    "candidate status is not certification",
+    "independent interoperability testing remains incomplete"
+  ]
+}
