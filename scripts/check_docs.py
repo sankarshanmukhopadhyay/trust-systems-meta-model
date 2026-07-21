@@ -6,7 +6,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
-MARKDOWN_FILES = [p for p in ROOT.rglob("*.md") if ".git" not in p.parts]
+EXCLUDED_DIRS = {".git", ".bundle", "vendor", "node_modules", "_site"}
+MARKDOWN_FILES = [
+    p for p in ROOT.rglob("*.md")
+    if not any(part in EXCLUDED_DIRS for part in p.parts)
+]
 LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 APP_VERSION_RE = re.compile(r"^applicable_version:\s*(.+)$", re.MULTILINE)

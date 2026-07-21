@@ -65,3 +65,7 @@ The final command must report generated HTML coverage, internal-link integrity, 
 ## Failure evidence
 
 A failed source, build, or generated-site validation step blocks deployment and leaves the GitHub Actions log as audit evidence. Candidate validation evidence is written under `artifacts/validation/` and `artifacts/candidate/`.
+
+## Dependency isolation
+
+Documentation source validation is intentionally limited to repository-owned Markdown. Generated and third-party trees such as `vendor/`, `.bundle/`, `node_modules/`, and `_site/` are outside the TSMM documentation assurance boundary and are excluded from link and metadata checks. This prevents Bundler or other package managers from introducing unrelated validation failures while preserving complete validation of authored TSMM content.

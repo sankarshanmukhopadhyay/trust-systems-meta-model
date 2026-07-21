@@ -1,0 +1,12 @@
+# Ruby/Jekyll build state
+.bundle/
+vendor/
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Local tooling
+__pycache__/
+*.pyc
+.DS_Store
