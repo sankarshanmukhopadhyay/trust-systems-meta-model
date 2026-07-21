@@ -4,6 +4,18 @@ url: https://sankarshanmukhopadhyay.github.io
 baseurl: /trust-systems-meta-model
 remote_theme: just-the-docs/just-the-docs@v0.10.1
 markdown: kramdown
+
+# Apply the Just The Docs chrome to every normal Jekyll page.
+# Without this default, pages with front matter but no explicit layout are
+# converted to bare HTML fragments and bypass the theme sidebar, header,
+# breadcrumbs, search assets, and responsive styling.
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+
 search_enabled: true
 heading_anchors: true
 color_scheme: light
