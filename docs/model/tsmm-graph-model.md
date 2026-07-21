@@ -22,6 +22,22 @@ The graph layer is where the repository's main promises meet each other:
 
 In other words, the graph is where TSMM stops being only a reference model and starts behaving like a usable modeling surface.
 
+
+## Graph-to-assurance workflow
+
+```mermaid
+flowchart LR
+    M[Model a governed system] --> G[TSMM graph instance]
+    G --> B[Apply ecosystem binding]
+    B --> V[Run schema and semantic validation]
+    V --> C[Compare through crosswalks and interoperability matrix]
+    C --> P[Publish profile and evidence]
+    V -->|failure| F[Correct nodes, edges, references, or authority semantics]
+    F --> G
+```
+
+The workflow makes validation a gate rather than a documentation afterthought. A system is publishable only after its topology, references, and governed relationships pass the repository's machine-verifiable checks.
+
 ## Core artifacts
 
 The graph layer now has three anchor points:

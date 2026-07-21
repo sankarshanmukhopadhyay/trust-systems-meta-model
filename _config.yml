@@ -13,6 +13,7 @@ aux_links:
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
+  - jekyll-relative-links
 exclude:
   - node_modules/
   - vendor/
@@ -24,3 +25,7 @@ exclude:
   - .github/
   - Gemfile
   - Gemfile.lock
+
+relative_links:
+  enabled: true
+  collections: true

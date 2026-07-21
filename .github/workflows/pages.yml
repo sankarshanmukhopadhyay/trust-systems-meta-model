@@ -21,12 +21,17 @@ jobs:
         with:
           ruby-version: '3.3'
           bundler-cache: true
-      - uses: actions/configure-pages@v5
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Validate documentation source
+        run: python3 scripts/check_docs.py && python3 scripts/validate_mermaid.py
       - name: Build site
         run: bundle exec jekyll build --trace
       - name: Verify generated site
-        run: test -f _site/index.html && grep -R "mermaid-init.js" _site >/dev/null
-      - uses: actions/upload-pages-artifact@v3
+        run: python3 scripts/check_built_site.py
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
   deploy:

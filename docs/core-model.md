@@ -19,6 +19,25 @@ The model is built around a practical question:
 
 TSMM is therefore not primarily identity-centered. It is **effect-centered**.
 
+
+## Effect-centered decision chain
+
+```mermaid
+flowchart LR
+    GC[Governance context] --> P[Policy and profile]
+    A[Authority and delegation] --> D{Trust decision}
+    C[Claims and requirements] --> E[Evidence]
+    E --> AS[Assessment and verification]
+    P --> D
+    AS --> D
+    T[Threats and controls] --> D
+    D -->|permit| FX[Operational effect]
+    D -->|deny or restrict| BX[Blocked or constrained effect]
+    R[Revocation and lifecycle state] --> D
+```
+
+This is the minimum executable-governance path: authority and policy are evaluated against evidence, assurance results, threats, and current lifecycle state before an operational effect is admitted.
+
 ## 2. Core modeling thesis
 
 A trust system is not only a mechanism for storing identifiers or publishing metadata.

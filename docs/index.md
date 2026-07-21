@@ -8,7 +8,7 @@ tier: 0
 
 # Trust Systems Meta Model Documentation
 
-TSMM is a portable reference model for designing, comparing, implementing, and assuring trust systems. The v0.21.0 documentation is organized around implementer tasks rather than release history.
+TSMM is a portable reference model for designing, comparing, implementing, and assuring trust systems. The v0.23.0 documentation is organized around implementer tasks rather than release history.
 
 ## Start by task
 
@@ -57,9 +57,10 @@ TSMM is a portable reference model for designing, comparing, implementing, and a
 
 - [Freshness audit](freshness-audit.md)
 - [Documentation governance](documentation-governance.md)
+- [GitHub Pages deployment](pages-deployment.md)
 - [Roadmap](roadmap.md)
 - [Glossary](glossary.md)
-- [Release v0.21.0](../releases/v0.21.0.md)
+- [Release v0.23.0](../releases/v0.23.0.md)
 
 ## Cross-repo executable artifact alignment
 

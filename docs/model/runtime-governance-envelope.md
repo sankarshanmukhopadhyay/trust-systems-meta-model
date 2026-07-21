@@ -15,6 +15,30 @@ The envelope is deliberately pre-effect. It is not an after-the-fact log. It is 
 
 Many trust systems can describe credentials, registries, policies, and roles. Fewer can show how those elements are evaluated at runtime when a concrete action is about to happen. TSMM v0.19.0 adds the envelope so that runtime governance can be modeled and tested as a first-class trust-system surface.
 
+
+```mermaid
+sequenceDiagram
+    participant Actor
+    participant Gate as Runtime governance gate
+    participant Auth as Authority and revocation services
+    participant Policy as Policy and evidence services
+    participant Effect as Effect surface
+    participant Audit as Evidence and receipt store
+
+    Actor->>Gate: Request bounded operational effect
+    Gate->>Auth: Resolve delegation lineage and current status
+    Auth-->>Gate: Authority scope and revocation freshness
+    Gate->>Policy: Evaluate policy, evidence, risk, and boundary
+    Policy-->>Gate: Permit, restrict, deny, or review
+    alt Effect admitted
+        Gate->>Effect: Execute within approved scope
+        Effect-->>Gate: Effect result
+    else Effect not admitted
+        Gate-->>Actor: Denial, restriction, or review state
+    end
+    Gate->>Audit: Emit decision receipt and evidence references
+```
+
 The envelope answers seven questions:
 
 1. **Who is requesting the effect?**

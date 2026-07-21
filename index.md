@@ -13,7 +13,7 @@ TSMM is a portable reference model for designing, comparing, implementing, and a
 
 ## Current release
 
-**v0.21.0 — Executable Binding Assurance and Catalog Completeness** makes the published binding catalog governable as a whole. It aligns binding maturity claims with machine-readable contracts, validates every published binding and graph artifact, and makes the local validation environment reproducible.
+**v0.23.0 — Candidate Readiness and Portfolio Alignment** makes the published binding catalog governable as a whole. It aligns binding maturity claims with machine-readable contracts, validates every published binding and graph artifact, and makes the local validation environment reproducible.
 
 ## Start here
 
@@ -26,11 +26,11 @@ TSMM is a portable reference model for designing, comparing, implementing, and a
 - [Runtime Governance Envelope](docs/model/runtime-governance-envelope.md)
 - [Decision Receipt](docs/model/decision-receipt.md)
 - [Validation and testability](docs/conformance/validation-and-testability.md)
-- [Latest release notes](releases/v0.21.0.md)
+- [Latest release notes](releases/v0.23.0.md)
 
 ## At a glance
 
 - **Governance-first:** authority, delegation, revocation, evidence, and effects are modeled explicitly.
 - **Machine-verifiable:** schemas, examples, test vectors, and validation scripts are part of the repo contract.
 - **Protocol-adaptable:** bindings and crosswalks allow TSMM to compare ecosystems without becoming any one protocol.
-- **Assurance-ready:** v0.21.0 validates the published binding and graph catalog as an enforceable repository contract.
+- **Assurance-ready:** v0.23.0 validates the published binding and graph catalog as an enforceable repository contract.

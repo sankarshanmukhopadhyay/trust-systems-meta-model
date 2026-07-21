@@ -1,5 +1,5 @@
 {
-  "diagram_count": 4,
+  "diagram_count": 9,
   "results": [
     {
       "file": "docs/architecture.md",
@@ -8,10 +8,22 @@
       "first_line": "flowchart TD"
     },
     {
+      "file": "docs/core-model.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
+    },
+    {
       "file": "docs/delegated-authority-assurance-flow.md",
       "index": 1,
       "ok": true,
       "first_line": "flowchart TD"
+    },
+    {
+      "file": "docs/effect-centered-trust-decision-model.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
     },
     {
       "file": "docs/portfolio-relationships.md",
@@ -20,7 +32,25 @@
       "first_line": "flowchart LR"
     },
     {
-      "file": "docs/effect-centered-trust-decision-model.md",
+      "file": "docs/relationship-model.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
+    },
+    {
+      "file": "docs/pages-deployment.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
+    },
+    {
+      "file": "docs/model/runtime-governance-envelope.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "sequenceDiagram"
+    },
+    {
+      "file": "docs/model/tsmm-graph-model.md",
       "index": 1,
       "ok": true,
       "first_line": "flowchart LR"

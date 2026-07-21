@@ -33,17 +33,26 @@ The model assumes the following high-value relationships:
 
 ## 3. Compact relationship view
 
-```text
-Governance Context -> Profile -> Requirements -> Assessment -> Trust Decision -> Effect
-         |                |           |             ^               ^
-         v                v           v             |               |
-       Policy --------> Controls -> Threats         |               |
-         ^                |                         |               |
-         |                v                         |               |
-Entity -> Role -> Authority                    Verification <---- Evidence
-   |                                             ^
-   v                                             |
-Artifact -> Claims -----------------------------+
+```mermaid
+flowchart LR
+    E[Entity] --> R[Role]
+    R --> A[Authority]
+    E --> AR[Artifact]
+    AR --> C[Claims]
+    GC[Governance context] --> PR[Profile]
+    GC --> P[Policy]
+    PR --> REQ[Requirements]
+    PR --> CT[Controls]
+    CT --> TH[Threats]
+    REQ --> AS[Assessment]
+    C --> V[Verification]
+    EV[Evidence] --> AS
+    EV --> V
+    A --> TD{Trust decision}
+    P --> TD
+    AS --> TD
+    V --> TD
+    TD --> FX[Effect]
 ```
 
 ## 4. Interpretive guidance
