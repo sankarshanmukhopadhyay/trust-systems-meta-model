@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: TSMM Agentic Conformance Profile
+permalink: /conformance/tsmm-profile-agentic.html
+parent: Conformance
+grand_parent: Documentation
 ---
 
 # TSMM Agentic Conformance Profile

@@ -1,7 +1,8 @@
 ---
-title: Portfolio Relationships
-parent: Governance
+title: Portfolio relationships
+parent: Documentation
 nav_order: 8
+permalink: /portfolio-relationships.html
 ---
 # Portfolio relationships
 

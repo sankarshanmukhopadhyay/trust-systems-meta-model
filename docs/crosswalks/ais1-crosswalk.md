@@ -5,6 +5,10 @@ applicable_version: 0.23.0
 tier: 1
 status: experimental
 status_note: Included for comparative modelling; see ../maturity-model.md
+title: AIS-1 Crosswalk
+permalink: /crosswalks/ais1-crosswalk.html
+parent: Crosswalks
+grand_parent: Documentation
 ---
 
 # AIS-1 Crosswalk

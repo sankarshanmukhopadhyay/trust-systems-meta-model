@@ -1,5 +1,7 @@
 ---
 title: Interoperability
+permalink: /interoperability.html
+parent: Documentation
 ---
 # Interoperability
 

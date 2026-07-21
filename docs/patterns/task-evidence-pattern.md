@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 0
+title: Task Evidence Pattern
+permalink: /patterns/task-evidence-pattern.html
+parent: Patterns
+grand_parent: Documentation
 ---
 
 

@@ -1,7 +1,8 @@
 ---
-title: Candidate Readiness
-parent: Conformance and Assurance
+title: Candidate readiness
+parent: Documentation
 nav_order: 1
+permalink: /candidate-readiness.html
 ---
 # Candidate readiness
 

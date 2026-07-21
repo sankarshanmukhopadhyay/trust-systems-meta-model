@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: TSMM Canonical Meta-Model Schema
+permalink: /model/tsmm-meta-model-schema.html
+parent: Model
+grand_parent: Documentation
 ---
 
 # TSMM Canonical Meta-Model Schema

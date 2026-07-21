@@ -1,12 +1,13 @@
 ---
 layout: default
 title: GitHub Pages Deployment
-parent: Operational Documentation
+parent: Documentation
 nav_order: 90
 owner: maintainers
 last_reviewed: 2026-07-21
 applicable_version: 0.23.0
 tier: 1
+permalink: /pages-deployment.html
 ---
 
 # GitHub Pages Deployment
@@ -69,3 +70,17 @@ A failed source, build, or generated-site validation step blocks deployment and 
 ## Dependency isolation
 
 Documentation source validation is intentionally limited to repository-owned Markdown. Generated and third-party trees such as `vendor/`, `.bundle/`, `node_modules/`, and `_site/` are outside the TSMM documentation assurance boundary and are excluded from link and metadata checks. This prevents Bundler or other package managers from introducing unrelated validation failures while preserving complete validation of authored TSMM content.
+
+## Canonical route policy
+
+Documentation authored under `docs/` is intentionally published without the source-only `docs` prefix. For example:
+
+| Source | Canonical Pages route |
+| --- | --- |
+| `docs/model/discovery-governance.md` | `/model/discovery-governance.html` |
+| `docs/model/capability-negotiation.md` | `/model/capability-negotiation.html` |
+| `docs/patterns/pre-effect-governance-pattern.md` | `/patterns/pre-effect-governance-pattern.html` |
+
+Every documentation page carries an explicit `permalink`. This prevents Jekyll defaults, theme changes, or directory restructuring from silently changing public URLs.
+
+`scripts/check_page_contract.py` verifies source metadata before the build. `scripts/check_built_site.py` then verifies that every governed Markdown source produced its exact expected HTML file and that all generated internal links resolve. The two historically failing model routes are explicit regression assertions.

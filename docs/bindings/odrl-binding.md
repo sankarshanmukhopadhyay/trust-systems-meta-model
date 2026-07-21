@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: TSMM to ODRL Binding
+permalink: /bindings/odrl-binding.html
+parent: Bindings
+grand_parent: Documentation
 ---
 
 # TSMM to ODRL Binding

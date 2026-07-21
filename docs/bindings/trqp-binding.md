@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 0
+title: TSMM Binding&#58; TRQP
+permalink: /bindings/trqp-binding.html
+parent: Bindings
+grand_parent: Documentation
 ---
 
 # TSMM Binding: TRQP

@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: TSMM Verifiable Trust Communities Extension
+permalink: /extensions/verifiable-trust-communities-extension.html
+parent: Extensions
+grand_parent: Documentation
 ---
 
 # TSMM Verifiable Trust Communities Extension

@@ -1,5 +1,7 @@
 ---
 title: Architecture
+permalink: /architecture.html
+parent: Documentation
 ---
 # Architecture
 

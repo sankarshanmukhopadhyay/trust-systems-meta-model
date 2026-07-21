@@ -1,5 +1,7 @@
 ---
 title: Repository status
+permalink: /repository-status.html
+parent: Documentation
 ---
 # Repository status
 

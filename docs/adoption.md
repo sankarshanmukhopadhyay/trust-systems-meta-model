@@ -1,5 +1,7 @@
 ---
 title: Adoption
+permalink: /adoption.html
+parent: Documentation
 ---
 # Adoption
 

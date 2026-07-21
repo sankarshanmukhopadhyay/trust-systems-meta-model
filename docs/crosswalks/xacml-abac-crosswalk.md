@@ -9,6 +9,10 @@ status_note: >
   It does not introduce new core primitives. Dynamic authorization concepts are
   deliberately held at extension scope pending implementation experience. See
   docs/model/dynamic-authorization-framing.md before reading this document.
+title: TSMM Crosswalk&#58; XACML 3.0 and ABAC
+permalink: /crosswalks/xacml-abac-crosswalk.html
+parent: Crosswalks
+grand_parent: Documentation
 ---
 
 # TSMM Crosswalk: XACML 3.0 and ABAC

@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: Agentic AI and Dynamic Authorization&#58; A Structural Analysis
+permalink: /model/agentic-authz-analysis.html
+parent: Model
+grand_parent: Documentation
 ---
 
 # Agentic AI and Dynamic Authorization: A Structural Analysis

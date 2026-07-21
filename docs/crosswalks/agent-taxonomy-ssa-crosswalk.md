@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: Crosswalk&#58; Taxonomy for Agent Systems and Self-Sovereign Attention to TSMM
+permalink: /crosswalks/agent-taxonomy-ssa-crosswalk.html
+parent: Crosswalks
+grand_parent: Documentation
 ---
 
 # Crosswalk: Taxonomy for Agent Systems and Self-Sovereign Attention to TSMM

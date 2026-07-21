@@ -10,6 +10,10 @@ status_note: >
   of dynamic authorization concepts into core is deferred pending implementation
   experience. See docs/model/dynamic-authorization-framing.md before reading
   this document.
+title: Dynamic Authorization Pattern
+permalink: /patterns/dynamic-authz-pattern.html
+parent: Patterns
+grand_parent: Documentation
 ---
 
 # Dynamic Authorization Pattern

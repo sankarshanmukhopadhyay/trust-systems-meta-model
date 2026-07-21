@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: TIS Executable Artifact Walkthrough
+permalink: /examples/tis-executable-artifact-walkthrough.html
+parent: Examples
+grand_parent: Documentation
 ---
 
 # TIS Executable Artifact Walkthrough

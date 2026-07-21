@@ -3,6 +3,9 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: TSMM Core Model
+permalink: /core-model.html
+parent: Documentation
 ---
 
 # TSMM Core Model

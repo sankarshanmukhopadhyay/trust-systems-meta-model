@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: Multi-Agent Coordination Pattern
+permalink: /patterns/multi-agent-coordination-pattern.html
+parent: Patterns
+grand_parent: Documentation
 ---
 
 # Multi-Agent Coordination Pattern

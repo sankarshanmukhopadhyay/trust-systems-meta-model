@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 0
+title: TSMM Registry Format
+permalink: /registry/tsmm-registry-format.html
+parent: Registry
+grand_parent: Documentation
 ---
 
 # TSMM Registry Format

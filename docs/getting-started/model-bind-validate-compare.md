@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: Model, Bind, Validate, Compare, Publish
+permalink: /getting-started/model-bind-validate-compare.html
+parent: Getting Started
+grand_parent: Documentation
 ---
 
 # Model, Bind, Validate, Compare, Publish

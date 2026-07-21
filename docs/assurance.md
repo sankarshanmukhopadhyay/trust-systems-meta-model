@@ -1,5 +1,7 @@
 ---
 title: Assurance
+permalink: /assurance.html
+parent: Documentation
 ---
 # Assurance
 

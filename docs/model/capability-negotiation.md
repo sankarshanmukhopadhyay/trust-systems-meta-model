@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 0
+title: Capability Negotiation Model
+permalink: /model/capability-negotiation.html
+parent: Model
+grand_parent: Documentation
 ---
 
 

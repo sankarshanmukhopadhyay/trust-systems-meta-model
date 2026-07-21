@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: Runtime Governance Envelope
+permalink: /model/runtime-governance-envelope.html
+parent: Model
+grand_parent: Documentation
 ---
 
 # Runtime Governance Envelope

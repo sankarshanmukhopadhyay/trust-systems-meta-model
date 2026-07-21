@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Repository Governance
+title: Governance
 nav_exclude: true
 ---
 

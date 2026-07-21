@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: Delegated Agent Pattern
+permalink: /patterns/delegated-agent-pattern.html
+parent: Patterns
+grand_parent: Documentation
 ---
 
 # Delegated Agent Pattern

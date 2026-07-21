@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 2
+title: GTR GRID/DIA Binding
+permalink: /bindings/gtr-binding.html
+parent: Bindings
+grand_parent: Documentation
 ---
 
 # GTR GRID/DIA Binding

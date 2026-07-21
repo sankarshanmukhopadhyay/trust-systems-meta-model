@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: TSMM Ecosystem Bindings
+permalink: /bindings/
+parent: Documentation
+has_children: true
 ---
 
 # TSMM Ecosystem Bindings

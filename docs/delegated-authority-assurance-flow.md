@@ -1,5 +1,7 @@
 ---
 title: Delegated authority assurance flow
+permalink: /delegated-authority-assurance-flow.html
+parent: Documentation
 ---
 # Delegated authority assurance flow
 

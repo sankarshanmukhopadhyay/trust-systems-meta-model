@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 0
+title: Trust Systems Meta Model Documentation
+permalink: /documentation/
+nav_order: 2
+has_children: true
 ---
 
 
@@ -68,3 +72,8 @@ TSMM is a portable reference model for designing, comparing, implementing, and a
 - [TIS crosswalk](crosswalks/trust-infrastructure-schemas-crosswalk.md)
 - [TIS binding](bindings/tis-binding.md)
 - [TIS executable artifact walkthrough](examples/tis-executable-artifact-walkthrough.md)
+
+## Publication coverage
+
+- [Complete documentation site map](site-map.md)
+- [GitHub Pages deployment contract](pages-deployment.md)

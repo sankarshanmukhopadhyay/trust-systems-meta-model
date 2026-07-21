@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: TSMM Trust System Threat Model
+permalink: /security/trust-system-threat-model.html
+parent: Security
+grand_parent: Documentation
 ---
 
 # TSMM Trust System Threat Model

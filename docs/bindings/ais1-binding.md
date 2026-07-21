@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 0
+title: TSMM Binding&#58; AIS-1
+permalink: /bindings/ais1-binding.html
+parent: Bindings
+grand_parent: Documentation
 ---
 
 # TSMM Binding: AIS-1

@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: Runtime Governance Test Profile
+permalink: /conformance/runtime-governance-test-profile.html
+parent: Conformance
+grand_parent: Documentation
 ---
 
 # Runtime Governance Test Profile

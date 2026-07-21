@@ -3,6 +3,10 @@ owner: maintainers
 last_reviewed: 2026-05-05
 applicable_version: 0.23.0
 tier: 1
+title: OASF Publication Guidance for TSMM Profiles
+permalink: /profiles/oasf-publication-guidance.html
+parent: Profiles
+grand_parent: Documentation
 ---
 
 # OASF Publication Guidance for TSMM Profiles
