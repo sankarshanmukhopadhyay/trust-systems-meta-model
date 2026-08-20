@@ -1,0 +1,110 @@
+{
+  "$schema": "../schemas/tsmm-semantic-concept-registry.schema.json",
+  "registryId": "urn:tsmm:registry:semantic-concepts",
+  "version": "v0.24.0",
+  "authority": {
+    "repository": "trust-systems-meta-model",
+    "scope": "canonical-semantics"
+  },
+  "identifierPolicy": "urn:tsmm:concept:<slug> identifiers are stable semantic references. Renaming a label does not change the identifier; withdrawal or supersession must be explicit.",
+  "concepts": [
+    {
+      "id": "urn:tsmm:concept:authority",
+      "type": "GovernanceAuthority",
+      "label": "GovernanceAuthority",
+      "status": "active",
+      "definition": "Authority to define, constrain, delegate, or revoke governance-relevant action."
+    },
+    {
+      "id": "urn:tsmm:concept:delegation",
+      "type": "Delegation",
+      "label": "Delegation",
+      "status": "active",
+      "definition": "A bounded transfer or attenuation of authority from an originating authority to a delegate."
+    },
+    {
+      "id": "urn:tsmm:concept:scope",
+      "type": "Scope",
+      "label": "Scope",
+      "status": "active",
+      "definition": "The explicit boundary within which authority, evidence, policy, or a decision is applicable."
+    },
+    {
+      "id": "urn:tsmm:concept:policy",
+      "type": "Policy",
+      "label": "Policy",
+      "status": "active",
+      "definition": "A rule or rule-set evaluated when determining whether a requested effect may be admitted."
+    },
+    {
+      "id": "urn:tsmm:concept:evidence-artifact",
+      "type": "EvidenceArtifact",
+      "label": "EvidenceArtifact",
+      "status": "active",
+      "definition": "An inspectable artifact offered in support of a governance, assurance, or trust claim."
+    },
+    {
+      "id": "urn:tsmm:concept:evidence-bundle",
+      "type": "EvidenceBundle",
+      "label": "EvidenceBundle",
+      "status": "active",
+      "definition": "A governed collection of evidence artifacts assembled for evaluation or audit."
+    },
+    {
+      "id": "urn:tsmm:concept:assessment",
+      "type": "Assessment",
+      "label": "Assessment",
+      "status": "active",
+      "definition": "An evaluation of evidence, controls, policy, or state against declared criteria."
+    },
+    {
+      "id": "urn:tsmm:concept:trust-decision",
+      "type": "TrustDecision",
+      "label": "TrustDecision",
+      "status": "active",
+      "definition": "A bounded decision produced from authority, policy, evidence, and evaluation context."
+    },
+    {
+      "id": "urn:tsmm:concept:effect",
+      "type": "Effect",
+      "label": "Effect",
+      "status": "active",
+      "definition": "An operational consequence admitted, denied, constrained, or recorded by a trust decision."
+    },
+    {
+      "id": "urn:tsmm:concept:trust-registry",
+      "type": "TrustRegistry",
+      "label": "TrustRegistry",
+      "status": "active",
+      "definition": "A governed publication or discovery surface for trust-relevant state."
+    },
+    {
+      "id": "urn:tsmm:concept:assurance-profile",
+      "type": "AssuranceProfile",
+      "label": "AssuranceProfile",
+      "status": "active",
+      "definition": "A declared set of assurance expectations, rigor, evidence, or control requirements."
+    },
+    {
+      "id": "urn:tsmm:concept:revocation",
+      "type": "Revocation",
+      "label": "Revocation",
+      "status": "active",
+      "definition": "The invalidation or withdrawal of previously usable authority, state, evidence, or permission."
+    },
+    {
+      "id": "urn:tsmm:concept:supersession",
+      "type": "Supersession",
+      "label": "Supersession",
+      "status": "active",
+      "definition": "An explicit lifecycle event by which a newer authoritative artifact replaces an earlier artifact."
+    },
+    {
+      "id": "urn:tsmm:concept:redress",
+      "type": "Redress",
+      "label": "Redress",
+      "status": "active",
+      "definition": "A governed path for contesting, reviewing, correcting, or remedying a trust-system outcome."
+    }
+  ]
+}

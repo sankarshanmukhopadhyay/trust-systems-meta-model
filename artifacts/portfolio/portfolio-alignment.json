@@ -1,0 +1,10 @@
+{
+  "repository": "trust-systems-meta-model",
+  "semanticAuthority": "trust-systems-meta-model",
+  "targetRepository": "trust-infrastructure-schemas",
+  "relationship": "informative-alignment",
+  "inverseRelationship": "normative-dependency",
+  "unknownConceptReferences": 0,
+  "authorityConflicts": 0,
+  "status": "pass"
+}

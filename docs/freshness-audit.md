@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: 0.23.0
+applicable_version: 0.24.0
 tier: 2
 title: TSMM Documentation Freshness Audit
 permalink: /freshness-audit.html

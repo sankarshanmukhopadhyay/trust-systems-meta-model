@@ -1,0 +1,18 @@
+schema_version: "1.0"
+repository: trust-systems-meta-model
+authority:
+  owns: [canonical-semantics]
+  does_not_own: [portable-schema-contracts, portfolio-classification]
+portfolio:
+  classification_authority: sankarshanmukhopadhyay
+relationships:
+  - repository: trust-infrastructure-schemas
+    local_relationship: informative-alignment
+    expected_inverse_relationship: normative-dependency
+    semantic_authority_transfer: false
+    serialization_authority_transfer: false
+compatibility:
+  trust-infrastructure-schemas:
+    reviewed_version: "v0.13.0"
+    status: verified
+    evidence: artifacts/portfolio/portfolio-alignment.json

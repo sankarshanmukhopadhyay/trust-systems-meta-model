@@ -1,0 +1,97 @@
+{
+  "$schema": "../../schemas/semantic-projection.schema.json",
+  "projectionId": "tsmm-tis-semantic-projection",
+  "version": "v0.24.0",
+  "source": {
+    "repository": "trust-systems-meta-model",
+    "authority": "canonical-semantics"
+  },
+  "target": {
+    "repository": "trust-infrastructure-schemas",
+    "authority": "portable-schema-contracts"
+  },
+  "relationship": "normative-dependency",
+  "authorityBoundary": {
+    "semanticAuthorityRemainsWithSource": true,
+    "serializationAuthorityRemainsWithTarget": true
+  },
+  "mappings": [
+    {
+      "conceptId": "urn:tsmm:concept:authority",
+      "targetArtifacts": [
+        "governance/authority-boundary.schema.json"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:delegation",
+      "targetArtifacts": [
+        "delegation/delegation-lineage.schema.json",
+        "delegation/delegation-lineage-verification.schema.json"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:evidence-bundle",
+      "targetArtifacts": [
+        "evidence/evidence-bundle-manifest.schema.json"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:assessment",
+      "targetArtifacts": [
+        "oasf/oasf-evaluation-envelope.schema.json"
+      ],
+      "coverage": "partial"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:trust-decision",
+      "targetArtifacts": [
+        "decision/decision-receipt.schema.json"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:effect",
+      "targetArtifacts": [
+        "decision/decision-receipt.schema.json"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:trust-registry",
+      "targetArtifacts": [
+        "registry/registry-entry.schema.json",
+        "registry/registry-publication-profile.schema.json"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:assurance-profile",
+      "targetArtifacts": [
+        "assurance/assurance.schema.json"
+      ],
+      "coverage": "partial"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:revocation",
+      "targetArtifacts": [
+        "profiles/vti/status-list-reference.schema.json"
+      ],
+      "coverage": "partial"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:redress",
+      "targetArtifacts": [
+        "decision/decision-receipt.schema.json"
+      ],
+      "coverage": "informative",
+      "notes": "Decision receipts preserve review-path evidence; a dedicated portable redress contract remains a future TIS design question."
+    }
+  ],
+  "limitations": [
+    "Projection validity is not external certification.",
+    "Target artifact existence is verified in TIS, not by TSMM in isolation."
+  ]
+}

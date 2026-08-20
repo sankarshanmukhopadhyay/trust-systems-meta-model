@@ -5,7 +5,7 @@ parent: Documentation
 nav_order: 90
 owner: maintainers
 last_reviewed: 2026-07-21
-applicable_version: 0.23.0
+applicable_version: 0.24.0
 tier: 1
 permalink: /pages-deployment.html
 ---

@@ -14,7 +14,7 @@ authority:
   revocation_or_supersession: Releases and status claims are superseded by a versioned release, changelog entry, and updated status contract; compromised artifacts are withdrawn through SECURITY.md.
 evidence:
   validation_commands: [make validate, make candidate-check]
-  evidence_outputs: [artifacts/validation/latest.json, artifacts/candidate/candidate-readiness.json]
+  evidence_outputs: [artifacts/validation/latest.json, artifacts/candidate/candidate-readiness.json, artifacts/portfolio/portfolio-alignment.json]
   known_limitations: [independent interoperability testing is incomplete, candidate status is not certification]
 review:
   last_review: "2026-07-20"

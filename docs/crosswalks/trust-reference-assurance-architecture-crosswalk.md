@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: 0.23.0
+applicable_version: 0.24.0
 tier: 1
 title: Trust Reference Assurance Architecture Crosswalk
 permalink: /crosswalks/trust-reference-assurance-architecture-crosswalk.html

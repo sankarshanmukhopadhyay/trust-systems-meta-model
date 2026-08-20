@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.24.0/schemas/tsmm-semantic-concept-registry.schema.json",
+  "title": "TSMM Semantic Concept Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "registryId",
+    "version",
+    "authority",
+    "concepts"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "registryId": {
+      "type": "string",
+      "pattern": "^urn:tsmm:registry:"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "scope"
+      ],
+      "properties": {
+        "repository": {
+          "const": "trust-systems-meta-model"
+        },
+        "scope": {
+          "const": "canonical-semantics"
+        }
+      }
+    },
+    "identifierPolicy": {
+      "type": "string"
+    },
+    "concepts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "label",
+          "status",
+          "definition"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^urn:tsmm:concept:[a-z0-9-]+$"
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "active",
+              "deprecated",
+              "withdrawn"
+            ]
+          },
+          "definition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "supersededBy": {
+            "type": "string",
+            "pattern": "^urn:tsmm:concept:[a-z0-9-]+$"
+          }
+        }
+      }
+    }
+  }
+}

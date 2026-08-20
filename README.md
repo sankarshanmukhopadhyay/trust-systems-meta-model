@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: 0.23.0
+applicable_version: 0.24.0
 tier: 0
 title: Trust Systems Meta Model (TSMM)
 nav_exclude: true
@@ -11,13 +11,13 @@ nav_exclude: true
 
 > **Flagship repository**  
 > **Role:** `canonical-semantic-model`  
-> **Current version:** `v0.23.0`  
+> **Current version:** `v0.24.0`  
 > **Canonical validation:** `make validate`  
 > **Authority:** [`governance/repository-authority.yaml`](governance/repository-authority.yaml)  
 > **Start here:** [`docs/adoption.md`](docs/adoption.md)
 
 
-[![Release](https://img.shields.io/badge/release-v0.23.0-blue)](releases/v0.23.0.md)
+[![Release](https://img.shields.io/badge/release-v0.24.0-blue)](releases/v0.24.0.md
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
@@ -33,17 +33,17 @@ Trust Systems Meta Model (TSMM) is a portable abstract reference model for desig
 
 TSMM is intentionally **effect-centered**. The core question is not only whether an identity exists or a credential verifies. The core question is whether a bounded authority, evaluated under policy and evidence, should be allowed to produce a defined effect.
 
-## What v0.23.0 consolidates
+## What v0.24.0 adds
 
-TSMM v0.23.0 consolidates **Executable Binding Assurance and Catalog Completeness**. It makes the published binding catalog enforceable: every binding now carries an explicit governance contract, declared maturity, constraint set, and catalog validation path. It also validates all published graph artifacts and provides a reproducible local validation environment.
+TSMM v0.24.0 adds **Executable Cross-Repository Semantic Governance**. Stable semantic identifiers, versioned projection contracts, compatibility declarations, and drift validation now make the TSMM/TIS authority boundary independently inspectable and testable.
 
 New release surfaces:
 
-- **Complete binding contracts** for A2A and OASF, including bounded guarantees, limitations, behavioral expectations, and prohibited inferences.
-- **Binding schema expansion** for TSMM extension-layer types and governance mapping semantics.
-- **Catalog-wide validation** that discovers every published binding and graph artifact rather than relying on incomplete hand-maintained lists.
-- **Negative conformance vectors** for binding contract completeness and mapping vocabulary.
-- **Reproducible validation** through a repository-owned dependency manifest used by CI and local implementers.
+- **Stable semantic identifiers** for canonical TSMM concepts using `urn:tsmm:concept:*`.
+- **Machine-readable TSMM → TIS projection** with explicit coverage and authority boundaries.
+- **Portfolio relationship contracts** that can be compared with the canonical portfolio topology without duplicating its authority.
+- **Semantic drift and version consistency checks** integrated into repository validation.
+- **Auditable validation evidence** that records cross-repository alignment checks.
 
 
 ## TSMM and Trust Infrastructure Schemas
@@ -150,7 +150,7 @@ python scripts/check_schema_coverage.py
 
 ## Current release posture
 
-TSMM v0.23.0 is additive. It does not introduce breaking changes to the stable core model. It strengthens the enforceability of published bindings and examples, so implementers can rely on a clearer assurance boundary when they compare or adopt TSMM-aligned systems.
+TSMM v0.24.0 is additive. It does not introduce breaking changes to the stable core model. It strengthens the enforceability of published bindings and examples, so implementers can rely on a clearer assurance boundary when they compare or adopt TSMM-aligned systems.
 
 ## Contributing
 
@@ -158,4 +158,4 @@ Contributions should preserve TSMM's core discipline: keep concepts abstract eno
 
 ## Delegation lineage in v0.23.0
 
-TSMM now models chained and fan-out delegation, including monotonic scope attenuation, originating-principal continuity, trust-domain transitions, convergence checks, and revocation propagation. See the [implementer guide](docs/getting-started-implementer-guide.md#implement-chained-delegation) and [v0.23.0 release notes](releases/v0.23.0.md).
+TSMM now models chained and fan-out delegation, including monotonic scope attenuation, originating-principal continuity, trust-domain transitions, convergence checks, and revocation propagation. See the [implementer guide](docs/getting-started-implementer-guide.md#implement-chained-delegation) and [v0.23.0 release notes](releases/v0.24.0.md.

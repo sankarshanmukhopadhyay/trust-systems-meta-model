@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-07-21
-applicable_version: 0.23.0
+applicable_version: 0.24.0
 tier: 0
 title: Interoperability
 permalink: /interop/

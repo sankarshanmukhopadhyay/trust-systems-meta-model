@@ -1,7 +1,7 @@
 ---
 owner: maintainers
 last_reviewed: 2026-05-05
-applicable_version: 0.23.0
+applicable_version: 0.24.0
 tier: 0
 title: Governed A2A-Class Discovery Walkthrough
 permalink: /examples/a2a-governed-discovery-walkthrough.html

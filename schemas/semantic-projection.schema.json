@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sankarshanmukhopadhyay/trust-systems-meta-model/v0.24.0/schemas/semantic-projection.schema.json",
+  "title": "TSMM Semantic Projection Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projectionId",
+    "version",
+    "source",
+    "target",
+    "relationship",
+    "mappings",
+    "authorityBoundary"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "projectionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "repository",
+        "authority"
+      ],
+      "properties": {
+        "repository": {
+          "const": "trust-systems-meta-model"
+        },
+        "authority": {
+          "const": "canonical-semantics"
+        }
+      },
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "repository",
+        "authority"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "relationship": {
+      "enum": [
+        "normative-dependency",
+        "informative-alignment",
+        "supports",
+        "profiles",
+        "implements"
+      ]
+    },
+    "authorityBoundary": {
+      "type": "object",
+      "required": [
+        "semanticAuthorityRemainsWithSource",
+        "serializationAuthorityRemainsWithTarget"
+      ],
+      "properties": {
+        "semanticAuthorityRemainsWithSource": {
+          "const": true
+        },
+        "serializationAuthorityRemainsWithTarget": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "conceptId",
+          "targetArtifacts",
+          "coverage"
+        ],
+        "properties": {
+          "conceptId": {
+            "type": "string",
+            "pattern": "^urn:tsmm:concept:"
+          },
+          "targetArtifacts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "coverage": {
+            "enum": [
+              "complete",
+              "partial",
+              "informative"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
