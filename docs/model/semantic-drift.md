@@ -4,6 +4,7 @@ last_reviewed: 2026-08-20
 applicable_version: 0.24.0
 tier: 1
 title: Semantic Drift and Compatibility
+permalink: /model/semantic-drift.html
 ---
 # Semantic Drift and Compatibility
 

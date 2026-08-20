@@ -8,25 +8,7 @@
       "first_line": "flowchart TD"
     },
     {
-      "file": "docs/core-model.md",
-      "index": 1,
-      "ok": true,
-      "first_line": "flowchart LR"
-    },
-    {
-      "file": "docs/delegated-authority-assurance-flow.md",
-      "index": 1,
-      "ok": true,
-      "first_line": "flowchart TD"
-    },
-    {
-      "file": "docs/effect-centered-trust-decision-model.md",
-      "index": 1,
-      "ok": true,
-      "first_line": "flowchart LR"
-    },
-    {
-      "file": "docs/portfolio-relationships.md",
+      "file": "docs/pages-deployment.md",
       "index": 1,
       "ok": true,
       "first_line": "flowchart LR"
@@ -38,7 +20,31 @@
       "first_line": "flowchart LR"
     },
     {
-      "file": "docs/pages-deployment.md",
+      "file": "docs/portfolio-relationships.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
+    },
+    {
+      "file": "docs/delegated-authority-assurance-flow.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart TD"
+    },
+    {
+      "file": "docs/core-model.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
+    },
+    {
+      "file": "docs/effect-centered-trust-decision-model.md",
+      "index": 1,
+      "ok": true,
+      "first_line": "flowchart LR"
+    },
+    {
+      "file": "docs/model/tsmm-graph-model.md",
       "index": 1,
       "ok": true,
       "first_line": "flowchart LR"
@@ -48,12 +54,6 @@
       "index": 1,
       "ok": true,
       "first_line": "sequenceDiagram"
-    },
-    {
-      "file": "docs/model/tsmm-graph-model.md",
-      "index": 1,
-      "ok": true,
-      "first_line": "flowchart LR"
     }
   ]
 }

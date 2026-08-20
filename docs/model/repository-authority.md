@@ -4,6 +4,7 @@ last_reviewed: 2026-08-20
 applicable_version: 0.24.0
 tier: 1
 title: Repository and Semantic Authority
+permalink: /model/repository-authority.html
 ---
 # Repository and Semantic Authority
 

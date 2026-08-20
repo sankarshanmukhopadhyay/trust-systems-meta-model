@@ -4,7 +4,9 @@ last_reviewed: 2026-08-20
 applicable_version: 0.24.0
 tier: 1
 title: Portfolio Integration Contract
+permalink: /cross-repo/portfolio-integration.html
 parent: Cross-Repository Alignment
+grand_parent: Documentation
 ---
 # Portfolio Integration Contract
 
