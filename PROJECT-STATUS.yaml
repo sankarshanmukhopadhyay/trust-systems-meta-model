@@ -8,7 +8,8 @@ project:
   intended_use: [architectural-modeling, semantic-alignment, implementation-design, conformance-profile-development]
   not_asserted: [external-certification, production-system-assurance, authority-over-external-specifications]
 authority:
-  normative_scope: [canonical-trust-system-semantics, graph-model, binding-contracts]
+  normative_scope: [canonical-semantics]
+  implementation_scope: [canonical-trust-system-semantics, graph-model, binding-contracts]
   does_not_own: [portable-schema-serialization, external-protocols, implementation-releases, certification]
   delegation: Normative changes require maintainer approval under GOVERNANCE.md; scoped editorial and validation work may be delegated through reviewed pull requests.
   revocation_or_supersession: Releases and status claims are superseded by a versioned release, changelog entry, and updated status contract; compromised artifacts are withdrawn through SECURITY.md.
