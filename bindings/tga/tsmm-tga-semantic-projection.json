@@ -1,0 +1,129 @@
+{
+  "$schema": "../../schemas/semantic-projection.schema.json",
+  "projectionId": "tsmm-tga-semantic-projection",
+  "version": "v0.24.0",
+  "source": {
+    "repository": "trust-systems-meta-model",
+    "authority": "canonical-semantics"
+  },
+  "target": {
+    "repository": "trust-graph-artifacts",
+    "authority": "interpretation-and-assurance-corpus"
+  },
+  "relationship": "informative-alignment",
+  "authorityBoundary": {
+    "semanticAuthorityRemainsWithSource": true,
+    "serializationAuthorityRemainsWithTarget": true
+  },
+  "mappings": [
+    {
+      "conceptId": "urn:tsmm:concept:authority",
+      "targetArtifacts": [
+        "patterns/runtime-authority-envelope/",
+        "docs/authority-envelope.md"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:delegation",
+      "targetArtifacts": [
+        "patterns/delegation-lineage-envelope/",
+        "docs/delegated-authority-assurance-flow.md"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:scope",
+      "targetArtifacts": [
+        "patterns/runtime-authority-envelope/",
+        "bindings/tsmm/constraints.json"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:policy",
+      "targetArtifacts": [
+        "patterns/runtime-authority-envelope/",
+        "docs/governance-model.md"
+      ],
+      "coverage": "partial"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:evidence-artifact",
+      "targetArtifacts": [
+        "evidence/",
+        "docs/receipts.md"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:evidence-bundle",
+      "targetArtifacts": [
+        "bindings/tis/tga-tis-binding.json",
+        "docs/crosswalks/tga-tsmm-tis-runtime-assurance.md"
+      ],
+      "coverage": "partial"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:assessment",
+      "targetArtifacts": [
+        "docs/assurance.md",
+        "artifacts/validation/latest.json"
+      ],
+      "coverage": "partial"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:trust-decision",
+      "targetArtifacts": [
+        "examples/receipts/",
+        "docs/receipts.md"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:effect",
+      "targetArtifacts": [
+        "patterns/runtime-authority-envelope/",
+        "docs/execution-model.md"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:assurance-profile",
+      "targetArtifacts": [
+        "docs/assurance.md",
+        "bindings/tis/tga-tis-binding.json"
+      ],
+      "coverage": "partial"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:revocation",
+      "targetArtifacts": [
+        "docs/revocation-dynamics.md",
+        "validation/revocation-lag-test-cases.yaml"
+      ],
+      "coverage": "complete"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:supersession",
+      "targetArtifacts": [
+        "docs/temporal-governance.md",
+        "governance/release-publication-ledger.yaml"
+      ],
+      "coverage": "partial"
+    },
+    {
+      "conceptId": "urn:tsmm:concept:redress",
+      "targetArtifacts": [
+        "profiles/public-agent-contestability-profile/",
+        "docs/public-agent-contestability.md"
+      ],
+      "coverage": "complete"
+    }
+  ],
+  "limitations": [
+    "TGA is a downstream interpretation and assurance corpus; this projection does not make TGA normative for TSMM.",
+    "Target artifact existence and TGA release compatibility are verified by TGA, not by TSMM in isolation.",
+    "Essay provenance remains TGA-specific design provenance and is not a TSMM runtime evidence concept."
+  ]
+}
