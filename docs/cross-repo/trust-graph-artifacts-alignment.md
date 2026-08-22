@@ -1,6 +1,7 @@
 ---
 title: Trust Graph Artifacts alignment
 applicable_version: 0.24.0
+permalink: /cross-repo/trust-graph-artifacts-alignment.html
 ---
 
 # Trust Graph Artifacts alignment
