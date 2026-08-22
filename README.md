@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-05-05
+last_reviewed: 2026-08-22
 applicable_version: 0.24.0
 tier: 0
 title: Trust Systems Meta Model (TSMM)
@@ -16,15 +16,14 @@ nav_exclude: true
 > **Authority:** [`governance/repository-authority.yaml`](governance/repository-authority.yaml)  
 > **Start here:** [`docs/adoption.md`](docs/adoption.md)
 
-
-[![Release](https://img.shields.io/badge/release-v0.24.0-blue)](releases/v0.24.0.md
+[![Release](https://img.shields.io/badge/release-v0.24.0-blue)](releases/v0.24.0.md)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC--BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-brightgreen)](index.md)
 [![Validate Schemas and Examples](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/validate.yml)
 [![Deploy GitHub Pages](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/workflows/pages.yml)
 
-**Version:** v0.23.0  
-**Status:** Candidate specification with machine-readable modeling, validation, comparison, runtime-governance, and executable binding assurance artifacts  
+**Version:** v0.24.0  
+**Status:** Candidate specification with machine-readable modeling, semantic projection, validation, comparison, runtime-governance, and executable binding assurance artifacts  
 **License:** CC BY-SA 4.0
 
 ## What TSMM is
@@ -35,27 +34,36 @@ TSMM is intentionally **effect-centered**. The core question is not only whether
 
 ## What v0.24.0 adds
 
-TSMM v0.24.0 adds **Executable Cross-Repository Semantic Governance**. Stable semantic identifiers, versioned projection contracts, compatibility declarations, and drift validation now make the TSMM/TIS authority boundary independently inspectable and testable.
+TSMM v0.24.0 adds **Executable Cross-Repository Semantic Governance**. Stable semantic identifiers, versioned projection contracts, compatibility declarations, and drift validation make authority boundaries independently inspectable and testable.
 
-New release surfaces:
+New release surfaces include:
 
 - **Stable semantic identifiers** for canonical TSMM concepts using `urn:tsmm:concept:*`.
-- **Machine-readable TSMM → TIS projection** with explicit coverage and authority boundaries.
-- **Portfolio relationship contracts** that can be compared with the canonical portfolio topology without duplicating its authority.
+- **Machine-readable semantic projections** with explicit coverage and authority boundaries.
+- **Portfolio relationship contracts** that can be compared with canonical portfolio topology without duplicating its authority.
 - **Semantic drift and version consistency checks** integrated into repository validation.
 - **Auditable validation evidence** that records cross-repository alignment checks.
 
+## Authority model
+
+TSMM owns **canonical trust-system semantics**. It does not own portable schema serialization, external protocol specifications, implementation releases, portfolio classification, or certification.
+
+Downstream repositories may profile, implement, serialize, or illustrate TSMM concepts, but they do not acquire authority to redefine those concepts. The machine-readable semantic registry is:
+
+```text
+model/semantic-concepts.json
+```
 
 ## TSMM and Trust Infrastructure Schemas
 
-TSMM now includes a dedicated binding to `trust-infrastructure-schemas` (TIS). The intended architecture is:
+TSMM includes a dedicated binding to `trust-infrastructure-schemas` (TIS):
 
 ```text
 TSMM = semantic model and cross-ecosystem grammar
 TIS  = canonical executable artifact contracts
 ```
 
-Use TSMM to model trust-system meaning, authority topology, delegation structure, evidence semantics, and runtime effects. Use TIS to package those claims as machine-validatable authority boundaries, evidence bundle manifests, evaluation envelopes, decision receipts, and registry entries.
+Use TSMM to model trust-system meaning, authority topology, delegation structure, evidence semantics, and runtime effects. Use TIS to package those claims as machine-validatable authority boundaries, evidence bundle manifests, evaluation envelopes, decision receipts, registry entries, and assurance objects.
 
 Key artifacts:
 
@@ -65,7 +73,19 @@ Key artifacts:
 - Decision receipt crosswalk: `docs/crosswalks/tis-decision-receipt-crosswalk.md`
 - Assurance level crosswalk: `docs/crosswalks/tis-assurance-level-crosswalk.md`
 - Executable artifact walkthrough: `docs/examples/tis-executable-artifact-walkthrough.md`
-- Machine-readable binding: `bindings/tis/tsmm-tis-binding.json`
+- Machine-readable semantic projection: `bindings/tis/tsmm-tis-semantic-projection.json`
+
+## TSMM and Trust Graph Artifacts
+
+Trust Graph Artifacts (TGA) is a downstream interpretation and assurance corpus. It applies TSMM semantics to essay-derived governance patterns while preserving the authority boundary between source motivation, canonical semantics, implementation artifacts, and portable contracts.
+
+The reviewed baseline is **TSMM v0.24.0 ↔ TGA v0.12.1**. TSMM does not depend on TGA for semantic authority.
+
+Key artifacts:
+
+- Alignment guide: `docs/cross-repo/trust-graph-artifacts-alignment.md`
+- Machine-readable semantic projection: `bindings/tga/tsmm-tga-semantic-projection.json`
+- Canonical semantic registry: `model/semantic-concepts.json`
 
 ## Use TSMM in five workflows
 
@@ -79,7 +99,7 @@ Key artifacts:
 
 ## Agentic systems and runtime governance
 
-TSMM now provides a practical path for agentic systems where agents are discovered, evaluated, authorized, invoked, observed, and audited across organizational boundaries.
+TSMM provides a practical path for agentic systems where agents are discovered, evaluated, authorized, invoked, observed, and audited across organizational boundaries.
 
 Key artifacts:
 
@@ -90,10 +110,9 @@ Key artifacts:
 - A2A binding: `docs/bindings/a2a-binding.md`
 - A2A crosswalk: `docs/crosswalks/a2a-crosswalk.md`
 
-
 ## GTR / GRID / DIA modeling
 
-This archive includes an experimental TSMM binding for the Global Trust Registry, Global Registrar Information Directory, and Digital Identity Anchor architecture. The binding treats GTR as a discovery, verification, lifecycle, and reliance system rather than as a static directory.
+This repository includes an experimental TSMM binding for the Global Trust Registry, Global Registrar Information Directory, and Digital Identity Anchor architecture. The binding treats GTR as a discovery, verification, lifecycle, and reliance system rather than as a static directory.
 
 Key artifacts:
 
@@ -111,6 +130,7 @@ The binding is suitable for architectural analysis, assurance design, documentat
 
 | Path | Purpose |
 | --- | --- |
+| `model/` | Canonical semantic registry and core model surfaces |
 | `schemas/` | JSON Schemas for TSMM core, extensions, bindings, governance surfaces, and validation artifacts |
 | `examples/` | Valid example instances and ecosystem/system examples |
 | `validation/test_vectors/` | Valid and invalid conformance vectors |
@@ -118,26 +138,21 @@ The binding is suitable for architectural analysis, assurance design, documentat
 | `docs/patterns/` | Reusable implementation and assurance patterns |
 | `docs/bindings/` | Ecosystem/protocol binding documentation |
 | `docs/crosswalks/` | Semantic comparison documents |
-| `bindings/` | Machine-readable binding declarations |
+| `docs/cross-repo/` | Cross-repository authority and alignment guidance |
+| `bindings/` | Machine-readable binding and semantic projection declarations |
 | `interop/` | Machine-readable interoperability comparison matrix |
-| `scripts/` | Validation, coverage, graph, registry, and docs checks |
+| `scripts/` | Validation, coverage, graph, registry, and documentation checks |
 | `releases/` | Release notes and migration guidance |
 
 ## Validation
 
-Run the full validation set from the repository root:
+Run the canonical repository gate:
 
 ```bash
-python -m pip install -r requirements-dev.txt
-python scripts/validate_examples.py
-python scripts/validate_bindings.py
-python scripts/validate_test_vectors.py
-python scripts/validate_yaml_models.py
-python scripts/validate_tsmm_graph.py
-python scripts/validate_tsmm_registry.py
-python scripts/check_docs.py
-python scripts/check_schema_coverage.py
+make validate
 ```
+
+The gate covers schemas, examples, bindings, test vectors, YAML models, TSMM graph and registry integrity, semantic projection contracts, documentation integrity, coverage, version consistency, repository governance, and portfolio relationships. Validation produces machine-readable evidence under `artifacts/`.
 
 ## Documentation
 
@@ -146,16 +161,14 @@ python scripts/check_schema_coverage.py
 - Roadmap: `docs/roadmap.md`
 - Freshness audit: `docs/freshness-audit.md`
 - Documentation governance: `docs/documentation-governance.md`
-- Release notes: `releases/v0.23.0.md`
+- Release notes: `releases/v0.24.0.md`
 
 ## Current release posture
 
-TSMM v0.24.0 is additive. It does not introduce breaking changes to the stable core model. It strengthens the enforceability of published bindings and examples, so implementers can rely on a clearer assurance boundary when they compare or adopt TSMM-aligned systems.
+TSMM v0.24.0 is additive. It does not introduce breaking changes to the stable core model. It strengthens the enforceability of published semantic projections, bindings, and examples so implementers can rely on clearer authority boundaries when comparing or adopting TSMM-aligned systems.
 
 ## Contributing
 
-Contributions should preserve TSMM's core discipline: keep concepts abstract enough to travel across ecosystems, but concrete enough to validate. New model surfaces should include documentation, schema, example, test vectors, and validation coverage.
+Contributions should preserve TSMM's core discipline: keep concepts abstract enough to travel across ecosystems, but concrete enough to validate. New model surfaces should include documentation, schema, example, test vectors, and validation coverage where applicable.
 
-## Delegation lineage in v0.23.0
-
-TSMM now models chained and fan-out delegation, including monotonic scope attenuation, originating-principal continuity, trust-domain transitions, convergence checks, and revocation propagation. See the [implementer guide](docs/getting-started-implementer-guide.md#implement-chained-delegation) and [v0.23.0 release notes](releases/v0.24.0.md.
+For delegation lineage, including chained and fan-out delegation, scope attenuation, originating-principal continuity, trust-domain transitions, convergence checks, and revocation propagation, see the [implementer guide](docs/getting-started-implementer-guide.md#implement-chained-delegation) and [v0.24.0 release notes](releases/v0.24.0.md).
