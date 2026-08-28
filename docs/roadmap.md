@@ -1,6 +1,6 @@
 ---
 owner: maintainers
-last_reviewed: 2026-05-05
+last_reviewed: 2026-08-28
 applicable_version: 0.24.0
 tier: 1
 title: TSMM Roadmap
@@ -8,69 +8,58 @@ permalink: /roadmap.html
 parent: Documentation
 ---
 
-
 # TSMM Roadmap
 
-This roadmap is directional. It is not a delivery schedule. TSMM evolves through additive, testable model surfaces that can be adopted independently and promoted based on evidence.
+TSMM evolves through additive, testable semantic surfaces. Coordinated portfolio releases may consume TSMM semantics, but they do not require TSMM changes or version bumps unless a genuine semantic gap exists.
 
 ## Current release line
 
-**v0.21.0 — Executable Binding Assurance and Catalog Completeness** is the current release line. It makes the published binding and graph catalog an enforceable assurance surface through:
+**v0.24.0 — Executable Cross-Repository Semantic Governance** is the current semantic baseline for the TRQP Stack and related portfolio projections.
 
-- complete machine-readable binding contracts
-- binding maturity and publication-status alignment
-- catalog-wide binding and graph validation
-- reproducible local validation dependencies
+## September 2026 conditional work: assurance validity under change
 
-The v0.19.0 agent-interaction release added candidate governance surfaces for:
+**Coordinating issue:** https://github.com/sankarshanmukhopadhyay/trqp-assurance-hub/issues/39  
+**TSMM assessment issue:** https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/3
 
-- discovery governance
-- descriptor integrity and freshness
-- authenticated extended descriptor disclosure
-- capability and extension negotiation
-- task state evidence lifecycle
-- A2A-class binding refresh
-- validation and documentation staleness hardening
+TRQP Stack 2026.2 targets assurance validity under change. TSMM's role is assessment-first: determine whether existing canonical semantics already support the required lifecycle without creating duplicate vocabulary.
 
-## Candidate near-term increments
+### Question
 
-1. **Descriptor signing and registry publication profile**
-   - Define a stronger descriptor-integrity publication profile.
-   - Add examples for signed descriptor bundles and registry-mediated descriptor attestations.
+> Are existing TSMM semantics sufficient to represent assurance validity under change, material/non-material impact, reassessment, authority drift, freshness, and supersession?
 
-2. **Human review and redress hooks**
-   - Bind task lifecycle transitions to review, challenge, appeal, or rollback events.
-   - Extend decision receipts with contestability metadata where appropriate.
+### Evaluate
 
-3. **Cross-protocol agent registry comparison**
-   - Compare A2A-class discovery with OpenID Federation, TRQP registry discovery, and enterprise catalog patterns.
-   - Add portability notes for registry-mediated agent ecosystems.
+- change event and changed-relationship semantics;
+- evidence validity/freshness;
+- authority drift and compatibility;
+- current versus historical assurance state;
+- reassessment obligation;
+- supersession/lineage;
+- unknown-impact/fail-safe semantics.
 
-4. **Evidence bundle packaging**
-   - Define a lightweight packaging model for discovery, negotiation, runtime decision, and task lifecycle evidence.
-   - Align with downstream assurance and conformance suites where available.
+### Allowed outcomes
 
-## Experimental surfaces
+1. **Existing semantics sufficient:** document bindings/projections and retain `v0.24.0` in Stack 2026.2.
+2. **Bounded clarification required:** make the smallest additive, validated change.
+3. **New canonical semantics required:** define the minimum new surface with identifiers, examples, invalid vectors, validation, and downstream projection evidence before considering a release.
 
-- Agent role taxonomy
-- Attention governance
-- ODRL policy expression alignment
-- AIS-1 and bonded agent identity concepts
-- HAVID high-assurance identifier binding
-- Agent Governance Toolkit crosswalk
+### Acceptance evidence
+
+- explicit semantic sufficiency/gap decision;
+- no duplicate concept introduced when an existing semantic identifier suffices;
+- projection and validation coverage for any new semantics;
+- preserved TSMM/TIS/Hub authority boundaries;
+- explicit version decision with rationale;
+- residual semantic uncertainty recorded for the Stack release decision.
+
+## Stack 2026.2 version policy
+
+The default is **retain TSMM v0.24.0**. A new TSMM version is justified only by actual semantic change, not coordinated-release symmetry.
+
+## Continuing near-term increments
+
+Descriptor integrity/publication, human review and redress hooks, cross-protocol registry comparison, and evidence-bundle packaging remain valid TSMM backlog. They are not Stack 2026.2 blockers unless the semantic sufficiency assessment demonstrates a direct dependency.
 
 ## Promotion criteria
 
-A TSMM surface should move toward stable status only when it has:
-
-- documentation
-- JSON/YAML schema where applicable
-- at least one valid example
-- at least one invalid conformance vector where applicable
-- validation coverage
-- binding or crosswalk notes when derived from an external ecosystem
-- freshness metadata aligned to the current release
-
-## Out of scope
-
-TSMM does not define an agent wire protocol, a wallet protocol, a registry API, a credential format, or an implementation runtime. It defines the governance semantics and model surfaces needed to compare, bind, and assure those systems.
+A TSMM surface moves toward stable status only with documentation, schema where applicable, valid and invalid examples, validation coverage, binding/crosswalk notes where relevant, and freshness metadata aligned to the current release.
