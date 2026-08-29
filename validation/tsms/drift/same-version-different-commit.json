@@ -1,0 +1,7 @@
+{
+  "components": [
+    {"id":"tsmm","repository":"sankarshanmukhopadhyay/trust-systems-meta-model","version":"v0.24.0","commit":"1111111111111111111111111111111111111111","role":"canonical-semantic-model","remoteEvidenceStatus":"available"},
+    {"id":"tis","repository":"sankarshanmukhopadhyay/trust-infrastructure-schemas","version":"v0.14.1","commit":"d25539932181e6d883f5bec261daaf011f740059","role":"portable-machine-readable-contract-layer","remoteEvidenceStatus":"available"},
+    {"id":"tga","repository":"sankarshanmukhopadhyay/trust-graph-artifacts","version":"v0.12.1","commit":"f0bdc309a691a7be8dca3b48fed8ac1555219bec","role":"executable-governance-and-implementation-layer","remoteEvidenceStatus":"available"}
+  ]
+}
