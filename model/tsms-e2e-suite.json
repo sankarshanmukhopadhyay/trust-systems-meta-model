@@ -1,0 +1,40 @@
+{
+  "suiteId": "urn:tsms:e2e:delegated-authority:001",
+  "caseId": "TSMS-E2E-001",
+  "title": "Delegated Authority Decision",
+  "baselineReceipt": "model/tsms-baseline-receipt.json",
+  "lineage": "model/tsms-baseline-lineage.json",
+  "proposition": "A delegated action is admissible only when canonical semantics, portable contracts, executable governance, authority, scope, evidence and current relationship state all permit the requested effect.",
+  "semanticAuthority": {
+    "repository": "sankarshanmukhopadhyay/trust-systems-meta-model",
+    "requiredConceptIds": [
+      "urn:tsmm:concept:authority",
+      "urn:tsmm:concept:delegation",
+      "urn:tsmm:concept:scope",
+      "urn:tsmm:concept:evidence-bundle",
+      "urn:tsmm:concept:trust-decision",
+      "urn:tsmm:concept:effect"
+    ]
+  },
+  "portableContractAuthority": {
+    "repository": "sankarshanmukhopadhyay/trust-infrastructure-schemas",
+    "requiredContracts": [
+      "governance/authority-boundary.schema.json",
+      "evidence/evidence-bundle-manifest.schema.json",
+      "decision/decision-receipt.schema.json"
+    ]
+  },
+  "executableGovernance": {
+    "repository": "sankarshanmukhopadhyay/trust-graph-artifacts",
+    "artifactId": "urn:tga:tsms:golden-path:delegated-authority-decision",
+    "path": "examples/tsms/golden-path.json"
+  },
+  "cases": [
+    {"id":"valid-delegation","authority":true,"delegationCurrent":true,"scopeAllowed":true,"evidenceComplete":true,"expected":"PERMIT"},
+    {"id":"missing-authority","authority":false,"delegationCurrent":true,"scopeAllowed":true,"evidenceComplete":true,"expected":"REJECT"},
+    {"id":"revoked-delegation","authority":true,"delegationCurrent":false,"scopeAllowed":true,"evidenceComplete":true,"expected":"REJECT"},
+    {"id":"out-of-scope","authority":true,"delegationCurrent":true,"scopeAllowed":false,"evidenceComplete":true,"expected":"REJECT"},
+    {"id":"missing-evidence","authority":true,"delegationCurrent":true,"scopeAllowed":true,"evidenceComplete":false,"expected":"REJECT"}
+  ],
+  "assuranceRule": "A green workflow is not itself a TSMS compatibility decision; only evidence-backed exact state may inherit the accepted baseline."
+}
