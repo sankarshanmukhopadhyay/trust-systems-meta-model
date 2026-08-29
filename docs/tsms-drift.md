@@ -1,3 +1,10 @@
+---
+title: TSMS Remote Drift Detection
+permalink: /tsms-drift.html
+parent: Documentation
+nav_order: 4
+---
+
 # TSMS remote drift detection
 
 TSMS compatibility is a reviewed claim over immutable repository state. It is not inherited by a branch head merely because a component retains the same version label.
