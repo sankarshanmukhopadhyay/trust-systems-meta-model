@@ -5,6 +5,8 @@ parent: Documentation
 ---
 # Adoption
 
+If you are adopting TSMM together with Trust Infrastructure Schemas (TIS) or Trust Graph Artifacts (TGA), start with the [Trust Systems Modelling Stack (TSMS) guide](tsms.md). It explains authority boundaries, the candidate compatibility baseline, and the intended concept → contract → executable-artifact path.
+
 ## First valid result
 
 1. Install the repository dependencies documented in the README.

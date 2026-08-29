@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "stackId": "urn:tsms:stack:trust-systems-modelling",
+  "name": "Trust Systems Modelling Stack",
+  "abbreviation": "TSMS",
+  "status": "candidate",
+  "coordination": {
+    "repository": "sankarshanmukhopadhyay/trust-systems-meta-model",
+    "issue": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/5",
+    "authority": "coordination-only",
+    "note": "Coordination does not transfer semantic, contract, or implementation authority between repositories."
+  },
+  "candidateBaseline": {
+    "status": "unvalidated-cross-repo-baseline",
+    "components": [
+      {
+        "id": "tsmm",
+        "repository": "sankarshanmukhopadhyay/trust-systems-meta-model",
+        "version": "v0.24.0",
+        "role": "canonical-semantic-model",
+        "authority": [
+          "canonical-concepts",
+          "semantic-relationships",
+          "graph-model",
+          "semantic-conformance",
+          "binding-contracts"
+        ],
+        "doesNotOwn": [
+          "portable-wire-contracts",
+          "implementation-specific-governance-packages",
+          "external-certification"
+        ]
+      },
+      {
+        "id": "tis",
+        "repository": "sankarshanmukhopadhyay/trust-infrastructure-schemas",
+        "version": "v0.14.1",
+        "role": "portable-machine-readable-contract-layer",
+        "authority": [
+          "portable-core-contracts",
+          "schema-identifiers",
+          "portable-evidence-contracts",
+          "schema-validation-rules",
+          "ecosystem-adapter-mappings"
+        ],
+        "doesNotOwn": [
+          "canonical-semantic-definitions",
+          "domain-specific-governance-conclusions",
+          "external-certification"
+        ]
+      },
+      {
+        "id": "tga",
+        "repository": "sankarshanmukhopadhyay/trust-graph-artifacts",
+        "version": "v0.12.1",
+        "role": "executable-governance-and-implementation-layer",
+        "authority": [
+          "governance-pattern-packages",
+          "implementation-guidance",
+          "assurance-compositions",
+          "negative-governance-tests"
+        ],
+        "doesNotOwn": [
+          "canonical-semantic-definitions",
+          "canonical-portable-schema-contracts",
+          "external-certification"
+        ]
+      }
+    ]
+  },
+  "dependencyOrder": [
+    "tsmm",
+    "tis",
+    "tga"
+  ],
+  "requiredConformanceProperties": [
+    "declared-component-versions",
+    "explicit-authority-boundaries",
+    "resolvable-semantic-references",
+    "resolvable-portable-contract-references",
+    "explicit-unknown-compatibility",
+    "auditable-validation-evidence"
+  ],
+  "unknownCompatibilityPolicy": "fail-closed-or-explicitly-report-unsupported; never silently treat unknown compatibility as compatible"
+}

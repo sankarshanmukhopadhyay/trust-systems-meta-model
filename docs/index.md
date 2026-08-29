@@ -12,7 +12,11 @@ has_children: true
 
 # Trust Systems Meta Model Documentation
 
-TSMM is a portable reference model for designing, comparing, implementing, and assuring trust systems. The v0.23.0 documentation is organized around implementer tasks rather than release history.
+TSMM is a portable reference model for designing, comparing, implementing, and assuring trust systems. The documentation is organized around implementer tasks rather than release history. TSMM also serves as the semantic foundation and coordination point for the Trust Systems Modelling Stack (TSMS), without acquiring authority over TIS portable contracts or TGA implementation artifacts.
+
+## Start with the stack
+
+- [Trust Systems Modelling Stack (TSMS)](tsms.md) — architecture, authority boundaries, candidate compatibility baseline, and consumption paths.
 
 ## Start by task
 
