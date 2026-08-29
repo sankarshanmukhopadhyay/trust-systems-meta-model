@@ -1,0 +1,30 @@
+{
+  "profile": "tsms-remote-drift-state",
+  "baselineReceipt": "model/tsms-baseline-receipt.json",
+  "dispositions": {
+    "UNCHANGED": "Authoritative state is evidenced as identical to the accepted baseline component state.",
+    "REVIEW_REQUIRED": "Authoritative state is available but differs from the accepted baseline and requires revalidation and human acceptance.",
+    "UNSUPPORTED": "The component, version, authority role, or comparison state is outside the supported TSMS contract.",
+    "INDETERMINATE": "Required authoritative remote evidence could not be obtained or verified; compatibility must not be inferred."
+  },
+  "invariants": [
+    "same-version-different-commit-is-review-required",
+    "version-change-never-silently-inherits-compatibility",
+    "authority-role-change-is-review-required",
+    "unavailable-remote-state-is-indeterminate",
+    "unknown-component-is-unsupported",
+    "unchanged-requires-evidenced-exact-state"
+  ],
+  "requiredComparisonEvidence": [
+    "component",
+    "repository",
+    "baselineVersion",
+    "baselineCommit",
+    "currentVersion",
+    "currentCommit",
+    "baselineRole",
+    "currentRole",
+    "remoteEvidenceStatus",
+    "disposition"
+  ]
+}
