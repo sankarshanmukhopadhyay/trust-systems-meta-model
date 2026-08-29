@@ -71,10 +71,12 @@ validation / evidence / assurance consumers
 
 TSMS is a coordination architecture, not a transfer of authority. TSMM remains authoritative only for canonical trust-system semantics; TIS remains authoritative for portable machine-readable contracts; TGA remains authoritative for its executable compositions and project-local assurance patterns.
 
-The initial candidate baseline is **TSMM v0.24.0 / TIS v0.14.1 / TGA v0.12.1**. It is deliberately marked candidate until cross-repository conformance checks establish compatibility.
+The first reviewed TSMS repository baseline is **TSMM v0.24.0 / TIS v0.14.1 / TGA v0.12.1**, pinned to exact merge commits and successful CI evidence in `model/tsms-baseline-receipt.json`. The receipt is baseline-specific; unknown or future versions remain unsupported until reviewed.
 
 - [TSMS architecture and adoption guide](docs/tsms.md)
 - Machine-readable stack manifest: `model/tsms-stack.json`
+- Pinned validation receipt: `model/tsms-baseline-receipt.json`
+- Baseline validation: `python scripts/validate_tsms_baseline.py`
 - Coordinating programme: [TSMM #5](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/5)
 
 ## TSMM and Trust Infrastructure Schemas

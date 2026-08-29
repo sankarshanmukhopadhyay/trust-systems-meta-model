@@ -1,0 +1,94 @@
+{
+  "receiptId": "urn:tsms:test:unpinned-commit",
+  "stackId": "urn:tsms:stack:trust-systems-modelling",
+  "status": "validated-repository-baseline",
+  "issuedAt": "2026-08-29",
+  "governingIssue": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/7",
+  "components": [
+    {
+      "id": "tsmm",
+      "repository": "sankarshanmukhopadhyay/trust-systems-meta-model",
+      "version": "v0.24.0",
+      "commit": "2867010121e8a61971184d8fe7d3306b985e5884",
+      "role": "canonical-semantic-model",
+      "implementationPr": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/pull/6",
+      "validationRuns": [
+        {
+          "name": "Validate TSMM Candidate",
+          "run": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/runs/33231545785",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build and deploy GitHub Pages",
+          "run": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/actions/runs/33231545806",
+          "conclusion": "success"
+        }
+      ],
+      "evidence": [
+        "model/tsms-stack.json",
+        "docs/tsms.md"
+      ]
+    },
+    {
+      "id": "tis",
+      "repository": "sankarshanmukhopadhyay/trust-infrastructure-schemas",
+      "version": "v0.14.1",
+      "commit": "d25539932181e6d883f5bec261daaf011f740059",
+      "role": "portable-machine-readable-contract-layer",
+      "implementationPr": "https://github.com/sankarshanmukhopadhyay/trust-infrastructure-schemas/pull/8",
+      "validationRuns": [
+        {
+          "name": "Validate TIS Candidate",
+          "run": "https://github.com/sankarshanmukhopadhyay/trust-infrastructure-schemas/actions/runs/33231798026",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build and deploy GitHub Pages",
+          "run": "https://github.com/sankarshanmukhopadhyay/trust-infrastructure-schemas/actions/runs/33231797997",
+          "conclusion": "success"
+        }
+      ],
+      "evidence": [
+        "model/tsms-compatibility.json",
+        "artifacts/validation/tsms-compatibility.json",
+        "docs/tsms.md"
+      ]
+    },
+    {
+      "id": "tga",
+      "repository": "sankarshanmukhopadhyay/trust-graph-artifacts",
+      "version": "v0.12.1",
+      "commit": "main",
+      "role": "executable-governance-and-implementation-layer",
+      "implementationPr": "https://github.com/sankarshanmukhopadhyay/trust-graph-artifacts/pull/17",
+      "validationRuns": [
+        {
+          "name": "validate-repository-assurance",
+          "run": "https://github.com/sankarshanmukhopadhyay/trust-graph-artifacts/actions/runs/33231814966",
+          "conclusion": "success"
+        }
+      ],
+      "evidence": [
+        "examples/tsms/golden-path.json",
+        "artifacts/validation/tsms-golden-path.json",
+        "docs/tsms.md"
+      ]
+    }
+  ],
+  "conformanceClaims": [
+    "declared-component-versions",
+    "explicit-authority-boundaries",
+    "resolvable-semantic-references-at-reviewed-baseline",
+    "resolvable-portable-contract-references-at-reviewed-baseline",
+    "explicit-unknown-compatibility",
+    "auditable-validation-evidence",
+    "golden-path-positive-and-negative-tests"
+  ],
+  "unknownCompatibilityPolicy": "unsupported-until-new-receipt",
+  "limitations": [
+    "The receipt attests to the pinned reviewed commits and their recorded CI evidence; it does not attest to future branch heads.",
+    "Repository conformance is not external certification.",
+    "A same-version change after the pinned commit is outside this receipt and requires a new review."
+  ],
+  "expectedDisposition": "reject"
+}
