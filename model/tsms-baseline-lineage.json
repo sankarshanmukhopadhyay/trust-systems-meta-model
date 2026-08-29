@@ -1,0 +1,23 @@
+{
+  "lineageId": "urn:tsms:baseline-lineage:trust-systems-modelling",
+  "stackId": "urn:tsms:stack:trust-systems-modelling",
+  "activeReceipt": "urn:tsms:baseline:2026-08-29",
+  "receipts": [
+    {
+      "receiptId": "urn:tsms:baseline:2026-08-29",
+      "path": "model/tsms-baseline-receipt.json",
+      "status": "active",
+      "predecessor": null,
+      "supersededBy": null
+    }
+  ],
+  "renewalRules": [
+    "receipts-are-immutable-once-accepted",
+    "every-non-genesis-receipt-identifies-exactly-one-predecessor",
+    "predecessor-and-successor-links-must-be-reciprocal",
+    "only-one-receipt-may-be-active",
+    "renewal-requires-pinned-component-commits",
+    "renewal-requires-successful-validation-evidence",
+    "renewal-requires-explicit-human-acceptance"
+  ]
+}

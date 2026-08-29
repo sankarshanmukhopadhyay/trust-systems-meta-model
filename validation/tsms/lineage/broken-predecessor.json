@@ -1,0 +1,6 @@
+{
+  "activeReceipt": "urn:tsms:baseline:2026-08-29-renewal",
+  "receipts": [
+    {"receiptId":"urn:tsms:baseline:2026-08-29-renewal","path":"model/tsms-baseline-receipt.json","status":"active","predecessor":"urn:tsms:baseline:missing","supersededBy":null}
+  ]
+}
