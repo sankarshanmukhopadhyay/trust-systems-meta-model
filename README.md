@@ -54,6 +54,29 @@ Downstream repositories may profile, implement, serialize, or illustrate TSMM co
 model/semantic-concepts.json
 ```
 
+
+## Trust Systems Modelling Stack (TSMS)
+
+TSMM is the semantic foundation of the **Trust Systems Modelling Stack (TSMS)**:
+
+```text
+TSMM semantics
+    ↓
+TIS portable contracts
+    ↓
+TGA executable governance artifacts
+    ↓
+validation / evidence / assurance consumers
+```
+
+TSMS is a coordination architecture, not a transfer of authority. TSMM remains authoritative only for canonical trust-system semantics; TIS remains authoritative for portable machine-readable contracts; TGA remains authoritative for its executable compositions and project-local assurance patterns.
+
+The initial candidate baseline is **TSMM v0.24.0 / TIS v0.14.1 / TGA v0.12.1**. It is deliberately marked candidate until cross-repository conformance checks establish compatibility.
+
+- [TSMS architecture and adoption guide](docs/tsms.md)
+- Machine-readable stack manifest: `model/tsms-stack.json`
+- Coordinating programme: [TSMM #5](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/5)
+
 ## TSMM and Trust Infrastructure Schemas
 
 TSMM includes a dedicated binding to `trust-infrastructure-schemas` (TIS):
