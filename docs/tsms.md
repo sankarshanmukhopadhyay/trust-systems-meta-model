@@ -48,7 +48,7 @@ The initial TSMS programme starts from the already-declared repository relations
 - TIS: `v0.14.1`
 - TGA: `v0.12.1`
 
-This is a **candidate compatibility baseline**, not yet a blanket conformance claim. Machine-readable details are published in `model/tsms-stack.json`. Compatibility must be established by executable checks before a future TSMS baseline is described as validated.
+The three versions now form the first **validated repository baseline** for TSMS, pinned to exact reviewed commits in `model/tsms-baseline-receipt.json`. This is deliberately narrower than a floating or blanket conformance claim: the receipt covers the pinned commits and recorded CI evidence only. Future branch heads or same-version changes require a new review and receipt.
 
 ## Consumption paths
 
@@ -68,9 +68,9 @@ Start with **TGA**. Use an artifact or composition that declares its TSMM semant
 
 Consume the model/artifact evidence from TSMS in an assurance or interoperability system. TSMS does not itself turn repository validation into external certification.
 
-## Golden-path target
+## Golden path
 
-The programme will publish at least one complete worked example with this trace:
+The first complete stack-qualified example is published by TGA and follows this trace:
 
 ```text
 TSMM concept identifiers
@@ -80,7 +80,7 @@ TSMM concept identifiers
 → machine-readable evidence
 ```
 
-A consumer must be able to reproduce the path without inferring hidden version assumptions.
+A consumer can inspect the TGA golden-path artifact, its positive/negative fixtures, and machine-readable evidence without inferring hidden version assumptions.
 
 ## Machine-readable contract
 
@@ -94,7 +94,7 @@ A consumer must be able to reproduce the path without inferring hidden version a
 - required conformance properties;
 - governance rule for unknown compatibility.
 
-Future validation will fail safely when required stack compatibility is unknown, unsupported or contradictory.
+`model/tsms-baseline-receipt.json` pins the first reviewed baseline to exact commits and CI evidence. `scripts/validate_tsms_baseline.py` rejects version drift, floating commit references, and failed validation evidence. Unknown or future versions remain unsupported until a new receipt is issued.
 
 ## Programme governance
 
@@ -108,3 +108,24 @@ Repository workstreams:
 - [TGA #16 — Stack-qualified executable artifacts](https://github.com/sankarshanmukhopadhyay/trust-graph-artifacts/issues/16)
 
 Implementation follows visible-judgment discipline: proposition, authority/scope, alternatives, acceptance criteria, pressure tests, evidence, residual uncertainty, and human merge/release decision must remain inspectable.
+
+
+## First validated baseline receipt
+
+The reviewed baseline is pinned as:
+
+| Layer | Version | Merge commit |
+| --- | --- | --- |
+| TSMM | `v0.24.0` | `2867010121e8a61971184d8fe7d3306b985e5884` |
+| TIS | `v0.14.1` | `d25539932181e6d883f5bec261daaf011f740059` |
+| TGA | `v0.12.1` | `f0bdc309a691a7be8dca3b48fed8ac1555219bec` |
+
+Run:
+
+```bash
+python scripts/validate_tsms_baseline.py
+```
+
+The check writes `artifacts/validation/tsms-baseline.json` and exercises negative fixtures for version mismatch, unpinned commits, and failed validation evidence.
+
+This receipt proves consistency of the reviewed, pinned baseline. It is **not** continuous remote-drift monitoring and is not external certification.
