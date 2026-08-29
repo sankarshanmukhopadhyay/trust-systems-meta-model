@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sankarshanmukhopadhyay.github.io/trust-systems-meta-model/schemas/tsms-baseline-receipt.schema.json",
+  "title": "TSMS Baseline Receipt",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["receiptId", "stackId", "status", "issuedAt", "components", "unknownCompatibilityPolicy"],
+  "properties": {
+    "receiptId": {"type": "string", "pattern": "^urn:tsms:baseline:[A-Za-z0-9._:-]+$"},
+    "stackId": {"type": "string", "const": "urn:tsms:stack:trust-systems-modelling"},
+    "status": {"type": "string", "enum": ["validated-repository-baseline", "superseded"]},
+    "issuedAt": {"type": "string", "format": "date"},
+    "predecessorReceipt": {"type": "string", "pattern": "^urn:tsms:baseline:"},
+    "supersedes": {"type": "string", "pattern": "^urn:tsms:baseline:"},
+    "supersededBy": {"type": "string", "pattern": "^urn:tsms:baseline:"},
+    "humanAcceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["accepted", "acceptedBy", "acceptedAt", "evidence"],
+      "properties": {
+        "accepted": {"const": true},
+        "acceptedBy": {"type": "string", "minLength": 1},
+        "acceptedAt": {"type": "string", "format": "date-time"},
+        "evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "components": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "repository", "version", "commit", "role", "validationRuns", "evidence"],
+        "properties": {
+          "id": {"type": "string", "enum": ["tsmm", "tis", "tga"]},
+          "repository": {"type": "string", "minLength": 1},
+          "version": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+          "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+          "role": {"type": "string", "minLength": 1},
+          "validationRuns": {"type": "array", "minItems": 1},
+          "evidence": {"type": "array", "minItems": 1}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"anyOf": [{"required": ["predecessorReceipt"]}, {"required": ["supersedes"]}]},
+      "then": {"required": ["humanAcceptance"]}
+    }
+  ]
+}
