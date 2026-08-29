@@ -3,7 +3,7 @@
   "stackId": "urn:tsms:stack:trust-systems-modelling",
   "name": "Trust Systems Modelling Stack",
   "abbreviation": "TSMS",
-  "status": "candidate",
+  "status": "candidate-with-validated-baseline",
   "coordination": {
     "repository": "sankarshanmukhopadhyay/trust-systems-meta-model",
     "issue": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/5",
@@ -11,7 +11,7 @@
     "note": "Coordination does not transfer semantic, contract, or implementation authority between repositories."
   },
   "candidateBaseline": {
-    "status": "unvalidated-cross-repo-baseline",
+    "status": "validated-by-pinned-receipt",
     "components": [
       {
         "id": "tsmm",
@@ -81,5 +81,11 @@
     "explicit-unknown-compatibility",
     "auditable-validation-evidence"
   ],
-  "unknownCompatibilityPolicy": "fail-closed-or-explicitly-report-unsupported; never silently treat unknown compatibility as compatible"
+  "unknownCompatibilityPolicy": "fail-closed-or-explicitly-report-unsupported; never silently treat unknown compatibility as compatible",
+  "validatedBaseline": {
+    "receipt": "model/tsms-baseline-receipt.json",
+    "status": "validated-repository-baseline",
+    "scope": "pinned-reviewed-commits",
+    "continuousRemoteDriftMonitoring": false
+  }
 }
