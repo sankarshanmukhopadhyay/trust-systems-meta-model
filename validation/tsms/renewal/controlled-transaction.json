@@ -3,6 +3,10 @@
   "production": false,
   "governingIssue": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/13",
   "baselineReceipt": "urn:tsms:baseline:2026-08-29",
+  "startingE2E": {
+    "caseId": "TSMS-E2E-001",
+    "result": "PASS"
+  },
   "drift": {
     "component": "tis",
     "remoteEvidenceStatus": "available",
