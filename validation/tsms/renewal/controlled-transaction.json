@@ -1,0 +1,36 @@
+{
+  "fixtureId": "urn:tsms:fixture:renewal-transaction:001",
+  "production": false,
+  "governingIssue": "https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/13",
+  "baselineReceipt": "urn:tsms:baseline:2026-08-29",
+  "drift": {
+    "component": "tis",
+    "remoteEvidenceStatus": "available",
+    "version": "v0.14.1",
+    "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "role": "portable-machine-readable-contract-layer",
+    "expectedDisposition": "REVIEW_REQUIRED"
+  },
+  "freshEvidence": {
+    "owningLayer": "tis",
+    "validationConclusion": "success",
+    "references": [
+      "fixture://tis/fresh-validation-evidence"
+    ]
+  },
+  "humanAcceptance": {
+    "accepted": true,
+    "actor": "fixture-human-reviewer",
+    "scope": "controlled-renewal-fixture-only"
+  },
+  "renewalReceipt": {
+    "receiptId": "urn:tsms:fixture:baseline:renewed:001",
+    "production": false,
+    "predecessor": "urn:tsms:baseline:2026-08-29",
+    "activeInFixture": true
+  },
+  "postRenewalE2E": {
+    "caseId": "TSMS-E2E-001",
+    "result": "PASS"
+  }
+}
