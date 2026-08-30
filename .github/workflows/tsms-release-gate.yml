@@ -1,0 +1,62 @@
+name: TSMS Release Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tsms-release-gate.yml'
+      - 'model/tsms-wire-001.json'
+      - 'model/tsms-baseline-receipt.json'
+      - 'scripts/run_tsms_wire.py'
+      - 'scripts/test_tsms_wire.py'
+      - 'scripts/check_tsms_drift.py'
+      - 'scripts/test_tsms_drift.py'
+      - 'scripts/run_tsms_e2e.py'
+      - 'scripts/test_tsms_e2e.py'
+      - 'scripts/run_tsms_renewal_transaction.py'
+      - 'scripts/test_tsms_renewal_transaction.py'
+      - 'scripts/build_tsms_release_candidate.py'
+  pull_request:
+    paths:
+      - '.github/workflows/tsms-release-gate.yml'
+      - 'scripts/build_tsms_release_candidate.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Deterministic wire pressure tests
+        run: python3 scripts/test_tsms_wire.py
+      - name: Live pinned cross-repository wire transaction
+        run: python3 scripts/run_tsms_wire.py
+      - name: Canonical E2E conformance
+        run: |
+          python3 scripts/run_tsms_e2e.py
+          python3 scripts/test_tsms_e2e.py
+      - name: Drift pressure tests
+        run: python3 scripts/test_tsms_drift.py
+      - name: Controlled renewal transaction
+        run: |
+          python3 scripts/run_tsms_renewal_transaction.py
+          python3 scripts/test_tsms_renewal_transaction.py
+      - name: Build machine-readable release candidate manifest
+        run: python3 scripts/build_tsms_release_candidate.py
+      - name: Upload TSMS release-gate evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: tsms-stack-2026.1-cashew-nut-evidence
+          path: |
+            artifacts/e2e/TSMS-WIRE-001/
+            artifacts/e2e/TSMS-E2E-001/
+            artifacts/e2e/TSMS-RENEWAL-001/
+            artifacts/validation/tsms-drift-tests.json
+            artifacts/release/tsms-stack-2026.1.json
+          if-no-files-found: error
