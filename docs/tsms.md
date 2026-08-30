@@ -15,7 +15,9 @@ TSMS is the coordinated modelling and executable-governance stack formed by thre
 | Represent | `trust-infrastructure-schemas` (TIS) | portable contract layer | portable schemas, identifiers, evidence contracts, schema validation |
 | Instantiate | `trust-graph-artifacts` (TGA) | executable governance and implementation layer | compositions, worked artifacts, implementation guidance, negative tests |
 
-The stack is intended to make the path from **meaning → portable representation → executable instantiation → evidence** explicit and testable.
+The stack makes the path from **meaning → portable representation → executable instantiation → evidence** explicit and testable.
+
+For hands-on adoption, start with the [TSMS Adopter Guide](tsms-adopter-guide.md).
 
 ## Authority rule
 
@@ -40,15 +42,104 @@ validation / evidence / assurance consumers
 
 Feedback may flow upward through issues and proposals, but implementation need does not itself create semantic or schema authority.
 
-## Current compatibility baseline
+## Accepted compatibility baseline
 
-The initial TSMS programme starts from the already-declared repository relationships:
+The first validated TSMS baseline is pinned to exact reviewed commits in `model/tsms-baseline-receipt.json`:
 
-- TSMM: `v0.24.0`
-- TIS: `v0.14.1`
-- TGA: `v0.12.1`
+| Layer | Version | Accepted commit |
+| --- | --- | --- |
+| TSMM | `v0.24.0` | `2867010121e8a61971184d8fe7d3306b985e5884` |
+| TIS | `v0.14.1` | `d25539932181e6d883f5bec261daaf011f740059` |
+| TGA | `v0.12.1` | `f0bdc309a691a7be8dca3b48fed8ac1555219bec` |
 
-The three versions now form the first **validated repository baseline** for TSMS, pinned to exact reviewed commits in `model/tsms-baseline-receipt.json`. This is deliberately narrower than a floating or blanket conformance claim: the receipt covers the pinned commits and recorded CI evidence only. Future branch heads or same-version changes require a new review and receipt.
+The receipt covers the pinned commits and recorded evidence only. Future branch heads, same-version changes, declaration drift, or unavailable authoritative state do not inherit compatibility automatically.
+
+## Executable wire flow
+
+The canonical released-stack transaction is `TSMS-WIRE-001 — Delegated Authority Decision`.
+
+```text
+transaction input
+    ↓
+TSMM semantic declaration resolved
+    ↓
+TIS portable contracts resolved
+    ↓
+TGA executable governance declaration resolved
+    ↓
+authority / delegation / scope / evidence / relationship-state gates
+    ↓
+PERMIT or REJECT
+    ↓
+machine-readable wire transaction receipt
+```
+
+Run:
+
+```bash
+python3 scripts/test_tsms_wire.py
+python3 scripts/run_tsms_wire.py
+```
+
+A successful canonical live execution reports `TSMS-WIRE-001: PASS / PERMIT`. The receipt records exact repository commits, versions, declaration paths and canonical declaration digests.
+
+## Assurance lifecycle
+
+TSMS treats compatibility as evidence-backed state, not a permanent property of a version label.
+
+The drift dispositions are:
+
+- `UNCHANGED` — independently evidenced state matches the accepted state;
+- `REVIEW_REQUIRED` — material drift exists and inherited compatibility must be withdrawn;
+- `UNSUPPORTED` — component or declaration is outside the supported contract;
+- `INDETERMINATE` — authoritative evidence cannot be obtained or verified.
+
+`INDETERMINATE` is not PASS.
+
+The renewal lifecycle is:
+
+```text
+accepted baseline
+    ↓
+successful E2E / wire execution
+    ↓
+material drift
+    ↓
+REVIEW_REQUIRED
+    ↓
+compatibility withdrawn
+    ↓
+fresh owning-layer evidence
+    ↓
+E2E / wire rerun
+    ↓
+explicit human acceptance
+    ↓
+successor receipt
+```
+
+Historical receipts remain immutable evidence. A controlled non-production renewal fixture must not be represented as a production successor receipt.
+
+## Release gate
+
+The first stack release series is `tsms-stack-2026.1`, codename **Cashew-Nut**.
+
+The `TSMS Release Gate` workflow establishes release candidacy only after all of the following succeed:
+
+1. deterministic wire pressure tests;
+2. live pinned cross-repository `TSMS-WIRE-001` execution;
+3. canonical E2E conformance;
+4. drift pressure tests;
+5. controlled renewal transaction; and
+6. generation of a machine-readable release-candidate manifest.
+
+The release evidence manifest is generated at:
+
+```text
+artifacts/release/tsms-stack-2026.1.json
+```
+
+Green CI is necessary but not sufficient. Publication requires a separate explicit human release decision.
 
 ## Consumption paths
 
@@ -64,68 +155,29 @@ Start with **TIS**. Select the portable contract representing the TSMM-governed 
 
 Start with **TGA**. Use an artifact or composition that declares its TSMM semantic dependencies and TIS portable-contract dependencies.
 
+### I want to adopt the complete stack
+
+Use the [TSMS Adopter Guide](tsms-adopter-guide.md). Begin from the accepted baseline and canonical wire case, then define your own authority question, bind the corresponding TSMM semantics, select TIS contracts, bind a TGA composition, and retain machine-verifiable evidence.
+
 ### I need to assure or pressure-test a claim
 
-Consume the model/artifact evidence from TSMS in an assurance or interoperability system. TSMS does not itself turn repository validation into external certification.
+Consume the model and artifact evidence from TSMS in an assurance or interoperability system. TSMS does not turn repository validation into external certification.
 
-## Golden path
+## Machine-readable surfaces
 
-The first complete stack-qualified example is published by TGA and follows this trace:
-
-```text
-TSMM concept identifiers
-→ TIS portable contracts
-→ TGA executable artifact
-→ validation command
-→ machine-readable evidence
-```
-
-A consumer can inspect the TGA golden-path artifact, its positive/negative fixtures, and machine-readable evidence without inferring hidden version assumptions.
-
-## Machine-readable contract
-
-`model/tsms-stack.json` records:
-
-- stack identity and status;
-- participating repositories and roles;
-- authority boundaries;
-- candidate compatible versions;
-- normative dependency direction;
-- required conformance properties;
-- governance rule for unknown compatibility.
-
-`model/tsms-baseline-receipt.json` pins the first reviewed baseline to exact commits and CI evidence. `scripts/validate_tsms_baseline.py` rejects version drift, floating commit references, and failed validation evidence. Unknown or future versions remain unsupported until a new receipt is issued.
+| Surface | Purpose |
+| --- | --- |
+| `model/tsms-stack.json` | stack identity, roles, authority and conformance rules |
+| `model/tsms-baseline-receipt.json` | immutable accepted component state |
+| `model/tsms-baseline-lineage.json` | receipt lineage and active-state relationship |
+| `model/tsms-wire-001.json` | canonical wire transaction contract |
+| `artifacts/e2e/TSMS-WIRE-001/` | wire transaction and pressure-test evidence |
+| `artifacts/e2e/TSMS-E2E-001/` | canonical E2E conformance evidence |
+| `artifacts/e2e/TSMS-RENEWAL-001/` | drift-to-renewal evidence |
+| `artifacts/release/tsms-stack-2026.1.json` | stack release-candidate manifest |
 
 ## Programme governance
 
-The coordinating issue is:
+The release-gate issue is [TSMM #19 — prove successful end-to-end wire flow and cut first stack release](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/19). The wider operational programme is tracked in [TSMM #9](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/9).
 
-- [TSMM #5 — Establish TSMS as a consumable, machine-verifiable product surface](https://github.com/sankarshanmukhopadhyay/trust-systems-meta-model/issues/5)
-
-Repository workstreams:
-
-- [TIS #7 — Portable contract layer and cross-repo compatibility](https://github.com/sankarshanmukhopadhyay/trust-infrastructure-schemas/issues/7)
-- [TGA #16 — Stack-qualified executable artifacts](https://github.com/sankarshanmukhopadhyay/trust-graph-artifacts/issues/16)
-
-Implementation follows visible-judgment discipline: proposition, authority/scope, alternatives, acceptance criteria, pressure tests, evidence, residual uncertainty, and human merge/release decision must remain inspectable.
-
-
-## First validated baseline receipt
-
-The reviewed baseline is pinned as:
-
-| Layer | Version | Merge commit |
-| --- | --- | --- |
-| TSMM | `v0.24.0` | `2867010121e8a61971184d8fe7d3306b985e5884` |
-| TIS | `v0.14.1` | `d25539932181e6d883f5bec261daaf011f740059` |
-| TGA | `v0.12.1` | `f0bdc309a691a7be8dca3b48fed8ac1555219bec` |
-
-Run:
-
-```bash
-python scripts/validate_tsms_baseline.py
-```
-
-The check writes `artifacts/validation/tsms-baseline.json` and exercises negative fixtures for version mismatch, unpinned commits, and failed validation evidence.
-
-This receipt proves consistency of the reviewed, pinned baseline. It is **not** continuous remote-drift monitoring and is not external certification.
+Repository authority remains distributed. TSMM coordinates stack evidence; it does not acquire TIS or TGA authority.
