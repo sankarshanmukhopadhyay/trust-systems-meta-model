@@ -90,22 +90,21 @@ jobs:
           release_url="$(gh release view "$TAG" --json url --jq '.url')"
           receipt="artifacts/release/tsms-stack-2026.1.json"
           evidence_sha="$(sha256sum "$receipt" | awk '{print $1}')"
+          printf -v closure_comment '%s\n\n%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n\n%s' \
+            '## TSMS release publication complete' \
+            "Published **${RELEASE_TITLE}** as \`${TAG}\`." \
+            "- Release: ${release_url}" \
+            "- Publication workflow commit: \`${GITHUB_SHA}\`" \
+            "- Release manifest: \`${receipt}\`" \
+            "- Release manifest SHA-256: \`${evidence_sha}\`" \
+            '- Release gates were re-executed successfully immediately before publication.' \
+            "- Explicit owner-authored human release acceptance was verified from #${RELEASE_ISSUE}." \
+            'This closure records successful publication; it does not transfer authority among TSMM, TIS, or TGA. Future drift must re-enter the evidence and renewal lifecycle.'
 
           for issue in "$RELEASE_ISSUE" "$PROGRAMME_ISSUE"; do
             state="$(gh issue view "$issue" --json state --jq '.state')"
             if [ "$state" = 'OPEN' ]; then
-              gh issue close "$issue" --comment "## TSMS release publication complete
-
-Published **${RELEASE_TITLE}** as \`${TAG}\`.
-
-- Release: ${release_url}
-- Publication workflow commit: \`${GITHUB_SHA}\`
-- Release manifest: \`${receipt}\`
-- Release manifest SHA-256: \`${evidence_sha}\`
-- Release gates were re-executed successfully immediately before publication.
-- Explicit owner-authored human release acceptance was verified from #${RELEASE_ISSUE}.
-
-This closure records successful publication; it does not transfer authority among TSMM, TIS, or TGA. Future drift must re-enter the evidence and renewal lifecycle."
+              gh issue close "$issue" --comment "$closure_comment"
             fi
           done
 
