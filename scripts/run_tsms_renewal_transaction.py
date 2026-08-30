@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import argparse, copy, datetime, json, pathlib, sys
+import argparse, datetime, json, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -33,6 +33,17 @@ def evaluate(receipt, tx):
         record("fixture-guardrail", "DENIED", "controlled transaction must not assert production receipt state")
         return transitions, "DENIED"
     record("fixture-guardrail", "PASS", "fixture explicitly non-production")
+
+    if tx.get("baselineReceipt") != receipt.get("receiptId"):
+        record("baseline-binding", "DENIED", "transaction fixture is not bound to the accepted baseline receipt")
+        return transitions, "DENIED"
+    record("baseline-binding", "PASS", "transaction fixture bound to accepted baseline receipt")
+
+    start = tx.get("startingE2E", {})
+    if start.get("caseId") != "TSMS-E2E-001" or start.get("result") != "PASS":
+        record("starting-e2e", "DENIED", "accepted starting state must pass TSMS-E2E-001 before drift is introduced")
+        return transitions, "DENIED"
+    record("starting-e2e", "PASS", "accepted starting state passed TSMS-E2E-001")
 
     if baseline is None:
         record("baseline-resolution", "DENIED", "drift component is not in accepted baseline")
