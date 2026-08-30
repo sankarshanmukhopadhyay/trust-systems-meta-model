@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "releases": [
+    {
+      "version": "tsms-stack-2026.1",
+      "codename": "Cashew-Nut",
+      "status": "published"
+    }
+  ]
+}
