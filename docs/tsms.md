@@ -17,7 +17,7 @@ TSMS is the coordinated modelling and executable-governance stack formed by thre
 
 The stack makes the path from **meaning → portable representation → executable instantiation → evidence** explicit and testable.
 
-For hands-on adoption, start with the [TSMS Adopter Guide](tsms-adopter-guide.md).
+For hands-on adoption, start with the [TSMS Adopter Guide](tsms-adopter-guide.md). For the current evidence-backed state, see [TSMS Assurance Status](tsms-assurance.md). Release details are in [TSMS Stack 2026.1 — Cashew-Nut](../releases/tsms-stack-2026.1.md).
 
 ## Authority rule
 
@@ -139,7 +139,7 @@ The release evidence manifest is generated at:
 artifacts/release/tsms-stack-2026.1.json
 ```
 
-Green CI is necessary but not sufficient. Publication requires a separate explicit human release decision.
+Green CI is necessary but not sufficient. Publication requires a separate explicit human release decision, recorded in the governing release issue.
 
 ## Consumption paths
 
