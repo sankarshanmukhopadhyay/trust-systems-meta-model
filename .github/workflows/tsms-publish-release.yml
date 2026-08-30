@@ -1,0 +1,123 @@
+name: TSMS Publish Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tsms-publish-release.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+  issues: write
+
+concurrency:
+  group: tsms-stack-2026.1-publication
+  cancel-in-progress: false
+
+env:
+  TAG: tsms-stack-2026.1
+  RELEASE_TITLE: TSMS Stack 2026.1 — Cashew-Nut
+  RELEASE_NOTES: releases/tsms-stack-2026.1.md
+  RELEASE_ISSUE: '19'
+  PROGRAMME_ISSUE: '9'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Re-establish executable release evidence
+        run: |
+          set -euo pipefail
+          python3 scripts/test_tsms_wire.py
+          python3 scripts/run_tsms_wire.py
+          python3 scripts/run_tsms_e2e.py
+          python3 scripts/test_tsms_e2e.py
+          python3 scripts/test_tsms_drift.py
+          python3 scripts/run_tsms_renewal_transaction.py
+          python3 scripts/test_tsms_renewal_transaction.py
+          python3 scripts/build_tsms_release_candidate.py
+
+      - name: Verify publication surfaces
+        run: |
+          set -euo pipefail
+          test -s "$RELEASE_NOTES"
+          test -s docs/tsms-adopter-guide.md
+          test -s docs/tsms-assurance.md
+          test -s artifacts/release/tsms-stack-2026.1.json
+
+      - name: Verify explicit human release acceptance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          accepted="$({ gh api --paginate "repos/${GITHUB_REPOSITORY}/issues/${RELEASE_ISSUE}/comments" --jq '.[] | select(.user.login == "sankarshanmukhopadhyay") | .body'; } | grep -Fxc '**Human release decision: ACCEPTED FOR PUBLICATION.**' || true)"
+          if [ "$accepted" -lt 1 ]; then
+            echo 'No owner-authored explicit publication acceptance found on release issue.' >&2
+            exit 1
+          fi
+
+      - name: Publish or verify GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            existing_target="$(gh release view "$TAG" --json targetCommitish --jq '.targetCommitish')"
+            echo "Release already exists with targetCommitish=${existing_target}; publication is idempotent."
+          else
+            gh release create "$TAG" \
+              --target "$GITHUB_SHA" \
+              --title "$RELEASE_TITLE" \
+              --notes-file "$RELEASE_NOTES"
+          fi
+          gh release view "$TAG" --json url,tagName,name,targetCommitish,isDraft,isPrerelease
+
+      - name: Close release and programme issues after publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          release_url="$(gh release view "$TAG" --json url --jq '.url')"
+          receipt="artifacts/release/tsms-stack-2026.1.json"
+          evidence_sha="$(sha256sum "$receipt" | awk '{print $1}')"
+
+          for issue in "$RELEASE_ISSUE" "$PROGRAMME_ISSUE"; do
+            state="$(gh issue view "$issue" --json state --jq '.state')"
+            if [ "$state" = 'OPEN' ]; then
+              gh issue close "$issue" --comment "## TSMS release publication complete
+
+Published **${RELEASE_TITLE}** as \`${TAG}\`.
+
+- Release: ${release_url}
+- Publication workflow commit: \`${GITHUB_SHA}\`
+- Release manifest: \`${receipt}\`
+- Release manifest SHA-256: \`${evidence_sha}\`
+- Release gates were re-executed successfully immediately before publication.
+- Explicit owner-authored human release acceptance was verified from #${RELEASE_ISSUE}.
+
+This closure records successful publication; it does not transfer authority among TSMM, TIS, or TGA. Future drift must re-enter the evidence and renewal lifecycle."
+            fi
+          done
+
+      - name: Publication summary
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo '## TSMS publication complete'
+            echo
+            echo "- Release: $(gh release view "$TAG" --json url --jq '.url')"
+            echo "- Tag: \`$TAG\`"
+            echo "- Target: \`$GITHUB_SHA\`"
+            echo '- Release issue and governing programme issue are closed only after release verification.'
+          } >> "$GITHUB_STEP_SUMMARY"
