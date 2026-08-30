@@ -22,6 +22,8 @@ transitions, final = renewal.evaluate(receipt, copy.deepcopy(base))
 assert final == "RESTORED", transitions
 print("PASS controlled renewal restores compatibility")
 
+expect("baseline receipt mismatch", lambda x: x.update(baselineReceipt="urn:tsms:baseline:wrong"), required_stage="baseline-binding")
+expect("starting E2E failure", lambda x: x["startingE2E"].update(result="FAIL"), required_stage="starting-e2e")
 expect("remote evidence unavailable", lambda x: x["drift"].update(remoteEvidenceStatus="unavailable"), required_stage="drift-detection", required_disposition="INDETERMINATE")
 expect("fresh evidence absent", lambda x: x["freshEvidence"].update(references=[]), required_stage="fresh-owning-layer-evidence")
 expect("wrong owning layer", lambda x: x["freshEvidence"].update(owningLayer="tga"), required_stage="fresh-owning-layer-evidence")
