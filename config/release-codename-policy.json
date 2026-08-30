@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "minimumPoolSize": 20,
+  "pool": "config/release-codenames.txt",
+  "source": {
+    "name": "List of Indian state fruits",
+    "url": "https://simple.wikipedia.org/wiki/List_of_Indian_state_fruits",
+    "retrieved": "2026-08-30",
+    "selectionBasis": "Reviewed unique common names from the state and union-territory tables"
+  },
+  "identity": {
+    "authoritative": "stack release ID/tag",
+    "codenameRole": "human-readable release metadata"
+  },
+  "selection": {
+    "preferUnused": true,
+    "allowReuseAfterExhaustion": false,
+    "persistBeforeAcceptance": true,
+    "liveSourceFetchAtRelease": false
+  }
+}

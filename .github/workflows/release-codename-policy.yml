@@ -1,0 +1,44 @@
+name: Release Codename Policy
+
+on:
+  pull_request:
+    paths:
+      - 'config/release-codename-*.json'
+      - 'config/release-codenames.txt'
+      - 'scripts/release_codenames.py'
+      - 'scripts/test_release_codenames.py'
+      - 'docs/release-governance.md'
+      - '.github/workflows/release-codename-policy.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/release-codename-*.json'
+      - 'config/release-codenames.txt'
+      - 'scripts/release_codenames.py'
+      - 'scripts/test_release_codenames.py'
+      - '.github/workflows/release-codename-policy.yml'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Optional release ID to preview without persisting'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate pinned pool, policy and history
+        run: python3 scripts/release_codenames.py validate
+      - name: Pressure-test codename invariants
+        run: python3 scripts/test_release_codenames.py
+      - name: Preview unused codename
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.version != '' }}
+        run: python3 scripts/release_codenames.py select --version '${{ inputs.version }}'
