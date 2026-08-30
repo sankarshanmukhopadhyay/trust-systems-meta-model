@@ -1,3 +1,9 @@
+---
+layout: default
+title: TSMS Release Codename Governance
+permalink: /release-governance.html
+---
+
 # TSMS release codename governance
 
 TSMS stack releases use a repository-local codename pool derived from the Simple English Wikipedia **List of Indian state fruits**. The external page is provenance, not a runtime dependency.
