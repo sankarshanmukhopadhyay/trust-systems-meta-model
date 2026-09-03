@@ -31,7 +31,7 @@ jobs:
         run: bundle exec jekyll build --trace
       - name: Verify generated site
         run: python3 scripts/check_built_site.py
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
   deploy:
